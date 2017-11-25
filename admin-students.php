@@ -1,5 +1,5 @@
 <?php 
-    require_once("functions/admin-grades-function.php");
+    require_once("functions/function.php");
     get_header();
 ?>
   <body>
@@ -68,16 +68,21 @@
 					</form>
 			<div class="mdl-layout-spacer"></div>
 			</div>
+			<div class="android-screens mdl-grid centeritems">
+				<div class="mdl-layout-spacer"></div>
+					<div id="query-progress" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="display: none"></div>
+				<div class="mdl-layout-spacer"></div>
+			</div>
           <!--<div class="mdl-typography--display-1-color-contrast">Transcript of Grades</div>-->
 			  <?php	
-					require('php/readStudentRecords.php');
+					require('php/readStudentList.php');
 					echo listGrades();
 				?>
 			<div class="mdl-layout-spacer"></div>
         </div>
     </div>
     <form> <!--action="ajax/updateRecords.php" method="post"-->
-		<button type="button" id="updateStudentRecords" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
+		<button type="button" id="view-source" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
     </form>	
 <?php
     get_footer();
