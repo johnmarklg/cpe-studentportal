@@ -1,8 +1,8 @@
 $("#updateStudentRecords").click(function(){
 	var tableGrades = $('#grades').tableToJSON();
-	//alert(JSON.stringify(tableGrades));  
 	var tableStudInfo= $('#studentinfo').tableToJSON();
-	//alert(JSON.stringify(tableStudInfo));  
+	alert(JSON.stringify(tableGrades));  
+	alert(JSON.stringify(tableStudInfo));  
 	// Returns successful data submission message when the entered information is stored in database.
 	//var dataString = 'first='+ first + '&second='+ second + '&third='+ third + '&courseid='+ courseid;
 	// AJAX Code To Submit Form.

@@ -1,5 +1,5 @@
 <?php 
-    require_once("functions/function.php");
+    require_once("functions/admin-grades-function.php");
     get_header();
 ?>
   <body>
@@ -19,7 +19,7 @@
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Calendar</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Grades</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Timetables</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Students</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Add Students</a>
             </nav>
           </div>
           <span class="android-mobile-title mdl-layout-title">
@@ -44,7 +44,7 @@
           <a class="mdl-navigation__link" href="">Set Calendar</a>
           <a class="mdl-navigation__link" href="">Update Grades</a>
           <a class="mdl-navigation__link" href="">Create Timetable</a>
-          <a class="mdl-navigation__link" href="">Students</a>
+          <a class="mdl-navigation__link" href="">Add Students</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Profile Settings</span>
           <a class="mdl-navigation__link" href="">Edit Profile</a>
@@ -68,21 +68,16 @@
 					</form>
 			<div class="mdl-layout-spacer"></div>
 			</div>
-			<div class="android-screens mdl-grid centeritems">
-				<div class="mdl-layout-spacer"></div>
-					<div id="query-progress" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="display: none"></div>
-				<div class="mdl-layout-spacer"></div>
-			</div>
           <!--<div class="mdl-typography--display-1-color-contrast">Transcript of Grades</div>-->
 			  <?php	
-					require('php/readStudentList.php');
+					require('php/readStudentRecords.php');
 					echo listGrades();
 				?>
 			<div class="mdl-layout-spacer"></div>
         </div>
     </div>
     <form> <!--action="ajax/updateRecords.php" method="post"-->
-		<button type="button" id="view-source" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
+		<button type="button" id="updateStudentRecords" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
     </form>	
 <?php
     get_footer();

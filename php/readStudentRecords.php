@@ -43,13 +43,13 @@
 									<tr>";
 									
 									while($row = mysqli_fetch_array($result)) {
-										echo "<td contentEditable style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" id=\"id\">" . $row['studnum'] . "</td>
+										echo "<td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"id\">" . $row['studnum'] . "</td>
 								      <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"surname\">" . $row['surname'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"firstname\">" . $row['firstname'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"middlename\">" . $row['middlename'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"studnum\">" . $row['studnum'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"cfat\">" . $row['cfatscore'] . "</td>
-									  <td contentEditable style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" id=\"id\">" . $row['id'] . "</td>";
+									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"id\">" . $row['id'] . "</td>";
 									}
 									echo "</tr>
 								  </tbody>
@@ -68,9 +68,9 @@
 										</div>
 									</form>
 								<div class=\"mdl-layout-spacer\"></div>
-							</div>
+							   </div>
 							  <div class=\"mdl-layout-spacer\"></div>						
-								<table id=\"grades\" class=\"mdl-data-table mdl-js-data-table <!--mdl-data-table--selectable--> mdl-shadow--2dp\">
+								<table id=\"grades\" class=\"mdl-data-table mdl-js-data-tablemdl-shadow--2dp\">
 								<thead>
 									<tr>
 										<th class=\"sort\" data-sort=\"First\" >1st</th>
@@ -119,7 +119,7 @@
 							var options = {
 										valueNames: ['First', 'Second', 'Third', 'Code', 'Course Title', 'Units', 'Pre-Requisites', 'Co-Requisites', 'Year']
 								};
-							var documentTable = new List('grades-table', options);
+							var gradesTable = new List('grades-table', options);
 
 							</script>";
 					mysqli_close($con);

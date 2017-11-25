@@ -2,26 +2,9 @@
 	<script src="assets/modal-mdl/material-modal.min.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
 	<script src="assets/js/jquery.tabletojson.min.js"></script>
-	<!--<script src="assets/js/updateStudentRecords.js"></script>-->
+	<script src="assets/js/updateStudentRecords.js"></script>
 	
-	<script>
-		$("#updateStudentRecords").click(function(){
-			var tableGrades = $('#grades').tableToJSON();
-			var tableStudInfo= $('#studentinfo').tableToJSON();
-			//alert(JSON.stringify(tableGrades));  
-			//alert(JSON.stringify(tableStudInfo));  
-			$.ajax({
-			type: "POST",
-				url: "../php/updateStudentRecords.php",
-				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo)},
-				cache: false,
-				success: function(result){
-					//alert("Successfully updated database!");
-				}
-			});
-			return false;
-		});
-	</script>
+	
 	<!--Add to table functionality
 	<script>
 		$('.table-add').click(function () {
