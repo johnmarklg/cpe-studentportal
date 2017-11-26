@@ -1,7 +1,8 @@
 			  <?php	
 			  function listGrades() {
 				  
-					require('php/databaseConnection.php');
+					//require('php/databaseConnectionGrades.php');
+					
 					
 					
 					if(isset($_REQUEST["search-table"]))
@@ -17,14 +18,40 @@
 						$studnum = "00-0000";
 					}
 					
-					if ($result = mysqli_query($con, "SHOW TABLES LIKE '". $studnum . "'")) {
+					$servername = "localhost";
+					$username = "root";
+					$password = "";
+					$dbname = "cpe-studentportal";
+					
+					try {
+							$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$stmt = $conn->prepare("SHOW TABLES LIKE :studnum");
+							$stmt -> bindParam(':studnum', $studnum);
+							$stmt->execute();
+
+							// set the resulting array to associative
+							$result = $stmt->fetchAll(); 
+							
+							if(count($result) == 0) {
+								$studnum = "00-0000";
+							}
+
+						}
+						catch(PDOException $e) {
+							echo "Error: " . $e->getMessage();
+						}
+						
+						$conn = null;
+					
+					/*if ($result = mysqli_query($con, "SHOW TABLES LIKE '". $studnum . "'")) {
 						//if it doesn't exist
 						if($result->num_rows == 0) {
 							$studnum = "00-0000";
 						}
-					}
+					}*/
 					
-					$result = mysqli_query($con,"SELECT * FROM students WHERE `studnum` = \"" . $studnum . "\"");
+					//$result = mysqli_query($con,"SELECT * FROM students WHERE `studnum` = \"" . $studnum . "\"");
 					echo "<div class=\"android-screens mdl-grid centeritems\">
 								<div class=\"mdl-layout-spacer\"></div>
 								<table id=\"studentinfo\" class=\"mdl-data-table mdl-js-data-table <!--mdl-data-table--selectable--> mdl-shadow--2dp\">
@@ -41,16 +68,37 @@
 								  </thead>
 								  <tbody>
 									<tr>";
+
+										$servername = "localhost";
+										$username = "root";
+										$password = "";
+										$dbname = "cpe-studentportal";
+				
+										try {
+											$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+											$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
+											$stmt -> bindParam(':studnum', $studnum);
+											$stmt->execute();
+
+											// set the resulting array to associative
+											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+
+											foreach(($stmt->fetchAll()) as $row) { 
+												echo "<td class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
+								      <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['surname'] . "</td>
+									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['firstname'] . "</td>
+									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['middlename'] . "</td>
+									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
+									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['cfatscore'] . "</td>
+									  <td class=\"mdl-data-table__cell--non-numeric\" >" . $row['id'] . "</td>";
+											}
+										}
+										catch(PDOException $e) {
+											echo "Error: " . $e->getMessage();
+										}
+										$conn = null;
 									
-									while($row = mysqli_fetch_array($result)) {
-										echo "<td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"id\">" . $row['studnum'] . "</td>
-								      <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"surname\">" . $row['surname'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"firstname\">" . $row['firstname'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"middlename\">" . $row['middlename'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"studnum\">" . $row['studnum'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"cfat\">" . $row['cfatscore'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" id=\"id\">" . $row['id'] . "</td>";
-									}
 									echo "</tr>
 								  </tbody>
 								</table>
@@ -88,13 +136,45 @@
 								  <tbody class=\"list\">";
 								  
 					
-								  
-					//$result = mysqli_query($con,"SELECT * FROM `" . $studnum . "`");
-					//SELECT `13-5393`.*, `subjects`.* FROM `13-5393`, `subjects` WHERE `13-5393`.`courseid` = `subjects`.`id
-					//joined tables
-					$result = mysqli_query($con, "SELECT `" . $studnum . "`.*, `subjects`.* FROM `" . $studnum . "`,`subjects` WHERE `" . $studnum . "`.`courseid` = `subjects`.`id`");
+					//$result = mysqli_query($con, "SELECT `" . $studnum . "`.*, `subjects`.* FROM `" . $studnum . "`,`subjects` WHERE `" . $studnum . "`.`courseid` = `subjects`.`id`");
 					
-					while($row = mysqli_fetch_array($result))
+					$servername = "localhost";
+					$username = "root";
+					$password = "";
+					$dbname = "cpe-studentportal";
+
+					try {
+						$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+						//SELECT * FROM `subjects` LEFT JOIN `13-5393` ON `subjects`.`id` = `13-5393`.`courseid` WHERE subjects.id
+						$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id");
+						//apparently, I cannot bind parameters to table names so there's that
+						//$stmt -> bindParam(':studnum', $studnum);
+						$stmt->execute();
+
+						// set the resulting array to associative
+						$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+
+						foreach(($stmt->fetchAll()) as $row) { 
+							echo "<tr>";
+							echo "<td><div class=\"mdl-textfield__input First\" contentEditable style=\"width: 100%; height: 100%;\" id=\"first\">" . $row['1st'] . "</div></td>";
+							echo "<td><div class=\"mdl-textfield__input Second\" contentEditable style=\"width: 100%; height: 100%;\" id=\"second\">" . $row['2nd'] . "</div></td>";
+							echo "<td><div class=\"mdl-textfield__input Third\" contentEditable style=\"width: 100%; height: 100%;\" id=\"third\">" . $row['3rd'] . "</div></td>";
+							echo "<td class=\"mdl-data-table__cell--non-numeric Code\"><div  style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
+							echo "<td class=\"mdl-data-table__cell--non-numeric Course Title\"><div  style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
+							echo "<td><div class=\"Units\" style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
+							echo "<td class=\"mdl-data-table__cell--non-numeric Pre-Requisites\"><div  style=\"width: 100%; height: 100%;\">" . $row['prerequisite'] . "</div></td>";
+							echo "<td class=\"mdl-data-table__cell--non-numeric Co-Requisites\"><div  style=\"width: 100%; height: 100%;\">" . $row['corequisite'] . "</div></td>";
+							echo "<td class=\"mdl-data-table__cell--non-numeric Year\"><div  style=\"width: 100%; height: 100%;\">" . $row['year'] . "</div></td>";
+							echo "<td><div class=\"mdl-textfield__input\" style=\"width: 100%; height: 100%;\" id=\"courseid\">" . $row['courseid'] . "</div></td>";
+							echo "</tr>";
+						}
+					}
+					catch(PDOException $e) {
+						echo "Error: " . $e->getMessage();
+					}
+					$conn = null;
+					/*while($row = mysqli_fetch_array($result))
 					{
 					echo "<tr>";
 					echo "<td><div class=\"mdl-textfield__input First\" contentEditable style=\"width: 100%; height: 100%;\" id=\"first\">" . $row['1st'] . "</div></td>";
@@ -111,7 +191,7 @@
 					//if($row['courseid']==4) {
 					//	echo "</tr></table><hr/><";
 					//}
-					}
+					}*/
 					echo "</tbody></table>";
 
 					
@@ -122,6 +202,8 @@
 							var gradesTable = new List('grades-table', options);
 
 							</script>";
-					mysqli_close($con);
+						
+					//$con = null;
+					//mysqli_close($con);
 			  }
 ?>

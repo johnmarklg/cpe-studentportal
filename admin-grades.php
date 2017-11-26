@@ -17,9 +17,8 @@
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Announcements</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Calendar</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Grades</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Timetables</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Add Students</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-grades.php">Student Records</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-timetable.php">Timetables</a>
             </nav>
           </div>
           <span class="android-mobile-title mdl-layout-title">
@@ -42,9 +41,8 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Post Announcements</a>
           <a class="mdl-navigation__link" href="">Set Calendar</a>
-          <a class="mdl-navigation__link" href="">Update Grades</a>
-          <a class="mdl-navigation__link" href="">Create Timetable</a>
-          <a class="mdl-navigation__link" href="">Add Students</a>
+          <a class="mdl-navigation__link" href="admin-grades.php">Update Student Records</a>
+          <a class="mdl-navigation__link" href="admin-timetable.php">Create Timetable</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Profile Settings</span>
           <a class="mdl-navigation__link" href="">Edit Profile</a>
@@ -68,7 +66,14 @@
 					</form>
 			<div class="mdl-layout-spacer"></div>
 			</div>
-          <!--<div class="mdl-typography--display-1-color-contrast">Transcript of Grades</div>-->
+			<div class="android-screens mdl-grid centeritems">
+				<div class="mdl-layout-spacer"></div>
+					<!-- Basic Chip -->
+					<span class="mdl-chip">
+						<span class="mdl-chip__text">To add a new entry, input blank or missing entry and search before input.</span>
+					</span>
+				<div class="mdl-layout-spacer"></div>
+			</div>
 			  <?php	
 					require('php/readStudentRecords.php');
 					echo listGrades();

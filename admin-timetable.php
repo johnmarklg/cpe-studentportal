@@ -1,5 +1,5 @@
 <?php 
-    require_once("functions/admin-grades-function.php");
+    require_once("functions/admin-timetable-function.php");
     get_header();
 ?>
   <body>
@@ -17,9 +17,8 @@
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Announcements</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Calendar</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Grades</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Timetables</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Add Students</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-grades.php">Student Records</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-timetable.php">Timetables</a>
             </nav>
           </div>
           <span class="android-mobile-title mdl-layout-title">
@@ -42,9 +41,8 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Post Announcements</a>
           <a class="mdl-navigation__link" href="">Set Calendar</a>
-          <a class="mdl-navigation__link" href="">Update Grades</a>
-          <a class="mdl-navigation__link" href="">Create Timetable</a>
-          <a class="mdl-navigation__link" href="">Add Students</a>
+          <a class="mdl-navigation__link" href="admin-grades.php">Update Student Records</a>
+          <a class="mdl-navigation__link" href="admin-timetable.php">Create Timetable</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Profile Settings</span>
           <a class="mdl-navigation__link" href="">Edit Profile</a>
@@ -55,29 +53,26 @@
       <div class="android-content mdl-layout__content">
         <a name="top"></a>
         <div class="android-screen-section mdl-typography--text-center">
-		  <div class="android-screens mdl-grid centeritems">
+			<div class="android-screens mdl-grid centeritems">
 				<div class="mdl-layout-spacer"></div>
-					<form method="post">
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<input class="mdl-textfield__input" type="text" id="stud-num" name="stud-num">
-							<label class="mdl-textfield__label" for="stud-num">Student Number</label>
-						</div>
-							<button name="search-table" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-								<i class="material-icons">search</i>
-							</button>
-					</form>
-			<div class="mdl-layout-spacer"></div>
+					<!-- Basic Chip -->
+					<span class="mdl-chip">
+						<span class="mdl-chip__text">When adding/removing, save entry and refresh before filtering to incorporate updates.</span>
+					</span>
+        		<div class="mdl-layout-spacer"></div>
 			</div>
+		  <div class="android-screens mdl-grid centeritems">
+			<div class="mdl-layout-spacer"></div>
           <!--<div class="mdl-typography--display-1-color-contrast">Transcript of Grades</div>-->
 			  <?php	
-					require('php/readStudentRecords.php');
-					echo listGrades();
+					require('php/readTimetable.php');
+					echo listTimetable();
 				?>
 			<div class="mdl-layout-spacer"></div>
         </div>
     </div>
     <form> <!--action="ajax/updateRecords.php" method="post"-->
-		<button type="button" id="updateStudentRecords" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
+		<button type="button" id="updateTimetable" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
     </form>	
 <?php
     get_footer();

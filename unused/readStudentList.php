@@ -1,7 +1,7 @@
 			  <?php	
 			  function listGrades() {
 				  
-					require('php/databaseConnection.php');
+					require('php/databaseConnectionTimetable.php');
 					
 					
 					if(isset($_REQUEST["search-table"]))

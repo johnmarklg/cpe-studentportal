@@ -3,7 +3,7 @@
  $host = "localhost";
 $user = "root";
 $password = "";
-$database = "cpe-studentportal";
+$database = "cpe-timetables";
 
 $con=mysqli_connect($host,$user,$password,$database);
 

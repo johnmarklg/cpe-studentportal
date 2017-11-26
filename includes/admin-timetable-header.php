@@ -22,8 +22,9 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/modal-mdl/material-modal.min.css">
 	<link rel="stylesheet" href="assets/pace/pace-theme-flash.css">
+	<link rel="stylesheet" href="assets/select-mdl/getmdl-select.min.css">
     <style>
-		#updateStudentList {
+		#updateTimetable {
 		  position: fixed;
 		  display: block;
 		  right: 0;
