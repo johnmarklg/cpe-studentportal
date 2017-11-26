@@ -51,14 +51,14 @@
       </div>
 
       <div class="android-content mdl-layout__content">
-        <a name="top"></a>
-        <div class="android-screen-section mdl-typography--text-center">
-			<div class="android-screens mdl-grid centeritems">
+        <div id="div-timetable" class="android-screen-section mdl-typography--text-center">
+		<div class="android-screens mdl-grid centeritems">
 				<div class="mdl-layout-spacer"></div>
 					<!-- Basic Chip -->
 					<span class="mdl-chip">
 						<span class="mdl-chip__text">When adding/removing, save entry and refresh before filtering to incorporate updates.</span>
 					</span>
+					 <!-- Simple Select -->
         		<div class="mdl-layout-spacer"></div>
 			</div>
 		  <div class="android-screens mdl-grid centeritems">

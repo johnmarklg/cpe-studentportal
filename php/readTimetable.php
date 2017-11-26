@@ -11,10 +11,12 @@
 					//$result = mysqli_query($con,"SELECT * FROM `subjectlist`");
 					echo "<div id=\"students-table\" class=\"android-screens mdl-grid centeritems\">
 								<div class=\"mdl-layout-spacer\"></div>
+									<form method=\"post\">
 										<div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">
-											<input class=\"search mdl-textfield__input\" type=\"text\" id=\"filter-table\">
+											<input class=\"mdl-textfield__input search\" type=\"text\" id=\"filter-table\">
 											<label class=\"mdl-textfield__label\" for=\"filter-table\">Filter Year or Section</label>
 										</div>
+									</form>
 								<div class=\"mdl-layout-spacer\"></div>
 							   </div>
 								<div class=\"mdl-layout-spacer\"></div>
@@ -111,10 +113,14 @@
 								}
 							</style>";
 					echo "<script>
-								var options = {
+								function updateFilter() {
+									var options = {
 											valueNames: ['year', 'section']
 									};
-								var documentTable = new List('timetable', options);
+								 var documentTable = new List('div-timetable', options);
+								}
+								
+								updateFilter();
 								</script>";
 	  }
 ?>

@@ -26,6 +26,7 @@
 				cache: false,
 				success: function(result){
 					//alert("Successfully updated database!");
+					updateFilter();
 				}
 			});
 			
