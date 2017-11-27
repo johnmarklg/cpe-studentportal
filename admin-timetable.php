@@ -16,7 +16,7 @@
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Announcements</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Calendar</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-events.php">Calendar</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-grades.php">Student Records</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin-timetable.php">Timetables</a>
             </nav>
@@ -40,7 +40,7 @@
         </span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Post Announcements</a>
-          <a class="mdl-navigation__link" href="">Set Calendar</a>
+          <a class="mdl-navigation__link" href="admin-events.php">Set Calendar</a>
           <a class="mdl-navigation__link" href="admin-grades.php">Update Student Records</a>
           <a class="mdl-navigation__link" href="admin-timetable.php">Create Timetable</a>
           <div class="android-drawer-separator"></div>

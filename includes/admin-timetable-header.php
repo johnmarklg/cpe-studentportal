@@ -9,7 +9,7 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <meta name="description" content="Welcome to the CpE Student Portal.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>CpE Student Portal</title>
+    <title>Timetables</title>
 
 	
 	<!--JavaScript part 1-->
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/fonts/css/roboto.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="assets/mdl/material.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/modal-mdl/material-modal.min.css">
 	<link rel="stylesheet" href="assets/pace/pace-theme-flash.css">
 	<link rel="stylesheet" href="assets/select-mdl/getmdl-select.min.css">

@@ -43,7 +43,6 @@
 										$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 										$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 										$stmt = $conn->prepare("SELECT * from subjectlist");
-										$stmt -> bindParam(':studnum', $studnum);
 										$stmt->execute();
 										
 										// set the resulting array to associative

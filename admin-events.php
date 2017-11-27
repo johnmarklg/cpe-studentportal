@@ -1,5 +1,5 @@
 <?php 
-    require_once("functions/admin-grades-function.php");
+    require_once("functions/admin-events-function.php");
     get_header();
 ?>
   <body>
@@ -51,37 +51,28 @@
       </div>
 
       <div class="android-content mdl-layout__content">
-        <div class="android-screen-section mdl-typography--text-center">
-		  <div class="android-screens mdl-grid centeritems">
-			<div class="mdl-layout-spacer"></div>
-					<form method="post">
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<input class="mdl-textfield__input" type="text" id="stud-num" name="stud-num">
-							<label class="mdl-textfield__label" for="stud-num">Student Number</label>
-						</div>
-							<button name="search-table" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-								<i class="material-icons">search</i>
-							</button>
-					</form>
-			<div class="mdl-layout-spacer"></div>
-			</div>
-			<div class="android-screens mdl-grid centeritems">
+        <div id="div-events" class="android-screen-section mdl-typography--text-center">
+		<div class="android-screens mdl-grid centeritems">
 				<div class="mdl-layout-spacer"></div>
 					<!-- Basic Chip -->
 					<span class="mdl-chip">
-						<span class="mdl-chip__text">To add a new entry, input blank or missing entry and search before input.</span>
+						<span class="mdl-chip__text">When adding/removing, save entry and refresh before filtering to incorporate updates.</span>
 					</span>
-				<div class="mdl-layout-spacer"></div>
+					 <!-- Simple Select -->
+        		<div class="mdl-layout-spacer"></div>
 			</div>
+		  <div class="android-screens mdl-grid centeritems">
+			<div class="mdl-layout-spacer"></div>
+          <!--<div class="mdl-typography--display-1-color-contrast">Transcript of Grades</div>-->
 			  <?php	
-					require('php/readStudentRecords.php');
-					echo listGrades();
+					require('php/readEvents.php');
+					echo listEvents();
 				?>
 			<div class="mdl-layout-spacer"></div>
         </div>
     </div>
     <form> <!--action="ajax/updateRecords.php" method="post"-->
-		<button type="button" id="updateStudentRecords" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
+		<button type="button" id="updateEvents" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">save</i></button>
     </form>	
 <?php
     get_footer();

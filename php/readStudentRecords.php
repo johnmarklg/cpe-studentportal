@@ -85,13 +85,13 @@
 											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 
 											foreach(($stmt->fetchAll()) as $row) { 
-												echo "<td class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
+												echo "<td style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
 								      <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['surname'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['firstname'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['middlename'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
 									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['cfatscore'] . "</td>
-									  <td class=\"mdl-data-table__cell--non-numeric\" >" . $row['id'] . "</td>";
+									  <td style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" >" . $row['id'] . "</td>";
 											}
 										}
 										catch(PDOException $e) {
@@ -105,7 +105,6 @@
 								<div class=\"mdl-layout-spacer\"></div>
 								</div>	
 							<hr/>
-							  <!--<span class=\"mdl-typography--title-color-contrast\">First Year</span>-->
 							  <div id=\"grades-table\" class=\"android-screens mdl-grid centeritems\">
 							  <div class=\"android-screens mdl-grid centeritems\">
 								<div class=\"mdl-layout-spacer\"></div>
@@ -166,7 +165,7 @@
 							echo "<td class=\"mdl-data-table__cell--non-numeric Pre-Requisites\"><div  style=\"width: 100%; height: 100%;\">" . $row['prerequisite'] . "</div></td>";
 							echo "<td class=\"mdl-data-table__cell--non-numeric Co-Requisites\"><div  style=\"width: 100%; height: 100%;\">" . $row['corequisite'] . "</div></td>";
 							echo "<td class=\"mdl-data-table__cell--non-numeric Year\"><div  style=\"width: 100%; height: 100%;\">" . $row['year'] . "</div></td>";
-							echo "<td><div class=\"mdl-textfield__input\" style=\"width: 100%; height: 100%;\" id=\"courseid\">" . $row['courseid'] . "</div></td>";
+							echo "<td><div style=\"font-size: 0px\" class=\"mdl-textfield__input\" style=\"width: 100%; height: 100%;\" id=\"courseid\">" . $row['courseid'] . "</div></td>";
 							echo "</tr>";
 						}
 					}
