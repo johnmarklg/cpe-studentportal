@@ -1,9 +1,8 @@
 			  <?php	
-			  function listGrades() {
-				  
-					//require('php/databaseConnectionGrades.php');
-					
-					
+			  function listGrades() {			
+
+				require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+			  
 					
 					if(isset($_REQUEST["search-table"]))
 					{
@@ -18,40 +17,18 @@
 						$studnum = "00-0000";
 					}
 					
-					$servername = "localhost";
-					$username = "root";
-					$password = "";
-					$dbname = "cpe-studentportal";
-					
-					try {
-							$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$conn = getDB('cpe-studentportal');
 							$stmt = $conn->prepare("SHOW TABLES LIKE :studnum");
 							$stmt -> bindParam(':studnum', $studnum);
 							$stmt->execute();
 
-							// set the resulting array to associative
 							$result = $stmt->fetchAll(); 
 							
 							if(count($result) == 0) {
 								$studnum = "00-0000";
 							}
-
-						}
-						catch(PDOException $e) {
-							echo "Error: " . $e->getMessage();
-						}
-						
 						$conn = null;
 					
-					/*if ($result = mysqli_query($con, "SHOW TABLES LIKE '". $studnum . "'")) {
-						//if it doesn't exist
-						if($result->num_rows == 0) {
-							$studnum = "00-0000";
-						}
-					}*/
-					
-					//$result = mysqli_query($con,"SELECT * FROM students WHERE `studnum` = \"" . $studnum . "\"");
 					echo "<div class=\"android-screens mdl-grid centeritems\">
 								<div class=\"mdl-layout-spacer\"></div>
 								<table id=\"studentinfo\" class=\"mdl-data-table mdl-js-data-table <!--mdl-data-table--selectable--> mdl-shadow--2dp\">
@@ -63,40 +40,30 @@
 									  <th class=\"mdl-data-table__cell--non-numeric\">Middle Name</th>
 									  <th class=\"mdl-data-table__cell--non-numeric\">Student Number</th>
 									  <th class=\"mdl-data-table__cell--non-numeric\">CFAT Score</th>
+									  <th class=\"mdl-data-table__cell--non-numeric\">Passcode</th>
 									  <th style=\"font-size: 0px\"class=\"mdl-data-table__cell--non-numeric\">ID</th>
 									</tr>
 								  </thead>
 								  <tbody>
 									<tr>";
 
-										$servername = "localhost";
-										$username = "root";
-										$password = "";
-										$dbname = "cpe-studentportal";
-				
-										try {
-											$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-											$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+											$conn = getDB('cpe-studentportal');
 											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
 											$stmt -> bindParam(':studnum', $studnum);
 											$stmt->execute();
 
-											// set the resulting array to associative
 											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 
 											foreach(($stmt->fetchAll()) as $row) { 
 												echo "<td style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
-								      <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['surname'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['firstname'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['middlename'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
-									  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['cfatscore'] . "</td>
-									  <td style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" >" . $row['id'] . "</td>";
+														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['surname'] . "</td>
+														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['firstname'] . "</td>
+														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['middlename'] . "</td>
+														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
+														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['cfatscore'] . "</td>
+														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['passcode'] . "</td>
+														  <td style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" >" . $row['id'] . "</td>";
 											}
-										}
-										catch(PDOException $e) {
-											echo "Error: " . $e->getMessage();
-										}
 										$conn = null;
 									
 									echo "</tr>
@@ -135,23 +102,9 @@
 								  <tbody class=\"list\">";
 								  
 					
-					//$result = mysqli_query($con, "SELECT `" . $studnum . "`.*, `subjects`.* FROM `" . $studnum . "`,`subjects` WHERE `" . $studnum . "`.`courseid` = `subjects`.`id`");
-					
-					$servername = "localhost";
-					$username = "root";
-					$password = "";
-					$dbname = "cpe-studentportal";
-
-					try {
-						$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-						//SELECT * FROM `subjects` LEFT JOIN `13-5393` ON `subjects`.`id` = `13-5393`.`courseid` WHERE subjects.id
+						$conn = getDB('cpe-studentportal');
 						$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id");
-						//apparently, I cannot bind parameters to table names so there's that
-						//$stmt -> bindParam(':studnum', $studnum);
 						$stmt->execute();
-
-						// set the resulting array to associative
 						$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 
 						foreach(($stmt->fetchAll()) as $row) { 
@@ -168,31 +121,8 @@
 							echo "<td><div style=\"font-size: 0px\" class=\"mdl-textfield__input\" style=\"width: 100%; height: 100%;\" id=\"courseid\">" . $row['courseid'] . "</div></td>";
 							echo "</tr>";
 						}
-					}
-					catch(PDOException $e) {
-						echo "Error: " . $e->getMessage();
-					}
 					$conn = null;
-					/*while($row = mysqli_fetch_array($result))
-					{
-					echo "<tr>";
-					echo "<td><div class=\"mdl-textfield__input First\" contentEditable style=\"width: 100%; height: 100%;\" id=\"first\">" . $row['1st'] . "</div></td>";
-					echo "<td><div class=\"mdl-textfield__input Second\" contentEditable style=\"width: 100%; height: 100%;\" id=\"second\">" . $row['2nd'] . "</div></td>";
-					echo "<td><div class=\"mdl-textfield__input Third\" contentEditable style=\"width: 100%; height: 100%;\" id=\"third\">" . $row['3rd'] . "</div></td>";
-					echo "<td class=\"mdl-data-table__cell--non-numeric Code\"><div  style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
-					echo "<td class=\"mdl-data-table__cell--non-numeric Course Title\"><div  style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
-					echo "<td><div class=\"Units\" style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
-					echo "<td class=\"mdl-data-table__cell--non-numeric Pre-Requisites\"><div  style=\"width: 100%; height: 100%;\">" . $row['prerequisite'] . "</div></td>";
-					echo "<td class=\"mdl-data-table__cell--non-numeric Co-Requisites\"><div  style=\"width: 100%; height: 100%;\">" . $row['corequisite'] . "</div></td>";
-					echo "<td class=\"mdl-data-table__cell--non-numeric Year\"><div  style=\"width: 100%; height: 100%;\">" . $row['year'] . "</div></td>";
-					echo "<td><div class=\"mdl-textfield__input\" style=\"width: 100%; height: 100%; font-size: 0px;\" id=\"courseid\">" . $row['courseid'] . "</div></td>";
-					echo "</tr>";
-					//if($row['courseid']==4) {
-					//	echo "</tr></table><hr/><";
-					//}
-					}*/
 					echo "</tbody></table>";
-
 					
 					echo "<script>
 							var options = {
@@ -201,8 +131,5 @@
 							var gradesTable = new List('grades-table', options);
 
 							</script>";
-						
-					//$con = null;
-					//mysqli_close($con);
 			  }
 ?>

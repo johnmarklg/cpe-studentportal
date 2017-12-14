@@ -1,4 +1,7 @@
 <?php	
+
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+
 	//require('databaseConnectionGrades.php');
 	$jsonstudinfo = json_decode($_POST['studinfo'], true);
 	$jsongrades = json_decode($_POST['studgrades'], true); 
@@ -8,7 +11,7 @@
 	if($oldstudnum != "00-0000") {
 		
 		foreach ($jsonstudinfo as $key => $value) {
-			$servername = "localhost";
+			/*$servername = "localhost";
 			$username = "root";
 			$password = "";
 			$dbname = "cpe-studentportal";
@@ -17,31 +20,36 @@
 				$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				//SELECT * FROM `subjects` LEFT JOIN `13-5393` ON `subjects`.`id` = `13-5393`.`courseid` WHERE subjects.id
-				$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename, cfatscore = :cfatscore, studnum = :studnum WHERE id = :id");
+				*/
+				$conn = getDB('cpe-studentportal');
+				$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename, cfatscore = :cfatscore, studnum = :studnum, passcode = :passcode WHERE id = :id");
 				$stmt -> bindParam(':surname', $value['Surname']);
 				$stmt -> bindParam(':firstname', $value['First Name']);
 				$stmt -> bindParam(':middlename', $value['Middle Name']);
 				$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
 				$stmt -> bindParam(':studnum', $value['Student Number']);
+				$stmt -> bindParam(':passcode', $value['Passcode']);
 				$stmt -> bindParam(':id', $value['ID']);
 				$stmt->execute();
-			}
+			/*}
 			catch(PDOException $e) {
 				echo "Error: " . $e->getMessage();
-			}
+			}*/
 			$conn = null;
 			
-			try {
+			/*try {
 				$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				//SELECT * FROM `subjects` LEFT JOIN `13-5393` ON `subjects`.`id` = `13-5393`.`courseid` WHERE subjects.id
+				*/
+				$conn = getDB('cpe-studentportal');
 				$stmt = $conn->prepare("ALTER TABLE `$oldstudnum` RENAME `$studnum`;");
 				//can't bind parameter table name
 				$stmt->execute();
-			}
+			/*}
 			catch(PDOException $e) {
 				echo "Error: " . $e->getMessage();
-			}
+			}*/
 			$conn = null;
 			
 			/*mysqli_query($con, "UPDATE `students`
@@ -57,22 +65,25 @@
 	} 
 	else
 	{
-			$servername = "localhost";
+			/*$servername = "localhost";
 			$username = "root";
 			$password = "";
 			$dbname = "cpe-studentportal";
-	
+			*/
 	
 			foreach ($jsonstudinfo as $key => $value) {	
-				try {
+				/*try {
 					$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-					$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, cfatscore) VALUES (:studnum, :surname, :firstname, :middlename, :cfatscore)");
+					*/
+					$conn = getDB('cpe-studentportal');
+					$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, cfatscore, passcode) VALUES (:studnum, :surname, :firstname, :middlename, :cfatscore, :passcode)");
 					$stmt -> bindParam(':studnum', $value['Student Number']);	
 					$stmt -> bindParam(':surname', $value['Surname']);
 					$stmt -> bindParam(':firstname', $value['First Name']);
 					$stmt -> bindParam(':middlename', $value['Middle Name']);
 					$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
+					$stmt -> bindParam(':passcode', $value['Passcode']);
 					$stmt->execute();	
 					
 					
@@ -80,10 +91,10 @@
 					$stmt->execute();
 					$stmt = $conn->prepare("INSERT `$studnum` SELECT * FROM `00-0000`");
 					$stmt->execute();
-				}
+				/*}
 				catch(PDOException $e) {
 					echo "Error: " . $e->getMessage();
-				}
+				}*/
 				$conn = null;	
 			}
 			/*mysqli_query($con, "INSERT INTO `students`(`studnum`, `surname`, `firstname`, `middlename`, `cfatscore`) VALUES ('"
@@ -96,20 +107,22 @@
 	//updates grades (edit for old student entries and also update on new ones, because data is copied from 00-0000, which has blank grades but similar data
 		foreach ($jsongrades as $key => $value) {
 			
-				try {
+				/*try {
 					$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					//SELECT * FROM `subjects` LEFT JOIN `13-5393` ON `subjects`.`id` = `13-5393`.`courseid` WHERE subjects.id
+					*/
+					$conn = getDB('cpe-studentportal');
 					$stmt = $conn->prepare("UPDATE `$studnum` SET 1st = :first, 2nd = :second, 3rd = :third WHERE `$studnum`.courseid = :id");
 					$stmt -> bindParam(':first', $value['1st']);
 					$stmt -> bindParam(':second', $value['2nd']);
 					$stmt -> bindParam(':third', $value['3rd']);
 					$stmt -> bindParam(':id', $value['id']);
 					$stmt->execute();
-				}
+				/*}
 				catch(PDOException $e) {
 					echo "Error: " . $e->getMessage();
-				}
+				}*/
 				$conn = null;
 
 				//mysqli_query($con, "UPDATE `" . $studnum . "` SET `1st` = '" . $value["1st"] . "', `2nd` = '" . $value["2nd"] . "', `3rd` = '" . $value["3rd"] . "' WHERE `" . $studnum . "` . `courseid` = " . $value["id"]);

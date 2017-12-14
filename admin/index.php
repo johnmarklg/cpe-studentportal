@@ -1,75 +1,193 @@
-<!doctype html>
+<?php
+// Initialize the session
+session_start();
+// If session variable is not set it will redirect to login page
+if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
+  header("location: login.php");
+  exit;
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Student Portal</title>
 
-    <!-- Page styles -->
-		<link rel="stylesheet" href="/assets/fonts/css/roboto.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="/assets/mdl/material.min.css">
-        <link rel="stylesheet" href="/assets/css/styles-login.css">
-    </style>
-  </head>
-  <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
-			<div class="mdl-layout__header-row">
-			  <span class="android-title mdl-layout-title">
-				<img class="android-logo-image" src="/assets/images/cpe-portal-blue.png">
-			  </span>
-			  <!-- Add spacer, to align navigation to the right in desktop -->
-			  <div class="android-header-spacer mdl-layout-spacer"></div>
-			  <!-- Navigation -->
-			  <div class="android-mobile-title mdl-layout-title">
-				<img class="android-logo-image" src="/assets/images/cpe-portal-blue.png">
-			  </div>
-			</div>
-		</div>
-		<div style="position: relative"class="android-be-together-section mdl-typography--text-center">
-		<!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" preserveAspectRatio="xMinYMin slice" aria-hidden="true">
-			<path fill="#efefee" d="M592.66 0c-15 64.092-30.7 125.285-46.598 183.777C634.056 325.56 748.348 550.932 819.642 809.5h419.672C1184.518 593.727 1083.124 290.064 902.637 0H592.66z"></path><path fill="#f6f6f6" d="M545.962 183.777c-53.796 196.576-111.592 361.156-163.49 490.74 11.7 44.494 22.8 89.49 33.1 134.883h404.07c-71.294-258.468-185.586-483.84-273.68-625.623z"></path><path fill="#f7f7f7" d="M153.89 0c74.094 180.678 161.088 417.448 228.483 674.517C449.67 506.337 527.063 279.465 592.56 0H153.89z"></path><path fill="#fbfbfc" d="M153.89 0H0v809.5h415.57C345.477 500.938 240.884 211.874 153.89 0z"></path><path fill="#ebebec" d="M1144.22 501.538c52.596-134.583 101.492-290.964 134.09-463.343 1.2-6.1 2.3-12.298 3.4-18.497 0-.2.1-.4.1-.6 1.1-6.3 2.3-12.7 3.4-19.098H902.536c105.293 169.28 183.688 343.158 241.684 501.638v-.1z"></path><path fill="#e1e1e1" d="M1285.31 0c-2.2 12.798-4.5 25.597-6.9 38.195C1321.507 86.39 1379.603 158.98 1440 257.168V0h-154.69z"></path><path fill="#e7e7e7" d="M1278.31,38.196C1245.81,209.874 1197.22,365.556 1144.82,499.838L1144.82,503.638C1185.82,615.924 1216.41,720.211 1239.11,809.6L1439.7,810L1439.7,256.768C1379.4,158.78 1321.41,86.288 1278.31,38.195L1278.31,38.196z">
-			</path>
-		</svg>-->
-			<div class="android-card-container center-items mdl-grid">
-				<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--3dp">
-					<div class="mdl-card">
-					  <div class="mdl-card__media">
-						<img src="/assets/images/login-header.png">
-					  </div>
-					  <!--<div class="mdl-card__title">
-						 <h4 class="mdl-card__title-text">Sign in</h4>
-					  </div>-->
-							 <div class="mdl-card__supporting-text">
-								<span class="mdl-chip">
-									<span class="mdl-chip__text">Administrator Mode</span>
-								</span>
-							 <!--<span class="mdl-typography--font-light mdl-typography--subhead">Computer Engineering Department</span>-->
-								<form action="#">
-									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="text" id="username" />
-										<label class="mdl-textfield__label" for="username">Username</label>
-									</div>
-									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-										<input class="mdl-textfield__input" type="password" id="userpass" />
-										<label class="mdl-textfield__label" for="userpass">Password</label>
-									</div>
-									<span class="mdl-typography--font-light mdl-typography--subhead"><a>Forgot password?</a></span>
-								</form>
-							</div>
-							<div class="mdl-card__actions mdl-card--border">
-								<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-								Sign In
-								</button>
-							</div>
-					  </div>
+	<link rel="icon" href="/assets/images/mmsu-logo.png">
+     <!-- Bootstrap Core CSS -->
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
+    <!-- jQuery -->
+    <script src="/assets/bootstrap/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- PACE -->
+	<script src="/assets/pace/pace.min.js"></script>
+	<!-- Autosize -->
+	<script src="/assets/js/autosize.min.js"></script>
+	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php"><img style="max-width:100%;max-height:100%;" src="/assets/images/cpe-portal-white.png"/></a>
+            </div>
+			<ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1]?> <b class="caret"></b></a>
+					<div class="dropdown-backdrop"></div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href=""><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+                    <li >
+                        <a href="announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
+                    </li>
+                    <li>
+                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
+                    </li>
+                    <li>
+                        <a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student List</a>
+                    </li>
+                    <li>
+                        <a href="records.php"><i class="fa fa-fw fa-table"></i> Student Records</a>
+                    </li>
+                    <li>
+                        <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> School Calendar</a>
+                    </li>
+                    <li>
+                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
+                    </li>
+                    <li>
+                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+				<br/>
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+					   <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-home"></i> Home
+                            </li>
+                        </ol>
+						<div class="alert alert-success" role="alert">
+						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
+						</div>
+						 
+                    </div>
+                </div>
+                <!-- /.row -->
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+						  Initial page. You can adjust settings and edit your account information here.
+						</div>
+					</div>
 				</div>
+				
+				<?php	
+					require($_SERVER["DOCUMENT_ROOT"] . '/php/showInfo.php');
+					echo showInfo();
+				?>
 			</div>
-		</div>
-	</div>
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  </body>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+		<footer class="sticky-footer">
+		  <div class="container">
+			<div class="text-center">
+			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
+			  <small id="userid" hidden><?php echo ($_SESSION['name'][2]);?></small>
+			</div>
+		  </div>
+		</footer>
+		<!-- /footer -->
+		
+    </div>
+    <!-- /#wrapper -->
+	<script>
+		autosize($('textarea'));
+
+		$('#buttonSave').click(function() {
+			var $username = $('#username').val();
+			var $password = $('#password').val();
+			var $email = $('#email').val();
+			var $name = $('#fullname').val();
+			var $userid = $('#userid').text();
+			var $userInfo = '[{"Name":"' + $name + '","Password":"' + $password +
+			'","Email":"' + $email + '","Username":"' + $username + '","ID":"' + $userid + '"}]';
+			alert($userInfo);
+			$.ajax({
+				type: "POST",
+					url: "/php/saveInfo.php",
+					data: {infodata: $userInfo},
+					cache: false,
+					success: function(result){
+						alert("Successfully updated personal details! Please relogin.");
+						location.reload();  	
+					}
+				});
+				return false;
+		});
+		
+		$('.table-remove').click(function () {
+			$(this).parents('tr').detach();
+		});
+	</script>
+</body>
+
 </html>
