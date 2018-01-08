@@ -90,7 +90,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['studnum'] . "</td>
+			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
@@ -134,7 +134,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['studnum'] . "</td>
+			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
@@ -178,7 +178,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['studnum'] . "</td>
+			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
@@ -222,7 +222,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['studnum'] . "</td>
+			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
@@ -266,7 +266,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['studnum'] . "</td>
+			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>

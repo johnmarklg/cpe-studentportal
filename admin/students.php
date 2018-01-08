@@ -184,7 +184,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			'","Middle Name":"' + $middlename + '","CFAT Score":"' + $cfatscore +
 			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted +'"}]';
 			
-			alert($studinfo);
+			//alert($studinfo);
 			
 			if($studnum=="00-0000"||$studnum=="") {
 				alert('Error! Please fill all the necessary fields.');
@@ -201,6 +201,29 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					}
 				});
 			}
+		});
+	</script>
+	
+	<script>
+		$('.table-remove').click(function () {
+		if(confirm('Do you want to remove this entry from the database?')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $studnum = $row.find(".studnum").text(); // Find the text
+			var $studinfo = '[{"id":"' + $id + '","studnum":"' + $studnum + '"}]';
+			//alert($studinfo);
+			$.ajax({
+				type: "POST",
+					url: "/php/removeStudent.php",
+					data: {studinfo: $studinfo},
+					cache: false,
+					success: function(result){
+						//alert("Successfully removed student entry!");
+						//location.reload(); 			
+					}
+				});
+			$(this).parents('tr').detach();			
+		} else {}
 		});
 	</script>
 </body>
