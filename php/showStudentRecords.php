@@ -29,7 +29,7 @@
 							}
 						$conn = null;
 					//STUDENT INFO
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\"><div class=\"table-responsive\">
 								<table id=\"studentinfo\" class=\"table\">
 								  <thead>
 									<tr>
@@ -70,7 +70,7 @@
 									echo "</tr>
 								  </tbody></table></div></div></div></div>";
 					//STUDENT GRADES 1-1
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 1st Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 1st Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades1-1\" class=\"table\">
 								<thead>
 									<tr>
@@ -111,7 +111,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//STUDENT GRADES 1-2
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 1st Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 1st Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades1-2\" class=\"table\">
 								<thead>
 									<tr>
@@ -152,7 +152,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//STUDENT GRADES 2-1
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 2nd Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 2nd Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades2-1\" class=\"table\">
 								<thead>
 									<tr>
@@ -193,7 +193,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//STUDENT GRADES 2-2
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 2nd Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 2nd Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades2-2\" class=\"table\">
 								<thead>
 									<tr>
@@ -234,7 +234,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 
 					//STUDENT GRADES 3-1
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 3rd Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 3rd Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades3-1\" class=\"table\">
 								<thead>
 									<tr>
@@ -275,7 +275,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 
 					//STUDENT GRADES 3-2
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 3rd Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 3rd Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades3-2\" class=\"table\">
 								<thead>
 									<tr>
@@ -316,7 +316,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//STUDENT GRADES 4-1
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 4th Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 4th Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades4-1\" class=\"table\">
 								<thead>
 									<tr>
@@ -357,7 +357,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 
 					//STUDENT GRADES 4-2
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 4th Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 4th Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades4-2\" class=\"table\">
 								<thead>
 									<tr>
@@ -398,7 +398,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 
 					//STUDENT GRADES 4th Year SUMMER
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 4th Year - Summer/Short Term</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 4th Year - Summer/Short Term</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades\" class=\"table\">
 								<thead>
 									<tr>
@@ -439,7 +439,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//STUDENT GRADES 5-1
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 5th Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 5th Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades5-1\" class=\"table\">
 								<thead>
 									<tr>
@@ -480,7 +480,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//STUDENT GRADES 5-2
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\"><div class=\"panel-heading\">Grades Transcript: 5th Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 5th Year - 2nd Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades5-2\" class=\"table\">
 								<thead>
 									<tr>

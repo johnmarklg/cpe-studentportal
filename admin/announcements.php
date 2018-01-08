@@ -301,16 +301,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var $postinfo = '[{"id":"' + $id + '","date":"' + $date + '","time":"' + $time +
 			'","post":"' + $post + '","fileurl":"' + $fileurl + '"}]';
 			//alert($postinfo);
-			$.ajax({
-				type: "POST",
-					url: "/php/deleteAnnouncement.php",
-					data: {postData: $postinfo},
-					cache: false,
-					success: function(result){
-						//deleted
-						$row.remove();
-					}
-				});
+			if(confirm('Do you want to remove this entry from the database?')) {
+				$.ajax({
+					type: "POST",
+						url: "/php/deleteAnnouncement.php",
+						data: {postData: $postinfo},
+						cache: false,
+						success: function(result){
+							//deleted
+							$row.remove();
+						}
+					});
+			} else {}
 		});
 		
 		$("#buttonPost").click(function(){

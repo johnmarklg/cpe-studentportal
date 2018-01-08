@@ -11,7 +11,7 @@
 		}
 		
 		//ADD ENTRY
-		echo '<div class="row"><div class="col-lg-12"><div class="panel panel-default">
+		echo '<div class="row"><div class="col-lg-12"><div class="panel panel-primary">
 		<div class="panel-heading">Insert New Student Entry</div><div class="panel-body">
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">Student Number</span>

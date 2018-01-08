@@ -33,7 +33,7 @@
 					
 					
 					//General Events
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-info\">
 					<div class=\"panel-heading\">Manage General Events</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"eventstable\" class=\"table\">
 					<thead>
@@ -67,7 +67,7 @@
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//Official Holidays
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\">
 					<div class=\"panel-heading\">Manage Holidays (Working and Non-working) </div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"eventstable\" class=\"table\">
 					<thead>
