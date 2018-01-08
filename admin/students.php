@@ -193,10 +193,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				$.ajax({
 				type: "POST",
 					url: "/php/addStudent.php",
-					data: {infodata: $studinfo},
+					data: {studinfo: $studinfo},
 					cache: false,
 					success: function(result){
-						//alert("Successfully added a new student record!");
+						alert("Successfully added a new student record!");
 						location.reload();  	
 					}
 				});
