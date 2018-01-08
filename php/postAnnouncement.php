@@ -14,7 +14,11 @@
 		$stmt -> bindParam(':post', $value['Post']);
 		$stmt -> bindParam(':fileurl', $value['FileURL']);
 		$stmt->execute();	
-		$conn = null;	
+		
+		$last_id = $conn->lastInsertId();
+		print $last_id;
+    
+		$conn = null;
+		
 	}
-	
 ?>

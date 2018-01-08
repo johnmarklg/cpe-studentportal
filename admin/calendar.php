@@ -21,34 +21,30 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <title>Student Portal</title>
 
-	<!-- Page Icon -->
 	<link rel="icon" href="/assets/images/mmsu-logo.png">
-    <!-- Bootstrap Core CSS -->
+     <!-- Bootstrap Core CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	<!-- Full Calendar JS -->
-	<link href="/assets/full-calendar/css/fullcalendar.css" rel="stylesheet" />
-		
-	<style type="text/css">
-        .block a:hover{
-            color: silver;
-        }
-        .block a{
-            color: #fff;
-        }
-        .block {
-            position: fixed;
-            background: #2184cd;
-            padding: 20px;
-            z-index: 1;
-            top: 240px;
-        }
-    </style>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="/assets/bootstrap/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- PACE -->
+	<script src="/assets/pace/pace.min.js"></script>
+	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
+	<!--FullCalendar-->
+	<!--<link rel="stylesheet" href="/assets/fullcalendar/css/fullcalendar.min.css">
+	<script src="/assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>-->
+	<!--Datepicker-->
+    <script src="/assets/js/moment.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+	<script src="/assets/js/list.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
+	<link href="/assets/bootstrap/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -130,91 +126,47 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-calendar"></i> School Calendar
+                                <i class="fa fa-calendar"></i> Calendar
                             </li>
                         </ol>
+						 
                     </div>
                 </div>
                 <!-- /.row -->
+				
 				<div class="row">
-					<div class="col-lg-6">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<button type="button" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-calendar"></i>Update School Calendar</button>
-							</div>
-							<div class="panel-body">
+					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+						  Update school calendar with list of events and holidays as well as activities.
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
 								<div id="calendar"></div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<?php	
+						require($_SERVER["DOCUMENT_ROOT"] . '/php/showCalendar.php');
+						echo showCalendar();
+						?>
+					</div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-				
+
         </div>
         <!-- /#page-wrapper -->
 		
-		<!-- Modal -->
-		<div id="createEventModal" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Add Event</h4>
-			  </div>
-			  <div class="modal-body">
-					<div class="control-group">
-						<label class="control-label" for="inputPatient">Event:</label>
-						<div class="field desc">
-							<input class="form-control" id="title" name="title" placeholder="Event" type="text" value="">
-						</div>
-					</div>
-					
-					<input type="hidden" id="startTime"/>
-					<input type="hidden" id="endTime"/>
-					
-					
-			   
-				<div class="control-group">
-					<label class="control-label" for="when">When:</label>
-					<div class="controls controls-row" id="when" style="margin-top:5px;">
-					</div>
-				</div>
-				
-			  </div>
-			  <div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-				<button type="submit" class="btn btn-primary" id="submitButton">Save</button>
-			</div>
-			</div>
-
-		  </div>
-		</div>
-
-
-		<div id="calendarModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Event Details</h4>
-				</div>
-				<div id="modalBody" class="modal-body">
-				<h4 id="modalTitle" class="modal-title"></h4>
-				<div id="modalWhen" style="margin-top:5px;"></div>
-				</div>
-				<input type="hidden" id="eventID"/>
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-					<button type="submit" class="btn btn-danger" id="deleteButton">Delete</button>
-				</div>
-			</div>
-		</div>
-		</div>
-		<!--Modal-->
-
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
@@ -223,99 +175,80 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  </div>
 		</footer>
 		<!-- /footer -->
+		
     </div>
     <!-- /#wrapper -->
 	
-	<!-- Moment js -->
-	<script src="/assets/full-calendar/js/moment.min.js"></script>
-	<!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Full Calendar JS -->
-	<script src="/assets/full-calendar/js/fullcalendar.min.js"></script>
+	<script src="/assets/js/jquery.tabletojson.min.js"></script>
+	
 	<script>
-		        $(document).ready(function() {
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-        var calendar = $('#calendar').fullCalendar({
-          header: {
-            left: 'prev',
-            center: 'title, today',
-            right: 'next'
-          },
-          selectable: true,
-          selectHelper: true,
-          select: function(start, end, allDay) {
-            var title = prompt('Event Title:');
-            if (title) {
-              calendar.fullCalendar('renderEvent',
-                {
-                  title: title,
-                  start: start,
-                  end: end,
-                  allDay: allDay
-                },
-                true
-              );
-            }
-            calendar.fullCalendar('unselect');
-          },
-          editable: true,
-          events: [
-            {
-              title: 'All Day Event',
-              start: new Date(y, m, 1)
-            },
-            {
-              title: 'Long Event',
-              start: new Date(y, m, d+5),
-              end: new Date(y, m, d+7)
-            },
-            {
-              id: 999,
-              title: 'Repeating Event',
-              start: new Date(y, m, d-3, 16, 0),
-              allDay: false
-            },
-            {
-              id: 999,
-              title: 'Repeating Event',
-              start: new Date(y, m, d+4, 16, 0),
-              allDay: false
-            },
-            {
-              title: 'Meeting',
-              start: new Date(y, m, d, 10, 30),
-              allDay: false
-            },
-            {
-              title: 'Lunch',
-              start: new Date(y, m, d, 12, 0),
-              end: new Date(y, m, d, 14, 0),
-              allDay: false
-            },
-            {
-              title: 'Birthday Party',
-              start: new Date(y, m, d+1, 19, 0),
-              end: new Date(y, m, d+1, 22, 30),
-              allDay: false
-            },
-            {
-              title: 'EGrappler.com',
-              start: new Date(y, m, 28),
-              end: new Date(y, m, 29),
-              url: 'http://EGrappler.com/'
-            }
-          ]
-        });
-      });
+		$('.table-add').click(function () {
+			var $clone = $(this).closest('table').find('tr.hide').clone(true).removeClass('hide').toggle();
+			$(this).closest('table').append($clone);
+		});
+		
+		//delete event/holiday/suspension
+		$('.table-remove').click(function () {
+			var r = confirm("Do you want to delete this event/holiday?");
+			if (r == true) {
+				$(this).parents('tr').detach();
+			} else {}
+		});
 	</script>
-
+	
+	<script>
+		$('.input-group.date').datepicker({format: "yyyy-mm-dd"}); 
+	</script>
+	
+	<script>
+		$("#saveEvent").click(function(){
+			var $eventname = $('#eventName').val();
+			var $eventinfo = $('#eventInfo').val();
+			var $startdate = $('#startDate').val();
+			var $enddate = $('#endDate').val();
+			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
+			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
+			alert($eventData);
+			
+			$.ajax({
+				type: "POST",
+				url: "../php/updateEvents.php",
+				data: {events: $eventData},
+				cache: false,
+				success: function(result){
+					//alert("Successfully updated database!");
+					location.reload(true); 
+				}
+			});
+			
+			return false;
+		});
+	</script>
+	
+	<script>
+		$("#saveHoliday").click(function(){
+			var $eventname = $('#eventName').val();
+			var $eventinfo = $('#eventInfo').val();
+			var $startdate = $('#startDate').val();
+			var $enddate = $('#endDate').val();
+			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
+			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
+			alert($eventData);
+			
+			$.ajax({
+				type: "POST",
+				url: "../php/updateHolidays.php",
+				data: {events: $eventData},
+				cache: false,
+				success: function(result){
+					//alert("Successfully updated database!");
+					location.reload(true); 
+				}
+			});
+			
+			return false;
+		});
+	</script>
 </body>
 
 </html>

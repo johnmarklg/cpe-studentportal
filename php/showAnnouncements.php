@@ -29,15 +29,15 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td>" . $row['date'] . "</td>
-			<td>" . $row['time'] . "</td>
-			<td>" . $row['post'] . "</td>
-			<td>" . $row['fileurl'] . "</td>
+			<td class=\"id\" style=\"font-size: 0px\">" . $row['id'] . "</td>
+			<td class=\"date\" >" . $row['date'] . "</td>
+			<td class=\"time\" >" . $row['time'] . "</td>
+			<td class=\"post\" >" . $row['post'] . "</td>
+			<td class=\"fileurl\" >" . $row['fileurl'] . "</td>
 			<td hidden><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">mode_edit</i> Edit</td>
 			<td><i style=\"vertical-align: bottom;\" class=\"post-remove material-icons\">delete</i></td>";
 		}
-		$conn = null;
+		$conn = null;		
 
 		echo "</tbody></table></div></div></div></div></div>";
 	}

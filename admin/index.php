@@ -59,7 +59,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			<ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1]?> <b class="caret"></b></a>
+					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1]?>  - <?php echo $_SESSION["name"][0]?> <b class="caret"></b></a>
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
@@ -122,9 +122,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-home"></i> Home
                             </li>
                         </ol>
-						<div class="alert alert-success" role="alert">
-						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
-						</div>
 						 
                     </div>
                 </div>
@@ -182,10 +179,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					}
 				});
 				return false;
-		});
-		
-		$('.table-remove').click(function () {
-			$(this).parents('tr').detach();
 		});
 	</script>
 </body>

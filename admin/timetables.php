@@ -47,6 +47,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			  margin-bottom: 40px;
 			  z-index: 900;
 			}
+			  .table-remove:hover {
+			  color: #f00;
+			  cursor: pointer;
+			}
+			.table-add:hover {
+			  cursor: pointer;
+			  color: #0b0;
+			}
 	</style>
 
 </head>

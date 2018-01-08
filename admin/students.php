@@ -42,14 +42,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				color: #f00;
 				cursor: pointer;
 			}
-			.table-add:hover {
-				cursor: pointer;
-				color: #0b0;
-			}
-			.table-edit:hover {
-				cursor: pointer;
-				color: #0b0;
-			}
 	</style>
 
 </head>
@@ -175,36 +167,24 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	
-	
-	
-	<script src="/assets/js/jquery.tabletojson.min.js"></script>
-	
-	<!--<script>
-		$('.table-add').click(function () {
-			var $clone = $(this).closest('table').find('tr.hide').clone(true).removeClass('hide').toggle();
-			$(this).closest('table').append($clone);
-		});
-		$('.table-remove').click(function () {
-			$(this).parents('tr').detach();
-		});
-	</script>-->
+	<!--<script src="/assets/js/jquery.tabletojson.min.js"></script>-->
 	
 	<script>
-		$(".table-add").click(function() {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $studnum = $row.find(".studnum").text(); // Find the text
-			var $surname = $row.find(".surname").text(); // Find the text
-			var $firstname = $row.find(".firstname").text(); // Find the text
-			var $middlename = $row.find(".middlename").text(); // Find the text
-			var $cfatscore = $row.find(".cfatscore").text(); // Find the text
-			var $passcode = $row.find(".passcode").text(); // Find the text
-			var $yearstarted = $row.find(".yearstarted").text(); // Find the 
-			var $studinfo = '[{"ID":"' + $id + '","Student Number":"' + $studnum +
+		$("#buttonAdd").click(function() {
+			var $studnum = $("#studnum").val();
+			var $firstname = $("#firstname").val();
+			var $middlename = $("#middlename").val();
+			var $surname= $("#surname").val();
+			var $cfatscore = $("#cfatscore").val();
+			var $passcode = $("#passcode").val();
+			var $yearstarted = $studnum.substr(0,2);
+			
+			var $studinfo = '[{"Student Number":"' + $studnum +
 			'","Surname":"' + $surname + '","First Name":"' + $firstname +
 			'","Middle Name":"' + $middlename + '","CFAT Score":"' + $cfatscore +
-			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted +'","Old Student Number":"' + $studnum + '"}]';
-			// Let's test it out
+			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted +'"}]';
+			
+			alert($studinfo);
 			
 			if($studnum=="00-0000"||$studnum=="") {
 				alert('Error! Please fill all the necessary fields.');
@@ -216,53 +196,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					data: {infodata: $studinfo},
 					cache: false,
 					success: function(result){
-						alert("Successfully added a new student record!");
+						//alert("Successfully added a new student record!");
 						location.reload();  	
 					}
 				});
-			}
-		});
-		$(".table-edit").click(function() {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $studnum = $row.find(".studnum").text(); // Find the text
-			var $surname = $row.find(".surname").text(); // Find the text
-			var $firstname = $row.find(".firstname").text(); // Find the text
-			var $middlename = $row.find(".middlename").text(); // Find the text
-			var $cfatscore = $row.find(".cfatscore").text(); // Find the text
-			var $passcode = $row.find(".passcode").text(); // Find the text
-			var $yearstarted = $row.find(".yearstarted").text(); // Find the 
-			var $studinfo = '[{"ID":"' + $id + '","Student Number":"' + $studnum +
-			'","Surname":"' + $surname + '","First Name":"' + $firstname +
-			'","Middle Name":"' + $middlename + '","CFAT Score":"' + $cfatscore +
-			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted +'","Old Student Number":"' + $studnum + '"}]';
-			// Let's test it out
-			
-			if($studnum=="00-0000"||$studnum=="") {
-				alert('Error! Please fill all the necessary fields.');
-			} else {
-				alert($studinfo);
-			}
-		});
-		$(".table-remove").click(function() {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $studnum = $row.find(".studnum").text(); // Find the text
-			var $surname = $row.find(".surname").text(); // Find the text
-			var $firstname = $row.find(".firstname").text(); // Find the text
-			var $middlename = $row.find(".middlename").text(); // Find the text
-			var $cfatscore = $row.find(".cfatscore").text(); // Find the text
-			var $passcode = $row.find(".passcode").text(); // Find the text
-			var $yearstarted = $row.find(".yearstarted").text(); // Find the 
-			var $studinfo = '[{"ID":"' + $id + '","Student Number":"' + $studnum +
-			'","Surname":"' + $surname + '","First Name":"' + $firstname +
-			'","Middle Name":"' + $middlename + '","CFAT Score":"' + $cfatscore +
-			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted +'","Old Student Number":"' + $studnum + '"}]';
-			// Let's test it out			
-			if($studnum=="00-0000"||$studnum=="") {
-				alert('Error! Please fill all the necessary fields.');
-			} else {
-				alert($studinfo);
 			}
 		});
 	</script>

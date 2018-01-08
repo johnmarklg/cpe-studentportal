@@ -40,14 +40,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
 	
 	<style>
-			#saveTimetables {
-			  position: fixed;
-			  display: block;
-			  right: 0;
-			  bottom: 0;
-			  margin-right: 40px;
-			  margin-bottom: 40px;
-			  z-index: 900;
+			.post-remove:hover {
+			  color: #f00;
+			  cursor: pointer;
 			}
 	</style>
 
@@ -296,6 +291,28 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			$('#postText, textarea').val('');
 		});
 		
+		$('.post-remove').click(function () {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $date = $row.find(".date").text(); // Find the text
+			var $time = $row.find(".time").text(); // Find the text
+			var $post = $row.find(".post").text(); // Find the text
+			var $fileurl = $row.find(".fileurl").text(); // Find the text
+			var $postinfo = '[{"id":"' + $id + '","date":"' + $date + '","time":"' + $time +
+			'","post":"' + $post + '","fileurl":"' + $fileurl + '"}]';
+			//alert($postinfo);
+			$.ajax({
+				type: "POST",
+					url: "/php/deleteAnnouncement.php",
+					data: {postData: $postinfo},
+					cache: false,
+					success: function(result){
+						//deleted
+						$row.remove();
+					}
+				});
+		});
+		
 		$("#buttonPost").click(function(){
 			//set actual text value
 			var $post = $('#postText, textarea').val();
@@ -313,15 +330,15 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				var $fileurl = $('#fileURL').val();
 				var $postdata = '[{"Date":"' + $date + '","Time":"' + $time +
 				'","Post":"' + $post + '","Poster":"' + $poster +'","PosterID":"' + $posterid +'","FileURL":"' + $fileurl + '"}]';
-				alert($postdata);
+				
 				$.ajax({
 				type: "POST",
 					url: "/php/postAnnouncement.php",
 					data: {postData: $postdata},
 					cache: false,
 					success: function(result){
-						alert("Successfully posted announcement!");
 						location.reload();  
+						//alert(String(result));
 					}
 				});
 				return false;
