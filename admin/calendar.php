@@ -208,7 +208,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var $enddate = $('#endDate').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
-			alert($eventData);
+			//alert($eventData);
 			
 			$.ajax({
 				type: "POST",
@@ -233,7 +233,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var $enddate = $('#endDate').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
-			alert($eventData);
+			//alert($eventData);
 			
 			$.ajax({
 				type: "POST",
@@ -247,6 +247,43 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			});
 			
 			return false;
+		});
+	</script>
+	
+	<script>
+		$('.event-remove').click(function () {
+		if(confirm('Do you want to remove this entry from the database?')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $eventinfo = '[{"id":"' + $id + '"}]';
+			$.ajax({
+				type: "POST",
+					url: "/php/removeEvent.php",
+					data: {eventinfo: $eventinfo},
+					cache: false,
+					success: function(result){
+						//alert("Successfully removed student entry!");
+					}
+				});
+			$(this).parents('tr').detach();			
+		} else {}
+		});
+		$('.holiday-remove').click(function () {
+		if(confirm('Do you want to remove this entry from the database?')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $holidayinfo = '[{"id":"' + $id + '"}]';
+			$.ajax({
+				type: "POST",
+					url: "/php/removeHoliday.php",
+					data: {holidayinfo: $holidayinfo},
+					cache: false,
+					success: function(result){
+						//alert("Successfully removed student entry!");
+					}
+				});
+			$(this).parents('tr').detach();			
+		} else {}
 		});
 	</script>
 </body>

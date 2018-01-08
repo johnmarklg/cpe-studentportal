@@ -43,7 +43,7 @@
 					<th>Event Info</th>
 					<th>Start Date</th>
 					<th>End Date</th>
-					<th><i style=\"vertical-align: bottom;\" class=\"table-add material-icons hidden\">add_circle_outline</i></th>
+					<th><i style=\"vertical-align: bottom;\" class=\"material-icons hidden\">add_circle_outline</i></th>
 					</tr>
 					</thead>
 					<tbody class=\"list\">";
@@ -56,22 +56,14 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>
-						<td style=\"font-size: 0px\">" . $row['id'] . "</td>
+						<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 						<td contentEditable\">" . $row['eventname'] . "</td>
 						<td contentEditable>" . $row['eventinfo'] . "</td>
 						<td class=\"startdatePicker\" contentEditable>" . $row['startdate'] . "</td>
 						<td class=\"enddatePicker\" contentEditable>" . $row['enddate'] . "</td>
-						<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
+						<td><i style=\"vertical-align: bottom;\" class=\"event-remove material-icons\">remove_circle_outline</i></td></tr>";
 					}
 					$conn = null;
-
-					echo "<tr class=\"hide\" style=\"display:none;\">
-					<td style=\"font-size: 0px\"></td>
-					<td contentEditable></td>
-					<td contentEditable ></td>
-					<td class=\"startdatePicker\" contentEditable ></td>
-					<td class=\"enddatePicker\" contentEditable ></td>
-					<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
 					echo "</tbody></table></div></div></div></div></div>";
 					
 					//Official Holidays
@@ -85,7 +77,7 @@
 					<th>Event Info</th>
 					<th>Start Date</th>
 					<th>End Date</th>
-					<th><i style=\"vertical-align: bottom;\" class=\"table-add material-icons hidden\">add_circle_outline</i></th>
+					<th><i style=\"vertical-align: bottom;\" class=\"material-icons hidden\">add_circle_outline</i></th>
 					</tr>
 					</thead>
 					<tbody class=\"list\">";
@@ -98,33 +90,25 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>
-						<td style=\"font-size: 0px\">" . $row['id'] . "</td>
+						<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 						<td contentEditable\">" . $row['eventname'] . "</td>
 						<td contentEditable>" . $row['eventinfo'] . "</td>
 						<td class=\"startdatePicker\" contentEditable>" . $row['startdate'] . "</td>
 						<td class=\"enddatePicker\" contentEditable>" . $row['enddate'] . "</td>
-						<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
+						<td><i style=\"vertical-align: bottom;\" class=\"holiday-remove material-icons\">remove_circle_outline</i></td></tr>";
 					}
 					$conn = null;
 
-					echo "<tr class=\"hide\" style=\"display:none;\">
-					<td style=\"font-size: 0px\"></td>
-					<td contentEditable></td>
-					<td contentEditable ></td>
-					<td class=\"startdatePicker\" contentEditable ></td>
-					<td class=\"enddatePicker\" contentEditable ></td>
-					<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
 					echo "</tbody></table></div></div></div></div></div>";
 					
-					
 					echo "<style>
-								.table-remove:hover {
+								.event-remove:hover {
 								  color: #f00;
 								  cursor: pointer;
 								}
-								.table-add:hover {
+								.holiday-remove:hover {
+								  color: #f00;
 								  cursor: pointer;
-								  color: #0b0;
 								}
 							</style>";
 					echo "<script>
