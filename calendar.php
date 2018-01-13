@@ -196,7 +196,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					navLinks: true, // can click day/week names to navigate views
 					eventLimit: true, // allow "more" link when too many events
 
-					events: "events.php",
+					events: "/functions/events.php",
 
 				eventRender: function (event, element) {
 					element.attr('href', 'javascript:void(0);');

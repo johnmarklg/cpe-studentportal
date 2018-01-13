@@ -133,11 +133,20 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  Initial page. You can adjust settings and edit your account information here.
+						  The quick brown fox jumps over the lazy dog.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<?php	
+						require($_SERVER["DOCUMENT_ROOT"] . '/php/showProspectus.php');
+						echo showStudentRecords($_SESSION['name'][4]);
+						?>
+					</div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
 			</div>
             <!-- /.container-fluid -->
 
@@ -152,6 +161,17 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  </div>
 		</footer>
 		<!-- /footer -->
+		
+		<script>
+			$('#tabAll').click(function(){
+				$('#tabAll').addClass('active');  
+				$('.tab-pane').each(function(i,t){
+					$('#myTabs li').removeClass('active'); 
+					$(this).addClass('active');  
+				});
+			});
+		</script>
+		
 		
     </div>
     <!-- /#wrapper -->
