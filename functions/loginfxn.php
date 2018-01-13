@@ -27,5 +27,31 @@ class userClass{
         }
 
     }
+	
+	 //Login Function
+    public function studentLogin($username,$password){
+
+        try{
+            $dbConn = getDB('cpe-studentportal');
+            $stmt = $dbConn->prepare("SELECT id, surname, firstname, middlename, studnum FROM students WHERE studnum=:username AND passcode=:password");
+            $stmt->bindParam("username", $username, PDO::PARAM_STR);
+            $stmt->bindParam("password", $password, PDO::PARAM_STR);
+            $stmt->execute();
+            $count = $stmt->rowCount();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+            $dbConn = null;
+            if($count){
+                $_SESSION["name"] = array($data->id, $data->surname, $data->firstname, $data->middlename, $data->studnum);
+                return true;
+            }else{
+                return false;
+            }
+        }
+        
+        catch(PDOException $e){
+            echo '{"error":{"text":' . $e->getMessage() . '}}';
+        }
+
+    }
 }
 ?>

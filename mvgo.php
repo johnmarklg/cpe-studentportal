@@ -21,8 +21,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <title>Student Portal</title>
 
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
+    <link rel="icon" href="/assets/images/mmsu-logo.png">
+    <!-- Bootstrap Core CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
@@ -34,10 +34,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Autosize -->
-	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-
+	
 </head>
 
 <body>
@@ -75,7 +73,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
                     </li>
                     <li>
@@ -93,7 +91,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                     <li>
                         <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
                     </li>
-					<li>
+					<li class="active">
                         <a href="mvgo.php"><i class="fa fa-fw fa-university"></i> Mission/Vision/Goals</a>
                     </li>
                     <li>
@@ -122,32 +120,69 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-home"></i> Home
+                                <i class="fa fa-university"></i> Mission/Vision/Goals
                             </li>
                         </ol>
-						 
+						<!--<div class="alert alert-success" role="alert">
+						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
+						</div>-->
                     </div>
                 </div>
                 <!-- /.row -->
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  Initial page. You can adjust settings and edit your account information here.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<div class="panel panel-info">
+							<div class="panel-heading" style="text-align: center;" id="exTab2">	
+								<ul class="nav nav-pills nav-justified">
+									<li class="active">
+									<a  href="#1" data-toggle="tab"><i class="fa fa-fw fa-eye"></i> Mission and Vision</a>
+									</li>
+									<li><a href="#2" data-toggle="tab"><i class="fa fa-fw fa-university"></i> University Core Values</a>
+									</li>
+									<li><a href="#3" data-toggle="tab"><i class="fa fa-fw fa-dot-circle-o"></i> Goals and Objectives</a>
+									</li>
+								</ul>
+							</div>
+
+								<div class="panel-body tab-content ">
+									<div class="tab-pane active" id="1">
+										<p style="text-align: center;"><span style="color:#555555;"><span style="font-size:16px;">VISION</span></span></p>
+										<p style="text-align: center;"><span style="color:#555555;"><span style="font-size:16px;">A world-class university dedicated to the development of virtuous human resources and innovations for inclusive growth.</span></span></p>
+										<hr/>
+										<p style="text-align: center;"><span style="color:#555555;"><span style="font-size:16px;">MISSION</span></span></p>
+										<p style="text-align: center;"><span style="color:#555555;"><span style="font-size:16px;">To develop globally competitive professionals and industry-ready graduates via various modalities and generate new knowledge and technologies for the improvement of the quality of life.</span></span></p>
+									</div>
+									<div class="tab-pane" id="2">
+										<ol>
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:16px;">Excellence</span></span></li>
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:16px;">Integrity</span></span></li>
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:16px;">Service to God and Nation</span></span></li>
+										</ol>
+									</div>
+									<div class="tab-pane" id="3">
+										<ol style="text-align: justify;">
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:14px;">Offer a wide range of academic programs at the certificate, associate, baccalaureate, masters and doctorate levels;</span></span></li>
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:14px;">Maintain a broad range of research programs both in the basic and applied sciences, especially in the arts, agriculture, agribusiness, agroforestry, fisheries, teacher education, rural sociology, management, and technology which will generate knowledge and provide a basis for solutions to the development needs of the province and region;</span></span></li>
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:14px;">Provide off-campus instructional&nbsp; continuing education and extension services to meet the needs&nbsp; of residents of the province and the region within the context of the regional and national non-formal education; and</span></span></li>
+											<li style="text-align: justify;"><span style="color:#555555;"><span style="font-size:14px;">Serve as the locus for the regional cooperative and development center for public and private colleges and universities in the Ilocos region.</span></span></li>
+										</ol>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+            </div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
+
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
-			  <small id="userid" hidden><?php echo ($_SESSION['name'][2]);?></small>
 			</div>
 		  </div>
 		</footer>
@@ -155,6 +190,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		
     </div>
     <!-- /#wrapper -->
+	
 </body>
 
 </html>
