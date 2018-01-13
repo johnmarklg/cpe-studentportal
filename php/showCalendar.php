@@ -76,10 +76,10 @@
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>
 						<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
-						<td contentEditable\">" . $row['eventname'] . "</td>
-						<td contentEditable>" . $row['eventinfo'] . "</td>
-						<td class=\"startdatePicker\" contentEditable>" . $row['startdate'] . "</td>
-						<td class=\"enddatePicker\" contentEditable>" . $row['enddate'] . "</td>
+						<td contentEditable\">" . $row['title'] . "</td>
+						<td contentEditable>" . $row['description'] . "</td>
+						<td class=\"startdatePicker\" contentEditable>" . $row['start'] . "</td>
+						<td class=\"enddatePicker\" contentEditable>" . $row['end'] . "</td>
 						<td><i style=\"vertical-align: bottom;\" class=\"event-remove material-icons\">remove_circle_outline</i></td></tr>";
 					}
 					$conn = null;
@@ -111,10 +111,10 @@
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>
 						<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
-						<td contentEditable\">" . $row['eventname'] . "</td>
-						<td contentEditable>" . $row['eventinfo'] . "</td>
-						<td class=\"startdatePicker\" contentEditable>" . $row['startdate'] . "</td>
-						<td class=\"enddatePicker\" contentEditable>" . $row['enddate'] . "</td>
+						<td contentEditable\">" . $row['title'] . "</td>
+						<td contentEditable>" . $row['description'] . "</td>
+						<td class=\"startdatePicker\" contentEditable>" . $row['start'] . "</td>
+						<td class=\"enddatePicker\" contentEditable>" . $row['end'] . "</td>
 						<td><i style=\"vertical-align: bottom;\" class=\"holiday-remove material-icons\">remove_circle_outline</i></td></tr>";
 					}
 					$conn = null;

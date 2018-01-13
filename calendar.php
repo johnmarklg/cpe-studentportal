@@ -37,7 +37,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<!-- Autosize -->
 	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-
+	<!-- Full Calendar CSS -->
+	<link href="/assets/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" />
+	<script src="/assets/js/moment.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+	<script src="/assets/fullcalendar/js/fullcalendar.min.js"></script>
 </head>
 
 <body>
@@ -75,10 +79,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
                     </li>
 					<li>
@@ -122,7 +126,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-home"></i> Home
+                                <i class="fa fa-calendar"></i> Academic Calendar
                             </li>
                         </ol>
 						 
@@ -138,8 +142,36 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
+				<hr/>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								Academic Calendar
+							</div>
+							<div class="panel-body">
+								<div id="calendar"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
             <!-- /.container-fluid -->
+			
+			<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 id="eventName" style="text-transform: uppercase" align="center"></h4>
+						</div>
+						<div class="container">
+							<p><span style="font-weight: 600">Start   :   </span> <span id="startTime"></span></p>
+							<p><span style="font-weight: 600">End   :   </span> <span id="endTime"></span></p>
+							<p><span style="font-weight: 600">Description  :   </span> <span id="eventInfo"></span></p>
+						</div>
+					</div>
+				</div>
+			</div>
 
         </div>
         <!-- /#page-wrapper -->
@@ -152,6 +184,35 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  </div>
 		</footer>
 		<!-- /footer -->
+		
+		<script>
+			$(document).ready(function() {
+				$('#calendar').fullCalendar({
+					header: {
+						left: 'prev,next today',
+						center: 'title',
+						right: 'month,agendaWeek,listWeek'
+					},
+					navLinks: true, // can click day/week names to navigate views
+					eventLimit: true, // allow "more" link when too many events
+
+					events: "events.php",
+
+				eventRender: function (event, element) {
+					element.attr('href', 'javascript:void(0);');
+					element.click(function() {
+						$("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
+						$("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
+						$("#eventInfo").html(event.description);
+						$("#eventName").html(event.title);
+						$("#eventLoc").html(event.location);
+						$('#modal1').modal('show');
+					});
+				}
+
+			});
+			});
+		</script>
 		
     </div>
     <!-- /#wrapper -->

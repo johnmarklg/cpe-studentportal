@@ -7,7 +7,7 @@
 			try {
 				$conn = getDB('cpe-studentportal');
 				$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$stmt = $conn->prepare("INSERT INTO holidays (eventname, startdate, enddate, eventinfo)
+				$stmt = $conn->prepare("INSERT INTO holidays (title, start, end, description)
 				VALUES (:eventname, :startdate, :enddate, :eventinfo)");
 				$stmt -> bindParam(':eventname', $value['Event Name']);
 				$stmt -> bindParam(':startdate', $value['Start Date']);
