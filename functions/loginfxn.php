@@ -33,7 +33,7 @@ class userClass{
 
         try{
             $dbConn = getDB('cpe-studentportal');
-            $stmt = $dbConn->prepare("SELECT id, surname, firstname, middlename, studnum FROM students WHERE studnum=:username AND passcode=:password");
+            $stmt = $dbConn->prepare("SELECT id, surname, firstname, middlename, studnum, passcode FROM students WHERE studnum=:username AND passcode=:password");
             $stmt->bindParam("username", $username, PDO::PARAM_STR);
             $stmt->bindParam("password", $password, PDO::PARAM_STR);
             $stmt->execute();
@@ -41,7 +41,7 @@ class userClass{
             $data = $stmt->fetch(PDO::FETCH_OBJ);
             $dbConn = null;
             if($count){
-                $_SESSION["name"] = array($data->id, $data->surname, $data->firstname, $data->middlename, $data->studnum);
+                $_SESSION["name"] = array($data->id, $data->surname, $data->firstname, $data->middlename, $data->studnum, $data->passcode);
                 return true;
             }else{
                 return false;

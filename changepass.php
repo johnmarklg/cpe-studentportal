@@ -21,8 +21,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <title>Student Portal</title>
 
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
+    <link rel="icon" href="/assets/images/mmsu-logo.png">
+    <!-- Bootstrap Core CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
@@ -34,10 +34,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Autosize -->
-	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-
+	
 </head>
 
 <body>
@@ -81,7 +79,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                     <li>
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
                     </li>
-					<li class="active">
+					<li>
                         <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Prospectus</a>
                     </li>
                     <li>
@@ -96,7 +94,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                     <li>
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
                     </li>
-					<li>
+					<li class="active">
                         <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                     </li>
                     <li>
@@ -119,36 +117,51 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-list"></i> Prospectus
+                                <i class="fa fa-university"></i> Mission/Vision/Goals
                             </li>
                         </ol>
-						 
+						<div class="alert alert-info" role="alert">
+						  Your current session will close upon changing your password.
+						</div>
                     </div>
                 </div>
                 <!-- /.row -->
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  The quick brown fox jumps over the lazy dog.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								<i class="fa fa-fw fa-unlock-alt"></i> Change Password
+							</div>
+							<div class="panel-body">
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon1">Current Password</span>
+								  <input id="oldpass" type="password" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon1">
+								</div>
+								<hr/>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon2">New Password</span>
+								  <input id="newpass" type="password" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
+								</div>
+								<br/>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon2">Re-type New Password</span>
+								  <input id="checkpass" type="password" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon3">
+								</div>
+								<br/>
+								<form method="post">
+									<button type="button" id="buttonSave" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-save"></i> Save Changes</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-lg-12">
-						<?php	
-						require($_SERVER["DOCUMENT_ROOT"] . '/php/showProspectus.php');
-						echo showStudentRecords($_SESSION['name'][4]);
-						?>
-					</div><!-- /.col-lg-12 -->
-				</div><!-- /.row -->
-			</div>
+            </div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
+
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
@@ -160,18 +173,45 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		<!-- /footer -->
 		
 		<script>
-			$('#tabAll').click(function(){
-				$('#tabAll').addClass('active');  
-				$('.tab-pane').each(function(i,t){
-					$('#myTabs li').removeClass('active'); 
-					$(this).addClass('active');  
-				});
+			$('#buttonSave').click(function() {
+				var $userid = $('#userid').text();
+				var $verifyoldpass = '<?php echo ($_SESSION['name'][5]);?>';
+				var $oldpass = $('#oldpass').val();
+				var $newpass = $('#newpass').val();
+				var $checkpass = $('#checkpass').val();
+				if($oldpass==""||$newpass==""||$checkpass=="") {
+					alert("Please fill all the necessary fields.");
+				} else {
+					if($newpass != $checkpass) {
+						alert("Your new password doesn't match.");
+					} else {
+						if($oldpass != $verifyoldpass) {
+							alert("Password is incorrect. Try again");
+						} else {
+						var $userInfo = '[{"id":"' + $userid + '","oldpass":"' + $oldpass + '","newpass":"' + $newpass + '"}]';
+						alert($userInfo);
+						$.ajax({
+						type: "POST",
+							url: "/php/changePass.php",
+							data: {infodata: $userInfo},
+							cache: false,
+							success: function(result){
+								window.location.replace('logout.php');
+								//alert("Successfully updated password! Please relogin.");
+								//location.reload();
+							}
+						});
+						}
+					}
+				}
+				//alert($userInfo);
+					return false;
 			});
 		</script>
 		
-		
     </div>
     <!-- /#wrapper -->
+	
 </body>
 
 </html>

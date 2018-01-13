@@ -92,9 +92,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                         <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
                     </li>
                     <li>
-                        <a href="records.php"><i class="fa fa-fw fa-table"></i> My Grades</a>
-                    </li>
-                    <li>
                         <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
                     </li>
 					<li>

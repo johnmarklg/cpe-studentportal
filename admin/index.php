@@ -179,7 +179,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					cache: false,
 					success: function(result){
 						alert("Successfully updated personal details! Please relogin.");
-						location.reload();  	
+						//location.reload();
+						window.location.replace('logout.php');
 					}
 				});
 				return false;

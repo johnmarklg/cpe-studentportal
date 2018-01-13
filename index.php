@@ -88,9 +88,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                         <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
                     </li>
                     <li>
-                        <a href="records.php"><i class="fa fa-fw fa-table"></i> My Grades</a>
-                    </li>
-                    <li>
                         <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
                     </li>
 					<li>
@@ -138,6 +135,45 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="panel panel-info">
+							<div class="panel-heading" style="text-align: center;">	
+								<i class="fa fa-fw fa-newspaper-o"></i> Events, News, and Announcements
+							</div>
+							<div class="panel-body">
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="panel panel-info">
+							<div class="panel-heading" style="text-align: center;" id="exTab2">	
+								<ul class="nav nav-pills nav-justified">
+									<li class="active">
+									<a  href="#1" data-toggle="tab"><i class="fa fa-fw fa-bolt"></i> COE SC</a>
+									</li>
+									<li><a href="#2" data-toggle="tab"><i class="fa fa-fw fa-cube"></i> MMSU USC</a>
+									</li>
+									<li><a href="#3" data-toggle="tab"><i class="fa fa-fw fa-university"></i> MMSU Official</a>
+									</li>
+								</ul>
+							</div>
+							<div class="panel-body tab-content ">
+								<div class="tab-pane active" id="1">
+									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/MMSUCOESC?ref_src=twsrc%5Etfw">Tweets by MMSUCOESC</a> 
+								</div>
+								<div class="tab-pane" id="2">
+									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/USCMMSU?ref_src=twsrc%5Etfw">Tweets by USCMMSU</a>
+								</div>
+								<div class="tab-pane" id="3">
+									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/MMSU_official?ref_src=twsrc%5Etfw">Tweets by MMSU_official</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
             <!-- /.container-fluid -->
 
@@ -152,6 +188,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  </div>
 		</footer>
 		<!-- /footer -->
+		
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		
     </div>
     <!-- /#wrapper -->
