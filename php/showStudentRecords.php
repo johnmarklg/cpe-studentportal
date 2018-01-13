@@ -68,8 +68,35 @@
 										$conn = null;
 									
 									echo "</tr>
-								  </tbody></table></div></div></div></div>";
+								  </tbody></table></div></div></div>";
+					
+					echo '<div class="panel panel-default">
+								<div class="panel-heading" style="text-align: center;" id="myTabs">	
+									<ul class="nav nav-pills nav-justified">
+										<li class="active">
+										<a  href="#1" data-toggle="tab">First Year</a>
+										</li>
+										<li><a href="#2" data-toggle="tab">Second Year</a>
+										</li>
+										<li><a href="#3" data-toggle="tab">Third Year</a>
+										</li>
+										<li><a href="#4" data-toggle="tab">Fourth Year</a>
+										</li>
+										<li><a href="#5" data-toggle="tab">Fifth Year</a>
+										</li>
+										<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+										</li>
+									</ul>
+								</div>
+							</div>';
+					
+					echo '<div class="alert alert-info" role="alert">
+						  <i class="fa fa-fw fa-info-circle"></i> When saving, only the changes in the active tab/s will be saved to database.
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>';
+					echo '<div class="tab-content">';	
 					//STUDENT GRADES 1-1
+					echo '<div class="active tab-pane" id="1">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 1st Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades1-1\" class=\"table\">
 								<thead>
@@ -150,8 +177,10 @@
 					}
 					$conn = null;
 					echo "</tbody></table></div></div></div></div></div>";
+					echo '</div>';
 					
 					//STUDENT GRADES 2-1
+					echo '<div class="tab-pane" id="2">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 2nd Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades2-1\" class=\"table\">
 								<thead>
@@ -232,8 +261,10 @@
 					}
 					$conn = null;
 					echo "</tbody></table></div></div></div></div></div>";
+					echo '</div>';
 
 					//STUDENT GRADES 3-1
+					echo '<div class="tab-pane" id="3">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 3rd Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades3-1\" class=\"table\">
 								<thead>
@@ -314,8 +345,10 @@
 					}
 					$conn = null;
 					echo "</tbody></table></div></div></div></div></div>";
+					echo '</div>';
 					
 					//STUDENT GRADES 4-1
+					echo '<div class="tab-pane" id="4">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 4th Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades4-1\" class=\"table\">
 								<thead>
@@ -437,8 +470,10 @@
 					}
 					$conn = null;
 					echo "</tbody></table></div></div></div></div></div>";
+					echo '</div>';
 					
 					//STUDENT GRADES 5-1
+					echo '<div class="tab-pane" id="5">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 5th Year - 1st Semester</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"grades5-1\" class=\"table\">
 								<thead>
@@ -518,6 +553,6 @@
 						echo "</tr>";
 					}
 					$conn = null;
-					echo "</tbody></table></div></div></div></div></div>";
+					echo "</tbody></table></div></div></div></div></div></div>";
 			  }
 ?>

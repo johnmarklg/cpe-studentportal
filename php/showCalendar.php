@@ -29,10 +29,29 @@
 							  <div class="btn-group" role="group">
 								<button type="button" id="saveHoliday" class="btn btn-default btn-success"><i class="fa fa-fw fa-calendar"></i>Holiday</button>
 							  </div>
-							</div></div></div></div></div>';
+							</div></div></div></div></div><hr/>';
 					
+					echo '<div class="panel panel-default">
+								<div class="panel-heading" style="text-align: center;" id="myTabs">	
+									<ul class="nav nav-pills nav-justified">
+										<li class="active">
+										<a  href="#1" data-toggle="tab">General Events</a>
+										</li>
+										<li><a href="#2" data-toggle="tab">Holidays</a>
+										</li>
+										<li><a  id="tabAll" href="#3" data-toggle="tab">Show All</a>
+										</li>
+									</ul>
+								</div>
+							</div>';
 					
+					echo '<div class="alert alert-info" role="alert">
+						  <i class="fa fa-fw fa-info-circle"></i> When saving, only the changes in the active tab/s will be saved to database.
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>';
+					echo '<div class="tab-content">';
 					//General Events
+					echo '<div class="active tab-pane" id="1">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-info\">
 					<div class=\"panel-heading\">Manage General Events</div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"eventstable\" class=\"table\">
@@ -64,9 +83,10 @@
 						<td><i style=\"vertical-align: bottom;\" class=\"event-remove material-icons\">remove_circle_outline</i></td></tr>";
 					}
 					$conn = null;
-					echo "</tbody></table></div></div></div></div></div>";
+					echo "</tbody></table></div></div></div></div></div></div>";
 					
 					//Official Holidays
+					echo '<div class="tab-pane" id="2">';
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\">
 					<div class=\"panel-heading\">Manage Holidays (Working and Non-working) </div><div class=\"panel-body\"><div class=\"table-responsive\">
 					<table id=\"eventstable\" class=\"table\">
@@ -99,7 +119,7 @@
 					}
 					$conn = null;
 
-					echo "</tbody></table></div></div></div></div></div>";
+					echo "</tbody></table></div></div></div></div></div></div></div>";
 					
 					echo "<style>
 								.event-remove:hover {

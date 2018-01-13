@@ -3,7 +3,34 @@
 
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		
+		echo '<div class="panel panel-default">
+					<div class="panel-heading" style="text-align: center;" id="myTabs">	
+						<ul class="nav nav-pills nav-justified">
+							<li class="active">
+							<a  href="#1" data-toggle="tab">First Year</a>
+							</li>
+							<li><a href="#2" data-toggle="tab">Second Year</a>
+							</li>
+							<li><a href="#3" data-toggle="tab">Third Year</a>
+							</li>
+							<li><a href="#4" data-toggle="tab">Fourth Year</a>
+							</li>
+							<li><a href="#5" data-toggle="tab">Fifth Year</a>
+							</li>
+							<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+							</li>
+						</ul>
+					</div>
+				</div>';
+		
+		echo '<div class="alert alert-info" role="alert">
+			  <i class="fa fa-fw fa-info-circle"></i> When saving, only the changes in the active tab/s will be saved to database.
+			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>';
+		echo '<div class="tab-content">';
+		
 		//1ST YEAR
+		echo '<div class="active tab-pane" id="1">';
 		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
 		<div class=\"panel-heading\">First Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
 		<table id=\"tablefirst\" class=\"table\">
@@ -58,9 +85,10 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
-		echo "</tbody></table></div></div></div></div></div>";
+		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//2ND YEAR
+		echo '<div class="tab-pane" id="2">';
 		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
 		<div class=\"panel-heading\">Second Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
 		<table id=\"tablesecond\" class=\"table\">
@@ -115,9 +143,10 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
-		echo "</tbody></table></div></div></div></div></div>";
+		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//THIRD YEAR
+		echo '<div class="tab-pane" id="3">';
 		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
 		<div class=\"panel-heading\">Third Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
 		<table id=\"tablethird\" class=\"table\">
@@ -172,9 +201,10 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
-		echo "</tbody></table></div></div></div></div></div>";
+		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//FOURTH YEAR
+		echo '<div class="tab-pane" id="4">';
 		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
 		<div class=\"panel-heading\">Fourth Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
 		<table id=\"tablefourth\" class=\"table\">
@@ -229,9 +259,10 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
-		echo "</tbody></table></div></div></div></div></div>";
+		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//FIFTH YEAR
+		echo '<div class="tab-pane" id="5">';
 		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
 		<div class=\"panel-heading\">Fifth Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
 		<table id=\"tablefifth\" class=\"table\">
@@ -286,6 +317,6 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td></tr>";
-		echo "</tbody></table></div></div></div></div></div>";
+		echo "</tbody></table></div></div></div></div></div></div></div>";
 	}
 ?>

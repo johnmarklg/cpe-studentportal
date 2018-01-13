@@ -56,15 +56,12 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
             </div>
 			<ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1]?> <b class="caret"></b></a>
+                    <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ' - ' . $_SESSION["name"][0]?> <b class="caret"></b></a>
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href=""><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -93,6 +90,12 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                     </li>
                     <li>
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> School Calendar</a>
+                    </li>
+					<li>
+                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
+                    </li>
+					<li>
+                        <a href="mvgo.php"><i class="fa fa-fw fa-university"></i> Mission/Vision/Goals</a>
                     </li>
                     <li class="active">
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
@@ -129,7 +132,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="panel panel-default">
+						<div class="panel panel-info">
 							<div class="panel-heading">
 								About iCpE Student Portal
 							</div>
@@ -157,7 +160,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				</div><!-- /.row -->
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="panel panel-default">
+						<div class="panel panel-info">
 							<div class="panel-heading">
 								Student Manuals and Official Papers
 							</div>
