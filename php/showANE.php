@@ -5,30 +5,29 @@
 		
 		//Heading
 		echo '<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="exTab2">	
+							<div class="panel-heading" style="text-align: center;" id="exTab3">	
 								<ul class="nav nav-pills nav-justified">
 									<li class="active">
-									<a  href="#1" data-toggle="tab"><i class="fa fa-fw fa-bolt"></i> News and Announcements</a>
+									<a  href="#4" data-toggle="tab"><i class="fa fa-fw fa-bolt"></i> News and Announcements</a>
 									</li>
-									<li><a href="#2" data-toggle="tab"><i class="fa fa-fw fa-calendar"></i> Events and Holidays</a>
+									<li><a href="#5" data-toggle="tab"><i class="fa fa-fw fa-calendar"></i> Events and Holidays</a>
 									</li>
 								</ul>
 							</div>';
 							
 		//Announcements
 						echo '<div class="panel-body tab-content ">
-								<div class="tab-pane active" id="1">';
+								<div class="tab-pane active" id="4">';
 								
 								$conn = getDB('cpe-studentportal');
-								$stmt = $conn->prepare("SELECT * from `posts`");
-								$stmt -> bindParam(':posterid', $_SESSION['name'][2]);
+								$stmt = $conn->prepare("SELECT * from `posts` ORDER BY datetime DESC");
 								$stmt->execute();
 
 								$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 								
 								foreach(($stmt->fetchAll()) as $row) { 
 								echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
-								$row['poster'] . '</strong> @<i>' . $row['date'] . ' ' . $row['time'] . ':</i><hr/>'
+								$row['poster'] . '</strong> @<i>' . $row['datetime'] . ':</i><hr/>'
 								. $row['post'] . '</div></div>';
 								}
 								$conn = null;
@@ -36,9 +35,20 @@
 						echo '</div>';
 								
 		//Events
-						echo '<div class="tab-pane" id="2">
-									
-								</div>
+						echo '<div class="tab-pane" id="5">Upcoming and On-going Events and Holidays:<hr/>';
+								$conn = getDB('cpe-studentportal');
+								$stmt = $conn->prepare("(SELECT * FROM events WHERE YEARWEEK(start) = YEARWEEK(NOW())) UNION ALL (SELECT * FROM holidays WHERE YEARWEEK(start) = YEARWEEK(NOW())) ORDER BY start");
+								$stmt->execute();
+
+								$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+								
+								foreach(($stmt->fetchAll()) as $row) { 
+								echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
+								$row['title'] . '</strong> @<i>' . $row['start'] . '</i><hr/>' . $row['description']
+								. '</div></div>';
+								}
+								$conn = null;
+						echo '</div>
 							</div>
 						</div>';
 		

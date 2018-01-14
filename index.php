@@ -63,7 +63,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                            <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -130,7 +130,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  Initial page. You can adjust settings and edit your account information here.
+						  This is the home page. You can view the latest news and updates here.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>

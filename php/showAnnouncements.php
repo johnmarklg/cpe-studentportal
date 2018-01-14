@@ -10,8 +10,7 @@
 		<thead>
 		<tr>
 		<th style=\"font-size: 0px\">ID</th>
-		<th>Date</th>
-		<th>Time</th>
+		<th>Timestamp</th>
 		<th>Post</th>
 		<th>File URL</th>
 		<th hidden style=\"font-size: 0px\">Edit</th>
@@ -30,8 +29,7 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td class=\"id\" style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td class=\"date\" >" . $row['date'] . "</td>
-			<td class=\"time\" >" . $row['time'] . "</td>
+			<td class=\"datetime\" >" . $row['datetime'] . "</td>
 			<td class=\"post\" >" . $row['post'] . "</td>
 			<td class=\"fileurl\" >" . $row['fileurl'] . "</td>
 			<td hidden><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">mode_edit</i> Edit</td>

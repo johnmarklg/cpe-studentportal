@@ -38,6 +38,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<!-- Autosize -->
 	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
+	<!--Date Format-->
+	<!--<script src="/assets/js/date.format.js"></script>-->
+	<!--Moment JS-->
+	<!--<script src="/assets/js/moment.min.js"></script>-->
 	
 	<style>
 			.post-remove:hover {
@@ -299,11 +303,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		$('.post-remove').click(function () {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
-			var $date = $row.find(".date").text(); // Find the text
-			var $time = $row.find(".time").text(); // Find the text
 			var $post = $row.find(".post").text(); // Find the text
 			var $fileurl = $row.find(".fileurl").text(); // Find the text
-			var $postinfo = '[{"id":"' + $id + '","date":"' + $date + '","time":"' + $time +
+			var $postinfo = '[{"id":"' + $id +
 			'","post":"' + $post + '","fileurl":"' + $fileurl + '"}]';
 			//alert($postinfo);
 			if(confirm('Do you want to remove this entry from the database?')) {
@@ -337,7 +339,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				var $fileurl = $('#fileURL').val();
 				var $postdata = '[{"Date":"' + $date + '","Time":"' + $time +
 				'","Post":"' + $post + '","Poster":"' + $poster +'","PosterID":"' + $posterid +'","FileURL":"' + $fileurl + '"}]';
-				
+				alert($postdata);
 				$.ajax({
 				type: "POST",
 					url: "/php/postAnnouncement.php",

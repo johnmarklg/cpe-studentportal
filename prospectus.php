@@ -63,7 +63,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                            <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
                         <li>
