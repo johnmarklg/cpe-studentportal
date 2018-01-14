@@ -58,10 +58,6 @@
 								</div>
 							</div>';
 					
-					echo '<div class="alert alert-info" role="alert">
-						  <i class="fa fa-fw fa-info-circle"></i> When saving, only the changes in the active tab/s will be saved to database.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>';
 					echo '<div class="tab-content">';	
 					//STUDENT GRADES 1-1
 					echo '<div class="active tab-pane" id="1">';
@@ -521,6 +517,6 @@
 						echo "</tr>";
 					}
 					$conn = null;
-					echo "</tbody></table></div></div></div></div></div></div>";
+					echo "</tbody></table></div></div></div></div></div></div></div>";
 			  }
 ?>

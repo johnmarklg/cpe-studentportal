@@ -21,8 +21,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <title>Student Portal</title>
 
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
+    <link rel="icon" href="/assets/images/mmsu-logo.png">
+    <!-- Bootstrap Core CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
@@ -34,10 +34,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Autosize -->
-	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-
+	
 </head>
 
 <body>
@@ -75,7 +73,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
                     </li>
                     <li>
@@ -93,7 +91,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<li>
                         <a href="mvgo.php"><i class="fa fa-fw fa-university"></i> Mission/Vision/Goals</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
                     </li>
 					<li>
@@ -119,76 +117,76 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-home"></i> Home
+                                <i class="fa fa-info-circle"></i> About CpE Student Portal
                             </li>
                         </ol>
-						 
+						<!--<div class="alert alert-success" role="alert">
+						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
+						</div>-->
                     </div>
                 </div>
                 <!-- /.row -->
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  Initial page. You can adjust settings and edit your account information here.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-lg-6">
-							<?php	
-									require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
-									echo showANE();
-							?>
-					</div>
-					<div class="col-lg-6">
 						<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="exTab2">	
-								<ul class="nav nav-pills nav-justified">
-									<li class="active">
-									<a  href="#1" data-toggle="tab"><i class="fa fa-fw fa-bolt"></i> COE SC</a>
-									</li>
-									<li><a href="#2" data-toggle="tab"><i class="fa fa-fw fa-cube"></i> MMSU USC</a>
-									</li>
-									<li><a href="#3" data-toggle="tab"><i class="fa fa-fw fa-university"></i> MMSU Official</a>
-									</li>
+							<div class="panel-heading">
+								About iCpE Student Portal
+							</div>
+							<div class="panel-body">
+								<h3><strong>OVERVIEW</strong></h3>
+								<hr/>
+								<h4>ABOUT CpE Student Portal</h4>
+								<p>CpE Student Portal is for Computer Engineering students Mariano Marcos State University - College of Engineering, that serves as a personal assistant in carrying out academic-related tasks.</p>
+								<p>Students can view their personal details, schedules, current grades, accountabilities, curriculum checklist, and more.</p>
+								<hr/>
+								<h4>FEATURES AVAILABLE</h4>
+								<p>Personal Details: where a student can view his/her personal information.</p>
+								<p>Subject Timetables: where a student can view his/her enrolled subjects with their time schedules for the current term.</p>
+								<p>Records Transcript: shows the final grades in the previous term of the student.</p>
+								<p>School Calendar: where a student can view upcoming events and holidays within the academic year.</p>
+								<hr/>
+								<h4>PLANNED FEATURES</h4>
+								<p>Statement of Accounts: shows if a student still has account balance from the organizational office.</p>
+								<hr/>
+								<h4>HOW TO REGISTER? OR FORGOT PASSWORD?</h4>
+								<p>Proceed to the Computer Engineering Department, 1st Floor, College of Engineering, Mariano Marcos State University and ask a portal administrator (i.e. Department Chair).</p>
+							</div>
+						</div>
+					</div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								Student Manuals and Official Papers
+							</div>
+							<div class="panel-body">
+								<ul class="list-group">
+									<li class="list-group-item"><a href="">Official MMSU Student Handbook</a></li>
 								</ul>
 							</div>
-							<div class="panel-body tab-content ">
-								<div class="tab-pane active" id="1">
-									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/MMSUCOESC?ref_src=twsrc%5Etfw">Tweets by MMSUCOESC</a> 
-								</div>
-								<div class="tab-pane" id="2">
-									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/USCMMSU?ref_src=twsrc%5Etfw">Tweets by USCMMSU</a>
-								</div>
-								<div class="tab-pane" id="3">
-									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/MMSU_official?ref_src=twsrc%5Etfw">Tweets by MMSU_official</a>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+            </div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
+
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
-			  <small id="userid" hidden><?php echo ($_SESSION['name'][0]);?></small>
 			</div>
 		  </div>
 		</footer>
 		<!-- /footer -->
 		
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		
     </div>
     <!-- /#wrapper -->
+	
 </body>
 
 </html>
