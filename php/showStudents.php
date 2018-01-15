@@ -40,11 +40,6 @@
 				<input id="cfatscore" type="text" class="form-control" value="" aria-describedby="basic-addon1">
 			</div>
 			<br/>
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">Passcode</span>
-				<input id="passcode" type="text" class="form-control" value="" aria-describedby="basic-addon1">
-			</div>
-			</br>
 			<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-user"></i>Insert Student Entry</button>
 		</div></div></div></div></div></div><hr/>';
 		

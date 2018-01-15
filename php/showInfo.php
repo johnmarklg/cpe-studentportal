@@ -4,7 +4,7 @@
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from department WHERE id = :id");
+		$stmt = $conn->prepare("SELECT * from administrators WHERE id = :id");
 		$stmt -> bindParam(':id', $_SESSION['name'][2]);
 		$stmt->execute();
 		foreach(($stmt->fetchAll()) as $row) { 

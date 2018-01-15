@@ -3,7 +3,6 @@
 
 	$jsonstudinfo = json_decode($_POST['studinfo'], true);
 	$studnum = $jsonstudinfo[0]['Student Number'];
-	
 		
 	foreach ($jsonstudinfo as $key => $value) {	
 			$conn = getDB('cpe-studentportal');
@@ -13,7 +12,7 @@
 			$stmt -> bindParam(':firstname', $value['First Name']);
 			$stmt -> bindParam(':middlename', $value['Middle Name']);
 			$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
-			$stmt -> bindParam(':passcode', $value['Passcode']);
+			$stmt -> bindParam(':passcode', md5($value['Student Number']));
 			$startyear = mb_substr($value['Student Number'], 0, 2);
 			$stmt -> bindParam(':yearstarted', $startyear);
 			$stmt->execute();	

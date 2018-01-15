@@ -9,7 +9,7 @@
 		//UPDATE `department` SET `name` = 'Vlad Ibañez', `position` = 'Chair', `email` = '1vladimir@gmail.com', `username` = 'admin1', `password` = 'admin' WHERE `department`.`id` = 1
 		//UPDATE `department` SET `name` = 'Vladimir B. Ibañez', `position` = 'Department Chair', `email` = 'vladimir@gmail.com', `username` = 'admin' WHERE `department`.`id` = 1
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $conn->prepare("UPDATE `department` SET name = :name, email = :email, username = :username, password = :password WHERE id = :id");
+		$stmt = $conn->prepare("UPDATE `administrators` SET name = :name, email = :email, username = :username, password = :password WHERE id = :id");
 		$stmt -> bindParam(':username', $value['Username']);
 		$stmt -> bindParam(':password', $value['Password']);
 		$stmt -> bindParam(':email', $value['Email']);
