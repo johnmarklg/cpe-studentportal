@@ -60,8 +60,9 @@
 						$startyear = mb_substr($value['Student Number'], 0, 2);
 						$stmt -> bindParam(':yearstarted', $startyear);
 						$stmt->execute();	
+						$conn = null;
 						
-						
+						$conn = getDB('cpe-studentrecords');
 						$stmt = $conn->prepare("CREATE TABLE `$studnum` LIKE `00-0000`");
 						$stmt->execute();
 						$stmt = $conn->prepare("INSERT `$studnum` SELECT * FROM `00-0000`");

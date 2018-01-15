@@ -26,7 +26,7 @@
 					$stmt->execute();
 					$conn = null;
 
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("ALTER TABLE `$oldstudnum` RENAME `$studnum`;");
 					
 					$stmt->execute();
@@ -47,8 +47,9 @@
 						$startyear = mb_substr($value['Student Number'], 0, 2);
 						$stmt -> bindParam(':yearstarted', $startyear);
 						$stmt->execute();	
+						$conn = null;
 						
-						
+						$conn = getDB('cpe-studentrecords');
 						$stmt = $conn->prepare("CREATE TABLE `$studnum` LIKE `00-0000`");
 						$stmt->execute();
 						$stmt = $conn->prepare("INSERT `$studnum` SELECT * FROM `00-0000`");
@@ -58,7 +59,7 @@
 		}
 	
 		foreach ($jsongrades as $key => $value) {
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("UPDATE `$studnum` SET 1st = :first, 2nd = :second, 3rd = :third WHERE `$studnum`.courseid = :id");
 					$stmt -> bindParam(':first', $value['1st']);
 					$stmt -> bindParam(':second', $value['2nd']);

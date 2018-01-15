@@ -17,7 +17,7 @@
 						$studnum = "00-0000";
 					}
 					
-							$conn = getDB('cpe-studentportal');
+							$conn = getDB('cpe-studentrecords');
 							$stmt = $conn->prepare("SHOW TABLES LIKE :studnum");
 							$stmt -> bindParam(':studnum', $studnum);
 							$stmt->execute();
@@ -115,7 +115,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id < 8");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -156,7 +156,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 7 AND subjects.id < 17");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -199,7 +199,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 16 AND subjects.id < 24");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -240,7 +240,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 23 AND subjects.id < 31");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -283,7 +283,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 30 AND subjects.id < 38");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -324,7 +324,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 37 AND subjects.id < 45");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -367,7 +367,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 44 AND subjects.id < 52");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -408,7 +408,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 51 AND subjects.id < 58");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -449,7 +449,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id = 58");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -492,7 +492,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 58 AND subjects.id < 66");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -533,7 +533,7 @@
 								  </thead>
 								  <tbody>";
 								  
-					$conn = getDB('cpe-studentportal');
+					$conn = getDB('cpe-studentrecords');
 					$stmt = $conn->prepare("SELECT * FROM `$studnum` LEFT JOIN subjects ON subjects.id = `$studnum`.courseid WHERE subjects.id > 65");
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
