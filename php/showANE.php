@@ -4,7 +4,7 @@
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		
 		//Heading
-		echo '<div class="panel panel-info">
+		echo '<div class="panel panel-info" style="position: relative;">
 							<div class="panel-heading" style="text-align: center;" id="exTab3">	
 								<ul class="nav nav-pills nav-justified">
 									<li class="active">
@@ -16,8 +16,8 @@
 							</div>';
 							
 		//Announcements
-						echo '<div class="panel-body tab-content ">
-								<div class="tab-pane active" id="4">';
+						echo '<div class="panel-body tab-content" style="overflow: auto; max-height:635px;">
+								<div class="tab-pane active" id="4" >';
 								
 								$conn = getDB('cpe-studentportal');
 								$stmt = $conn->prepare("SELECT * from `posts` ORDER BY datetime DESC");
@@ -35,7 +35,7 @@
 						echo '</div>';
 								
 		//Events
-						echo '<div class="tab-pane" id="5">Upcoming and On-going Events and Holidays:<hr/>';
+						echo '<div class="tab-pane" id="5"">Upcoming and On-going Events and Holidays:<hr/>';
 								$conn = getDB('cpe-studentportal');
 								$stmt = $conn->prepare("(SELECT * FROM events WHERE YEARWEEK(start) = YEARWEEK(NOW())) UNION ALL (SELECT * FROM holidays WHERE YEARWEEK(start) = YEARWEEK(NOW())) ORDER BY start");
 								$stmt->execute();

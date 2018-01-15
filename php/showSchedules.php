@@ -47,7 +47,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject1`");
+		$stmt = $conn->prepare("SELECT * from `subject1` ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -102,7 +102,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject2`");
+		$stmt = $conn->prepare("SELECT * from `subject2` ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -157,7 +157,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject3`");
+		$stmt = $conn->prepare("SELECT * from `subject3` ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -212,7 +212,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject4`");
+		$stmt = $conn->prepare("SELECT * from `subject4` ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -267,7 +267,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject5`");
+		$stmt = $conn->prepare("SELECT * from `subject5` ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
