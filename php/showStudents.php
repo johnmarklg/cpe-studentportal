@@ -124,7 +124,7 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['cfatscore'] . "</td>
 			<td>" . $row['passcode'] . "</td>
-			<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td>
+			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -169,7 +169,7 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['cfatscore'] . "</td>
 			<td>" . $row['passcode'] . "</td>
-			<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td>
+			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -214,7 +214,7 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['cfatscore'] . "</td>
 			<td>" . $row['passcode'] . "</td>
-			<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td>
+			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -259,7 +259,7 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['cfatscore'] . "</td>
 			<td>" . $row['passcode'] . "</td>
-			<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td>
+			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -304,7 +304,7 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['cfatscore'] . "</td>
 			<td>" . $row['passcode'] . "</td>
-			<td><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">remove_circle_outline</i></td>
+			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;

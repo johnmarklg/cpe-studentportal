@@ -13,8 +13,7 @@
 		<th>Timestamp</th>
 		<th>Post</th>
 		<th>File URL</th>
-		<th hidden style=\"font-size: 0px\">Edit</th>
-		<th>Delete</th>
+		<th> </th>
 		</tr>
 		</thead>
 		<tbody class=\"list\">";
@@ -32,8 +31,7 @@
 			<td class=\"datetime\" >" . $row['datetime'] . "</td>
 			<td class=\"post\" >" . $row['post'] . "</td>
 			<td class=\"fileurl\" >" . $row['fileurl'] . "</td>
-			<td hidden><i style=\"vertical-align: bottom;\" class=\"table-remove material-icons\">mode_edit</i> Edit</td>
-			<td><i style=\"vertical-align: bottom;\" class=\"post-remove material-icons\">delete</i></td>";
+			<td><span class=\"post-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Delete</span></td>";
 		}
 		$conn = null;		
 

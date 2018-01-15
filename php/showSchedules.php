@@ -1,5 +1,5 @@
 <?php	
-	function showTimetables() {
+	function showSchedules() {
 
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		
@@ -17,16 +17,12 @@
 							</li>
 							<li><a href="#5" data-toggle="tab">Fifth Year</a>
 							</li>
-							<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+							<li><a id="tabAll"  href="#0" data-toggle="tab">Show All</a>
 							</li>
 						</ul>
 					</div>
 				</div>';
 		
-		echo '<div class="alert alert-info" role="alert">
-			  <i class="fa fa-fw fa-info-circle"></i> When saving, only the changes in the active tab/s will be saved to database.
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			</div>';
 		echo '<div class="tab-content">';
 		
 		//1ST YEAR
@@ -46,7 +42,6 @@
 		<th>Building</th>
 		<th>Room Number</th>
 		<th>Instructor</th>
-		<th><span class=\"table-add\"><i class=\"fa fa-fw fa-plus-circle\"></i> Add New</span></th>
 		</tr>
 		</thead>
 		<tbody class=\"list\">";
@@ -68,8 +63,7 @@
 			<td contentEditable>" . $row['days'] . "</td>
 			<td contentEditable>" . $row['building'] . "</td>
 			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+			<td contentEditable>" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
@@ -83,8 +77,7 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+		<td contentEditable ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//2ND YEAR
@@ -104,7 +97,6 @@
 		<th>Building</th>
 		<th>Room Number</th>
 		<th>Instructor</th>
-		<th><span class=\"table-add\"><i class=\"fa fa-fw fa-plus-circle\"></i> Add New</span></th>
 		</tr>
 		</thead>
 		<tbody class=\"list\">";
@@ -126,8 +118,7 @@
 			<td contentEditable>" . $row['days'] . "</td>
 			<td contentEditable>" . $row['building'] . "</td>
 			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+			<td contentEditable>" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
@@ -141,8 +132,7 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+		<td contentEditable ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//THIRD YEAR
@@ -162,7 +152,6 @@
 		<th>Building</th>
 		<th>Room Number</th>
 		<th>Instructor</th>
-		<th><span class=\"table-add\"><i class=\"fa fa-fw fa-plus-circle\"></i> Add New</span></th>
 		</tr>
 		</thead>
 		<tbody class=\"list\">";
@@ -184,8 +173,7 @@
 			<td contentEditable>" . $row['days'] . "</td>
 			<td contentEditable>" . $row['building'] . "</td>
 			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+			<td contentEditable>" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
@@ -199,8 +187,7 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+		<td contentEditable ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//FOURTH YEAR
@@ -220,7 +207,6 @@
 		<th>Building</th>
 		<th>Room Number</th>
 		<th>Instructor</th>
-		<th><span class=\"table-add\"><i class=\"fa fa-fw fa-plus-circle\"></i> Add New</span></th>
 		</tr>
 		</thead>
 		<tbody class=\"list\">";
@@ -242,8 +228,7 @@
 			<td contentEditable>" . $row['days'] . "</td>
 			<td contentEditable>" . $row['building'] . "</td>
 			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+			<td contentEditable>" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
@@ -257,8 +242,7 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+		<td contentEditable ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//FIFTH YEAR
@@ -278,7 +262,6 @@
 		<th>Building</th>
 		<th>Room Number</th>
 		<th>Instructor</th>
-		<th><span class=\"table-add\"><i class=\"fa fa-fw fa-plus-circle\"></i> Add New</span></th>
 		</tr>
 		</thead>
 		<tbody class=\"list\">";
@@ -300,8 +283,7 @@
 			<td contentEditable>" . $row['days'] . "</td>
 			<td contentEditable>" . $row['building'] . "</td>
 			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+			<td contentEditable>" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
@@ -315,8 +297,7 @@
 		<td contentEditable ></td>
 		<td contentEditable ></td>
 		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
+		<td contentEditable ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div></div>";
 	}
 ?>

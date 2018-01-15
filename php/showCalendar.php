@@ -80,7 +80,7 @@
 						<td contentEditable>" . $row['description'] . "</td>
 						<td class=\"startdatePicker\" contentEditable>" . $row['start'] . "</td>
 						<td class=\"enddatePicker\" contentEditable>" . $row['end'] . "</td>
-						<td><i style=\"vertical-align: bottom;\" class=\"event-remove material-icons\">remove_circle_outline</i></td></tr>";
+						<td><span class=\"event-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Delete</span></td></tr>";
 					}
 					$conn = null;
 					echo "</tbody></table></div></div></div></div></div></div>";
@@ -115,7 +115,7 @@
 						<td contentEditable>" . $row['description'] . "</td>
 						<td class=\"startdatePicker\" contentEditable>" . $row['start'] . "</td>
 						<td class=\"enddatePicker\" contentEditable>" . $row['end'] . "</td>
-						<td><i style=\"vertical-align: bottom;\" class=\"holiday-remove material-icons\">remove_circle_outline</i></td></tr>";
+						<td><span class=\"holiday-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Delete</span></td></tr>";
 					}
 					$conn = null;
 

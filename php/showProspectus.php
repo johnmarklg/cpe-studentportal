@@ -86,9 +86,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -127,9 +127,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -170,9 +170,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -211,9 +211,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -254,9 +254,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -295,9 +295,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -338,9 +338,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -379,9 +379,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -420,9 +420,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -463,9 +463,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";
@@ -504,9 +504,9 @@
 
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo "<tr>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
-						echo "<td><div contentEditable style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['1st'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['2nd'] . "</div></td>";
+						echo "<td><div  style=\"width: 100%; height: 100%;\">" . $row['3rd'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['code'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['coursetitle'] . "</div></td>";
 						echo "<td><div style=\"width: 100%; height: 100%;\">" . $row['units'] . "</div></td>";

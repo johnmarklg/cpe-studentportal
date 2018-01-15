@@ -145,16 +145,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-12">
-						<div class="card">
-							<div class="card-body">
-								<div id="calendar"></div>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				
 				<div class="row">
