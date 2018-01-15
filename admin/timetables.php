@@ -215,11 +215,21 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script>
 		$("#saveTimetables").click(function(){
+			$('#tabAll').addClass('active');  
+			$('.tab-pane').each(function(i,t){
+				$('#myTabs li').removeClass('active'); 
+				$(this).addClass('active');  
+			});
 			var timeTable1 = $('#tablefirst').tableToJSON();
 			var timeTable2 = $('#tablesecond').tableToJSON();
 			var timeTable3 = $('#tablethird').tableToJSON();
 			var timeTable4 = $('#tablefourth').tableToJSON();
 			var timeTable5 = $('#tablefifth').tableToJSON();
+			//alert(JSON.stringify(timeTable1));
+			//alert(JSON.stringify(timeTable2));
+			//alert(JSON.stringify(timeTable3));
+			//alert(JSON.stringify(timeTable4));
+			//alert(JSON.stringify(timeTable5));
 			$.ajax({
 				type: "POST",
 				url: "../php/saveTimetables.php",
@@ -227,6 +237,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				cache: false,
 				success: function(result){
 					//alert("Successfully updated database!");
+					location.reload();
 				}
 			});
 			

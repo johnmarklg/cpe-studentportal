@@ -46,8 +46,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject1` ORDER BY section");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=1 ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -101,8 +101,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject2` ORDER BY section");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=2 ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -156,8 +156,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject3` ORDER BY section");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=3 ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -211,8 +211,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject4` ORDER BY section");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=4 ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -266,8 +266,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject5` ORDER BY section");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=5 ORDER BY section");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 

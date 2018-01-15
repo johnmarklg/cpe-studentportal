@@ -51,8 +51,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject1`");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=1");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -109,8 +109,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject2`");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=2");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -167,8 +167,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject3`");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=3");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -225,8 +225,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject4`");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=4");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
@@ -283,8 +283,8 @@
 		</thead>
 		<tbody class=\"list\">";
 
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("SELECT * from `subject5`");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=5");
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 

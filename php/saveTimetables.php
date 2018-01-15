@@ -8,24 +8,16 @@
 	$jsontimetable4 = json_decode($_POST['tablefourth'], true);
 	$jsontimetable5 = json_decode($_POST['tablefifth'], true);
 	
-	$conn = getDB('cpe-timetables');
-	$stmt = $conn->prepare("TRUNCATE `subject1`");
-	$stmt->execute();
-	$stmt = $conn->prepare("TRUNCATE `subject2`");
-	$stmt->execute();
-	$stmt = $conn->prepare("TRUNCATE `subject3`");
-	$stmt->execute();
-	$stmt = $conn->prepare("TRUNCATE `subject4`");
-	$stmt->execute();
-	$stmt = $conn->prepare("TRUNCATE `subject5`");
+	$conn = getDB('cpe-studentportal');
+	$stmt = $conn->prepare("TRUNCATE `schedules`");
 	$stmt->execute();
 	$conn = null;
 	
 	//then insert current table data in order to overwrite all changes
 	foreach ($jsontimetable1 as $key => $value) {	
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("INSERT INTO `subject1` (section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
-		VALUES (:section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("INSERT INTO `schedules` (year, section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
+		VALUES (1, :section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
 		$stmt -> bindParam(':section', $value['Section']);
 		$stmt -> bindParam(':code', $value['Code']);
 		$stmt -> bindParam(':subjectsection', $value['Subject Section']);
@@ -40,9 +32,9 @@
 	}
 	
 	foreach ($jsontimetable2 as $key => $value) {	
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("INSERT INTO `subject2` (section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
-		VALUES (:section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("INSERT INTO `schedules` (year, section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
+		VALUES (2, :section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
 		$stmt -> bindParam(':section', $value['Section']);
 		$stmt -> bindParam(':code', $value['Code']);
 		$stmt -> bindParam(':subjectsection', $value['Subject Section']);
@@ -57,9 +49,9 @@
 	}
 	
 	foreach ($jsontimetable3 as $key => $value) {	
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("INSERT INTO `subject3` (section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
-		VALUES (:section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("INSERT INTO `schedules` (year, section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
+		VALUES (3, :section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
 		$stmt -> bindParam(':section', $value['Section']);
 		$stmt -> bindParam(':code', $value['Code']);
 		$stmt -> bindParam(':subjectsection', $value['Subject Section']);
@@ -74,9 +66,9 @@
 	}
 	
 	foreach ($jsontimetable4 as $key => $value) {	
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("INSERT INTO `subject4` (section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
-		VALUES (:section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("INSERT INTO `schedules` (year, section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
+		VALUES (4, :section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
 		$stmt -> bindParam(':section', $value['Section']);
 		$stmt -> bindParam(':code', $value['Code']);
 		$stmt -> bindParam(':subjectsection', $value['Subject Section']);
@@ -91,9 +83,9 @@
 	}
 	
 	foreach ($jsontimetable5 as $key => $value) {	
-		$conn = getDB('cpe-timetables');
-		$stmt = $conn->prepare("INSERT INTO `subject5` (section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
-		VALUES (:section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
+		$conn = getDB('cpe-studentportal');
+		$stmt = $conn->prepare("INSERT INTO `schedules` (year, section, code, subjectsection, starttime, endtime, days, building, roomnumber, instructor)
+		VALUES (5, :section, :code, :subjectsection, :starttime, :endtime, :days, :building, :roomnumber, :instructor)");
 		$stmt -> bindParam(':section', $value['Section']);
 		$stmt -> bindParam(':code', $value['Code']);
 		$stmt -> bindParam(':subjectsection', $value['Subject Section']);
