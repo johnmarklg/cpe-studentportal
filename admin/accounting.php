@@ -38,6 +38,23 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
 
+	
+	<style>
+			#saveAccounting {
+			  position: fixed;
+			  display: block;
+			  right: 0;
+			  bottom: 0;
+			  margin-right: 40px;
+			  margin-bottom: 40px;
+			  z-index: 900;
+			}
+			  .invoice-remove:hover {
+			  color: #f00;
+			  cursor: pointer;
+			}
+
+	</style>
 </head>
 
 <body>
@@ -111,32 +128,42 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  You can add additional statement of charges here.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 							Add Invoice
 							</div>
 							<div class="panel-body">
+								<div class="alert alert-danger" role="alert">
+								  <i class="fa fa-exclamation-triangle"></i> Please refrain from using numbers and symbols (e.g. !@#$%^&*()-=+/) to avoid database errors.
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								</div>
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1">Invoice Name</span>
 								  <input id="name" type="text" class="form-control" value="" aria-describedby="basic-addon1">
 								</div>
 								<br/>
-								<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon2">Amount to be Paid</span>
-								  <input id="amount" type="text" class="form-control" value="" aria-describedby="basic-addon2">
-								</div>
-								<br/>
 								<form method="post">
 									<button type="button" id="buttonSave" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-credit-card"></i> Add New Charge</button>
 								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel-group">
+							<div class="panel panel-danger">
+								<div class="panel-heading">
+									<a data-toggle="collapse" href="#collapsePanel" style="color: #000;"><i class="fa fa-close"></i> Click here to remove an invoice/account from the database.</a>
+								</div>
+								<div id="collapsePanel" class="panel-collapse collapse">
+									<div class="panel-body">
+										<?php
+											require($_SERVER["DOCUMENT_ROOT"] . '/php/showPaymentTable.php');
+											echo showPaymentTable();
+										?>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -189,25 +216,53 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		</footer>
 		<!-- /footer -->
 		
+		<form>
+			<button type="button" id="saveAccounting" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button>
+		</form>	
+		
     </div>
 	
-		<script>
-			$('#tabAll').click(function(){
-				$('#tabAll').addClass('active');  
-				$('.tab-pane').each(function(i,t){
-					$('#myTabs li').removeClass('active'); 
-					$(this).addClass('active');  
-				});
+	<script src="/assets/js/jquery.tabletojson.min.js"></script>
+	
+	<script>
+		$('#tabAll').click(function(){
+			$('#tabAll').addClass('active');  
+			$('.tab-pane').each(function(i,t){
+				$('#myTabs li').removeClass('active'); 
+				$(this).addClass('active');  
 			});
-		</script>
-    <!-- /#wrapper -->
+		});
+	</script>
+	<script>
+		$('.invoice-remove').click(function () {
+		if(confirm('Do you want to remove this entry from the database?')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $tablename = $row.find(".tablename").text(); // Find the text
+			var $invoiceinfo = '[{"id":"' + $id + '","tablename":"' + $tablename + '"}]';
+			alert($invoiceinfo);
+			$.ajax({
+				type: "POST",
+					url: "/php/removePayment.php",
+					data: {infodata: $invoiceinfo},
+					cache: false,
+					success: function(result){
+						//alert("Successfully removed student entry!");
+						location.reload(); 			
+					}
+				});
+			//$(this).parents('tr').detach();			
+		} else {}
+		});
+	</script>
+
 	<script>
 		$('#buttonSave').click(function() {
 			var $name = $('#name').val();
 			$aname = $name.replace(/\s/g,'');
 			$aname = $aname.toLowerCase();
 			var $amount = $('#amount').val();
-			var $payinfo = '[{"Name":"' + $name + '","Amount":"' + $amount +'","tableName":"' + $aname + '"}]';
+			var $payinfo = '[{"Name":"' + $name + '","tableName":"' + $aname + '"}]';
 			alert($payinfo);
 			$.ajax({
 				type: "POST",
@@ -216,11 +271,53 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					cache: false,
 					success: function(result){
 						//alert("Successfully updated personal details! Please relogin.");
-						//location.reload();
+						location.reload();
 						//window.location.replace('logout.php');
 					}
 				});
 				return false;
+		});
+	</script>
+	<script>
+		$("#saveAccounting").click(function(){
+			$('#tabAll').addClass('active');  
+			$('.tab-pane').each(function(i,t){
+				$('#myTabs li').removeClass('active'); 
+				$(this).addClass('active');  
+			});
+			var payTable1 = $('#tablefirst').tableToJSON({
+				ignoreColumns: [1,2,3,4]
+			});
+			var payTable2 = $('#tablesecond').tableToJSON({
+				ignoreColumns: [1,2,3,4]
+			});
+			var payTable3 = $('#tablethird').tableToJSON({
+				ignoreColumns: [1,2,3,4]
+			});
+			var payTable4 = $('#tablefourth').tableToJSON({
+				ignoreColumns: [1,2,3,4]
+			});
+			var payTable5 = $('#tablefifth').tableToJSON({
+				ignoreColumns: [1,2,3,4]
+			});
+			
+			var finaltable = payTable1.concat(payTable2);
+			var finaltable = finaltable.concat(payTable3);
+			var finaltable = finaltable.concat(payTable4);
+			var finaltable = finaltable.concat(payTable5);
+			//timeTable5 = JSON.stringify(timeTable5);
+			alert(JSON.stringify(finaltable));
+			
+			$.ajax({
+				type: "POST",
+				url: "/php/savePayments.php",
+				data: {paytable: JSON.stringify(finaltable)},
+				cache: false,
+				success: function(result){
+					//alert(result);
+					location.reload(); 			
+				}
+			});
 		});
 	</script>
 </body>

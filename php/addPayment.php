@@ -8,13 +8,13 @@
 			//$columnName = $value['Name'] . ' - ' . $value['Amount'];
 			$conn = getDB('cpe-studentportal');
 			
-			$stmt = $conn->prepare("INSERT INTO `payments` (name, amount, tablename) VALUES (:name, :amount, :tablename)");
+			$stmt = $conn->prepare("INSERT INTO `payments` (name, tablename) VALUES (:name, :tablename)");
 			$stmt -> bindParam(':name', $value['Name']);
-			$stmt -> bindParam(':amount', $value['Amount']);
+			//$stmt -> bindParam(':amount', $value['Amount']);
 			$stmt -> bindParam(':tablename', $value['tableName']);
 			$stmt->execute();	
 			$stmt = $conn->prepare("ALTER TABLE students 
-			ADD `$tableName` boolean");
+			ADD `$tableName` float DEFAULT 0");
 			$stmt->execute();
 			/*$stmt = $conn->prepare("CREATE TABLE `$tableName` LIKE students");
 			$stmt->execute();	
