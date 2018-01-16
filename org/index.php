@@ -238,7 +238,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		if(confirm('Do you want to remove this entry from the database?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
-			var $colname = $row.find(".columnname").text(); // Find the text
+			var $colname = $row.find(".name").text(); // Find the text
 			var $invoiceinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
 			alert($invoiceinfo);
 			$.ajax({

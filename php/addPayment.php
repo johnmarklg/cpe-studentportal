@@ -4,14 +4,14 @@
 	$jsoninfodata = json_decode($_POST['infodata'], true);
 		
 	foreach ($jsoninfodata as $key => $value) {	
-			$colName = $value['columnName'];
+			$colName = $value['Name'];
 			//$columnName = $value['Name'] . ' - ' . $value['Amount'];
 			$conn = getDB('cpe-studentportal');
 			
-			$stmt = $conn->prepare("INSERT INTO `payments` (name, columnname) VALUES (:name, :columnname)");
+			$stmt = $conn->prepare("INSERT INTO `payments` (name) VALUES (:name)");
 			$stmt -> bindParam(':name', $value['Name']);
 			//$stmt -> bindParam(':amount', $value['Amount']);
-			$stmt -> bindParam(':columnname', $value['columnName']);
+			//$stmt -> bindParam(':columnname', $value['columnName']);
 			$stmt->execute();	
 			$stmt = $conn->prepare("ALTER TABLE students 
 			ADD `$colName` float DEFAULT 0");

@@ -12,7 +12,7 @@
 			$stmt -> bindParam(':id', $value['id']);
 			$stmt->execute();	
 			$stmt = $conn->prepare("ALTER TABLE students 
-			DROP COLUMN $colName");
+			DROP COLUMN `$colName`");
 			$stmt->execute();
 			$conn = null;	
 	}
