@@ -13,7 +13,7 @@
 		<tr>
 			<th>Entry ID</th>
 			<th>Invoice Name</th>
-			<th>Column Name</th>
+			<th hidden>Column Name</th>
 			<th hidden>Delete</th>
 		</tr>
 	</thead>
@@ -23,7 +23,7 @@
 		echo '<tr>
 		<td class="id">' . $row['id'] . '</td>
 		<td class="name">' . $row['name'] . '</td>
-		<td class="tablename">' . $row['tablename'] . '</td>
+		<td class="columnname">' . $row['columnname'] . '</td>
 		<td><span class="invoice-remove"><i class="fa fa-fw fa-minus-circle"></i> Delete</span></td>
 		</tr>';
 	}

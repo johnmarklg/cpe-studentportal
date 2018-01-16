@@ -4,7 +4,7 @@
 	$jsoninfodata = json_decode($_POST['infodata'], true);
 		
 	foreach ($jsoninfodata as $key => $value) {	
-			$tableName = $value['tablename'];
+			$colName = $value['colname'];
 			
 			$conn = getDB('cpe-studentportal');
 			
@@ -12,7 +12,7 @@
 			$stmt -> bindParam(':id', $value['id']);
 			$stmt->execute();	
 			$stmt = $conn->prepare("ALTER TABLE students 
-			DROP COLUMN $tableName");
+			DROP COLUMN $colName");
 			$stmt->execute();
 			$conn = null;	
 	}
