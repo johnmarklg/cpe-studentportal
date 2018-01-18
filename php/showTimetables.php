@@ -11,8 +11,10 @@
 		<thead>
 		<tr>
 		<th style=\"font-size: 0px\">ID</th>
+		<th style=\"font-size: 0px\">Year</th>
 		<th>Section</th>
 		<th>Code</th>
+		<th>Units</th>
 		<th>Subject Section</th>
 		<th>Start Time</th>
 		<th>End Time</th>
@@ -34,8 +36,10 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
+			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
 			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
 			<td contentEditable class=\"code\">" . $row['code'] . "</td>
+			<td contentEditable class=\"units\">" . $row['units'] . "</td>
 			<td contentEditable>" . $row['subjectsection'] . "</td>
 			<td contentEditable>" . $row['starttime'] . "</td>
 			<td contentEditable>" . $row['endtime'] . "</td>
@@ -56,8 +60,10 @@
 		<thead>
 		<tr>
 		<th style=\"font-size: 0px\">ID</th>
+		<th style=\"font-size: 0px\">Year</th>
 		<th>Section</th>
 		<th>Code</th>
+		<th>Units</th>
 		<th>Subject Section</th>
 		<th>Start Time</th>
 		<th>End Time</th>
@@ -78,8 +84,10 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
+			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
 			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
 			<td contentEditable class=\"code\">" . $row['code'] . "</td>
+			<td contentEditable class=\"units\">" . $row['units'] . "</td>
 			<td contentEditable>" . $row['subjectsection'] . "</td>
 			<td contentEditable>" . $row['starttime'] . "</td>
 			<td contentEditable>" . $row['endtime'] . "</td>
@@ -100,8 +108,10 @@
 		<thead>
 		<tr>
 		<th style=\"font-size: 0px\">ID</th>
+		<th style=\"font-size: 0px\">Year</th>
 		<th>Section</th>
 		<th>Code</th>
+		<th>Units</th>
 		<th>Subject Section</th>
 		<th>Start Time</th>
 		<th>End Time</th>
@@ -122,8 +132,10 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
+			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
 			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
 			<td contentEditable class=\"code\">" . $row['code'] . "</td>
+			<td contentEditable class=\"units\">" . $row['units'] . "</td>
 			<td contentEditable>" . $row['subjectsection'] . "</td>
 			<td contentEditable>" . $row['starttime'] . "</td>
 			<td contentEditable>" . $row['endtime'] . "</td>
@@ -144,8 +156,10 @@
 		<thead>
 		<tr>
 		<th style=\"font-size: 0px\">ID</th>
+		<th style=\"font-size: 0px\">Year</th>
 		<th>Section</th>
 		<th>Code</th>
+		<th>Units</th>
 		<th>Subject Section</th>
 		<th>Start Time</th>
 		<th>End Time</th>
@@ -166,8 +180,10 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
+			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
 			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
 			<td contentEditable class=\"code\">" . $row['code'] . "</td>
+			<td contentEditable class=\"units\">" . $row['units'] . "</td>
 			<td contentEditable>" . $row['subjectsection'] . "</td>
 			<td contentEditable>" . $row['starttime'] . "</td>
 			<td contentEditable>" . $row['endtime'] . "</td>
@@ -188,8 +204,10 @@
 		<thead>
 		<tr>
 		<th style=\"font-size: 0px\">ID</th>
+		<th style=\"font-size: 0px\">Year</th>
 		<th>Section</th>
 		<th>Code</th>
+		<th>Units</th>
 		<th>Subject Section</th>
 		<th>Start Time</th>
 		<th>End Time</th>
@@ -210,8 +228,10 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
+			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
 			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
 			<td contentEditable class=\"code\">" . $row['code'] . "</td>
+			<td contentEditable class=\"units\">" . $row['units'] . "</td>
 			<td contentEditable>" . $row['subjectsection'] . "</td>
 			<td contentEditable>" . $row['starttime'] . "</td>
 			<td contentEditable>" . $row['endtime'] . "</td>
