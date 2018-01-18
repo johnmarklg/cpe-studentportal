@@ -11,7 +11,6 @@
 		}
 		
 		//ADD ENTRY
-		
 		echo '<div class="tab-content">';
 		//5TH YEAR
 		echo '<div class="tab-pane" id="5">';

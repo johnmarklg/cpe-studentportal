@@ -161,6 +161,114 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
+					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
+						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new class schedule to the list of open subjects.</a></div>
+						<div id="collapsePanel" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Year</span>
+								<input id="year" type="text" class="form-control formTextbox"  placeholder="ex. 1" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Section</span>
+								<input id="section" type="text" class="form-control formTextbox"  placeholder="ex. A" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Course Code</span>
+								<input id="code" type="text" class="form-control formTextbox"  placeholder="ex. Something 101" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Units</span>
+								<input id="units" type="text" class="form-control formTextbox"  placeholder="ex. 3.0" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Subject Section</span>
+								<input id="subjectsection" type="text" class="form-control formTextbox" placeholder="ex. 1A" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Start Time</span>
+								<input id="starttime" type="text" class="form-control formTextbox"  placeholder="ex. 9:00" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">End Time</span>
+								<input id="endtime" type="text" class="form-control formTextbox"  placeholder="ex. 10:00" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Days</span>
+								<input id="days" type="text" class="form-control formTextbox"  placeholder="ex. MWF" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Building</span>
+								<input id="building" type="text" class="form-control formTextbox"  placeholder="ex. COE" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Room Number</span>
+								<input id="roomnumber" type="text" class="form-control formTextbox"  placeholder="ex. 220" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Instructor</span>
+								<input id="instructor" type="text" class="form-control formTextbox"  placeholder="ex. Engr. Tim McCay" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-calendar"></i>Insert New Schedule</button>
+							<script>
+							//short script for enter to click button
+							$(document).ready(function(){
+								$('.formTextbox').keypress(function(e){
+								  if(e.keyCode==13)
+								  $('#buttonAdd').click();
+								});
+							});
+							</script>
+						</div></div></div></div></div></div><hr/>
+						
+						<div class="row">
+									<div class="col-lg-12">
+										<div class="alert alert-info" role="alert">
+										  List of all currently open and available subjects will be placed here.
+										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="alert alert-warning" role="alert">
+										  Caution: Deleting records in the respective tables will permanently remove the entry in the database.
+										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										</div>
+									</div>
+								</div>
+								
+						<div class="panel panel-default">
+									<div class="panel-heading" style="text-align: center;" id="myTabs">	
+										<ul class="nav nav-pills nav-justified">
+											<li class="active">
+											<a  href="#1" data-toggle="tab">First Year</a>
+											</li>
+											<li><a href="#2" data-toggle="tab">Second Year</a>
+											</li>
+											<li><a href="#3" data-toggle="tab">Third Year</a>
+											</li>
+											<li><a href="#4" data-toggle="tab">Fourth Year</a>
+											</li>
+											<li><a href="#5" data-toggle="tab">Fifth Year</a>
+											</li>
+											<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="tab-content">
 						<?php	
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showTimetables.php');
 						echo showTimetables();
@@ -173,10 +281,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
         </div>
         <!-- /#page-wrapper -->
 		
-		<form>
+		<!--<form>
 				<button type="button" id="saveTimetables" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button>
 		</form>	
-
+-->
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
@@ -204,46 +312,68 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	</script>
 	
 	<script>
-		$('.table-add').click(function () {
-			var $clone = $(this).closest('table').find('tr.hide').clone(true).removeClass('hide').toggle();
-			$(this).closest('table').append($clone);
-		});
-		$('.table-remove').click(function () {
-			$(this).parents('tr').detach();
+		$("#buttonAdd").click(function() {
+			var $section = $("#section").val();
+			var $code = $("#code").val();
+			var $subjectsection = $("#subjectsection").val();
+			var $starttime = $("#starttime").val();
+			var $endtime = $("#endtime").val();
+			var $days = $("#days").val();
+			var $building = $("#building").val();
+			var $roomnumber = $("#roomnumber").val();
+			var $instructor = $("#instructor").val();
+			var $units = $("#units").val();
+			var $year = $("#year").val();
+			
+			var $subjinfo = '[{"Section":"' + $section +
+			'","Code":"' + $code + '","Subject Section":"' + $subjectsection +
+			'","Start Time":"' + $starttime + '","End Time":"' + $endtime +
+			'","Days":"' + $days + '","Building":"' + $building + '","Room Number":"' + $roomnumber +
+			'","Instructor":"' + $instructor + '","Units":"' + $units + '","Year":"' + $year +'"}]';
+			
+			//alert($subjinfo);
+			
+			if($section==""||$code==""||$subjectsection==""||$starttime==""||$endtime==""||$days==""||$building==""||$roomnumber==""||$instructor=="") {
+				alert('Error! Please fill all the necessary fields.');
+			} else {
+				//alert('okay');
+				$.ajax({
+				type: "POST",
+					url: "/php/addSchedule.php",
+					data: {subjinfo: $subjinfo},
+					cache: false,
+					success: function(result){
+						//alert("Successfully added a new student record!");
+						location.reload();  	
+					}
+				});
+			}
 		});
 	</script>
 	
 	<script>
-		$("#saveTimetables").click(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-			var timeTable1 = $('#tablefirst').tableToJSON();
-			var timeTable2 = $('#tablesecond').tableToJSON();
-			var timeTable3 = $('#tablethird').tableToJSON();
-			var timeTable4 = $('#tablefourth').tableToJSON();
-			var timeTable5 = $('#tablefifth').tableToJSON();
-			//alert(JSON.stringify(timeTable1));
-			//alert(JSON.stringify(timeTable2));
-			//alert(JSON.stringify(timeTable3));
-			//alert(JSON.stringify(timeTable4));
-			//alert(JSON.stringify(timeTable5));
+		$('.table-remove').click(function () {
+		if(confirm('Do you want to remove this entry from the database?')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $code = $row.find(".code").text(); // Find the text
+			var $subjinfo = '[{"id":"' + $id + '","code":"' + $code + '"}]';
+			//alert($subjinfo);
 			$.ajax({
 				type: "POST",
-				url: "../php/saveTimetables.php",
-				data: {tablefirst: JSON.stringify(timeTable1), tablesecond: JSON.stringify(timeTable2), tablethird: JSON.stringify(timeTable3), tablefourth: JSON.stringify(timeTable4), tablefifth: JSON.stringify(timeTable5)},
-				cache: false,
-				success: function(result){
-					//alert("Successfully updated database!");
-					location.reload();
-				}
-			});
-			
-			return false;
+					url: "/php/removeSchedule.php",
+					data: {subjinfo: $subjinfo},
+					cache: false,
+					success: function(result){
+						alert("Successfully removed schedule entry!");
+						//location.reload(); 			
+					}
+				});
+			$(this).parents('tr').detach();			
+		} else {}
 		});
 	</script>
+	
 </body>
 
 </html>
