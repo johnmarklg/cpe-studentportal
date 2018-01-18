@@ -19,7 +19,7 @@ if($_POST){
                 header("Location: $url"); 
         }else{
             $errorMsgLogin = "<div class=\"alert alert-danger\" role=\"alert\">
-						  <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Username/Password not found! Try again.
+						  <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Username/Password incorrect! Try again.
 						</div>";
         }
     }
@@ -55,17 +55,10 @@ if($_POST){
 			<div class="row">
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-heading">
-					<img src="/assets/images/login-header.png" style="max-width:100%;max-height:100%;" />
-					</div>
-					<div class="panel-body">
-						<ol class="breadcrumb">
-						  <li class="active">Student Portal</li>
-						  <li class="active">Log-In</li>
-						  <li><a href="#"><a href="#" onclick="showhidenote();">User Guidelines</a></a></li>
-						</ol>
-						<div id="login-note" style="display: none;">
+					<img id="login-header" src="/assets/images/login-header.png" style="background: white; max-width:100%;max-height:100%;" />
+					<div id="login-note" style="display: none;">
 						<ul>
                             <li>
                                 If you don't have a password yet, you may claim it at the Computer Engineering Department Office.
@@ -75,7 +68,14 @@ if($_POST){
                                 <div style="height: 20px;">&nbsp;</div>
                             </li>
                         </ul>
-						</div>
+					</div>
+					</div>
+					<div class="panel-body">
+						<!--<ol class="breadcrumb">
+						  <li class="active">Student Portal</li>
+						  <li class="active">Log-In</li>
+						  <li><a href="#"><a href="#" onclick="showhidenote();">User Guidelines</a></a></li>
+						</ol>-->
 						<?php echo $errorMsgLogin; ?>
 						<form action="" method="POST" name="login">
 								<div class="input-group">
@@ -101,10 +101,13 @@ if($_POST){
 	<script>
         function showhidenote(){
             var dNote = document.getElementById("login-note");
+            var dHeader = document.getElementById("login-header");
             if (dNote.style.display == "none") {
                 dNote.style.display = "block";
+				dHeader.style.display = "none";
             } else {
                 dNote.style.display = "none";
+				dHeader.style.display = "block";
             }
         }
         if (window.frameElement) {

@@ -13,7 +13,6 @@
 									  <th>First Name</th>
 									  <th>Middle Name</th>
 									  <th>Student Number</th>
-									  <th>CFAT Score</th>
 									</tr>
 								  </thead>
 								  <tbody>
@@ -30,8 +29,7 @@
 												echo "<td>" . $row['surname'] . "</td>
 														  <td>" . $row['firstname'] . "</td>
 														  <td>" . $row['middlename'] . "</td>
-														  <td>" . $row['studnum'] . "</td>
-														  <td>" . $row['cfatscore'] . "</td>";
+														  <td>" . $row['studnum'] . "</td>";
 											}
 										$conn = null;
 									

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>zTest</title>
+	<!-- jQuery -->
+    <script src="assets/bootstrap/js/jquery.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    
+</head>
+
+<body>
+	<div id="text" contenteditable>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at arcu ac dui eleifend suscipit a ut est. Ut iaculis ut massa non accumsan. Quisque hendrerit nisl at egestas cursus.
+	</div>
+	<script>
+		var editable = document.getElementById('text');
+		editable.addEventListener('input', function() {
+			//logs the date today on editting the element
+			console.log(moment().format('MMMM Do YYYY'));
+			//console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+			
+		});
+	</script>
+</body>
+
+</html>

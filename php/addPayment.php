@@ -23,7 +23,6 @@
 			$stmt = $conn->prepare("ALTER TABLE `$tableName`
 				DROP COLUMN passcode,
 				DROP COLUMN yearstarted,
-				DROP COLUMN cfatscore,
 				DROP COLUMN gender,
 				DROP COLUMN status,
 				DROP COLUMN citizenship,

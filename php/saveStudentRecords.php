@@ -12,11 +12,10 @@
 			
 			foreach ($jsonstudinfo as $key => $value) {
 					$conn = getDB('cpe-studentportal');
-					$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename, cfatscore = :cfatscore, studnum = :studnum, passcode = :passcode, yearstarted = :yearstarted WHERE id = :id");
+					$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename , studnum = :studnum, passcode = :passcode, yearstarted = :yearstarted WHERE id = :id");
 					$stmt -> bindParam(':surname', $value['Surname']);
 					$stmt -> bindParam(':firstname', $value['First Name']);
 					$stmt -> bindParam(':middlename', $value['Middle Name']);
-					$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
 					$stmt -> bindParam(':studnum', $value['Student Number']);
 					$stmt -> bindParam(':passcode', $value['Passcode']);
 					//$stmt -> bindParam(':yearstarted', $value['Year Started']);
@@ -37,13 +36,12 @@
 		{
 				foreach ($jsonstudinfo as $key => $value) {	
 						$conn = getDB('cpe-studentportal');
-						$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, cfatscore, passcode, yearstarted) VALUES (:studnum, :surname, :firstname, :middlename, :cfatscore, :passcode, :yearstarted)");
+						$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, passcode, yearstarted) VALUES (:studnum, :surname, :firstname, :middlename, :passcode, :yearstarted)");
 						$stmt -> bindParam(':studnum', $value['Student Number']);	
 						$stmt -> bindParam(':surname', $value['Surname']);
 						$stmt -> bindParam(':firstname', $value['First Name']);
 						$stmt -> bindParam(':middlename', $value['Middle Name']);
-						$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
-						$stmt -> bindParam(':passcode', $value['Passcode']);
+							$stmt -> bindParam(':passcode', $value['Passcode']);
 						$startyear = mb_substr($value['Student Number'], 0, 2);
 						$stmt -> bindParam(':yearstarted', $startyear);
 						$stmt->execute();	

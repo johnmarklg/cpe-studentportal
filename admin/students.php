@@ -146,6 +146,78 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
+					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
+						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new student record to the list of enrolled students.</a></div>
+						<div id="collapsePanel" class="panel-collapse">
+						<div class="panel-body">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Student Number</span>
+								<input id="studnum" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Surname</span>
+								<input id="surname" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">First Name</span>
+								<input id="firstname" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Middle Name</span>
+								<input id="middlename" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
+							</div>
+							<br/>
+							<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-user"></i>Insert Student Entry</button>
+							<script>
+							//short script for enter to click button
+							$(document).ready(function(){
+								$('.formTextbox').keypress(function(e){
+								  if(e.keyCode==13)
+								  $('#buttonAdd').click();
+								});
+							});
+							</script>
+						</div></div></div></div></div></div><hr/>
+						
+						<div class="row">
+									<div class="col-lg-12">
+										<div class="alert alert-info" role="alert">
+										  List of all students enrolled under BS Computer Engineering, categorized by year level.
+										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="alert alert-warning" role="alert">
+										  Caution: Deleting records in the respective tables will permanently remove the entry in the database.
+										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										</div>
+									</div>
+								</div>
+								
+						<div class="panel panel-default">
+									<div class="panel-heading" style="text-align: center;" id="myTabs">	
+										<ul class="nav nav-pills nav-justified">
+											<li class="active">
+											<a  href="#1" data-toggle="tab">First Year</a>
+											</li>
+											<li><a href="#2" data-toggle="tab">Second Year</a>
+											</li>
+											<li><a href="#3" data-toggle="tab">Third Year</a>
+											</li>
+											<li><a href="#4" data-toggle="tab">Fourth Year</a>
+											</li>
+											<li><a href="#5" data-toggle="tab">Fifth Year</a>
+											</li>
+											<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+											</li>
+										</ul>
+									</div>
+								</div>
 						<?php	
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showStudents.php');
 						echo showStudents();
@@ -202,14 +274,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			if($studnum=="00-0000"||$studnum=="") {
 				alert('Error! Please fill all the necessary fields.');
 			} else {
-				alert($studinfo);
+				//alert($studinfo);
 				$.ajax({
 				type: "POST",
 					url: "/php/addStudent.php",
 					data: {studinfo: $studinfo},
 					cache: false,
 					success: function(result){
-						alert("Successfully added a new student record!");
+						//alert("Successfully added a new student record!");
 						location.reload();  	
 					}
 				});

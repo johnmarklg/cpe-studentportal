@@ -39,7 +39,6 @@
 									  <th class=\"mdl-data-table__cell--non-numeric\">First Name</th>
 									  <th class=\"mdl-data-table__cell--non-numeric\">Middle Name</th>
 									  <th class=\"mdl-data-table__cell--non-numeric\">Student Number</th>
-									  <th class=\"mdl-data-table__cell--non-numeric\">CFAT Score</th>
 									  <th class=\"mdl-data-table__cell--non-numeric\">Passcode</th>
 									  <th style=\"font-size: 0px\"class=\"mdl-data-table__cell--non-numeric\">ID</th>
 									</tr>
@@ -60,7 +59,6 @@
 														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['firstname'] . "</td>
 														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['middlename'] . "</td>
 														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['studnum'] . "</td>
-														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['cfatscore'] . "</td>
 														  <td contentEditable class=\"mdl-data-table__cell--non-numeric\" >" . $row['passcode'] . "</td>
 														  <td style=\"font-size: 0px\" class=\"mdl-data-table__cell--non-numeric\" >" . $row['id'] . "</td>";
 											}

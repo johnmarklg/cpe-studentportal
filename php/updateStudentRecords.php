@@ -22,11 +22,10 @@
 				//SELECT * FROM `subjects` LEFT JOIN `13-5393` ON `subjects`.`id` = `13-5393`.`courseid` WHERE subjects.id
 				*/
 				$conn = getDB('cpe-studentportal');
-				$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename, cfatscore = :cfatscore, studnum = :studnum, passcode = :passcode WHERE id = :id");
+				$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename, studnum = :studnum, passcode = :passcode WHERE id = :id");
 				$stmt -> bindParam(':surname', $value['Surname']);
 				$stmt -> bindParam(':firstname', $value['First Name']);
 				$stmt -> bindParam(':middlename', $value['Middle Name']);
-				$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
 				$stmt -> bindParam(':studnum', $value['Student Number']);
 				$stmt -> bindParam(':passcode', $value['Passcode']);
 				$stmt -> bindParam(':id', $value['ID']);
@@ -77,12 +76,11 @@
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					*/
 					$conn = getDB('cpe-studentportal');
-					$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, cfatscore, passcode) VALUES (:studnum, :surname, :firstname, :middlename, :cfatscore, :passcode)");
+					$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, passcode) VALUES (:studnum, :surname, :firstname, :middlename, :passcode)");
 					$stmt -> bindParam(':studnum', $value['Student Number']);	
 					$stmt -> bindParam(':surname', $value['Surname']);
 					$stmt -> bindParam(':firstname', $value['First Name']);
 					$stmt -> bindParam(':middlename', $value['Middle Name']);
-					$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
 					$stmt -> bindParam(':passcode', $value['Passcode']);
 					$stmt->execute();	
 					

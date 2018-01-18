@@ -38,7 +38,6 @@
 									  <th>First Name</th>
 									  <th>Middle Name</th>
 									  <th>Student Number</th>
-									  <th>CFAT Score</th>
 									  <th>Passcode</th>
 									  <th style=\"font-size: 0px\">Year Started</th>
 									  <th style=\"font-size: 0px\">ID</th>
@@ -60,7 +59,6 @@
 														  <td contentEditable>" . $row['firstname'] . "</td>
 														  <td contentEditable>" . $row['middlename'] . "</td>
 														  <td contentEditable>" . $row['studnum'] . "</td>
-														  <td contentEditable>" . $row['cfatscore'] . "</td>
 														  <td contentEditable>" . $row['passcode'] . "</td>
 														  <td style=\"font-size: 0px\">" . $row['yearstarted'] . "</td>
 														  <td style=\"font-size: 0px\">" . $row['id'] . "</td>";
@@ -432,7 +430,7 @@
 
 					//STUDENT GRADES 4th Year SUMMER
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-success\"><div class=\"panel-heading\">Grades Transcript: 4th Year - Summer/Short Term</div><div class=\"panel-body\"><div class=\"table-responsive\">
-					<table id=\"grades\" class=\"table\">
+					<table id=\"gradesmid\" class=\"table\">
 								<thead>
 									<tr>
 										<th>1st</th>

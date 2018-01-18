@@ -55,9 +55,9 @@ if($_POST){
 			<div class="row">
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-heading">
-					<img src="/assets/images/login-header.png" style="max-width:100%;max-height:100%;" />
+					<img src="/assets/images/login-header.png" style="background: white; max-width:100%;max-height:100%;" />
 					</div>
 					<div class="panel-body">
 						<ol class="breadcrumb">

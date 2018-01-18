@@ -5,14 +5,15 @@
 	$studnum = $jsonstudinfo[0]['Student Number'];
 		
 	foreach ($jsonstudinfo as $key => $value) {	
+			$passcode = md5($value['Student Number']);
+			$passcode = substr($passcode, 2, 8);
 			$conn = getDB('cpe-studentportal');
-			$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, cfatscore, passcode, yearstarted) VALUES (:studnum, :surname, :firstname, :middlename, :cfatscore, :passcode, :yearstarted)");
+			$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, passcode, yearstarted) VALUES (:studnum, :surname, :firstname, :middlename, :passcode, :yearstarted)");
 			$stmt -> bindParam(':studnum', $value['Student Number']);	
 			$stmt -> bindParam(':surname', $value['Surname']);
 			$stmt -> bindParam(':firstname', $value['First Name']);
 			$stmt -> bindParam(':middlename', $value['Middle Name']);
-			$stmt -> bindParam(':cfatscore', $value['CFAT Score']);
-			$stmt -> bindParam(':passcode', md5($value['Student Number']));
+			$stmt -> bindParam(':passcode', $passcode);
 			$startyear = mb_substr($value['Student Number'], 0, 2);
 			$stmt -> bindParam(':yearstarted', $startyear);
 			$stmt->execute();	

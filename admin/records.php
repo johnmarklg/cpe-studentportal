@@ -194,9 +194,16 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	
-	
-	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
+	<script src="/assets/js/arrow-table.min.js"></script>
+	
+	<script>
+		$('.table').arrowTable({
+			enabledKeys: ['left', 'right', 'up', 'down'],
+			listenTarget: 'div',
+			focusTarget: 'div'
+		});
+	</script>
 	
 	<script>
 		$('#tabAll').click(function(){
@@ -218,18 +225,19 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var tableGrades32 = $('#grades3-2').tableToJSON();
 			var tableGrades41 = $('#grades4-1').tableToJSON();
 			var tableGrades42 = $('#grades4-2').tableToJSON();
+			var tableGradesMid = $('#gradesmid').tableToJSON();
 			var tableGrades51 = $('#grades5-1').tableToJSON();
 			var tableGrades52 = $('#grades5-2').tableToJSON();
-			var tableGrades = [].concat(tableGrades11, tableGrades12, tableGrades21, tableGrades31, tableGrades32, tableGrades41, tableGrades42, tableGrades51, tableGrades52);
+			var tableGrades = [].concat(tableGrades11, tableGrades12, tableGrades21, tableGrades22, tableGrades31, tableGrades32, tableGrades41, tableGrades42, tableGradesMid, tableGrades51, tableGrades52);
 			var tableStudInfo= $('#studentinfo').tableToJSON();  
-			alert(JSON.stringify(tableGrades));
+			//alert(JSON.stringify(tableGrades));
 			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
 				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo)},
 				cache: false,
 				success: function(result){
-					//alert("Successfully updated database!");
+					alert("Successfully updated database!");
 					//alert(result);
 					$('#oldstudnum').html(result);
 				}
@@ -237,6 +245,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			return false;
 		});
 	</script>
+	
 </body>
 
 </html>

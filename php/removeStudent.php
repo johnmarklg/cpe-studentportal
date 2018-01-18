@@ -10,7 +10,9 @@
 		$stmt = $conn->prepare("DELETE FROM students WHERE id = :id");
 		$stmt -> bindParam(':id', $value['id']);
 		$stmt->execute();	
+		$conn = null;	
 		
+		$conn = getDB('cpe-studentrecords');
 		$stmt = $conn->prepare("DROP TABLE `$studnum`");
 		$stmt->execute();	
 		
