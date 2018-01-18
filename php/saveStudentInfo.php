@@ -19,7 +19,7 @@
 
 	$conn = null;
 				
-	
+
 	if($studnum != "00-0000") {
 		if($oldstudnum != "00-0000") {
 			
@@ -33,6 +33,7 @@
 					$stmt -> bindParam(':passcode', $value['Passcode']);
 					//$stmt -> bindParam(':yearstarted', $value['Year Started']);
 					$startyear = mb_substr($value['Student Number'], 0, 2);
+					//$yearlevel = $fifthyear - $row['yearstarted'] + 5;
 					$stmt -> bindParam(':yearstarted', $startyear);
 					$stmt -> bindParam(':id', $value['ID']);
 					$stmt->execute();

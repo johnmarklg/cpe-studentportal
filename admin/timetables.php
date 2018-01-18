@@ -163,7 +163,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
 						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new class schedule to the list of open subjects.</a></div>
-						<div id="collapsePanel" class="panel-collapse collapse">
+						<div id="collapsePanel" class="panel-collapse <!--collapse-->">
 						<div class="panel-body">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Year</span>

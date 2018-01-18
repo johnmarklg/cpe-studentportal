@@ -142,8 +142,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  To add a new entry, input blank or missing entry and search before input.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <i class="fa fa-info-circle"></i> To add a new student entry, you can fill up the empty fields below then press [Enter] or click the <i class="fa fa-search"></i> to create.
+						  <br/>Make sure that no record is currently loaded or it will be overwritten.
 						</div>
 					</div>
 				</div>

@@ -2,8 +2,7 @@
 			  function showStudentRecords() {			
 
 				require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
-			  
-					
+				
 					if(isset($_REQUEST["search-table"]))
 					{
 						if($_REQUEST["stud-num"]=="") {
@@ -30,7 +29,9 @@
 						$conn = null;
 					//STUDENT INFO
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\"><div class=\"table-responsive\">
-								<table id=\"studentinfo\" class=\"table\">
+								<div class=\"alert alert-info\" role=\"alert\">
+								  <i class=\"fa fa-info-circle\"></i> Leaving the Passcode and Year Level empty will automatically generate values for them.
+								</div><table id=\"studentinfo\" class=\"table\">
 								  <thead>
 									<tr>
 									  <th style=\"font-size: 0px\">Old Student Number</th>
@@ -39,7 +40,7 @@
 									  <th>Middle Name</th>
 									  <th>Student Number</th>
 									  <th>Passcode</th>
-									  <th style=\"font-size: 0px\">Year Started</th>
+									  <th>Year Level</th>
 									  <th style=\"font-size: 0px\">ID</th>
 									</tr>
 								  </thead>
@@ -52,15 +53,30 @@
 											$stmt->execute();
 
 											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+											
+											//if first semester
+											if (date('m') > 7) {
+												$fifthyear = date('y') - 4; 
+											} else { //if second semester
+												$fifthyear = date('y') - 5;
+											}
+											
 
 											foreach(($stmt->fetchAll()) as $row) { 
+												if($studnum=="00-0000") {
+													$yearlevel = "";
+													$printstudnum = "";
+												} else {
+													$yearlevel = $fifthyear - $row['yearstarted'] + 5;
+													$printstudnum = $row['studnum'];
+												}
 												echo "<td style=\"font-size: 0px\" id=\"oldstudnum\">" . $row['studnum'] . "</td>
 														  <td contentEditable>" . $row['surname'] . "</td>
 														  <td contentEditable>" . $row['firstname'] . "</td>
 														  <td contentEditable>" . $row['middlename'] . "</td>
-														  <td contentEditable>" . $row['studnum'] . "</td>
+														  <td contentEditable>" . $printstudnum . "</td>
 														  <td contentEditable>" . $row['passcode'] . "</td>
-														  <td style=\"font-size: 0px\">" . $row['yearstarted'] . "</td>
+														  <td  contentEditable>" . $yearlevel . "</td>
 														  <td style=\"font-size: 0px\">" . $row['id'] . "</td>";
 											}
 										$conn = null;
