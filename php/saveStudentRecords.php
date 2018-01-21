@@ -19,13 +19,19 @@
 		if($oldstudnum != "00-0000") {
 			
 			foreach ($jsonstudinfo as $key => $value) {
+					if($value['Passcode']=="") {
+						$passcode = md5($value['Student Number']);
+						$passcode = substr($passcode, 2, 8);
+					} else {
+						$passcode = $value['Passcode'];
+					}
 					$conn = getDB('cpe-studentportal');
 					$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename , studnum = :studnum, passcode = :passcode, yearstarted = :yearstarted WHERE id = :id");
 					$stmt -> bindParam(':surname', $value['Surname']);
 					$stmt -> bindParam(':firstname', $value['First Name']);
 					$stmt -> bindParam(':middlename', $value['Middle Name']);
 					$stmt -> bindParam(':studnum', $value['Student Number']);
-					$stmt -> bindParam(':passcode', $value['Passcode']);
+					$stmt -> bindParam(':passcode', $passcode);
 					//$stmt -> bindParam(':yearstarted', $value['Year Started']);
 					$yearstarted = $fifthyear + 5 - $value['Year Level'];
 					$stmt -> bindParam(':yearstarted', $yearstarted);
@@ -44,13 +50,19 @@
 		{
 				
 				foreach ($jsonstudinfo as $key => $value) {	
+						if($value['Passcode']=="") {
+							$passcode = md5($value['Student Number']);
+							$passcode = substr($passcode, 2, 8);
+						} else {
+							$passcode = $value['Passcode'];
+						}
 						$conn = getDB('cpe-studentportal');
 						$stmt = $conn->prepare("INSERT INTO students (studnum, surname, firstname, middlename, passcode, yearstarted) VALUES (:studnum, :surname, :firstname, :middlename, :passcode, :yearstarted)");
 						$stmt -> bindParam(':studnum', $value['Student Number']);	
 						$stmt -> bindParam(':surname', $value['Surname']);
 						$stmt -> bindParam(':firstname', $value['First Name']);
 						$stmt -> bindParam(':middlename', $value['Middle Name']);
-						$stmt -> bindParam(':passcode', $value['Passcode']);
+						$stmt -> bindParam(':passcode', $passcode);
 						//$startyear = mb_substr($value['Student Number'], 0, 2);
 						$yearstarted = $fifthyear + 5 - $value['Year Level'];
 						$stmt -> bindParam(':yearstarted', $yearstarted);

@@ -49,7 +49,7 @@ if($_POST){
 	<script src="/assets/pace/pace.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
 </head>
-  <body style="background-image: url(/assets/images/login-background.jpg);">
+  <body style="background-image: url(/assets/images/login-background.png);">
 	<div class="main">
 		<div class="container">
 			<div class="row">

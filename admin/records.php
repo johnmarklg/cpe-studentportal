@@ -206,7 +206,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	</script>
 	
 	<script>
-		$('#tabAll').click(function(){
+		/*$('#tabAll').click(function(){
+			$('#tabAll').addClass('active');  
+			$('.tab-pane').each(function(i,t){
+				$('#myTabs li').removeClass('active'); 
+				$(this).addClass('active');  
+			});
+		});*/
+		$(document).ready(function(){
 			$('#tabAll').addClass('active');  
 			$('.tab-pane').each(function(i,t){
 				$('#myTabs li').removeClass('active'); 
@@ -230,7 +237,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var tableGrades52 = $('#grades5-2').tableToJSON();
 			var tableGrades = [].concat(tableGrades11, tableGrades12, tableGrades21, tableGrades22, tableGrades31, tableGrades32, tableGrades41, tableGrades42, tableGradesMid, tableGrades51, tableGrades52);
 			var tableStudInfo= $('#studentinfo').tableToJSON();  
-			//alert(JSON.stringify(tableGrades));
+			alert(JSON.stringify(tableGrades));
 			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
