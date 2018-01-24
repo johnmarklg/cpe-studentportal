@@ -5,7 +5,7 @@ part of our thesis design project requirement
 How-to-setup: (using XAMPP)
 1. Clone or download this repository.
 2. Copy the contents to htdocs folder.
-3. On XAMPP, enable Apache and MySQL.
+3. On XAMPP, start Apache and MySQL.
 4. On browser, go and login to localhost/phpmyadmin
 	4.5. If you have cpe-studentportal and cpe-studentrecords databases, please drop (i.e. delete) them first.
 		You can refer to this image on how to drop databases: https://imgur.com/a/Iur9B
