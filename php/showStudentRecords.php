@@ -145,7 +145,7 @@
 													<td id=\"elemaddress\" contentEditable>"  . $row['ElemAddress'] . "</td>
 												</tr>
 												<tr>
-													<th>Date Graduated - Elementary</th>
+													<th>Year Graduated - Elementary</th>
 													<td id=\"elemgrad\" contentEditable>"  . $row['ElemGraduate'] . "</td>
 												</tr>
 												<tr>
@@ -157,7 +157,7 @@
 													<td id=\"secaddress\" contentEditable>"  . $row['SecAddress'] . "</td>
 												</tr>
 												<tr>
-													<th>Date Graduated - Secondary</th>
+													<th>Year Graduated - Secondary</th>
 													<td id=\"secgrad\" contentEditable>"  . $row['SecGraduate'] . "</td>
 												</tr>
 											</tbody>
