@@ -21,6 +21,7 @@ How-to-setup: (using XAMPP)
   Password: 1234
 
 NEXT STEPS FOR UPDATING THE STUDENT DATABASE
+
 8. Go to Student Records.
 
 9. Input the Student Number in the search. Press enter.
