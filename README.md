@@ -16,8 +16,10 @@ How-to-setup: (using XAMPP)
   localhost -> for Students
   localhost/admin -> for Administrators
   localhost/org -> for Student Org.
-7. go to Administrator, then sign in with the ff.:
+7. Go to Administrator, then sign in with the ff.:
+
   Username: sysadmin
+  
   Password: 1234
 
 NEXT STEPS FOR UPDATING THE STUDENT DATABASE
@@ -26,8 +28,8 @@ NEXT STEPS FOR UPDATING THE STUDENT DATABASE
 
 9. Input the Student Number in the search. Press enter.
 
-  9a) If a record is loaded (already exists), just update the records.
+  	9a) If a record is loaded (already exists), just update the records.
   
-  9b) Else, fill up all the necessary fields to create a new record.
+  	9b) Else, fill up all the necessary fields to create a new record.
 
  Thanks guys! -JM
