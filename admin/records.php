@@ -237,21 +237,31 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var tableGrades52 = $('#grades5-2').tableToJSON();
 			var tableGrades = [].concat(tableGrades11, tableGrades12, tableGrades21, tableGrades22, tableGrades31, tableGrades32, tableGrades41, tableGrades42, tableGradesMid, tableGrades51, tableGrades52);
 			var tableStudInfo= $('#studentinfo').tableToJSON();  
-			alert(JSON.stringify(tableGrades));
+			var $address = $('#address').text();
+			var $studentData = '[{"Gender":"' + $('#gender').text() + '","Status":"' + $('#status').text() +
+			'","Citizenship":"' + $('#citizenship').text() + '","DateOfBirth":"' + $('#birthdate').text() + '","PlaceOfBirth":"' + $('#birthplace').text() 
+			+ '","ContactNo":"' + $('#contactnum').text() + '","Address":"' + $('#address').text() 
+			+ '","Father":"' + $('#fathername').text() + '","FatherOccupation":"' + $('#fatheroccupation').text() + '","Mother":"' + $('#mothername').text() 
+			+ '","MotherOccupation":"' + $('#motheroccupation').text() + '","Elementary":"' + $('#elementary').text() + '","ElemAddress":"' + $('#elemaddress').text() 
+			+ '","ElemGraduate":"' + $('#elemgrad').text() + '","Secondary":"' + $('#secondary').text() + '","SecAddress":"' + $('#secaddress').text() 
+			+ '","SecGraduate":"' + $('#secgrad').text() + '"}]';
+			//alert($studentData);
 			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
-				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo)},
+				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData},
 				cache: false,
 				success: function(result){
 					alert("Successfully updated database!");
 					//alert(result);
-					$('#oldstudnum').html(result);
+					//$('#oldstudnum').html(result);
+					location.reload();
 				}
 			});
 			return false;
 		});
 	</script>
+
 	
 </body>
 

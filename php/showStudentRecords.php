@@ -28,24 +28,26 @@
 							}
 						$conn = null;
 					//STUDENT INFO
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\"><div class=\"table-responsive\">
-								<div class=\"alert alert-info\" role=\"alert\">
-								  <i class=\"fa fa-info-circle\"></i> Leaving the Passcode and Year Level empty will automatically generate values for them.
-								</div><table id=\"studentinfo\" class=\"table\">
-								  <thead>
-									<tr>
-									  <th style=\"font-size: 0px\">Old Student Number</th>
-									  <th>Surname</th>
-									  <th>First Name</th>
-									  <th>Middle Name</th>
-									  <th>Student Number</th>
-									  <th>Passcode</th>
-									  <th>Year Level</th>
-									  <th style=\"font-size: 0px\">ID</th>
-									</tr>
-								  </thead>
-								  <tbody>
-									<tr>";
+					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\">
+								<div class=\"table-responsive\">
+									<div class=\"alert alert-info\" role=\"alert\">
+									  <i class=\"fa fa-info-circle\"></i> Leaving the Passcode and Year Level empty will automatically generate values for them.
+									</div>
+									<table id=\"studentinfo\" class=\"table\">
+										<thead>
+											<tr>
+											  <th style=\"font-size: 0px\">Old Student Number</th>
+											  <th>Surname</th>
+											  <th>First Name</th>
+											  <th>Middle Name</th>
+											  <th>Student Number</th>
+											  <th>Passcode</th>
+											  <th>Year Level</th>
+											  <th style=\"font-size: 0px\">ID</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>";
 
 											$conn = getDB('cpe-studentportal');
 											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
@@ -78,11 +80,92 @@
 														  <td contentEditable>" . $row['passcode'] . "</td>
 														  <td  contentEditable>" . $yearlevel . "</td>
 														  <td style=\"font-size: 0px\">" . $row['id'] . "</td>";
-											}
-										$conn = null;
+
 									
-									echo "</tr>
-								  </tbody></table></div></div></div>";
+									echo "</tr></tbody></table></div>
+									<div class=\"table-responsive\">
+										<table id=\"studentdata\" class=\"table table-bordered\">
+											<thead>
+												<tr>
+													<th></th>
+													<th>Note: Follow the specified format for Birthdate.</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+												  <th>Residential Address</th>
+													<td id=\"address\" contentEditable>" . $row['Address'] . "</td>
+												</tr>
+												<tr>
+													<th>Contact Number</th>
+													<td id=\"contactnum\" contentEditable>"  . $row['ContactNo'] . "</td>
+												</tr>
+												<tr>
+												  <th>Date of Birth (YYYY-MM-DD)</th>
+													<td id=\"birthdate\" contentEditable>"  . $row['DateOfBirth'] . "</td>
+												</tr>
+												<tr>
+												  <th>Place of Birth</th>
+													<td id=\"birthplace\" contentEditable>" . $row['PlaceOfBirth'] . "</td>
+												</tr>
+												<tr>
+													<th>Citizenship</th>
+													<td id=\"citizenship\" contentEditable>" . $row['Citizenship'] . "</td>
+												</tr>
+												<tr>
+													<th>Status</th>
+													<td id=\"status\" contentEditable>"  . $row['Status'] . "</td>
+												</tr>
+												<tr>
+													<th>Gender</th>
+													<td id=\"gender\" contentEditable>"  . $row['Gender'] . "</td>
+												</tr>
+												<tr>
+													<th>Father's Name</th>
+													<td id=\"fathername\" contentEditable>"  . $row['Father'] . "</td>
+												</tr>
+												<tr>
+													<th>Father's Occupation</th>
+													<td id=\"fatheroccupation\" contentEditable>"  . $row['FatherOccupation'] . "</td>
+												</tr>
+												<tr>
+													<th>Mother's Name</th>
+													<td id=\"mothername\" contentEditable>"  . $row['Mother'] . "</td>
+												</tr>
+												<tr>
+													<th>Mother's Occupation</th>
+													<td id=\"motheroccupation\" contentEditable>"  . $row['MotherOccupation'] . "</td>
+												</tr>
+												<tr>
+													<th>School Name - Elementary</th>
+													<td id=\"elementary\" contentEditable>"  . $row['Elementary'] . "</td>
+												</tr>
+												<tr>
+													<th>Address - Elementary</th>
+													<td id=\"elemaddress\" contentEditable>"  . $row['ElemAddress'] . "</td>
+												</tr>
+												<tr>
+													<th>Date Graduated - Elementary</th>
+													<td id=\"elemgrad\" contentEditable>"  . $row['ElemGraduate'] . "</td>
+												</tr>
+												<tr>
+													<th>School Name - Secondary</th>
+													<td id=\"secondary\" contentEditable>"  . $row['Secondary'] . "</td>
+												</tr>
+												<tr>
+													<th>Address - Secondary</th>
+													<td id=\"secaddress\" contentEditable>"  . $row['SecAddress'] . "</td>
+												</tr>
+												<tr>
+													<th>Date Graduated - Secondary</th>
+													<td id=\"secgrad\" contentEditable>"  . $row['SecGraduate'] . "</td>
+												</tr>
+											</tbody>
+										</table>
+									</div></div></div>";
+									
+									}
+									$conn = null;
 					
 					echo '<div class="panel panel-default">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
