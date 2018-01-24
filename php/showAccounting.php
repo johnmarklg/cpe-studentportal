@@ -25,6 +25,40 @@
 		$stmt = $conn->prepare("ALTER TABLE temptable
 			DROP COLUMN passcode,
 			DROP COLUMN yearstarted,
+			DROP COLUMN Gender,
+			DROP COLUMN Status,
+			DROP COLUMN Citizenship,
+			DROP COLUMN DateOfBirth,
+			DROP COLUMN PlaceOfBirth,
+			DROP COLUMN ContactNo,
+			DROP COLUMN Address,
+			DROP COLUMN CurriculumID,
+			DROP COLUMN FatherOccupation,
+			DROP COLUMN Father,
+			DROP COLUMN Mother,
+			DROP COLUMN MotherOccupation,
+			DROP COLUMN Spouse,
+			DROP COLUMN SpouseOccupation,
+			DROP COLUMN HouseAddress,
+			DROP COLUMN Employer,
+			DROP COLUMN BusinessAddress,
+			DROP COLUMN TelNo,
+			DROP COLUMN Elementary,
+			DROP COLUMN ElemAddress,
+			DROP COLUMN ElemGraduate,
+			DROP COLUMN SecGraduate,
+			DROP COLUMN Secondary,
+			DROP COLUMN SecAddress,
+			DROP COLUMN College,
+			DROP COLUMN ColAddress,
+			DROP COLUMN ColGraduate,
+			DROP COLUMN Transferee,
+			DROP COLUMN Transfered;");
+		$stmt->execute();
+		/*
+		$stmt = $conn->prepare("ALTER TABLE temptable
+			DROP COLUMN passcode,
+			DROP COLUMN yearstarted,
 			DROP COLUMN gender,
 			DROP COLUMN status,
 			DROP COLUMN citizenship,
@@ -52,7 +86,7 @@
 			DROP COLUMN coladdress,
 			DROP COLUMN colgraduate;");
 		$stmt->execute();
-		
+		*/
 		echo '<div class="tab-content">';
 		//5TH YEAR
 		$stmt = $conn->prepare("SELECT * from temptable WHERE SUBSTRING(studnum,1,2) <= :fifthyear AND studnum <> 00-0000 ORDER BY surname");
