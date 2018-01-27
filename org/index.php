@@ -286,19 +286,19 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				$(this).addClass('active');  
 			});
 			var payTable1 = $('#tablefirst').tableToJSON({
-				ignoreColumns: [1,2,3,4]
+				ignoreColumns: [1,2,3]
 			});
 			var payTable2 = $('#tablesecond').tableToJSON({
-				ignoreColumns: [1,2,3,4]
+				ignoreColumns: [1,2,3]
 			});
 			var payTable3 = $('#tablethird').tableToJSON({
-				ignoreColumns: [1,2,3,4]
+				ignoreColumns: [1,2,3]
 			});
 			var payTable4 = $('#tablefourth').tableToJSON({
-				ignoreColumns: [1,2,3,4]
+				ignoreColumns: [1,2,3]
 			});
 			var payTable5 = $('#tablefifth').tableToJSON({
-				ignoreColumns: [1,2,3,4]
+				ignoreColumns: [1,2,3]
 			});
 			
 			var finaltable = payTable1.concat(payTable2);

@@ -36,9 +36,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	<!--FullCalendar-->
-	<!--<link rel="stylesheet" href="/assets/fullcalendar/css/fullcalendar.min.css">
-	<script src="/assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>-->
+	<!-- Full Calendar CSS -->
+	<script src="/assets/fullcalendar/js/fullcalendar.min.js"></script>
+	<link href="/assets/fullcalendar/css/fullcalendar.css" rel="stylesheet" />
 	<!--Datepicker-->
     <script src="/assets/js/moment.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
@@ -141,7 +141,20 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
 						  Update school calendar with list of events and holidays as well as activities.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								Academic Calendar
+							</div>
+							<div class="panel-body">
+								<div id="calendar"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -253,6 +266,35 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			return false;
 		});
 	</script>
+	
+	<script>
+			$(document).ready(function() {
+				$('#calendar').fullCalendar({
+					header: {
+						left: 'prev, next, today',
+						center: 'title',
+						right: 'month,agendaWeek,agendaDay,listWeek'
+					},
+					navLinks: true, // can click day/week names to navigate views
+					eventLimit: true, // allow "more" link when too many events
+
+					events: "/functions/events.php",
+
+					eventRender: function (event, element) {
+						element.attr('href', 'javascript:void(0);');
+						element.click(function() {
+							$("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
+							$("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
+							$("#eventInfo").html(event.description);
+							$("#eventName").html(event.title);
+							$("#eventLoc").html(event.location);
+							$('#modal1').modal('show');
+						});
+					}
+
+			});
+			});
+		</script>
 	
 	<script>
 		$('.event-remove').click(function () {

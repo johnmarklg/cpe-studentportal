@@ -57,47 +57,29 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			<ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ', ' . $_SESSION["name"][2] . ' ' . $_SESSION["name"][3]?> <b class="caret"></b></a>
-					<div class="dropdown-backdrop"></div>
+					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ' - ' . $_SESSION["name"][0]?> <!--<b class="caret"></b>--></a>
+					<!--<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
-                    </li>
-                    <li>
-                        <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
-                    </li>
-					<li>
-                        <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Prospectus</a>
-                    </li>
-                    <li>
-                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
-                    </li>
-                    <li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
-                    </li>
-					<li>
-                        <a href="mvgo.php"><i class="fa fa-fw fa-university"></i> Mission/Vision/Goals</a>
-                    </li>
-                    <li>
-                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
+                        <a href="index.php"><i class="fa fa-fw fa-money"></i> Invoice and Accounting</a>
                     </li>
 					<li class="active">
                         <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                     </li>
-                    <li>
+					<li>
                         <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
                     </li>
                 </ul>
@@ -173,8 +155,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		
 		<script>
 			$('#buttonSave').click(function() {
-				var $studnum = '<?php echo ($_SESSION['name'][4]);?>';
-				var $verifyoldpass = '<?php echo ($_SESSION['name'][5]);?>';
+				var $id = '<?php echo ($_SESSION['name'][2]);?>';
+				var $verifyoldpass = '<?php echo ($_SESSION['name'][3]);?>';
 				var $oldpass = $('#oldpass').val();
 				var $newpass = $('#newpass').val();
 				var $checkpass = $('#checkpass').val();
@@ -187,15 +169,15 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						if($oldpass != $verifyoldpass) {
 							alert("Password is incorrect. Try again");
 						} else {
-						var $userInfo = '[{"studnum":"' + $studnum + '","oldpass":"' + $oldpass + '","newpass":"' + $newpass + '"}]';
-						alert($userInfo);
+						var $userInfo = '[{"id":"' + $id + '","oldpass":"' + $oldpass + '","newpass":"' + $newpass + '"}]';
+						//alert($userInfo);
 						$.ajax({
 						type: "POST",
-							url: "/php/changePass.php",
+							url: "/php/changePassOrg.php",
 							data: {infodata: $userInfo},
 							cache: false,
 							success: function(result){
-								window.location.replace('logout.php');
+								window.location.replace('/org/logout.php');
 								//alert("Successfully updated password! Please relogin.");
 								//location.reload();
 							}

@@ -295,7 +295,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $studnum = $row.find(".studnum").text(); // Find the text
-			var $studinfo = '[{"id":"' + $id + '","studnum":"' + $studnum + '"}]';
+			var $studinfo = '[{"studnum":"' + $studnum + '"}]';
 			//alert($studinfo);
 			$.ajax({
 				type: "POST",

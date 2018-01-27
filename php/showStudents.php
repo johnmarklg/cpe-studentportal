@@ -20,7 +20,6 @@
 		<thead>
 		<tr>
 			<th style=\"font-size: 0px\">Old Student Number</th>
-			<th style=\"font-size: 0px\">ID</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -33,7 +32,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted <= :fifthyear AND studnum <> 00-0000");
+		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted <= :fifthyear AND studnum <> '00-0000' ORDER BY surname");
 		$stmt -> bindParam(':fifthyear', $fifthyear);
 		$stmt->execute();
 
@@ -42,7 +41,6 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
-			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -63,7 +61,6 @@
 		<thead>
 		<tr>
 			<th style=\"font-size: 0px\">Old Student Number</th>
-			<th style=\"font-size: 0px\">ID</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -76,7 +73,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :fourthyear");
+		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :fourthyear  ORDER BY surname");
 		$stmt -> bindParam(':fourthyear', $fourthyear);
 		$stmt->execute();
 
@@ -85,7 +82,6 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
-			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -106,7 +102,6 @@
 		<thead>
 		<tr>
 			<th style=\"font-size: 0px\">Old Student Number</th>
-			<th style=\"font-size: 0px\">ID</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -119,7 +114,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :thirdyear");
+		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :thirdyear  ORDER BY surname");
 		$stmt -> bindParam(':thirdyear', $thirdyear);
 		$stmt->execute();
 
@@ -128,7 +123,6 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
-			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -149,7 +143,6 @@
 		<thead>
 		<tr>
 			<th style=\"font-size: 0px\">Old Student Number</th>
-			<th style=\"font-size: 0px\">ID</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -162,7 +155,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :secondyear");
+		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :secondyear  ORDER BY surname");
 		$stmt -> bindParam(':secondyear', $secondyear);
 		$stmt->execute();
 
@@ -171,7 +164,6 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
-			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -192,7 +184,6 @@
 		<thead>
 		<tr>
 			<th style=\"font-size: 0px\">Old Student Number</th>
-			<th style=\"font-size: 0px\">ID</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -205,7 +196,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :firstyear");
+		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted >= :firstyear  ORDER BY surname");
 		$stmt -> bindParam(':firstyear', $firstyear);
 		$stmt->execute();
 
@@ -214,7 +205,6 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
-			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td>" . $row['studnum'] . "</td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>

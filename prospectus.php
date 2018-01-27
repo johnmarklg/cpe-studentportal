@@ -153,7 +153,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
-			  <small id="userid" hidden><?php echo ($_SESSION['name'][0]);?></small>
 			</div>
 		  </div>
 		</footer>

@@ -154,6 +154,28 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								Holidays
+							</div>
+							<div class="panel-body">
+								list of holidays
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								Events
+							</div>
+							<div class="panel-body">
+								list of events
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
             <!-- /.container-fluid -->
 			

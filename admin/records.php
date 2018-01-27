@@ -224,6 +224,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script>
 		$("#saveStudentRecords").click(function(){
+			if($('#studnum').text()=='') {
+				alert('Please fill the necessary fields.');
+			} else {
 			var tableGrades11 = $('#grades1-1').tableToJSON();
 			var tableGrades12 = $('#grades1-2').tableToJSON();
 			var tableGrades21 = $('#grades2-1').tableToJSON();
@@ -259,6 +262,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				}
 			});
 			return false;
+			}
 		});
 	</script>
 

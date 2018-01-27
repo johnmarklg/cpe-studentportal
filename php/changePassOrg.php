@@ -6,9 +6,9 @@
 	foreach ($jsoninfodata as $key => $value) {
 		$conn = getDB('cpe-studentportal');
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $conn->prepare("UPDATE `students` SET passcode = :passcode WHERE studnum = :studnum");
+		$stmt = $conn->prepare("UPDATE `administrators` SET password = :passcode WHERE id = :id");
 		$stmt -> bindParam(':passcode', $value['newpass']);
-		$stmt -> bindParam(':studnum', $value['studnum']);
+		$stmt -> bindParam(':id', $value['id']);
 		$stmt->execute();	
 		$conn = null;	
 		//update name in session
