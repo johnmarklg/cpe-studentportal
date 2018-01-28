@@ -252,7 +252,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
-				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData},
+				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: '<?php echo ($_SESSION['name'][2]);?>'},
 				cache: false,
 				success: function(result){
 					alert("Successfully updated database!");

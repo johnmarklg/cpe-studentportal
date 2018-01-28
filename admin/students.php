@@ -278,7 +278,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				$.ajax({
 				type: "POST",
 					url: "/php/addStudent.php",
-					data: {studinfo: $studinfo},
+					data: {studinfo: $studinfo, adminid: '<?php echo ($_SESSION['name'][2]);?>'},
 					cache: false,
 					success: function(result){
 						//alert("Successfully added a new student record!");
