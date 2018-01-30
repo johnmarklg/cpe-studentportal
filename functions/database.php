@@ -1,7 +1,7 @@
 <?php
 
 define('DB_Server', 'localhost');
-define('DB_Username', 'root');
+define('DB_Username', 'pi');
 define('DB_Password', 'cpeportal');
 define('DB_Database', 'cpe-studentportal');
 
