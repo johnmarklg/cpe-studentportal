@@ -154,120 +154,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
-
-				<style>
-					.image-preview-input {
-						position: relative;
-						overflow: hidden;
-						margin: 0px;    
-						color: #333;
-						background-color: #fff;
-						border-color: #ccc;    
-					}
-					.image-preview-input input[type=file] {
-						position: absolute;
-						top: 0;
-						right: 0;
-						margin: 0;
-						padding: 0;
-						font-size: 20px;
-						cursor: pointer;
-						opacity: 0;
-						filter: alpha(opacity=0);
-					}
-					.image-preview-input-title {
-						margin-left:2px;
-					}
-				</style>
-				<script>
-				$(document).on('click', '#close-preview', function(){ 
-					$('.image-preview').popover('hide');
-					// Hover befor close the preview
-					$('.image-preview').hover(
-						function () {
-						   $('.image-preview').popover('show');
-						}, 
-						 function () {
-						   $('.image-preview').popover('hide');
-						}
-					);    
-				});
-
-				$(function() {
-					// Create the close button
-					var closebtn = $('<button/>', {
-						type:"button",
-						text: 'x',
-						id: 'close-preview',
-						style: 'font-size: initial;',
-					});
-					closebtn.attr("class","close pull-right");
-					// Set the popover default content
-					$('.image-preview').popover({
-						trigger:'manual',
-						html:true,
-						title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
-						content: "There's no image",
-						placement:'bottom'
-					});
-					// Clear event
-					$('.image-preview-clear').click(function(){
-						$('.image-preview').attr("data-content","").popover('hide');
-						$('.image-preview-filename').val("");
-						$('.image-preview-clear').hide();
-						$('.image-preview-input input:file').val("");
-						$(".image-preview-input-title").text("Browse"); 
-					}); 
-					// Create the preview image
-					$(".image-preview-input input:file").change(function (){     
-						var img = $('<img/>', {
-							id: 'dynamic',
-							width:250,
-							height:200
-						});      
-						var file = this.files[0];
-						var reader = new FileReader();
-						// Set preview image into the popover data-content
-						reader.onload = function (e) {
-							$(".image-preview-input-title").text("Change");
-							$(".image-preview-clear").show();
-							$(".image-preview-filename").val(file.name);            
-							img.attr('src', e.target.result);
-							$(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-						}        
-						reader.readAsDataURL(file);
-					});  
-				});
-				</script>
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<form  action="/functions/upload.php" method="post" enctype="multipart/form-data">
-							<textarea type="text" id="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>								
-							<div class="input-group image-preview">
-								<span class="input-group-btn">
-									<!-- image-preview-clear button -->
-									<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-										<span><i class="fa fa-times"></i></span> Clear
-									</button>
-									<!-- image-preview-input -->
-									<div class="btn btn-default image-preview-input">
-										<span><i class="fa fa-upload"></i></span>
-										<span class="image-preview-input-title">Add Image...</span>
-										<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
-									</div>
-								</span>
-								<input type="text" id="fileURL" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-								</script>
-							</div><!-- /input-group image-preview [TO HERE]--> 
-							<div class="btn-group btn-group-justified" role="group" aria-label="...">
-							  <div class="btn-group" role="group">
-								<button type="button" id="buttonPost" class="btn btn-default btn-success"><i class="fa fa-fw fa-bullhorn"></i> Post</button>
-							  </div>
-							  <div class="btn-group" role="group">
-								<button type="button" id="buttonClear" class="btn btn-default btn-danger"><i class="fa fa-fw fa-remove"></i>Clear Text</button>
-							  </div>
-							</div>
+					<form action="/functions/upload.php" method="post" enctype="multipart/form-data">
+						<input type="text" id="postTitle" name="postTitle" class="form-control" placeholder="Post Title"></input><br/>
+						<textarea type="text" id="postText"  name="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>	
+						<br/><div class="input-group" role="group" aria-label="...">
+							<input type="file" class="btn btn-info btn-block" name="fileToUpload" id="fileToUpload">
+							<input type="submit" class="btn btn-success btn-block" value="Post Announcement" name="submit">
+						</div>
+						<input type="hidden" id="posterID" value="<?php echo $_SESSION['name'][2] ?>" name="posterID" class="form-control"></input>
+						<input type="hidden" id="poster" value="<?php echo $_SESSION['name'][1] ?>" name="poster" class="form-control"></input>
 					</form>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
@@ -301,12 +199,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		});
 		
 		$('.post-remove').click(function () {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $post = $row.find(".post").text(); // Find the text
-			var $fileurl = $row.find(".fileurl").text(); // Find the text
-			var $postinfo = '[{"id":"' + $id +
-			'","post":"' + $post + '","fileurl":"' + $fileurl + '"}]';
+			var $id = $(this).attr('id');    // Find the row
+			//var $id = $row.find(".id").text(); // Find the text
+			var $postinfo = '[{"id":"' + $id + '"}]';
 			//alert($postinfo);
 			if(confirm('Do you want to remove this entry from the database?')) {
 				$.ajax({
@@ -316,44 +211,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						cache: false,
 						success: function(result){
 							//deleted
-							$row.remove();
+							location.reload();
 						}
 					});
 			} else {}
-		});
-		
-		$("#buttonPost").click(function(){
-			//set actual text value
-			var $post = $('#postText, textarea').val();
-			if($post!="") {
-			//get current date and time;
-				var $currentdate = new Date(); 
-				var $date = $currentdate.getDate() + "/"
-					+ ($currentdate.getMonth()+1)  + "/" 
-					+ $currentdate.getFullYear();
-				var $time = $currentdate.getHours() + ":"  
-					+ $currentdate.getMinutes(); /*+ ":" 
-					+ $currentdate.getSeconds();*/
-				var $poster = $('#posterName').text();
-				var $posterid = $('#posterID').text();
-				var $fileurl = $('#fileURL').val();
-				var $postdata = '[{"Date":"' + $date + '","Time":"' + $time +
-				'","Post":"' + $post + '","Poster":"' + $poster +'","PosterID":"' + $posterid +'","FileURL":"' + $fileurl + '"}]';
-				alert($postdata);
-				$.ajax({
-				type: "POST",
-					url: "/php/postAnnouncement.php",
-					data: {postData: $postdata},
-					cache: false,
-					success: function(result){
-						location.reload();  
-						//alert(String(result));
-					}
-				});
-				return false;
-			} else {
-				alert("Error. Please input an actual post.");
-			}
 		});
 	</script>
 </body>
