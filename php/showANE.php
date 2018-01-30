@@ -20,7 +20,7 @@
 								<div class="tab-pane active" id="4" >';
 								
 								$conn = getDB('cpe-studentportal');
-								$stmt = $conn->prepare("SELECT * from `posts` ORDER BY datetime DESC");
+								$stmt = $conn->prepare("SELECT * from `posts` WHERE status='Approved' ORDER BY datetime DESC");
 								$stmt->execute();
 
 								$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
