@@ -44,6 +44,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<script src="/assets/js/autosize.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
 	<!--Date Format-->
+	<script src="/assets/swipebox/jquery.swipebox.js"></script>
+	<link rel="stylesheet" href="/assets/swipebox/swipebox.css">
 	<!--<script src="/assets/js/date.format.js"></script>-->
 	<!--Moment JS-->
 	<!--<script src="/assets/js/moment.min.js"></script>-->
@@ -250,6 +252,26 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					});
 			} else {}
 		});
+	</script>
+	<script type="text/javascript">
+	$( document ).ready(function() {
+
+			/* Basic Gallery */
+			$( '.swipebox' ).swipebox();
+			
+			/* Video */
+			$( '.swipebox-video' ).swipebox();
+
+			/* Dynamic Gallery */
+			$( '#gallery' ).click( function( e ) {
+				e.preventDefault();
+				$.swipebox( [
+					{ href : 'http://swipebox.csag.co/mages/image-1.jpg', title : 'My Caption' },
+					{ href : 'http://swipebox.csag.co/images/image-2.jpg', title : 'My Second Caption' }
+				] );
+			} );
+
+      });
 	</script>
 </body>
 </html>
