@@ -46,8 +46,6 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 	<!-- Full Calendar CSS -->
 	<script src="/assets/fullcalendar/js/fullcalendar.min.js"></script>
 	<link href="/assets/fullcalendar/css/fullcalendar.css" rel="stylesheet" />
-	
-</style>
 
 </head>
 

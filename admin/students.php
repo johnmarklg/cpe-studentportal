@@ -140,20 +140,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                 </div>
                 <!-- /.row -->
 				
-				<!--<div class="row">
-					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  Insert a new student record to the list of enrolled students.
-						</div>
-					</div>
-				</div>-->
-
-				
 				<div class="row">
 					<div class="col-lg-12">
 					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
 						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new student record to the list of enrolled students.</a></div>
-						<div id="collapsePanel" class="panel-collapse">
+						<div id="collapsePanel" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Student Number</span>

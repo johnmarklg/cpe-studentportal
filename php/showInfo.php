@@ -9,7 +9,7 @@
 		$stmt->execute();
 		foreach(($stmt->fetchAll()) as $row) { 
 		echo '<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Account Information
