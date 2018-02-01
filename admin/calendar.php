@@ -17,39 +17,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <script src="/assets/js/moment.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
-	<script src="/assets/js/list.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	<!-- Full Calendar CSS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css" rel="stylesheet" />
-	<!--Datepicker-->
-    <script src="/assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
-	<link href="/assets/bootstrap/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+<?php 
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+	get_header();
+	calendar_extra();
+?>	
 </head>
 
 <body>
@@ -233,151 +205,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     <!-- /#wrapper -->
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
+	<script src="/functions/js/calendar.js"></script>
 	
-	<script>
-		$('.table-add').click(function () {
-			var $clone = $(this).closest('table').find('tr.hide').clone(true).removeClass('hide').toggle();
-			$(this).closest('table').append($clone);
-		});
-		
-		//delete event/holiday/suspension
-		$('.table-remove').click(function () {
-			var r = confirm("Do you want to delete this event/holiday?");
-			if (r == true) {
-				$(this).parents('tr').detach();
-			} else {}
-		});
-	</script>
-	
-	<script>
-		$('.input-group.date').datepicker({format: "yyyy-mm-dd"}); 
-	</script>
-	
-	<script>
-		$('#tabAll').click(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-		});
-	</script>
-	
-	<script>
-		$("#saveEvent").click(function(){
-			var $eventname = $('#eventName').val();
-			var $eventinfo = $('#eventInfo').val();
-			var $startdate = $('#startDate').val();
-			var $enddate = $('#endDate').val();
-			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
-			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
-			//alert($eventData);
-			
-			$.ajax({
-				type: "POST",
-				url: "../php/updateEvents.php",
-				data: {events: $eventData},
-				cache: false,
-				success: function(result){
-					//alert("Successfully updated database!");
-					location.reload(true); 
-				}
-			});
-			
-			return false;
-		});
-	</script>
-	
-	<script>
-		$("#saveHoliday").click(function(){
-			var $eventname = $('#eventName').val();
-			var $eventinfo = $('#eventInfo').val();
-			var $startdate = $('#startDate').val();
-			var $enddate = $('#endDate').val();
-			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
-			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
-			//alert($eventData);
-			
-			$.ajax({
-				type: "POST",
-				url: "../php/updateHolidays.php",
-				data: {events: $eventData},
-				cache: false,
-				success: function(result){
-					//alert("Successfully updated database!");
-					location.reload(true); 
-				}
-			});
-			
-			return false;
-		});
-	</script>
-	
-	<script>
-			$(document).ready(function() {
-				$('#calendar').fullCalendar({
-					header: {
-						left: 'prev, next, today',
-						center: 'title',
-						right: 'month,agendaWeek,agendaDay,listWeek'
-					},
-					navLinks: true, // can click day/week names to navigate views
-					eventLimit: true, // allow "more" link when too many events
-					
-					events: "/functions/events.php",
-					
-					eventRender: function (event, element) {
-						element.attr('href', 'javascript:void(0);');
-						element.click(function() {
-							$("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-							$("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-							$("#eventInfo").html(event.description);
-							$("#eventName").html(event.title);
-							$("#eventLoc").html(event.location);
-							$('#modal1').modal('show');
-						});
-					}
-
-			});
-			});
-		</script>
-	
-	<script>
-		$('.event-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $eventinfo = '[{"id":"' + $id + '"}]';
-			$.ajax({
-				type: "POST",
-					url: "/php/removeEvent.php",
-					data: {eventinfo: $eventinfo},
-					cache: false,
-					success: function(result){
-						//alert("Successfully removed student entry!");
-					}
-				});
-			$(this).parents('tr').detach();			
-		} else {}
-		});
-		$('.holiday-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $holidayinfo = '[{"id":"' + $id + '"}]';
-			$.ajax({
-				type: "POST",
-					url: "/php/removeHoliday.php",
-					data: {holidayinfo: $holidayinfo},
-					cache: false,
-					success: function(result){
-						//alert("Successfully removed student entry!");
-					}
-				});
-			$(this).parents('tr').detach();			
-		} else {}
-		});
-	</script>
 </body>
 
 </html>

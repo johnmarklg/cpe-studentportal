@@ -17,32 +17,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Autosize -->
-	<script src="/assets/js/autosize.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-
+<?php 
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+	get_header();
+?>
 </head>
 
 <body>
@@ -165,32 +143,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		
     </div>
     <!-- /#wrapper -->
-	<script>
-		autosize($('textarea'));
-
-		$('#buttonSave').click(function() {
-			var $username = $('#username').val();
-			var $password = $('#password').val();
-			var $email = $('#email').val();
-			var $name = $('#fullname').val();
-			var $userid = $('#userid').text();
-			var $userInfo = '[{"Name":"' + $name + '","Password":"' + $password +
-			'","Email":"' + $email + '","Username":"' + $username + '","ID":"' + $userid + '"}]';
-			alert($userInfo);
-			$.ajax({
-				type: "POST",
-					url: "/php/saveInfo.php",
-					data: {infodata: $userInfo},
-					cache: false,
-					success: function(result){
-						alert("Successfully updated personal details! Please relogin.");
-						//location.reload();
-						window.location.replace('logout.php');
-					}
-				});
-				return false;
-		});
-	</script>
+	<script src="/functions/js/admininfo.js"></script>
+	
 </body>
 
 </html>

@@ -38,15 +38,15 @@
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
 			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
-			<td contentEditable class=\"code\">" . $row['code'] . "</td>
-			<td contentEditable class=\"units\">" . $row['units'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
+			<td  class=\"code\">" . $row['code'] . "</td>
+			<td  class=\"units\">" . $row['units'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
 		}
 		
@@ -85,16 +85,16 @@
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
-			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
-			<td contentEditable class=\"code\">" . $row['code'] . "</td>
-			<td contentEditable class=\"units\">" . $row['units'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
+			<td \" class=\"section\">" . $row['section'] . "</td>
+			<td  class=\"code\">" . $row['code'] . "</td>
+			<td  class=\"units\">" . $row['units'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
 		}
 	
@@ -133,16 +133,16 @@
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
-			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
-			<td contentEditable class=\"code\">" . $row['code'] . "</td>
-			<td contentEditable class=\"units\">" . $row['units'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
+			<td \" class=\"section\">" . $row['section'] . "</td>
+			<td  class=\"code\">" . $row['code'] . "</td>
+			<td  class=\"units\">" . $row['units'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
 		}
 		
@@ -181,16 +181,16 @@
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
-			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
-			<td contentEditable class=\"code\">" . $row['code'] . "</td>
-			<td contentEditable class=\"units\">" . $row['units'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
+			<td \" class=\"section\">" . $row['section'] . "</td>
+			<td  class=\"code\">" . $row['code'] . "</td>
+			<td  class=\"units\">" . $row['units'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
 		}
 		
@@ -229,16 +229,16 @@
 			echo "<tr>
 			<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 			<td style=\"font-size: 0px\" class=\"year\">" . $row['year'] . "</td>
-			<td contentEditable\" class=\"section\">" . $row['section'] . "</td>
-			<td contentEditable class=\"code\">" . $row['code'] . "</td>
-			<td contentEditable class=\"units\">" . $row['units'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td>
+			<td \" class=\"section\">" . $row['section'] . "</td>
+			<td  class=\"code\">" . $row['code'] . "</td>
+			<td  class=\"units\">" . $row['units'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td></tr>";
 		}
 		$conn = null;

@@ -11,36 +11,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		exit;
 	}
 }
+
+if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	
+<?php 
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+	get_header();
+?>	
 	<style>
 			#saveStudentRecords {
 			  position: fixed;
@@ -52,7 +34,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			  z-index: 900;
 			}
 	</style>
-
 </head>
 
 <body>
@@ -159,9 +140,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 					<form method="post">
 						<div class="input-group">
-								<input type="text" id="stud-num" name="stud-num" class="form-control" placeholder="Search by Student Number...">
+								<input type="text" id="stud-num" name="stud-num" value="<?php echo $studnum ?>" class="form-control" placeholder="Search by Student Number...">
 								<span class="input-group-btn">
-									<button name="search-table" class="btn btn-default"><i class="fa fa-search"></i></button>
+									<button id="search-table" name="search-table" class="btn btn-default"><i class="fa fa-search"></i></button>
 								</span>
 						</div>
 					</form>
@@ -171,9 +152,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<hr/>
 				<div class="row">
 					<div class="col-lg-12">
-						<?php	
+						<?php
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showStudentRecords.php');
-						echo showStudentRecords();
+						echo showStudentRecords($studnum);
 						?>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
@@ -191,6 +172,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
+			  <small hidden id="adminid"><?php echo ($_SESSION['name'][2]); ?></small>
 			</div>
 		  </div>
 		</footer>
@@ -201,77 +183,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/assets/js/arrow-table.min.js"></script>
-	
-	<script>
-		$('.table').arrowTable({
-			enabledKeys: ['left', 'right', 'up', 'down'],
-			listenTarget: 'div',
-			focusTarget: 'div'
-		});
-	</script>
-	
-	<script>
-		/*$('#tabAll').click(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-		});*/
-		$(document).ready(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-		});
-	</script>
-	
-	<script>
-		$("#saveStudentRecords").click(function(){
-			if($('#studnum').text()=='') {
-				alert('Please fill the necessary fields.');
-			} else {
-			var tableGrades11 = $('#grades1-1').tableToJSON();
-			var tableGrades12 = $('#grades1-2').tableToJSON();
-			var tableGrades21 = $('#grades2-1').tableToJSON();
-			var tableGrades22 = $('#grades2-2').tableToJSON();
-			var tableGrades31 = $('#grades3-1').tableToJSON();
-			var tableGrades32 = $('#grades3-2').tableToJSON();
-			var tableGrades41 = $('#grades4-1').tableToJSON();
-			var tableGrades42 = $('#grades4-2').tableToJSON();
-			var tableGradesMid = $('#gradesmid').tableToJSON();
-			var tableGrades51 = $('#grades5-1').tableToJSON();
-			var tableGrades52 = $('#grades5-2').tableToJSON();
-			var tableGrades = [].concat(tableGrades11, tableGrades12, tableGrades21, tableGrades22, tableGrades31, tableGrades32, tableGrades41, tableGrades42, tableGradesMid, tableGrades51, tableGrades52);
-			var tableStudInfo= $('#studentinfo').tableToJSON();  
-			var $address = $('#address').text();
-			var $studentData = '[{"Gender":"' + $('#gender').text() + '","Status":"' + $('#status').text() +
-			'","Citizenship":"' + $('#citizenship').text() + '","DateOfBirth":"' + $('#birthdate').text() + '","PlaceOfBirth":"' + $('#birthplace').text() 
-			+ '","ContactNo":"' + $('#contactnum').text() + '","Address":"' + $('#address').text() 
-			+ '","Father":"' + $('#fathername').text() + '","FatherOccupation":"' + $('#fatheroccupation').text() + '","Mother":"' + $('#mothername').text() 
-			+ '","MotherOccupation":"' + $('#motheroccupation').text() + '","Elementary":"' + $('#elementary').text() + '","ElemAddress":"' + $('#elemaddress').text() 
-			+ '","ElemGraduate":"' + $('#elemgrad').text() + '","Secondary":"' + $('#secondary').text() + '","SecAddress":"' + $('#secaddress').text() 
-			+ '","SecGraduate":"' + $('#secgrad').text() + '"}]';
-			//alert($studentData);
-			$.ajax({
-			type: "POST",
-				url: "/php/saveStudentRecords.php",
-				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: '<?php echo ($_SESSION['name'][2]);?>'},
-				cache: false,
-				success: function(result){
-					alert("Successfully updated database!");
-					//alert(result);
-					//$('#oldstudnum').html(result);
-					location.reload();
-				}
-			});
-			return false;
-			}
-		});
-	</script>
-
-	
+	<script src="/functions/js/records.js"></script>
 </body>
 
 </html>

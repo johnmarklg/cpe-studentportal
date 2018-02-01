@@ -1,5 +1,5 @@
 			  <?php	
-			  function showStudentRecords() {			
+			  function showStudentRecords($studnum) {			
 
 				require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 				
@@ -13,7 +13,7 @@
 						}
 					}
 					else {
-						$studnum = "00-0000";
+						if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='00-0000';}
 					}
 					$conn = getDB('cpe-studentportal');
 					//check if record exists
@@ -461,5 +461,6 @@
 					echo '</div><!--/tabcontent-->';
 					
 				$conn = null;
+				
 			  }
 ?>

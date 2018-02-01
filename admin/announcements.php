@@ -17,50 +17,20 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Autosize -->
-	<script src="/assets/js/autosize.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	<!--Date Format-->
-	<script src="/assets/swipebox/jquery.swipebox.js"></script>
-	<link rel="stylesheet" href="/assets/swipebox/swipebox.css">
-	<!--<script src="/assets/js/date.format.js"></script>-->
-	<!--Moment JS-->
-	<!--<script src="/assets/js/moment.min.js"></script>-->
-	
+	<?php 
+		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+		get_header();
+		announcement_extra();
+	?>	
 	<style>
 			.post-remove:hover {
 			  color: #f00;
 			  cursor: pointer;
 			}
 	</style>
-
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -164,7 +134,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
-					<form action="/functions/upload.php" method="post" enctype="multipart/form-data">
+					<form action="/php/postAnnouncement.php" method="post" enctype="multipart/form-data">
 						<input type="text" id="postTitle" name="postTitle" class="form-control" placeholder="Post Title"></input><br/>
 						<textarea type="text" id="postText"  name="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>	
 						<br/><div class="input-group" role="group" aria-label="...">
@@ -199,79 +169,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		<!-- /footer -->
     </div>
     <!-- /#wrapper -->
-	<script>
-	 function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result)
-                        .width(250)
-                        .height(250);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-		autosize($('textarea'));
-		
-		/*$('#buttonClear').click(function() {
-			$('#postText, textarea').val('');
-		});*/
-		
-		$('.btnApprove').click(function() {
-			var $id = $(this).attr('id');   
-			var $postinfo = '[{"id":"' + $id + '"}]';
-			//alert($postinfo);
-			if(confirm('Do you want to approve this post for publishing?')) {
-				$.ajax({
-					type: "POST",
-						url: "/php/postAnnouncement.php",
-						data: {postData: $postinfo},
-						cache: false,
-						success: function(result){
-							location.reload();
-						}
-					});
-			} else {}
-		});
-		
-		$('.post-remove').click(function () {
-			var $id = $(this).attr('id'); 
-			var $postinfo = '[{"id":"' + $id + '"}]';
-			//alert($postinfo);
-			if(confirm('Do you want to remove this entry from the database?')) {
-				$.ajax({
-					type: "POST",
-						url: "/php/deleteAnnouncement.php",
-						data: {postData: $postinfo},
-						cache: false,
-						success: function(result){
-							//deleted
-							location.reload();
-						}
-					});
-			} else {}
-		});
-	</script>
-	<script type="text/javascript">
-	$( document ).ready(function() {
-
-			/* Basic Gallery */
-			$( '.swipebox' ).swipebox();
-			
-			/* Video */
-			$( '.swipebox-video' ).swipebox();
-
-			/* Dynamic Gallery */
-			$( '#gallery' ).click( function( e ) {
-				e.preventDefault();
-				$.swipebox( [
-					{ href : 'http://swipebox.csag.co/mages/image-1.jpg', title : 'My Caption' },
-					{ href : 'http://swipebox.csag.co/images/image-2.jpg', title : 'My Second Caption' }
-				] );
-			} );
-
-      });
-	</script>
+	<script src="/functions/js/announcements.js"></script>
 </body>
 </html>

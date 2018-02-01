@@ -17,31 +17,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	
+<?php 
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+	get_header();
+?>		
 	<style>
 			#saveTimetables {
 			  position: fixed;
@@ -302,83 +281,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	
-	
-	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
-	
-	<script>
-		$('#tabAll').click(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-		});
-	</script>
-	
-	<script>
-		$("#buttonAdd").click(function() {
-			var $section = $("#section").val();
-			var $code = $("#code").val();
-			var $subjectsection = $("#subjectsection").val();
-			var $starttime = $("#starttime").val();
-			var $endtime = $("#endtime").val();
-			var $days = $("#days").val();
-			var $building = $("#building").val();
-			var $roomnumber = $("#roomnumber").val();
-			var $instructor = $("#instructor").val();
-			var $units = $("#units").val();
-			var $year = $("#year").val();
-			
-			var $subjinfo = '[{"Section":"' + $section +
-			'","Code":"' + $code + '","Subject Section":"' + $subjectsection +
-			'","Start Time":"' + $starttime + '","End Time":"' + $endtime +
-			'","Days":"' + $days + '","Building":"' + $building + '","Room Number":"' + $roomnumber +
-			'","Instructor":"' + $instructor + '","Units":"' + $units + '","Year":"' + $year +'"}]';
-			
-			//alert($subjinfo);
-			
-			if($section==""||$code==""||$subjectsection==""||$starttime==""||$endtime==""||$days==""||$building==""||$roomnumber==""||$instructor=="") {
-				alert('Error! Please fill all the necessary fields.');
-			} else {
-				//alert('okay');
-				$.ajax({
-				type: "POST",
-					url: "/php/addSchedule.php",
-					data: {subjinfo: $subjinfo},
-					cache: false,
-					success: function(result){
-						//alert("Successfully added a new student record!");
-						location.reload();  	
-					}
-				});
-			}
-		});
-	</script>
-	
-	<script>
-		$('.table-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $code = $row.find(".code").text(); // Find the text
-			var $subjinfo = '[{"id":"' + $id + '","code":"' + $code + '"}]';
-			//alert($subjinfo);
-			$.ajax({
-				type: "POST",
-					url: "/php/removeSchedule.php",
-					data: {subjinfo: $subjinfo},
-					cache: false,
-					success: function(result){
-						alert("Successfully removed schedule entry!");
-						//location.reload(); 			
-					}
-				});
-			$(this).parents('tr').detach();			
-		} else {}
-		});
-	</script>
-	
+	<script src="/functions/js/timetables.js"></script>
+		
 </body>
 
 </html>
