@@ -161,7 +161,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						<input type="text" id="postTitle" name="postTitle" class="form-control" placeholder="Post Title"></input><br/>
 						<textarea type="text" id="postText"  name="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>	
 						<br/><div class="input-group" role="group" aria-label="...">
-							<input type="file" class="btn btn-info btn-block" name="fileToUpload" id="fileToUpload">
+							<input type="file" class="btn btn-info btn-block" onchange="readURL(this);" name="fileToUpload" id="fileToUpload">
+							<img id="blah" src=""/>
 							<input type="submit" class="btn btn-success btn-block" value="Post Announcement" name="submit">
 						</div>
 						<input type="hidden" id="posterID" value="<?php echo $_SESSION['name'][2] ?>" name="posterID" class="form-control"></input>
@@ -192,6 +193,20 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	<script>
+	 function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(100%)
+                        .height(50vh);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 		autosize($('textarea'));
 		
 		/*$('#buttonClear').click(function() {
