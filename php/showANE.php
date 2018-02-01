@@ -27,8 +27,11 @@
 								
 								foreach(($stmt->fetchAll()) as $row) { 
 								echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
-								$row['poster'] . '</strong> @<i>' . $row['datetime'] . ':</i><hr/>'
-								. $row['post'] . '</div></div>';
+								$row['poster'] . '</strong> @<i>' . $row['datetime'] . ':</i><hr/>' . $row['post'];
+								if($row['file'] <> '') {
+									echo '<br/><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '">';
+								}									
+								echo '</div></div>';
 								}
 								$conn = null;
 						
