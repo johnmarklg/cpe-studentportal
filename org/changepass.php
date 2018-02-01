@@ -5,6 +5,11 @@ session_start();
 if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
   header("location: login.php");
   exit;
+} else {
+	if($_SESSION['name'][0]<>'Limited') {
+		header("location: logout.php");
+		exit;
+	}
 }
 ?>
 
