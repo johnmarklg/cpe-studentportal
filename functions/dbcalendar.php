@@ -4,8 +4,8 @@ class Database
 {
     private static $dbName = 'cpe-studentportal' ;
     private static $dbHost = 'localhost' ;
-    private static $dbUsername = 'root';
-    private static $dbUserPassword = '';
+    private static $dbUsername = 'pi';
+    private static $dbUserPassword = 'cpeportal';
 
     private static $cont  = null;
 
