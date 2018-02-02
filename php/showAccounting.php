@@ -55,38 +55,7 @@
 			DROP COLUMN Transferee,
 			DROP COLUMN Transfered;");
 		$stmt->execute();
-		/*
-		$stmt = $conn->prepare("ALTER TABLE temptable
-			DROP COLUMN passcode,
-			DROP COLUMN yearstarted,
-			DROP COLUMN gender,
-			DROP COLUMN status,
-			DROP COLUMN citizenship,
-			DROP COLUMN dateofbirth,
-			DROP COLUMN placeofbirth,
-			DROP COLUMN contactnum,
-			DROP COLUMN address,
-			DROP COLUMN fatheroccupation,
-			DROP COLUMN father,
-			DROP COLUMN mother,
-			DROP COLUMN motheroccupation,
-			DROP COLUMN spouse,
-			DROP COLUMN spouseoccupation,
-			DROP COLUMN houseaddress,
-			DROP COLUMN employer,
-			DROP COLUMN businessaddress,
-			DROP COLUMN telnum,
-			DROP COLUMN elementary,
-			DROP COLUMN elemaddress,
-			DROP COLUMN elemgraduate,
-			DROP COLUMN secgraduate,
-			DROP COLUMN secondary,
-			DROP COLUMN secaddress,
-			DROP COLUMN college,
-			DROP COLUMN coladdress,
-			DROP COLUMN colgraduate;");
-		$stmt->execute();
-		*/
+		
 		echo '<div class="tab-content">';
 		//5TH YEAR
 		$stmt = $conn->prepare("SELECT * from temptable WHERE SUBSTRING(studnum,1,2) <= :fifthyear AND studnum <> 00-0000 ORDER BY surname");

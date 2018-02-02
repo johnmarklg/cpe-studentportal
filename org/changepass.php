@@ -182,8 +182,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							data: {infodata: $userInfo},
 							cache: false,
 							success: function(result){
+								alert("Successfully updated password! Please relogin.");
 								window.location.replace('/org/logout.php');
-								//alert("Successfully updated password! Please relogin.");
 								//location.reload();
 							}
 						});

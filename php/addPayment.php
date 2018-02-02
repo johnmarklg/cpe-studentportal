@@ -8,7 +8,7 @@
 			//$columnName = $value['Name'] . ' - ' . $value['Amount'];
 			$conn = getDB('cpe-studentportal');
 			
-			$stmt = $conn->prepare("INSERT INTO `payments` (name) VALUES (:name)");
+			$stmt = $conn->prepare("INSERT INTO `payments` (name, created) VALUES (:name, now())");
 			$stmt -> bindParam(':name', $value['Name']);
 			//$stmt -> bindParam(':amount', $value['Amount']);
 			//$stmt -> bindParam(':columnname', $value['columnName']);
