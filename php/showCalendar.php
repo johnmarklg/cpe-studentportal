@@ -31,6 +31,7 @@
 					<tr>
 					<th style=\"font-size: 0px\">ID</th>
 					<th>Event Name</th>
+					<th>Event Location</th>
 					<th>Event Info</th>
 					<th>Start Date</th>
 					<th>End Date</th>
@@ -49,6 +50,7 @@
 						echo "<tr>
 						<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 						<td contentEditable\">" . $row['title'] . "</td>
+						<td contentEditable>" . $row['location'] . "</td>
 						<td contentEditable>" . $row['description'] . "</td>
 						<td class=\"startdatePicker\" contentEditable>" . $row['start'] . "</td>
 						<td class=\"enddatePicker\" contentEditable>" . $row['end'] . "</td>
@@ -66,6 +68,7 @@
 					<tr>
 					<th style=\"font-size: 0px\">ID</th>
 					<th>Event Name</th>
+					<th>Event Location</th>
 					<th>Event Info</th>
 					<th>Start Date</th>
 					<th>End Date</th>
@@ -84,6 +87,7 @@
 						echo "<tr>
 						<td style=\"font-size: 0px\" class=\"id\">" . $row['id'] . "</td>
 						<td contentEditable\">" . $row['title'] . "</td>
+						<td contentEditable>" . $row['location'] . "</td>
 						<td contentEditable>" . $row['description'] . "</td>
 						<td class=\"startdatePicker\" contentEditable>" . $row['start'] . "</td>
 						<td class=\"enddatePicker\" contentEditable>" . $row['end'] . "</td>
@@ -103,15 +107,5 @@
 								  cursor: pointer;
 								}
 							</style>";
-					echo "<script>
-								function updateFilter() {
-									var options = {
-											valueNames: ['eventname', 'startdate', 'enddate', 'eventinformation']
-									};
-								 var documentTable = new List('events', options);
-								}
-								
-								updateFilter();
-								</script>";
 	  }
 ?>

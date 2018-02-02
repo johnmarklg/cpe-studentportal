@@ -11,7 +11,7 @@
 			} else {}
 		});
 
-		$('.input-group.date').datepicker({format: "yyyy-mm-dd"}); 
+		$('.input-group.date').datetimepicker({format: "YYYY-MM-DD HH:mm:00"});
 	
 		$('#tabAll').click(function(){
 			$('#tabAll').addClass('active');  
@@ -24,11 +24,12 @@
 		$("#saveEvent").click(function(){
 			var $eventname = $('#eventName').val();
 			var $eventinfo = $('#eventInfo').val();
+			var $eventlocation = $('#eventLoc').val();
 			var $startdate = $('#startDate').val();
 			var $enddate = $('#endDate').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
-			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
-			//alert($eventData);
+			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
+			alert($eventData);
 			
 			$.ajax({
 				type: "POST",
@@ -47,10 +48,11 @@
 		$("#saveHoliday").click(function(){
 			var $eventname = $('#eventName').val();
 			var $eventinfo = $('#eventInfo').val();
+			var $eventlocation = $('#eventLoc').val();
 			var $startdate = $('#startDate').val();
 			var $enddate = $('#endDate').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
-			'","Event Name":"' + $eventname + '","Event Info":"' + $eventinfo + '"}]';
+			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
 			//alert($eventData);
 			
 			$.ajax({

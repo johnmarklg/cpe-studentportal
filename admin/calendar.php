@@ -154,6 +154,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="input-group"><span class="input-group-addon" id="basic-addon4">Event Info</span>
 					<textarea id="eventInfo" type="text" class="form-control" value="" aria-describedby="basic-addon4"></textarea></div>
 					<br/>
+					<div class="input-group"><span class="input-group-addon" id="basic-addon5">Event Location</span>
+					<input id="eventLoc" type="text" class="form-control" value="" aria-describedby="basic-addon5"></div>
+					<br/>
 					</div><div class="panel-footer"><div class="btn-group btn-group-justified" role="group" aria-label="...">
 							  <div class="btn-group" role="group">
 								<button type="button" id="saveEvent" class="btn btn-default btn-info"><i class="fa fa-fw fa-bullhorn"></i> General Event</button>
