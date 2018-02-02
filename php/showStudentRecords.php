@@ -161,7 +161,9 @@
 												</tr>
 											</tbody>
 										</table>
-									</div></div></div>';
+									</div></div>
+									
+									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $row['studnum'] . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div></div>';
 									
 									}
 									$conn = null;

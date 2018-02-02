@@ -134,17 +134,32 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
-					<form action="/php/postAnnouncement.php" method="post" enctype="multipart/form-data">
-						<input type="text" id="postTitle" name="postTitle" class="form-control" placeholder="Post Title"></input><br/>
-						<textarea type="text" id="postText"  name="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>	
-						<br/><div class="input-group" role="group" aria-label="...">
-							<input type="file" class="btn btn-info btn-block" onchange="readURL(this);" name="fileToUpload" id="fileToUpload">
-							<img id="blah" src=""/>
-							<input type="submit" class="btn btn-success btn-block" value="Post Announcement" name="submit">
-						</div>
-						<input type="hidden" id="posterID" value="<?php echo $_SESSION['name'][2] ?>" name="posterID" class="form-control"></input>
-						<input type="hidden" id="poster" value="<?php echo $_SESSION['name'][1] ?>" name="poster" class="form-control"></input>
-					</form>
+						<form action="/php/postAnnouncement.php" method="post" enctype="multipart/form-data">
+							<input type="text" id="postTitle" name="postTitle" class="form-control" placeholder="Post Title"></input><br/>
+							<textarea type="text" id="postText"  name="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>	
+							<br/>
+							<div class="input-group btn-block" role="group" aria-label="...">
+								<div class="input-group image-preview">
+									<span class="input-group-btn block">
+										<!-- image-preview-clear button -->
+										<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+											<span><i class="fa fa-times"></i></span> Clear
+										</button>
+										<!-- image-preview-input -->
+										<div class="btn btn-default image-preview-input">
+											<span><i class="fa fa-upload"></i></span>
+											<span class="image-preview-input-title">Add Image...</span>
+											<input type="file" class="btn btn-info" onchange="readURL(this);" name="fileToUpload" id="fileToUpload">
+										</div>
+									</span>
+									<input type="text" id="fileURL" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+								</div><!-- /input-group image-preview [TO HERE]--> 
+								<br/>
+								<input type="submit" class="btn btn-success btn-block" value="Post Announcement" name="submit">
+							</div>
+							<input type="hidden" id="posterID" value="<?php echo $_SESSION['name'][2] ?>" name="posterID" class="form-control"></input>
+							<input type="hidden" id="poster" value="<?php echo $_SESSION['name'][1] ?>" name="poster" class="form-control"></input>
+						</form>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
 				<hr/>
@@ -170,5 +185,90 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	<script src="/functions/js/announcements.js"></script>
+	
+	<style>
+		.image-preview-input {
+			position: relative;
+			overflow: hidden;
+			margin: 0px;    
+			color: #333;
+			background-color: #fff;
+			border-color: #ccc;    
+		}
+		.image-preview-input input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		.image-preview-input-title {
+			margin-left:2px;
+		}
+	</style>
+	<script>
+	$(document).on('click', '#close-preview', function(){ 
+		$('.image-preview').popover('hide');
+		// Hover befor close the preview
+		$('.image-preview').hover(
+			function () {
+			   $('.image-preview').popover('show');
+			}, 
+			 function () {
+			   $('.image-preview').popover('hide');
+			}
+		);    
+	});
+
+	$(function() {
+		// Create the close button
+		var closebtn = $('<button/>', {
+			type:"button",
+			text: 'x',
+			id: 'close-preview',
+			style: 'font-size: initial;',
+		});
+		closebtn.attr("class","close pull-right");
+		// Set the popover default content
+		$('.image-preview').popover({
+			trigger:'manual',
+			html:true,
+			title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+			content: "There's no image",
+			placement:'bottom'
+		});
+		// Clear event
+		$('.image-preview-clear').click(function(){
+			$('.image-preview').attr("data-content","").popover('hide');
+			$('.image-preview-filename').val("");
+			$('.image-preview-clear').hide();
+			$('.image-preview-input input:file').val("");
+			$(".image-preview-input-title").text("Browse"); 
+		}); 
+		// Create the preview image
+		$(".image-preview-input input:file").change(function (){     
+			var img = $('<img/>', {
+				id: 'dynamic',
+				width:250,
+				height:200
+			});      
+			var file = this.files[0];
+			var reader = new FileReader();
+			// Set preview image into the popover data-content
+			reader.onload = function (e) {
+				$(".image-preview-input-title").text("Change");
+				$(".image-preview-clear").show();
+				$(".image-preview-filename").val(file.name);            
+				img.attr('src', e.target.result);
+				$(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+			}        
+			reader.readAsDataURL(file);
+		});  
+	});
+	</script>
 </body>
 </html>

@@ -24,6 +24,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<style>
 			.table-remove:hover {
 				color: #f00;
+				text-decoration: underline;
 				cursor: pointer;
 			}
 	</style>

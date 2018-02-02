@@ -27,6 +27,7 @@
 			<th>Middle Name</th>
 			<th>Passcode</th>
 			<th style=\"font-size: 0px\"></th>
+			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
 		</tr>
 		</thead>
@@ -47,6 +48,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
@@ -68,6 +70,7 @@
 			<th>Middle Name</th>
 			<th>Passcode</th>
 			<th style=\"font-size: 0px\"></th>
+			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
 		</tr>
 		</thead>
@@ -88,6 +91,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
@@ -109,6 +113,7 @@
 			<th>Middle Name</th>
 			<th>Passcode</th>
 			<th style=\"font-size: 0px\"></th>
+			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
 		</tr>
 		</thead>
@@ -129,6 +134,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
@@ -150,6 +156,7 @@
 			<th>Middle Name</th>
 			<th>Passcode</th>
 			<th style=\"font-size: 0px\"></th>
+			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
 		</tr>
 		</thead>
@@ -170,6 +177,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
@@ -192,6 +200,7 @@
 			<th>Middle Name</th>
 			<th>Passcode</th>
 			<th style="font-size: 0px"></th>
+			<th style="font-size: 0px"></th>
 			<th style="font-size: 0px">Year Started</th>
 		</tr>
 		</thead>
@@ -212,6 +221,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
