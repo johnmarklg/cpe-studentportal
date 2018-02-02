@@ -4,7 +4,8 @@
 			focusTarget: 'div'
 		});
 		
-		$(document).ready(function(){
+		/*$(document).ready(function(){*/
+		$('#tabAll').click(function(){
 			$('#tabAll').addClass('active');  
 			$('.tab-pane').each(function(i,t){
 				$('#myTabs li').removeClass('active'); 
