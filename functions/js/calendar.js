@@ -29,7 +29,7 @@
 			var $enddate = $('#endDate').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
-			alert($eventData);
+			//alert($eventData);
 			
 			$.ajax({
 				type: "POST",

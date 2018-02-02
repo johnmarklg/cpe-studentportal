@@ -40,6 +40,7 @@
 			+ '","ElemGraduate":"' + $('#elemgrad').text() + '","Secondary":"' + $('#secondary').text() + '","SecAddress":"' + $('#secaddress').text() 
 			+ '","SecGraduate":"' + $('#secgrad').text() + '"}]';
 			//alert($studentData);
+			//alert(JSON.stringify(tableGrades));
 			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
