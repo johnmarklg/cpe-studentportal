@@ -142,37 +142,11 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				</div>
 				
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 							<?php	
 									require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
 									echo showANE();
 							?>
-					</div>
-					<div class="col-lg-6">
-						<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="exTab2">	
-								<ul class="nav nav-pills nav-justified">
-									<li class="active">
-									<a  href="#1" data-toggle="tab"><i class="fa fa-fw fa-bolt"></i> COE SC</a>
-									</li>
-									<li><a href="#2" data-toggle="tab"><i class="fa fa-fw fa-cube"></i> MMSU USC</a>
-									</li>
-									<li><a href="#3" data-toggle="tab"><i class="fa fa-fw fa-university"></i> MMSU Official</a>
-									</li>
-								</ul>
-							</div>
-							<div class="panel-body tab-content ">
-								<div class="tab-pane active" id="1">
-									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/MMSUCOESC?ref_src=twsrc%5Etfw">Tweets by MMSUCOESC</a> 
-								</div>
-								<div class="tab-pane" id="2">
-									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/USCMMSU?ref_src=twsrc%5Etfw">Tweets by USCMMSU</a>
-								</div>
-								<div class="tab-pane" id="3">
-									<a class="twitter-timeline" data-height="600" data-theme="dark" href="https://twitter.com/MMSU_official?ref_src=twsrc%5Etfw">Tweets by MMSU_official</a>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -189,8 +163,6 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		  </div>
 		</footer>
 		<!-- /footer -->
-		
-		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		
     </div>
     <!-- /#wrapper -->
