@@ -10,6 +10,7 @@
 			$fifthyear = date('y') - 5;
 		}
 		
+		
 		//ADD ENTRY
 		echo '<div class="tab-content">';
 		//5TH YEAR
@@ -178,22 +179,23 @@
 		//1ST YEAR
 		echo '<div class="active tab-pane" id="1">';
 		$firstyear = $fifthyear + 4;
-		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
-		<div class=\"panel-heading\">First Year (= ". $firstyear . ")</div><div class=\"panel-body\"><div class=\"table-responsive\">
-		<table id=\"tablefifth\" class=\"table\">
+		
+		echo '<div class="row"><div class="col-lg-12"><div class="panel panel-default">
+		<div class="panel-heading">First Year (= '. $firstyear . ')</div><div class="panel-body"><div class="table-responsive">
+		<table id="tablefifth" class="table">
 		<thead>
 		<tr>
-			<th style=\"font-size: 0px\">Old Student Number</th>
+			<th style="font-size: 0px">Old Student Number</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
 			<th>Middle Name</th>
 			<th>Passcode</th>
-			<th style=\"font-size: 0px\"></th>
-			<th style=\"font-size: 0px\">Year Started</th>
+			<th style="font-size: 0px"></th>
+			<th style="font-size: 0px">Year Started</th>
 		</tr>
 		</thead>
-		<tbody class=\"list\">";
+		<tbody class="list">';
 
 		$conn = getDB('cpe-studentportal');
 		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted >= :firstyear  ORDER BY surname");
