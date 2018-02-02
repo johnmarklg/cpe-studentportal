@@ -29,3 +29,4 @@
 	
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
+	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
