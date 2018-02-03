@@ -70,6 +70,11 @@
 		});
 
 		$(document).ready(function() {
+				$('li', '#tabs').filter(function() {
+					return !! $(this).find('a[href="calendar.php"]').length;
+				  })
+				  .addClass('active');
+					  
 				$('#calendar').fullCalendar({
 					header: {
 						left: 'prev, next',

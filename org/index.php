@@ -17,33 +17,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<!-- Autosize -->
-	<script src="/assets/js/autosize.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-
-	
+<?php 
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+	get_header();
+?>	
 	<style>
 			#saveAccounting {
 			  position: fixed;
@@ -66,51 +43,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php"><img style="max-width:100%;max-height:100%;" src="/assets/images/cpe-portal-white.png"/></a>
-            </div>
-			<ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ' - ' . $_SESSION["name"][0]?> <!--<b class="caret"></b>--></a>
-					<!--<div class="dropdown-backdrop"></div>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>-->
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="index.php"><i class="fa fa-fw fa-money"></i> Invoice and Accounting</a>
-                    </li>
-					<li>
-                        <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
-                    </li>
-					<li>
-                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
+        <?php org_nav(); ?>
+		
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -120,7 +54,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                     <div class="col-lg-12">
 					   <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
+                                <i class="fa fa-terminal"></i>  <a href="/org/index.php">Student Portal</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-money"></i> Accounting
@@ -138,13 +72,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							Add Invoice
 							</div>
 							<div class="panel-body">
-								<div class="alert alert-danger" role="alert">
-								  <i class="fa fa-exclamation-triangle"></i> Please refrain from using numbers and symbols (e.g. !@#$%^&*()-=+/) to avoid database errors.
+								<div class="alert alert-info" role="alert">
+								  <i class="fa fa-info-circle"></i> Input <strong>0</strong> as amount charged if the transaction charges will vary.
 								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								</div>
 								<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon1">Invoice Name</span>
+								  <span class="input-group-addon" id="basic-addon1">Transaction Name</span>
 								  <input id="name" type="text" class="form-control" value="" aria-describedby="basic-addon1">
+								</div>
+								<br/>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon2">Amount to be Charged</span>
+								  <input id="amount" type="text" class="form-control" value="" aria-describedby="basic-addon2">
 								</div>
 								<br/>
 								<form method="post">
@@ -221,125 +160,15 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		</footer>
 		<!-- /footer -->
 		
-		<form>
+		<!--<form>
 			<button type="button" id="saveAccounting" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button>
-		</form>	
+		</form>	-->
 		
     </div>
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
+	<script src="/functions/js/accounting.js"></script>
 	
-	<script>
-		$('#tabAll').click(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-		});
-	</script>
-	<script>
-		$('.invoice-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $colname = $row.find(".name").text(); // Find the text
-			var $invoiceinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
-			//alert($invoiceinfo);
-			$.ajax({
-				type: "POST",
-					url: "/php/removePayment.php",
-					data: {infodata: $invoiceinfo},
-					cache: false,
-					success: function(result){
-						//alert("Successfully removed student entry!");
-						location.reload(); 			
-					}
-				});
-			//$(this).parents('tr').detach();			
-		} else {}
-		});
-	</script>
-
-	<script>
-		$('#buttonSave').click(function() {
-			var $name = $('#name').val();
-			$colname = $name.replace(/\s/g,'');
-			$colname = $colname.toLowerCase();
-			//var $amount = $('#amount').val();
-			var $payinfo = '[{"Name":"' + $name + '","columnName":"' + $colname + '"}]';
-			//alert($payinfo);
-			$.ajax({
-				type: "POST",
-					url: "/php/addPayment.php",
-					data: {infodata: $payinfo},
-					cache: false,
-					success: function(result){
-						//alert("Successfully updated personal details! Please relogin.");
-						location.reload();
-						//window.location.replace('logout.php');
-					}
-				});
-				return false;
-		});
-	</script>
-		
-	<script>
-	
-		$("#saveAccounting").click(function(){
-			/*$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});*/
-			var payTable1 = $('#tablefirst').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable2 = $('#tablesecond').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable3 = $('#tablethird').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable4 = $('#tablefourth').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable5 = $('#tablefifth').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			
-			var finaltable = payTable1.concat(payTable2);
-			finaltable = finaltable.concat(payTable3);
-			finaltable = finaltable.concat(payTable4);
-			finaltable = finaltable.concat(payTable5);
-			(function filter(obj) {
-				$.each(obj, function(key, value){
-					if (value === "" || value === null){
-						var objlocation = finaltable.indexOf(obj);
-						//delete finaltable[objlocation];
-						finaltable.splice(objlocation);
-						//console.log(objlocation);
-						//delete obj[key];
-					} else if (Object.prototype.toString.call(value) === '[object Object]') {
-						filter(value);
-					} else if (Array.isArray(value)) {
-						value.forEach(function (el) { filter(el); });
-					}
-				});
-			})(finaltable);
-			console.log(JSON.stringify(finaltable));
-			$.ajax({
-				type: "POST",
-				url: "/php/savePayments.php",
-				data: {paytable: JSON.stringify(finaltable)},
-				cache: false,
-				success: function(result){
-					//alert(result);
-					location.reload(); 			
-				}
-			});
-		});
-	</script>
 	
 </body>
 

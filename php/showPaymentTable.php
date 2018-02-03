@@ -11,8 +11,9 @@
 	echo '<div class="table-responsive"><table id="myannouncements" class="table">
 	<thead>
 		<tr>
-			<th>Entry ID</th>
-			<th>Invoice Name</th>
+			<th>Transaction ID</th>
+			<th>Transaction Name</th>
+			<th>Amount Charged</th>
 			<th>Date Added</th>
 			<th style="font-size: 0;">Delete</th>
 		</tr>
@@ -23,6 +24,7 @@
 		echo '<tr>
 		<td class="id">' . $row['id'] . '</td>
 		<td class="name">' . $row['name'] . '</td>
+		<td class="amount">' . $row['amount'] . '</td>
 		<td>' . $row['created'] . '</td>
 		<td><span class="invoice-remove"><i class="fa fa-fw fa-minus-circle"></i> Delete</span></td>
 		</tr>';

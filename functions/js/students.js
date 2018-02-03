@@ -28,10 +28,14 @@
 		});
 		
 		$(document).ready(function(){
-			$('.formTextbox').keypress(function(e){
+			/*$('.formTextbox').keypress(function(e){
 			  if(e.keyCode==13)
 			  $('#buttonAdd').click();
-			});
+			});*/
+			$('li', '#tabs').filter(function() {
+				return !! $(this).find('a[href="students.php"]').length;
+			  })
+			  .addClass('active');
 		});
 		
 		$("#buttonAdd").click(function() {

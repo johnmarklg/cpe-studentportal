@@ -67,3 +67,10 @@
 		//alert($userInfo);
 			return false;
 	});
+	
+	$( document ).ready(function() {
+				$('li', '#tabs').filter(function() {
+					return !! $(this).find('a[href="changepass.php"]').length;
+				  })
+				  .addClass('active');
+		});

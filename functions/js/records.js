@@ -4,6 +4,13 @@
 			focusTarget: 'div'
 		});
 		
+		$( document ).ready(function() {
+					$('li', '#tabs').filter(function() {
+						return !! $(this).find('a[href="records.php"]').length;
+					  })
+					  .addClass('active');
+			});
+		
 		/*$(document).ready(function(){*/
 		$('#tabAll').click(function(){
 			$('#tabAll').addClass('active');  

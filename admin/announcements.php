@@ -23,81 +23,40 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		announcement_extra();
 	?>	
 	<style>
-			.post-remove:hover {
-			  color: #f00;
-			  cursor: pointer;
-			}
+		.post-remove:hover {
+		  color: #f00;
+		  cursor: pointer;
+		}
+		.image-preview-input {
+			position: relative;
+			overflow: hidden;
+			margin: 0px;    
+			color: #333;
+			background-color: #fff;
+			border-color: #ccc;    
+		}
+		.image-preview-input input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		.image-preview-input-title {
+			margin-left:2px;
+		}
+	
 	</style>
 </head>
 
 <body>
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php"><img style="max-width:100%;max-height:100%;" src="/assets/images/cpe-portal-white.png"/></a>
-            </div>
-			<ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ' - ' . $_SESSION["name"][0]?> <b class="caret"></b></a>
-					<div class="dropdown-backdrop"></div>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
-                    </li>
-                    <li class="active">
-                        <a href="announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
-                    </li>
-                    <li>
-                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
-                    </li>
-                    <li>
-                        <a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student List</a>
-                    </li>
-                    <li>
-                        <a href="records.php"><i class="fa fa-fw fa-table"></i> Student Records</a>
-                    </li>
-                    <li>
-                        <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> School Calendar</a>
-                    </li>
-					<li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
-                    </li>
-					<li>
-                        <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
-                    </li>
-                    <li>
-                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
-                    </li>
-                    <li>
-                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
+        <?php admin_nav(); ?>
 
         <div id="page-wrapper">
 
@@ -186,89 +145,5 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     <!-- /#wrapper -->
 	<script src="/functions/js/announcements.js"></script>
 	
-	<style>
-		.image-preview-input {
-			position: relative;
-			overflow: hidden;
-			margin: 0px;    
-			color: #333;
-			background-color: #fff;
-			border-color: #ccc;    
-		}
-		.image-preview-input input[type=file] {
-			position: absolute;
-			top: 0;
-			right: 0;
-			margin: 0;
-			padding: 0;
-			font-size: 20px;
-			cursor: pointer;
-			opacity: 0;
-			filter: alpha(opacity=0);
-		}
-		.image-preview-input-title {
-			margin-left:2px;
-		}
-	</style>
-	<script>
-	$(document).on('click', '#close-preview', function(){ 
-		$('.image-preview').popover('hide');
-		// Hover befor close the preview
-		$('.image-preview').hover(
-			function () {
-			   $('.image-preview').popover('show');
-			}, 
-			 function () {
-			   $('.image-preview').popover('hide');
-			}
-		);    
-	});
-
-	$(function() {
-		// Create the close button
-		var closebtn = $('<button/>', {
-			type:"button",
-			text: 'x',
-			id: 'close-preview',
-			style: 'font-size: initial;',
-		});
-		closebtn.attr("class","close pull-right");
-		// Set the popover default content
-		$('.image-preview').popover({
-			trigger:'manual',
-			html:true,
-			title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
-			content: "There's no image",
-			placement:'bottom'
-		});
-		// Clear event
-		$('.image-preview-clear').click(function(){
-			$('.image-preview').attr("data-content","").popover('hide');
-			$('.image-preview-filename').val("");
-			$('.image-preview-clear').hide();
-			$('.image-preview-input input:file').val("");
-			$(".image-preview-input-title").text("Browse"); 
-		}); 
-		// Create the preview image
-		$(".image-preview-input input:file").change(function (){     
-			var img = $('<img/>', {
-				id: 'dynamic',
-				width:250,
-				height:200
-			});      
-			var file = this.files[0];
-			var reader = new FileReader();
-			// Set preview image into the popover data-content
-			reader.onload = function (e) {
-				$(".image-preview-input-title").text("Change");
-				$(".image-preview-clear").show();
-				$(".image-preview-filename").val(file.name);            
-				img.attr('src', e.target.result);
-				$(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
-			}        
-			reader.readAsDataURL(file);
-		});  
-	});
-	</script>
 </body>
 </html>

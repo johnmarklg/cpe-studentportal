@@ -17,104 +17,18 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-	<!--Popper and Moment js -->
-	<script src="/assets/js/popper.min.js"></script>
-	<script src="/assets/js/moment.min.js"></script>
-     <!-- Bootstrap Core CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
-    <!-- jQuery -->
-    <script src="/assets/bootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- PACE -->
-	<script src="/assets/pace/pace.min.js"></script>
-	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">
-	<!-- Full Calendar CSS -->
-	<script src="/assets/fullcalendar/js/fullcalendar.min.js"></script>
-	<link href="/assets/fullcalendar/css/fullcalendar.css" rel="stylesheet" />
-
+<?php 
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
+	get_header();
+	calendar_extra();
+?>	
 </head>
 
 <body>
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php"><img style="max-width:100%;max-height:100%;" src="/assets/images/cpe-portal-white.png"/></a>
-            </div>
-			<ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ', ' . $_SESSION["name"][2] . ' ' . $_SESSION["name"][3]?> <b class="caret"></b></a>
-					<div class="dropdown-backdrop"></div>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
-                    </li>
-                    <li class="active">
-                        <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
-                    </li>
-					<li>
-                        <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Prospectus</a>
-                    </li>
-                    <li>
-                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
-                    </li>
-                    <li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
-                    </li>
-					<li>
-                        <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
-                    </li>
-                    <li>
-                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
-                    </li>
-					<li>
-                        <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
-                    </li>
-                    <li>
-                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
+        <?php user_nav(); ?>
 
         <div id="page-wrapper">
 
@@ -139,7 +53,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  The quick brown fox jumps over the lazy dog.
+						  <i class="fa fa-fw fa-info-circle"></i> This is the academic calendar where all events and holidays for the respective school year will be listed.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -158,25 +72,11 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-6">
-						<div class="panel panel-info">
-							<div class="panel-heading">
-								Holidays
-							</div>
-							<div class="panel-body">
-								list of holidays
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								Events
-							</div>
-							<div class="panel-body">
-								list of events
-							</div>
-						</div>
+					<div class="col-lg-12">
+						<?php
+						require($_SERVER["DOCUMENT_ROOT"] . '/php/showCalendar.php');
+						echo showUserCalendar();
+						?>
 					</div>
 				</div>
 			</div>
@@ -186,17 +86,18 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 id="eventName" style="text-transform: uppercase" align="center"></h4>
+							<h4 id="eventTitle" style="text-transform: uppercase" align="center"></h4>
 						</div>
 						<div class="container">
-							<p><span style="font-weight: 600">Start   :   </span> <span id="startTime"></span></p>
-							<p><span style="font-weight: 600">End   :   </span> <span id="endTime"></span></p>
-							<p><span style="font-weight: 600">Description  :   </span> <span id="eventInfo"></span></p>
+							<p><span style="font-weight: 600">Start   :   </span> <span id="beginTime"></span></p>
+							<p><span style="font-weight: 600">End   :   </span> <span id="closeTime"></span></p>
+							<p><span style="font-weight: 600">Description  :   </span> <span id="eventDesc"></span></p>
+							<p><span style="font-weight: 600">Location  :   </span> <span id="eventLocat"></span></p>
 						</div>
 					</div>
 				</div>
 			</div>
-
+			
         </div>
         <!-- /#page-wrapper -->
 		<footer class="sticky-footer">
@@ -209,35 +110,8 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		</footer>
 		<!-- /footer -->
 		
-		<script>
-			$(document).ready(function() {
-				$('#calendar').fullCalendar({
-					header: {
-						left: 'prev, next, today',
-						center: 'title',
-						right: 'month,agendaWeek,agendaDay,listWeek'
-					},
-					navLinks: true, // can click day/week names to navigate views
-					eventLimit: true, // allow "more" link when too many events
-
-					events: "/functions/events.php",
-
-					eventRender: function (event, element) {
-						element.attr('href', 'javascript:void(0);');
-						element.click(function() {
-							$("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-							$("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-							$("#eventInfo").html(event.description);
-							$("#eventName").html(event.title);
-							$("#eventLoc").html(event.location);
-							$('#modal1').modal('show');
-						});
-					}
-
-			});
-			});
-		</script>
-		
+		<script src="/functions/js/calendar.min.js"></script>
+	
     </div>
     <!-- /#wrapper -->
 </body>

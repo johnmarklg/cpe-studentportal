@@ -5,7 +5,13 @@
 				$(this).addClass('active');  
 			});
 		});
-	
+		
+		$( document ).ready(function() {
+					$('li', '#tabs').filter(function() {
+						return !! $(this).find('a[href="timetables.php"]').length;
+					  })
+					  .addClass('active');
+		});
 	$("#buttonAdd").click(function() {
 			var $section = $("#section").val();
 			var $code = $("#code").val();

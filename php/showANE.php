@@ -29,7 +29,7 @@
 								echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
 								$row['poster'] . '</strong> @<i>' . $row['datetime'] . ':</i><hr/>' . $row['post'];
 								if($row['file'] <> '') {
-									echo '<br/><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '">';
+									echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
 								}									
 								echo '</div></div>';
 								}

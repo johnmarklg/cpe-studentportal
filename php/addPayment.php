@@ -8,14 +8,14 @@
 			//$columnName = $value['Name'] . ' - ' . $value['Amount'];
 			$conn = getDB('cpe-studentportal');
 			
-			$stmt = $conn->prepare("INSERT INTO `payments` (name, created) VALUES (:name, now())");
+			$stmt = $conn->prepare("INSERT INTO `payments` (name, amount, created) VALUES (:name, :amount, now())");
 			$stmt -> bindParam(':name', $value['Name']);
-			//$stmt -> bindParam(':amount', $value['Amount']);
+			$stmt -> bindParam(':amount', $value['Amount']);
 			//$stmt -> bindParam(':columnname', $value['columnName']);
 			$stmt->execute();	
-			$stmt = $conn->prepare("ALTER TABLE `invoices` 
+			/*$stmt = $conn->prepare("ALTER TABLE `invoices` 
 			ADD `$colName` float DEFAULT null");
-			$stmt->execute();
+			$stmt->execute();*/
 			$conn = null;	
 	}
 	

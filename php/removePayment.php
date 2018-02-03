@@ -11,9 +11,9 @@
 			$stmt = $conn->prepare("DELETE FROM payments where id=:id");
 			$stmt -> bindParam(':id', $value['id']);
 			$stmt->execute();	
-			$stmt = $conn->prepare("ALTER TABLE `invoices`
+			/*$stmt = $conn->prepare("ALTER TABLE `invoices`
 			DROP COLUMN `$colName`");
-			$stmt->execute();
+			$stmt->execute();*/
 			$conn = null;	
 	}
 	

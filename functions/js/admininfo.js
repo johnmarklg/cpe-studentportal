@@ -1,5 +1,11 @@
+		$('li', '#tabs').filter(function() {
+			return !! $(this).find('a[href="index.php"]').length;
+		  })
+		  .addClass('active');
+					  
+					  
 		autosize($('textarea'));
-
+		
 		$('#buttonSave').click(function() {
 			var $username = $('#username').val();
 			var $password = $('#password').val();
