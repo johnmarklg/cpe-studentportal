@@ -63,16 +63,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                 <li class="dropdown">
                     <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1] . ' - ' . $_SESSION["name"][0]?> <!--<b class="caret"></b>--></a>
-					<!--<div class="dropdown-backdrop"></div>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>-->
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
@@ -104,7 +94,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-university"></i> Mission/Vision/Goals
+                                <i class="fa fa-lock"></i> Change Password
                             </li>
                         </ol>
 						<div class="alert alert-info" role="alert">
@@ -121,9 +111,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								<i class="fa fa-fw fa-unlock-alt"></i> Change Password
 							</div>
 							<div class="panel-body">
+								<input id="orgid" type="hidden" class="form-control" value="<?php echo ($_SESSION['name'][2]);?>" autocomplete="off" aria-describedby="basic-addon1">
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1">Current Password</span>
 								  <input id="oldpass" type="password" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon1">
+								  <input id="oldpasschk" type="hidden" class="form-control" value="<?php echo ($_SESSION['name'][3]);?>" autocomplete="off" aria-describedby="basic-addon1">
 								</div>
 								<hr/>
 								<div class="input-group">
@@ -137,7 +129,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								</div>
 								<br/>
 								<form method="post">
-									<button type="button" id="buttonSave" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-save"></i> Save Changes</button>
+									<button type="button" id="buttonChangePassOrg" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-save"></i> Save Changes</button>
 								</form>
 							</div>
 						</div>
@@ -158,43 +150,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		</footer>
 		<!-- /footer -->
 		
-		<script>
-			$('#buttonSave').click(function() {
-				var $id = '<?php echo ($_SESSION['name'][2]);?>';
-				var $verifyoldpass = '<?php echo ($_SESSION['name'][3]);?>';
-				var $oldpass = $('#oldpass').val();
-				var $newpass = $('#newpass').val();
-				var $checkpass = $('#checkpass').val();
-				if($oldpass==""||$newpass==""||$checkpass=="") {
-					alert("Please fill all the necessary fields.");
-				} else {
-					if($newpass != $checkpass) {
-						alert("Your new password doesn't match.");
-					} else {
-						if($oldpass != $verifyoldpass) {
-							alert("Password is incorrect. Try again");
-						} else {
-						var $userInfo = '[{"id":"' + $id + '","oldpass":"' + $oldpass + '","newpass":"' + $newpass + '"}]';
-						//alert($userInfo);
-						$.ajax({
-						type: "POST",
-							url: "/php/changePassOrg.php",
-							data: {infodata: $userInfo},
-							cache: false,
-							success: function(result){
-								alert("Successfully updated password! Please relogin.");
-								window.location.replace('/org/logout.php');
-								//location.reload();
-							}
-						});
-						}
-					}
-				}
-				//alert($userInfo);
-					return false;
-			});
-		</script>
-		
+		<script src="/functions/js/changepass.js"></script>
+	
     </div>
     <!-- /#wrapper -->
 	

@@ -13,8 +13,8 @@
 			//$stmt -> bindParam(':amount', $value['Amount']);
 			//$stmt -> bindParam(':columnname', $value['columnName']);
 			$stmt->execute();	
-			$stmt = $conn->prepare("ALTER TABLE students 
-			ADD `$colName` float DEFAULT 0");
+			$stmt = $conn->prepare("ALTER TABLE `invoices` 
+			ADD `$colName` float DEFAULT null");
 			$stmt->execute();
 			$conn = null;	
 	}

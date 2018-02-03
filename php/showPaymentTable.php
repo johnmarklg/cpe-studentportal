@@ -14,7 +14,7 @@
 			<th>Entry ID</th>
 			<th>Invoice Name</th>
 			<th>Date Added</th>
-			<th hidden>Delete</th>
+			<th style="font-size: 0;">Delete</th>
 		</tr>
 	</thead>
 	<tbody>';
@@ -23,7 +23,7 @@
 		echo '<tr>
 		<td class="id">' . $row['id'] . '</td>
 		<td class="name">' . $row['name'] . '</td>
-		<td class="name">' . $row['created'] . '</td>
+		<td>' . $row['created'] . '</td>
 		<td><span class="invoice-remove"><i class="fa fa-fw fa-minus-circle"></i> Delete</span></td>
 		</tr>';
 	}

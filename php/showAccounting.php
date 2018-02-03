@@ -20,40 +20,14 @@
 		
 		$tableheader = false;
 		$conn = getDB('cpe-studentportal');	
-		$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT * FROM students)");
+		$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT students.surname, students.firstname, students.middlename, invoices.* 
+			FROM invoices
+			LEFT JOIN students ON students.studnum = invoices.studnum
+			WHERE students.studnum = invoices.studnum)");
 		$stmt->execute();
 		$stmt = $conn->prepare("ALTER TABLE temptable
-			DROP COLUMN passcode,
-			DROP COLUMN yearstarted,
-			DROP COLUMN Gender,
-			DROP COLUMN Status,
-			DROP COLUMN Citizenship,
-			DROP COLUMN DateOfBirth,
-			DROP COLUMN PlaceOfBirth,
-			DROP COLUMN ContactNo,
-			DROP COLUMN Address,
-			DROP COLUMN CurriculumID,
-			DROP COLUMN FatherOccupation,
-			DROP COLUMN Father,
-			DROP COLUMN Mother,
-			DROP COLUMN MotherOccupation,
-			DROP COLUMN Spouse,
-			DROP COLUMN SpouseOccupation,
-			DROP COLUMN HouseAddress,
-			DROP COLUMN Employer,
-			DROP COLUMN BusinessAddress,
-			DROP COLUMN TelNo,
-			DROP COLUMN Elementary,
-			DROP COLUMN ElemAddress,
-			DROP COLUMN ElemGraduate,
-			DROP COLUMN SecGraduate,
-			DROP COLUMN Secondary,
-			DROP COLUMN SecAddress,
-			DROP COLUMN College,
-			DROP COLUMN ColAddress,
-			DROP COLUMN ColGraduate,
-			DROP COLUMN Transferee,
-			DROP COLUMN Transfered;");
+			DROP COLUMN id, 
+			DROP COLUMN timestamp;");
 		$stmt->execute();
 		
 		echo '<div class="tab-content">';

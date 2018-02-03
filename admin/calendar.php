@@ -81,7 +81,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                         <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
                     </li>
 					<li>
-                        <a href="mvgo.php"><i class="fa fa-fw fa-university"></i> Mission/Vision/Goals</a>
+                        <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
                     </li>
                     <li>
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
@@ -182,12 +182,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 id="eventName" style="text-transform: uppercase" align="center"></h4>
+							<h4 id="eventTitle" style="text-transform: uppercase" align="center"></h4>
 						</div>
 						<div class="container">
-							<p><span style="font-weight: 600">Start   :   </span> <span id="startTime"></span></p>
-							<p><span style="font-weight: 600">End   :   </span> <span id="endTime"></span></p>
-							<p><span style="font-weight: 600">Description  :   </span> <span id="eventInfo"></span></p>
+							<p><span style="font-weight: 600">Start   :   </span> <span id="beginTime"></span></p>
+							<p><span style="font-weight: 600">End   :   </span> <span id="closeTime"></span></p>
+							<p><span style="font-weight: 600">Description  :   </span> <span id="eventDesc"></span></p>
+							<p><span style="font-weight: 600">Location  :   </span> <span id="eventLocat"></span></p>
 						</div>
 					</div>
 				</div>

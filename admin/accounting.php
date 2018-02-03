@@ -287,9 +287,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var finaltable = finaltable.concat(payTable3);
 			var finaltable = finaltable.concat(payTable4);
 			var finaltable = finaltable.concat(payTable5);
-			
 			//timeTable5 = JSON.stringify(timeTable5);
-			clean(finaltable);
 			alert(JSON.stringify(finaltable));
 			
 			$.ajax({
@@ -303,14 +301,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				}
 			});
 		});
-		
-		function clean(obj) {
-		  for (var propName in obj) { 
-			if (obj[propName] === null || obj[propName] === undefined || obj[propName] === "0") {
-			  delete obj[propName];
-			}
-		  }
-		}
 	</script>
 </body>
 

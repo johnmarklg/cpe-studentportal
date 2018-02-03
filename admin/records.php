@@ -93,7 +93,7 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
                         <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
                     </li>
 					<li>
-                        <a href="mvgo.php"><i class="fa fa-fw fa-university"></i> Mission/Vision/Goals</a>
+                        <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
                     </li>
                     <li>
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>

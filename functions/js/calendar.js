@@ -84,11 +84,11 @@
 					eventRender: function (event, element) {
 						element.attr('href', 'javascript:void(0);');
 						element.click(function() {
-							$("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-							$("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-							$("#eventInfo").html(event.description);
-							$("#eventName").html(event.title);
-							$("#eventLoc").html(event.location);
+							$("#beginTime").html(moment(event.start).format('MMM Do h:mm A'));
+							$("#closeTime").html(moment(event.end).format('MMM Do h:mm A'));
+							$("#eventDesc").html(event.description);
+							$("#eventTitle").html(event.title);
+							$("#eventLocat").html(event.location);
 							$('#modal1').modal('show');
 						});
 					}

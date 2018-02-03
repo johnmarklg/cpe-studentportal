@@ -245,7 +245,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			var $id = $row.find(".id").text(); // Find the text
 			var $colname = $row.find(".name").text(); // Find the text
 			var $invoiceinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
-			alert($invoiceinfo);
+			//alert($invoiceinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removePayment.php",
@@ -268,7 +268,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			$colname = $colname.toLowerCase();
 			//var $amount = $('#amount').val();
 			var $payinfo = '[{"Name":"' + $name + '","columnName":"' + $colname + '"}]';
-			alert($payinfo);
+			//alert($payinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/addPayment.php",
@@ -283,36 +283,51 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				return false;
 		});
 	</script>
+		
 	<script>
+	
 		$("#saveAccounting").click(function(){
-			$('#tabAll').addClass('active');  
+			/*$('#tabAll').addClass('active');  
 			$('.tab-pane').each(function(i,t){
 				$('#myTabs li').removeClass('active'); 
 				$(this).addClass('active');  
-			});
+			});*/
 			var payTable1 = $('#tablefirst').tableToJSON({
-				ignoreColumns: [1,2,3]
+				ignoreColumns: [0,1,2]
 			});
 			var payTable2 = $('#tablesecond').tableToJSON({
-				ignoreColumns: [1,2,3]
+				ignoreColumns: [0,1,2]
 			});
 			var payTable3 = $('#tablethird').tableToJSON({
-				ignoreColumns: [1,2,3]
+				ignoreColumns: [0,1,2]
 			});
 			var payTable4 = $('#tablefourth').tableToJSON({
-				ignoreColumns: [1,2,3]
+				ignoreColumns: [0,1,2]
 			});
 			var payTable5 = $('#tablefifth').tableToJSON({
-				ignoreColumns: [1,2,3]
+				ignoreColumns: [0,1,2]
 			});
 			
 			var finaltable = payTable1.concat(payTable2);
-			var finaltable = finaltable.concat(payTable3);
-			var finaltable = finaltable.concat(payTable4);
-			var finaltable = finaltable.concat(payTable5);
-			//timeTable5 = JSON.stringify(timeTable5);
-			alert(JSON.stringify(finaltable));
-			
+			finaltable = finaltable.concat(payTable3);
+			finaltable = finaltable.concat(payTable4);
+			finaltable = finaltable.concat(payTable5);
+			(function filter(obj) {
+				$.each(obj, function(key, value){
+					if (value === "" || value === null){
+						var objlocation = finaltable.indexOf(obj);
+						//delete finaltable[objlocation];
+						finaltable.splice(objlocation);
+						//console.log(objlocation);
+						//delete obj[key];
+					} else if (Object.prototype.toString.call(value) === '[object Object]') {
+						filter(value);
+					} else if (Array.isArray(value)) {
+						value.forEach(function (el) { filter(el); });
+					}
+				});
+			})(finaltable);
+			console.log(JSON.stringify(finaltable));
 			$.ajax({
 				type: "POST",
 				url: "/php/savePayments.php",
@@ -325,6 +340,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			});
 		});
 	</script>
+	
 </body>
 
 </html>

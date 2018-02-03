@@ -15,7 +15,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 			
 	foreach ($jsonpaytable as $key => $value) {	
 		foreach ($arraycol as $col) {
-			$stmt = $conn->prepare("UPDATE students SET `$col`=:value WHERE studnum=:studnum");
+			$stmt = $conn->prepare("UPDATE `invoices` SET `$col`=:value WHERE studnum=:studnum");
 			$stmt -> bindParam(':value', $value[$col]);
 			$stmt -> bindParam(':studnum', $value['studnum']);
 			$stmt->execute();				
