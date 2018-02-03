@@ -40,7 +40,11 @@
 			$( '.swipebox' ).swipebox();
 			$('li', '#tabs').filter(function() {
 						return !! $(this).find('a[href="announcements.php"]').length;
-					  })
+			  })
+			.addClass('active');
+			$('li', '#tabs').filter(function() {
+						return !! $(this).find('a[href="/org/announcements.php"]').length;
+			  })
 			.addClass('active');
       });
 	  

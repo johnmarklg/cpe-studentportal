@@ -6,7 +6,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
   header("location: login.php");
   exit;
 } else {
-if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||($_SESSION['name'][0]=='Administrator (Elevated)')) {
+	if(($_SESSION['name'][0]<>'Administrator') && ($_SESSION['name'][0]<>'Administrator (Elevated)')) {
 		header("location: logout.php");
 		exit;
 	}
@@ -20,15 +20,14 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
-	announcement_extra();
-?>	
+?>
 </head>
 
 <body>
 
     <div id="wrapper">
 
-        <?php user_nav(); ?>
+        <?php admin_nav(); ?>
 
         <div id="page-wrapper">
 
@@ -42,7 +41,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-home"></i> Home
+                                <i class="fa fa-user"></i> Update Profile
                             </li>
                         </ol>
 						 
@@ -53,20 +52,16 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  This is the home page. You can view the latest news and updates here.
+						  Initial page. You can adjust settings and edit your account information here.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-lg-12">
-							<?php	
-									require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
-									echo showANE();
-							?>
-					</div>
-				</div>
+				<?php	
+					require($_SERVER["DOCUMENT_ROOT"] . '/php/showInfo.php');
+					echo showInfo();
+				?>
 			</div>
             <!-- /.container-fluid -->
 
@@ -76,25 +71,15 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
-			  <small id="userid" hidden><?php echo ($_SESSION['name'][4]);?></small>
+			  <small id="userid" hidden><?php echo ($_SESSION['name'][2]);?></small>
 			</div>
 		  </div>
 		</footer>
 		<!-- /footer -->
 		
-		<script>
-			$( document ).ready(function() {
-					/* Basic Gallery */
-					$( '.swipebox' ).swipebox();	
-					$('li', '#tabs').filter(function() {
-					return !! $(this).find('a[href="index.php"]').length;
-				  })
-				  .addClass('active');
-			});
-		</script>
-		
     </div>
     <!-- /#wrapper -->
+	<script src="/functions/js/admininfo.js"></script>
 </body>
 
 </html>

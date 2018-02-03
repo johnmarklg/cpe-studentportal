@@ -60,22 +60,6 @@ if($_POST){
 					<img src="/assets/images/login-header.png" style="max-width:100%;max-height:100%;" />
 					</div>
 					<div class="panel-body">
-						<ol class="breadcrumb">
-						  <li class="active">Student Portal</li>
-						  <li class="active">Log-In</li>
-						  <li><a href="#"><a href="#" onclick="showhidenote();">User Guidelines</a></a></li>
-						</ol>
-						<div id="login-note" style="display: none;">
-						<ul>
-                            <li>
-                                If you don't have a password yet, you may claim it at the Computer Engineering Department Office.
-                            </li>
-                            <li>
-                                To protect your privacy, logout and quit your web browser when you finish accessing the services that require authentication.
-                                <div style="height: 20px;">&nbsp;</div>
-                            </li>
-                        </ul>
-						</div>
 						<?php echo $errorMsgLogin; ?>
 						<form action="" method="POST" name="login">
 								<div class="input-group">
@@ -98,18 +82,5 @@ if($_POST){
 			</div>
 		</div>
 	</div>
-	<script>
-        function showhidenote(){
-            var dNote = document.getElementById("login-note");
-            if (dNote.style.display == "none") {
-                dNote.style.display = "block";
-            } else {
-                dNote.style.display = "none";
-            }
-        }
-        if (window.frameElement) {
-            window.top.location.reload();
-        }
-    </script>
   </body>
 </html>

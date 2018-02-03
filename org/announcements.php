@@ -6,7 +6,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
   header("location: login.php");
   exit;
 } else {
-	if(($_SESSION['name'][0]<>'Administrator') && ($_SESSION['name'][0]<>'Administrator (Elevated)')) {
+	if($_SESSION['name'][0]<>'Limited') {
 		header("location: logout.php");
 		exit;
 	}
@@ -56,7 +56,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <body>
     <div id="wrapper">
 
-        <?php admin_nav(); ?>
+        <?php org_nav(); ?>
 
         <div id="page-wrapper">
 
@@ -70,7 +70,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-th"></i> Bulletin Management
+                                <i class="fa fa-bullhorn"></i> Announcements
                             </li>
                         </ol>
 						<div class="alert alert-success" role="alert">
@@ -85,7 +85,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  This is where you can <i>manage</i> the contents of the <strong>Digital Bulletin</strong>.
+						  Update students on recent events and important announcements.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -93,47 +93,39 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="myTabs">	
-								<ul class="nav nav-pills nav-justified">
-									<li class="active">
-									<a  href="#1" data-toggle="tab"><i class="fa fa-paperclip"></i> News and Information</a>
-									</li>
-									<li><a href="#2" data-toggle="tab"><i class="fa fa-film"></i> Multimedia</a>
-									</li>
-									<li><a href="#3" data-toggle="tab"><i class="fa fa-group"></i> Faculty and Officers</a>
-									</li>
-								</ul>
+						<form action="/php/postAnnouncement.php" method="post" enctype="multipart/form-data">
+							<input type="text" id="postTitle" name="postTitle" class="form-control" placeholder="Post Title"></input><br/>
+							<textarea type="text" id="postText"  name="postText" name="postText" class="form-control" placeholder="Post announcements..." cols="40" rows="3"></textarea>	
+							<br/>
+							<div class="input-group btn-block" role="group" aria-label="...">
+								<div class="input-group image-preview">
+									<span class="input-group-btn block">
+										<!-- image-preview-clear button -->
+										<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+											<span><i class="fa fa-times"></i></span> Clear
+										</button>
+										<!-- image-preview-input -->
+										<div class="btn btn-default image-preview-input">
+											<span><i class="fa fa-upload"></i></span>
+											<span class="image-preview-input-title">Add Image...</span>
+											<input type="file" class="btn btn-info" onchange="readURL(this);" name="fileToUpload" id="fileToUpload">
+										</div>
+									</span>
+									<input type="text" id="fileURL" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+								</div><!-- /input-group image-preview [TO HERE]--> 
+								<br/>
+								<input type="submit" class="btn btn-success btn-block" value="Post Announcement" name="submit">
 							</div>
-							<div class="tab-content">
-								<div class="active tab-pane" id="1">
-									<div class="panel-body">
-										This is where stuff like news and announcements will be placed.
-									</div>
-									<div class="panel-footer">
-										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update News and Information</button>
-									</div>
-								</div>
-								<div class="tab-pane" id="2">
-									<div class="panel-body">
-										This is where you can manage the gallery and video playback.
-									</div>
-									<div class="panel-footer">
-										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update Multimedia</button>
-									</div>
-								</div>
-								<div class="tab-pane" id="3">
-									<div class="panel-body">
-										This is where you can edit the photos and names of the current officers and faculty members.
-									</div>
-									<div class="panel-footer">
-										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update Faculty and Officers</button>
-									</div>
-								</div>
-							</div>
-						</div>
+							<input type="hidden" id="posterID" value="<?php echo $_SESSION['name'][2] ?>" name="posterID" class="form-control"></input>
+							<input type="hidden" id="poster" value="<?php echo $_SESSION['name'][1] ?>" name="poster" class="form-control"></input>
+						</form>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
+				<hr/>
+				<?php	
+					require($_SERVER["DOCUMENT_ROOT"] . '/php/showAnnouncements.php');
+					echo showAnnouncements();
+				?>
             </div>
             <!-- /.container-fluid -->
 
@@ -151,16 +143,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		<!-- /footer -->
     </div>
     <!-- /#wrapper -->
+	<script src="/functions/js/announcements.js"></script>
 	
-	<script>
-	$( document ).ready(function() {
-			/* Basic Gallery */
-			$( '.swipebox' ).swipebox();
-			$('li', '#tabs').filter(function() {
-						return !! $(this).find('a[href="index.php"]').length;
-					  })
-			.addClass('active');
-     });
-	 </script>
 </body>
 </html>

@@ -10,7 +10,10 @@
 			
 			$stmt = $conn->prepare("DELETE FROM payments where id=:id");
 			$stmt -> bindParam(':id', $value['id']);
-			$stmt->execute();	
+			$stmt->execute();
+			$stmt = $conn->prepare("DELETE FROM transactions WHERE paymentid=:id");
+			$stmt -> bindParam(':id', $value['id']);
+			$stmt->execute();
 			/*$stmt = $conn->prepare("ALTER TABLE `invoices`
 			DROP COLUMN `$colName`");
 			$stmt->execute();*/

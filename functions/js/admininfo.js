@@ -1,5 +1,5 @@
 		$('li', '#tabs').filter(function() {
-			return !! $(this).find('a[href="index.php"]').length;
+			return !! $(this).find('a[href="profile.php"]').length;
 		  })
 		  .addClass('active');
 					  

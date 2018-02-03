@@ -95,7 +95,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="alert alert-warning" role="alert">
-										  Caution: Deleting records in the respective tables will permanently remove the entry in the database.
+										 <i class="fa fa-fw fa-warning"></i> Caution: Deleting records in the respective tables will permanently remove the entry in the database.
 										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 										</div>
 									</div>

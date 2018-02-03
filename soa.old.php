@@ -20,14 +20,13 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
-	announcement_extra();
 ?>	
 </head>
 
 <body>
 
     <div id="wrapper">
-
+	
         <?php user_nav(); ?>
 
         <div id="page-wrapper">
@@ -42,59 +41,52 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-home"></i> Home
+                                <i class="fa fa-credit-card"></i> Statement of Accounts and Unpaid Dues
                             </li>
                         </ol>
-						 
+						<!--<div class="alert alert-success" role="alert">
+						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
+						</div>-->
                     </div>
                 </div>
                 <!-- /.row -->
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  This is the home page. You can view the latest news and updates here.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
+						<?php
+							require($_SERVER["DOCUMENT_ROOT"] . '/php/showSoA.php');
+							echo showSoA($_SESSION['name'][4]);
+						?>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-lg-12">
-							<?php	
-									require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
-									echo showANE();
-							?>
-					</div>
-				</div>
-			</div>
+            </div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
+
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
-			  <small id="userid" hidden><?php echo ($_SESSION['name'][4]);?></small>
 			</div>
 		  </div>
 		</footer>
 		<!-- /footer -->
 		
-		<script>
-			$( document ).ready(function() {
-					/* Basic Gallery */
-					$( '.swipebox' ).swipebox();	
-					$('li', '#tabs').filter(function() {
-					return !! $(this).find('a[href="index.php"]').length;
-				  })
-				  .addClass('active');
-			});
-		</script>
-		
     </div>
     <!-- /#wrapper -->
+	
+	<script>
+		$( document ).ready(function() {
+				$('li', '#tabs').filter(function() {
+					return !! $(this).find('a[href="soa.php"]').length;
+				  })
+				  .addClass('active');
+		});
+	</script>
+	
+	
 </body>
 
 </html>

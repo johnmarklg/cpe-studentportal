@@ -73,4 +73,8 @@
 					return !! $(this).find('a[href="changepass.php"]').length;
 				  })
 				  .addClass('active');
+				  $('li', '#tabs').filter(function() {
+					return !! $(this).find('a[href="/org/changepass.php"]').length;
+				  })
+				  .addClass('active');
 		});

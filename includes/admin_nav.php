@@ -17,7 +17,7 @@
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="index.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                            <a href="profile.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -30,9 +30,9 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="tabs">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.php"><i class="fa fa-fw fa-home"></i> Home</a>
+                        <a href="index.php"><i class="fa fa-fw fa-th"></i> Bulletin Management</a>
                     </li>
-                    <li>
+					<li>
                         <a href="announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
                     </li>
                     <li>
@@ -47,16 +47,26 @@
                     <li>
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> School Calendar</a>
                     </li>
-					<li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
-                    </li>
-					<li>
+					<?php
+					if($_SESSION['name'][0]=='Administrator (Elevated)') {
+							echo '<li>
+								<a href="administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
+							</li>';
+					}
+					?>
+                    <li>
                         <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
                     </li>
                     <li>
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
                     </li>
                     <li>
+                        <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
+                    </li>
+					<li>
+                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
+                    </li>
+					<li>
                         <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
                     </li>
                 </ul>

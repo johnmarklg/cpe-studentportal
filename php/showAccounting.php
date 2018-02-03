@@ -32,6 +32,8 @@
 			<th>Surname</th>
 			<th>First Name</th>
 			<th>Middle Name</th>
+			<th>Contact Number</th>
+			<th style=\"font-size: 0;\"></th>
 		</tr>
 		</thead>
 		<tbody>";
@@ -41,7 +43,9 @@
 			<td><a href=\"/php/showStatement.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
-			<td>" . $row['middlename'] . "</td></tr>";
+			<td>" . $row['middlename'] . "</td>
+			<td>" . $row['ContactNo'] . "</td>
+			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -62,6 +66,8 @@
 			<th>Surname</th>
 			<th>First Name</th>
 			<th>Middle Name</th>
+			<th>Contact Number</th>
+			<th style=\"font-size: 0;\"></th>
 		</tr>
 		</thead>
 		<tbody>";
@@ -71,7 +77,9 @@
 			<td><a href=\"/php/showStatement.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
-			<td>" . $row['middlename'] . "</td></tr>";
+			<td>" . $row['middlename'] . "</td>
+			<td>" . $row['ContactNo'] . "</td>
+			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -92,6 +100,8 @@
 			<th>Surname</th>
 			<th>First Name</th>
 			<th>Middle Name</th>
+			<th>Contact Number</th>
+			<th style=\"font-size: 0;\"></th>
 		</tr>
 		</thead>
 		<tbody>";
@@ -101,7 +111,9 @@
 			<td><a href=\"/php/showStatement.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
-			<td>" . $row['middlename'] . "</td></tr>";
+			<td>" . $row['middlename'] . "</td>
+			<td>" . $row['ContactNo'] . "</td>
+			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -122,6 +134,8 @@
 			<th>Surname</th>
 			<th>First Name</th>
 			<th>Middle Name</th>
+			<th>Contact Number</th>
+			<th style=\"font-size: 0;\"></th>
 		</tr>
 		</thead>
 		<tbody>";
@@ -131,7 +145,9 @@
 			<td><a href=\"/php/showStatement.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
-			<td>" . $row['middlename'] . "</td></tr>";
+			<td>" . $row['middlename'] . "</td>
+			<td>" . $row['ContactNo'] . "</td>
+			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -152,6 +168,8 @@
 			<th>Surname</th>
 			<th>First Name</th>
 			<th>Middle Name</th>
+			<th>Contact Number</th>
+			<th style=\"font-size: 0;\"></th>
 		</tr>
 		</thead>
 		<tbody>";
@@ -161,7 +179,9 @@
 			<td><a href=\"/php/showStatement.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
-			<td>" . $row['middlename'] . "</td></tr>";
+			<td>" . $row['middlename'] . "</td>
+			<td>" . $row['ContactNo'] . "</td>
+			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";

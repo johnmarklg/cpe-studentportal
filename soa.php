@@ -26,9 +26,9 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 <body>
 
     <div id="wrapper">
-	
-        <?php user_nav(); ?>
 
+        <?php user_nav(); ?>
+		
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -38,33 +38,108 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
                     <div class="col-lg-12">
 					   <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
+                                <i class="fa fa-terminal"></i>  <a href="/org/index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-credit-card"></i> Statement of Accounts and Unpaid Dues
+                                <i class="fa fa-credit-card"></i> Statement of Accounts
                             </li>
                         </ol>
-						<!--<div class="alert alert-success" role="alert">
-						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
-						</div>-->
                     </div>
                 </div>
                 <!-- /.row -->
-				
 				<div class="row">
-					<div class="col-lg-12">
-						<?php
-							require($_SERVER["DOCUMENT_ROOT"] . '/php/showSoA.php');
-							echo showSoA($_SESSION['name'][4]);
-						?>
-					</div>
-				</div>
-            </div>
+                    <div class="col-lg-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading" style="text-align: center;">
+								Statement Summary
+							</div>
+							<div class="panel-body">
+								<?php
+									$studnum = $_SESSION['name'][4];
+									
+									require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+									
+									$conn = getDB('cpe-studentportal');	
+		
+									$stmt = $conn->prepare("SELECT studnum, surname, firstname, middlename from `students` WHERE studnum = :studnum");
+									$stmt -> bindParam(':studnum', $studnum);
+									$stmt->execute();
+								?>
+									<div class="table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Surname</th>
+													<th>First Name</th>
+													<th>Middle Name</th>
+													<th>Student ID</th>
+												</tr>
+											</thead>
+											<tbody>
+											<tr>
+											<?php
+												foreach(($stmt->fetchAll()) as $row) { 
+													echo '<td>' . $row['surname'] . '</td>';
+													echo '<td>' . $row['firstname'] . '</td>';
+													echo '<td>' . $row['middlename'] . '</td>';
+													echo '<td>' . $row['studnum'] . '</td>';
+												}
+											?>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<hr/>
+									<div class="table-responsive">
+										<table id="statement" class="table table-bordered">
+											<thead>
+												<tr>
+													<!--<th>Transaction Date</th>-->
+													<th>Transaction ID</th>
+													<th>Transaction Description</th>
+													<th>Charges</th>
+													<th>Amount Paid</th>
+													<th>Date Paid</th>
+												</tr>
+											</thead>
+											<tbody>											
+											<?php
+												$stmt = $conn->prepare("SELECT transactions.id,
+													payments.id as paymentid, payments.name,
+													payments.amount as charge,
+													COALESCE(transactions.studnum, 0) AS studnum,
+													COALESCE(transactions.amountpaid, 0) AS amountpaid,
+													transactions.datepaid
+													FROM `payments`
+													LEFT JOIN transactions
+													ON transactions.studnum = :studnum AND transactions.paymentid = payments.id");
+												$stmt -> bindParam(':studnum', $studnum);
+												$stmt->execute();
+												foreach(($stmt->fetchAll()) as $row) { 
+													echo '<tr><td>' . $row['paymentid'] . '</td>';
+													echo '<td>' . $row['name'] . '</td>';
+													echo '<td>' . $row['charge'] . '</td>';
+													echo '<td>' . $row['amountpaid'] . '</td>';
+													echo '<td>' . $row['datepaid'] . '</td></tr>';
+												}
+												$conn=null;
+											?>
+											</tbody>
+										</table>
+									</div>
+							</div>
+							<div class="panel-footer">
+								<button id="printReceipt" name="printReceipt" class="btn btn-info btn-block"><i class="fa fa-fw fa-print"></i> Print Electronic Receipt</button>
+							</div>
+						</div>
+                    </div>
+                </div>
+				
+			</div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
-
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
@@ -74,19 +149,16 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		</footer>
 		<!-- /footer -->
 		
-    </div>
-    <!-- /#wrapper -->
-	
-	<script>
+		<script>
 		$( document ).ready(function() {
 				$('li', '#tabs').filter(function() {
 					return !! $(this).find('a[href="soa.php"]').length;
 				  })
 				  .addClass('active');
 		});
-	</script>
-	
-	
+		</script>
+		
+    </div>
 </body>
 
 </html>

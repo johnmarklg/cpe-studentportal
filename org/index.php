@@ -69,7 +69,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-							Add Invoice
+							 <i class="fa fa-plus-circle"></i> Add Transaction
 							</div>
 							<div class="panel-body">
 								<div class="alert alert-info" role="alert">

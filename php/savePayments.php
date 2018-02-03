@@ -26,13 +26,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 			$stmt->execute();
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 				if (!($result)) {
-					$stmt = $conn->prepare("INSERT INTO transactions (studnum, paymentid, amountpaid, datepaid) VALUES (:studnum, :paymentid, :amountpaid, now())");
+					$stmt = $conn->prepare("INSERT INTO transactions (studnum, paymentid, amountpaid) VALUES (:studnum, :paymentid, :amountpaid)");
 					$stmt -> bindParam(':amountpaid', $value['Amount Paid']);
 					$stmt -> bindParam(':studnum', $studentid);
 					$stmt -> bindParam(':paymentid', $value['Transaction ID']);
 					$stmt->execute();
 				} else {
-					$stmt = $conn->prepare("UPDATE transactions SET amountpaid=:amountpaid, datepaid=now() WHERE studnum=:studnum AND paymentid=:paymentid");
+					$stmt = $conn->prepare("UPDATE transactions SET amountpaid=:amountpaid WHERE studnum=:studnum AND paymentid=:paymentid");
 					$stmt -> bindParam(':amountpaid', $value['Amount Paid']);
 					$stmt -> bindParam(':studnum', $studentid);
 					$stmt -> bindParam(':paymentid', $value['Transaction ID']);

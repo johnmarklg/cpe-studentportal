@@ -157,76 +157,19 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				ignoreColumns: [1, 2]
 			});
 			//alert(studentid);
-			alert(JSON.stringify(statement));
+			//alert(JSON.stringify(statement));
 			$.ajax({
 				type: "POST",
 				url: "/php/savePayments.php",
 				data: {jsonstatement: JSON.stringify(statement), studnum: studentid},
 				cache: false,
 				success: function(result){
-					//alert(result);
+					alert('Student account successfuly updated!');
 					location.reload(); 			
 				}
 			});
 		});
-	</script>
-	
-	<script>
-			/*$("#saveAccounting").click(function(){
-			/*$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
-			});
-			var payTable1 = $('#tablefirst').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable2 = $('#tablesecond').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable3 = $('#tablethird').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable4 = $('#tablefourth').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			var payTable5 = $('#tablefifth').tableToJSON({
-				ignoreColumns: [0,1,2]
-			});
-			
-			var finaltable = payTable1.concat(payTable2);
-			finaltable = finaltable.concat(payTable3);
-			finaltable = finaltable.concat(payTable4);
-			finaltable = finaltable.concat(payTable5);
-			(function filter(obj) {
-				$.each(obj, function(key, value){
-					if (value === "" || value === null){
-						var objlocation = finaltable.indexOf(obj);
-						//delete finaltable[objlocation];
-						finaltable.splice(objlocation);
-						//console.log(objlocation);
-						//delete obj[key];
-					} else if (Object.prototype.toString.call(value) === '[object Object]') {
-						filter(value);
-					} else if (Array.isArray(value)) {
-						value.forEach(function (el) { filter(el); });
-					}
-				});
-			})(finaltable);
-			console.log(JSON.stringify(finaltable));
-			$.ajax({
-				type: "POST",
-				url: "/php/savePayments.php",
-				data: {paytable: JSON.stringify(finaltable)},
-				cache: false,
-				success: function(result){
-					//alert(result);
-					location.reload(); 			
-				}
-			});
-		});*/
-	</script>
-	
+	</script>	
 </body>
 
 </html>

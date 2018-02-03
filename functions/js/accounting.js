@@ -1,6 +1,6 @@
 		$( document ).ready(function() {
 				$('li', '#tabs').filter(function() {
-					return !! $(this).find('a[href="index.php"]').length;
+					return !! $(this).find('a[href="/org/index.php"]').length;
 				  })
 				  .addClass('active');
 		});
