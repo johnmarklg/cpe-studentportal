@@ -100,11 +100,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							<div class="panel-heading" style="text-align: center;" id="exTab2">	
 								<ul class="nav nav-pills nav-justified">
 									<li class="active">
-									<a  href="#4" data-toggle="tab"><i class="fa fa-fw fa-eye"></i> Rights of Students</a>
+									<a  href="#4" data-toggle="tab"><i class="fa fa-fw fa-legal"></i> Rights of Students</a>
 									</li>
-									<li><a href="#5" data-toggle="tab"><i class="fa fa-fw fa-university"></i> Duties and Responsibilities</a>
+									<li><a href="#5" data-toggle="tab"><i class="fa fa-fw fa-tasks"></i> Duties and Responsibilities</a>
 									</li>
-									<li><a href="#6" data-toggle="tab"><i class="fa fa-fw fa-dot-circle-o"></i> Student Conduct</a>
+									<li><a href="#6" data-toggle="tab"><i class="fa fa-fw fa-certificate"></i> Student Conduct</a>
 									</li>
 								</ul>
 							</div>

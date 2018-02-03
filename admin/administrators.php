@@ -100,7 +100,38 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 										List of Administrators
 									</div>
 									<div class="panel-body">
-										This is where the list will be.
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Username</th>
+														<th>Password</th>
+														<th>Email</th>
+														<th>Permission Level</th>
+														<th style="font-size: 0;"></th>
+													</tr>
+												</thead>
+												<tbody>
+												<?php
+													require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+													$conn = getDB('cpe-studentportal');
+													$stmt = $conn->prepare("SELECT * from administrators");
+													$stmt->execute();
+													
+													foreach(($stmt->fetchAll()) as $row) { 
+															echo '<tr>
+																<td>' . $row['name'] . '</td>
+																<td>' . $row['username'] . '</td>
+																<td><i>' . md5($row['password']) . '</i></td>
+																<td>' . $row['email'] . '</td>
+																<td>' . $row['position'] . '</td>
+															</tr>';
+													}
+												?>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
