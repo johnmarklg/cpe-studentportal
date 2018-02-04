@@ -2,6 +2,7 @@
 	function showAnnouncements() {
 
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/timefxn.php");
 		
 		//My Announcements
 		echo '<div class="row"><div class="col-lg-12"><div class="panel panel-default">
@@ -18,12 +19,13 @@
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 		echo '<div class="tab-content"><div class="active tab-pane" id="1">';
 		foreach(($stmt->fetchAll()) as $row) { 
+			$time = strtotime($row['datetime']);
 			if($row['status']=='Pending') {
 				echo '<div class="panel panel-danger">';
 			} else {
 				echo '<div class="panel panel-info">';
 			}
-			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . $row['datetime'] . '</i>';
+			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
 			echo '</div><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
 			echo '<hr/>' . $row['post'];
@@ -40,8 +42,9 @@
 		echo '<div class="tab-pane" id="2">';
 		//approved already
 		foreach(($stmt->fetchAll()) as $row) { 
+			$time = strtotime($row['datetime']);
 			echo '<div class="panel panel-info">';
-			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . $row['datetime'] . '</i>';
+			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
 			echo '</div><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
 			echo '<hr/>' . $row['post'];
@@ -59,8 +62,9 @@
 		$stmt->execute();
 		
 		foreach(($stmt->fetchAll()) as $row) { 
+			$time = strtotime($row['datetime']);
 			echo '<div class="panel panel-danger">';
-			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . $row['datetime'] . '</i>';
+			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
 			echo '</div><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
 			echo '<hr/>' . $row['post'];

@@ -36,7 +36,7 @@
 								</div>
 								<br/>
 								<form method="post">
-									<button type="button" id="buttonSave" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-user"></i>Update Account Info</button>
+									<button type="button" id="buttonSaveInfo" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-user"></i>Update Account Info</button>
 								</form>
 							</div>
 						</div>

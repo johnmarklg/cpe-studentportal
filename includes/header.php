@@ -5,9 +5,18 @@
     <meta name="author" content="">
 
     <title>Student Portal</title>
-
-	<link rel="icon" href="/assets/images/mmsu-logo.png">
-    
+	
+	<?php
+		if(basename(getcwd())=='admin') {
+			echo '<link rel="icon" href="/assets/images/icon-mmsu.png">';
+		} else if (basename(getcwd())=='org') {
+			echo '<link rel="icon" href="/assets/images/icon-icpep.png">';
+		} else {
+			echo '<link rel="icon" href="/assets/images/icon-portal.png">';
+		}
+	?>
+	<!--<link rel="icon" href="/assets/images/icon-portal.png">-->
+	
 	<!-- Bootstrap Core CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     

@@ -64,7 +64,7 @@
                         <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
                     </li>
 					<li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
+                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
                     </li>
 					<li>
                         <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>

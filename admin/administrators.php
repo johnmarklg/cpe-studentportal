@@ -81,6 +81,17 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								<input id="email" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Permission Level</span>
+								<div class="form-group">
+								  <select class="form-control" id="sel1">
+									<option>Administrator</option>
+									<option>Administrator (Elevated)</option>
+									<option>Limited</option>
+								  </select>
+								</div>
+							</div>
+							<br/>
 							<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-user"></i>Add New Administrator</button>
 						</div></div></div></div></div></div><hr/>
 						
@@ -104,6 +115,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 											<table class="table">
 												<thead>
 													<tr>
+														<th>ID</th>
 														<th>Name</th>
 														<th>Username</th>
 														<th>Password</th>
@@ -116,16 +128,22 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 												<?php
 													require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 													$conn = getDB('cpe-studentportal');
-													$stmt = $conn->prepare("SELECT * from administrators");
+													$stmt = $conn->prepare("SELECT * from administrators WHERE id<>'1'");
 													$stmt->execute();
 													
 													foreach(($stmt->fetchAll()) as $row) { 
 															echo '<tr>
+																<td class="id">' . $row['id'] . '</td>
 																<td>' . $row['name'] . '</td>
 																<td>' . $row['username'] . '</td>
-																<td><i>' . md5($row['password']) . '</i></td>
-																<td>' . $row['email'] . '</td>
-																<td>' . $row['position'] . '</td>
+																<td class="passwd"><i name="' . md5($row['password']) . '" id="' . $row['password'] . '">' . md5($row['password']) . '</i></td>
+																<td>' . $row['email'] . '</td>';
+																echo '<td><div class="form-group permissions">
+																  <select class="form-control" onclick="permissions_cache=this.value;" >';
+																echo '<option value="Administrator" '; if($row['position']=="Administrator") { echo 'selected>'; } else { echo '>'; } echo 'Administrator</option>';
+																echo '<option value="Administrator (Elevated)" '; if($row['position']=="Administrator (Elevated)") { echo 'selected>'; } else { echo '>'; } echo 'Administrator (Elevated)</option>';
+																echo '<option value="Limited" '; if($row['position']=="Limited") { echo 'selected>'; } else { echo '>'; } echo 'Limited</option>';
+																echo '</select></div></td>
 															</tr>';
 													}
 												?>
@@ -164,6 +182,57 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					  })
 			.addClass('active');
      });
+	 $('select', '.permissions').on('change', function() {
+		if (!confirm('Are you sure you want to change this administrator\'s permissions?')) {
+            $(this).val(permissions_cache);
+            return false;
+        } else {
+			var $newpos = this.value;
+			//alert( newpos );
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $adminid = $('#adminid').text();
+			//alert ($adminid);
+			var $data = '[{"ID":"' + $id + '","Level":"' + $newpos + '"}]';
+			//alert($data);		
+				$.ajax({
+					type: "POST",
+					url: "/php/updateAdminPermissions.php",
+					data: {admininfo: $data},
+					cache: false,
+					success: function(result){
+						if($adminid===$id) {
+								alert("This account's permissions have been modified. Please relogin.");
+								window.location.replace('logout.php');
+						}
+						//alert("Successfully removed student entry!");
+						//location.reload(); 			
+					}
+				});			
+		}
+	})
+	$('i', '.passwd').on('dblclick', function() {
+		/*if (!confirm('Are you sure you want to show the password?')) {
+            return false;
+        } else {
+			var $pass = this.id;
+			$(this).text($pass);
+			//alert($pass);
+		}*/
+		var $pass = $(this).text();
+		var $encry = $(this).attr('id');
+		var $decry = $(this).attr('name');
+		if (!confirm('Are you sure you want to toggle the password?')) {
+            return false;
+        } else {
+			if ($pass === $decry) {
+					$(this).text($encry);
+			} else {
+				$(this).text($decry);
+			}
+		}
+		//alert($decry);
+	})
 	 </script>
 </body>
 </html>

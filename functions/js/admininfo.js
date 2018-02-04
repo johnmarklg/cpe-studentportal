@@ -2,11 +2,8 @@
 			return !! $(this).find('a[href="profile.php"]').length;
 		  })
 		  .addClass('active');
-					  
-					  
-		autosize($('textarea'));
 		
-		$('#buttonSave').click(function() {
+		$('#buttonSaveInfo').click(function() {
 			var $username = $('#username').val();
 			var $password = $('#password').val();
 			var $email = $('#email').val();

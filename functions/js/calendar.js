@@ -81,6 +81,7 @@
 						center: 'title',
 						right: 'month,listWeek'
 					},
+					themeSystem: 'bootstrap3',
 					navLinks: true, // can click day/week names to navigate views
 					eventLimit: true, // allow "more" link when too many events
 					

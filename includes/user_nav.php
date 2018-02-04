@@ -45,7 +45,7 @@
                         <a href="soa.php"><i class="fa fa-fw fa-credit-card"></i> Statement of Accounts</a>
                     </li>
 					<li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> MMSU Hymn and March</a>
+                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
                     </li>
 					<li>
                         <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>

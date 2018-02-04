@@ -2,6 +2,7 @@
 	function showANE() {
 
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/timefxn.php");
 		
 		//Heading
 		echo '<div class="panel panel-info" style="position: relative;">
@@ -26,8 +27,9 @@
 								$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 								
 								foreach(($stmt->fetchAll()) as $row) { 
+								$time = strtotime($row['datetime']);
 								echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
-								$row['poster'] . '</strong> @<i>' . $row['datetime'] . ':</i><hr/>' . $row['post'];
+								$row['poster'] . '</strong> @<i> ' . relativeTime($time) . ':</i><hr/><strong>' . $row['posttitle'] . '</strong><br/>' . $row['post'];
 								if($row['file'] <> '') {
 									echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
 								}									

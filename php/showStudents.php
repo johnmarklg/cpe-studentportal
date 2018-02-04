@@ -20,7 +20,6 @@
 		<table id=\"tablefifth\" class=\"table\">
 		<thead>
 		<tr>
-			<th style=\"font-size: 0px\">Old Student Number</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -42,7 +41,6 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -63,7 +61,6 @@
 		<table id=\"tablefifth\" class=\"table\">
 		<thead>
 		<tr>
-			<th style=\"font-size: 0px\">Old Student Number</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -85,7 +82,6 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -106,7 +102,6 @@
 		<table id=\"tablefifth\" class=\"table\">
 		<thead>
 		<tr>
-			<th style=\"font-size: 0px\">Old Student Number</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -128,7 +123,6 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -149,7 +143,6 @@
 		<table id=\"tablefifth\" class=\"table\">
 		<thead>
 		<tr>
-			<th style=\"font-size: 0px\">Old Student Number</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -171,7 +164,6 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
@@ -193,7 +185,6 @@
 		<table id="tablefifth" class="table">
 		<thead>
 		<tr>
-			<th style="font-size: 0px">Old Student Number</th>
 			<th>Student Number</th>
 			<th>Surname</th>
 			<th>First Name</th>
@@ -215,7 +206,6 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td style=\"font-size: 0px\" class=\"studnum\">" . $row['studnum'] . "</td>
 			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
