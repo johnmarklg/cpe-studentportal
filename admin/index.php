@@ -11,6 +11,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		exit;
 	}
 }
+
+require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/timefxn.php");
+$conn = getDB('cpe-studentportal');													
 ?>
 
 <!DOCTYPE html>
@@ -108,6 +112,23 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							<div class="tab-content">
 								<div class="active tab-pane" id="1">
 									<div class="panel-body">
+										<?php
+										$stmt = $conn->prepare("SELECT * from `posts` WHERE `status` = 'Approved' ORDER BY datetime DESC");
+										$stmt->execute();
+										//approved already
+										foreach(($stmt->fetchAll()) as $row) { 
+											$time = strtotime($row['datetime']);
+											echo '<div class="panel panel-info">';
+											echo '<div class="panel-heading">' . '<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
+											echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
+											echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
+											echo '<hr/>' . $row['post'];
+											if($row['file'] <> '') {
+												echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
+											}
+											echo '</div></div></div>';
+										}				
+										?>
 										This is where stuff like news and announcements will be placed.
 									</div>
 									<div class="panel-footer">

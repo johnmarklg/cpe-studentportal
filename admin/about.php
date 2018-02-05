@@ -87,6 +87,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							<div class="panel-body">
 								<ul class="list-group">
 									<li class="list-group-item"><a href="">Official MMSU Student Handbook</a></li>
+									<li class="list-group-item"><a href="/assets/files/citizenschartercoe.pdf">COE Citizen's Charter</a></li>
 								</ul>
 							</div>
 						</div>

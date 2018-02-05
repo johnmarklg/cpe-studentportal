@@ -31,87 +31,8 @@
 														  <td>" . $row['studnum'] . "</td>";
 											}
 									
-									echo '</tr></tbody></table></div>
-									<div class="table-responsive">
-										<table id="studentdata" class="table table-bordered">
-											<thead>
-												<tr>
-													<th><i>Personal Data</i></th>
-													<th>Note: Follow the specified format for Birthdate.</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-												  <th>Residential Address</th>
-													<td id="address" >' . $row['Address'] . '</td>
-												</tr>
-												<tr>
-													<th>Contact Number</th>
-													<td id="contactnum" >'  . $row['ContactNo'] . '</td>
-												</tr>
-												<tr>
-												  <th>Date of Birth (YYYY-MM-DD)</th>
-													<td id="birthdate" >' . $row['DateOfBirth'] . '</td>
-												</tr>
-												<tr>
-												  <th>Place of Birth</th>
-													<td id="birthplace" >' . $row['PlaceOfBirth'] . '</td>
-												</tr>
-												<tr>
-													<th>Citizenship</th>
-													<td id="citizenship" >' . $row['Citizenship'] . '</td>
-												</tr>
-												<tr>
-													<th>Status</th>
-													<td id="status" >'  . $row['Status'] . '</td>
-												</tr>
-												<tr>
-													<th>Gender</th>
-													<td id="gender" >'  . $row['Gender'] . '</td>
-												</tr>
-												<tr>
-													<th>Father\'s Name</th>
-													<td id="fathername" >'  . $row['Father'] . '</td>
-												</tr>
-												<tr>
-													<th>Father\'s Occupation</th>
-													<td id="fatheroccupation" >'  . $row['FatherOccupation'] . '</td>
-												</tr>
-												<tr>
-													<th>Mother\'s Name</th>
-													<td id="mothername" >'  . $row['Mother'] . '</td>
-												</tr>
-												<tr>
-													<th>Mother\'s Occupation</th>
-													<td id="motheroccupation" >'  . $row['MotherOccupation'] . '</td>
-												</tr>
-												<tr>
-													<th>School Name - Elementary</th>
-													<td id="elementary" >'  . $row['Elementary'] . '</td>
-												</tr>
-												<tr>
-													<th>Address - Elementary</th>
-													<td id="elemaddress" >' . $row['ElemAddress'] . '</td>
-												</tr>
-												<tr>
-													<th>Year Graduated - Elementary</th>
-													<td id="elemgrad" >'  . $row['ElemGraduate'] . '</td>
-												</tr>
-												<tr>
-													<th>School Name - Secondary</th>
-													<td id="secondary" >'  . $row['Secondary'] . '</td>
-												</tr>
-												<tr>
-													<th>Address - Secondary</th>
-													<td id="secaddress" >'  . $row['SecAddress'] . '</td>
-												</tr>
-												<tr>
-													<th>Year Graduated - Secondary</th>
-													<td id="secgrad" >'  . $row['SecGraduate'] . '</td>
-												</tr>
-											</tbody>
-										</table>
-									</div></div>
+									echo '</tr></tbody></table></div></div>
+									
 									
 									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $row['studnum'] . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div></div>';
 									

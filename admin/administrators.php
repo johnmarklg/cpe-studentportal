@@ -146,6 +146,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 																echo '</select></div></td>
 															</tr>';
 													}
+													$conn=null;
 												?>
 												</tbody>
 											</table>

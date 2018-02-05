@@ -54,6 +54,9 @@
                         <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
                     </li>
 					<li>
+                        <a href="profile.php"><i class="fa fa-fw fa-user"></i> Student Profile</a>
+                    </li>
+                    <li>
                         <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                     </li>
                     <li>
