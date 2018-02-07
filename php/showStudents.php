@@ -25,6 +25,7 @@
 			<th>First Name</th>
 			<th>Middle Name</th>
 			<th>Passcode</th>
+			<th>Curriculum</th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
@@ -33,7 +34,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted <= :fifthyear AND studnum <> '00-0000' ORDER BY surname");
+		$stmt = $conn->prepare("SELECT students.*, curriculum.name AS currname FROM `students` LEFT JOIN `curriculum` ON students.CurriculumID=curriculum.id WHERE yearstarted <= :fifthyear AND studnum <> '00-0000' ORDER BY surname");
 		$stmt -> bindParam(':fifthyear', $fifthyear);
 		$stmt->execute();
 
@@ -46,6 +47,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td>" . $row['currname'] . "</td>
 			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
@@ -66,6 +68,7 @@
 			<th>First Name</th>
 			<th>Middle Name</th>
 			<th>Passcode</th>
+			<th>Curriculum</th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
@@ -74,7 +77,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :fourthyear  ORDER BY surname");
+		$stmt = $conn->prepare("SELECT students.*, curriculum.name AS currname FROM `students` LEFT JOIN `curriculum` ON students.CurriculumID=curriculum.id WHERE yearstarted = :fourthyear  ORDER BY surname");
 		$stmt -> bindParam(':fourthyear', $fourthyear);
 		$stmt->execute();
 
@@ -87,6 +90,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td>" . $row['currname'] . "</td>
 			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
@@ -107,6 +111,7 @@
 			<th>First Name</th>
 			<th>Middle Name</th>
 			<th>Passcode</th>
+			<th>Curriculum</th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
@@ -115,7 +120,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :thirdyear  ORDER BY surname");
+		$stmt = $conn->prepare("SELECT students.*, curriculum.name AS currname FROM `students` LEFT JOIN `curriculum` ON students.CurriculumID=curriculum.id WHERE yearstarted = :thirdyear  ORDER BY surname");
 		$stmt -> bindParam(':thirdyear', $thirdyear);
 		$stmt->execute();
 
@@ -128,6 +133,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td>" . $row['currname'] . "</td>
 			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
@@ -148,6 +154,7 @@
 			<th>First Name</th>
 			<th>Middle Name</th>
 			<th>Passcode</th>
+			<th>Curriculum</th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\"></th>
 			<th style=\"font-size: 0px\">Year Started</th>
@@ -156,7 +163,7 @@
 		<tbody class=\"list\">";
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted = :secondyear  ORDER BY surname");
+		$stmt = $conn->prepare("SELECT students.*, curriculum.name AS currname FROM `students` LEFT JOIN `curriculum` ON students.CurriculumID=curriculum.id WHERE yearstarted = :secondyear  ORDER BY surname");
 		$stmt -> bindParam(':secondyear', $secondyear);
 		$stmt->execute();
 
@@ -169,6 +176,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td>" . $row['currname'] . "</td>
 			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
@@ -190,6 +198,7 @@
 			<th>First Name</th>
 			<th>Middle Name</th>
 			<th>Passcode</th>
+			<th>Curriculum</th>
 			<th style="font-size: 0px"></th>
 			<th style="font-size: 0px"></th>
 			<th style="font-size: 0px">Year Started</th>
@@ -198,7 +207,7 @@
 		<tbody class="list">';
 
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from students WHERE yearstarted >= :firstyear  ORDER BY surname");
+		$stmt = $conn->prepare("SELECT students.*, curriculum.name AS currname FROM `students` LEFT JOIN `curriculum` ON students.CurriculumID=curriculum.id WHERE yearstarted >= :firstyear  ORDER BY surname");
 		$stmt -> bindParam(':firstyear', $firstyear);
 		$stmt->execute();
 
@@ -211,6 +220,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
+			<td>" . $row['currname'] . "</td>
 			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
 			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";

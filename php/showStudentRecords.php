@@ -77,7 +77,6 @@
 											  <th>Student Number</th>
 											  <th>Passcode</th>
 											  <th>Year Level</th>
-											  <th>Curriculum</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -112,10 +111,7 @@
 														  <td contentEditable id=\"studnum\">" . $printstudnum . "</td>
 														  <td contentEditable>" . $row['passcode'] . "</td>
 														  <td  contentEditable>" . $yearlevel . "</td>";
-														  echo '<td><div class="form-group permissions"><select class="form-control">';
-															echo '<option value="' . $row['CurriculumID'] . '">' . $row['currname'] . '</option>';
-															echo '</select></div></td>';
-									
+														  
 									echo '</tr></tbody></table></div>
 									<div class="table-responsive">
 										<table id="studentdata" class="table table-bordered">
