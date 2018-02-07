@@ -47,9 +47,10 @@
 			+ '","MotherOccupation":"' + $('#motheroccupation').text() + '","Elementary":"' + $('#elementary').text() + '","ElemAddress":"' + $('#elemaddress').text() 
 			+ '","ElemGraduate":"' + $('#elemgrad').text() + '","Secondary":"' + $('#secondary').text() + '","SecAddress":"' + $('#secaddress').text() 
 			+ '","SecGraduate":"' + $('#secgrad').text() + '"}]';
+			
 			//alert($currid);
 			//alert(JSON.stringify(tableGrades));
-			$.ajax({
+			/*$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
 				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
@@ -61,7 +62,7 @@
 					alert(result);
 					location.reload();
 				}
-			});
+			});*/
 			return false;
 			}
 		});

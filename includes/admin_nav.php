@@ -52,6 +52,9 @@
 							echo '<li>
 								<a href="administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
 							</li>';
+							echo '<li>
+								<a href="curriculum.php"><i class="fa fa-fw fa-list"></i> Curricula/Curriculums</a>
+							</li>';
 					}
 					?>
                     <li>
