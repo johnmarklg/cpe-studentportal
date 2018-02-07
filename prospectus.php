@@ -52,7 +52,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  <i class="fa fa-fw fa-info-circle"></i> This is the Prospectus page where you can see your current Transcript of Grades and Personal Datasheet.
+						  <i class="fa fa-fw fa-info-circle"></i> This is the Prospectus page where you can see your current Transcript of Grades.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><br/>
 						  For any corrections or updates, please consult the respective faculty.
 						</div>
@@ -76,6 +76,8 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
+			  <a class="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
+      
 			</div>
 		  </div>
 		</footer>

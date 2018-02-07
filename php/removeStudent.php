@@ -11,7 +11,7 @@
 		$stmt->execute();	
 		$stmt = $conn->prepare("DELETE FROM grades WHERE studnum = :studnum");
 		$stmt -> bindParam(':studnum', $value['studnum']);
-		$stmt->execute();	
+		$stmt->execute();
 		
 		$conn = null;
 	}

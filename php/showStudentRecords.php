@@ -24,17 +24,50 @@
 					//check if entry/record exists, if not
 					if (!($result)) {
 						$studnum = '00-0000';
+					} else {
+						$currid = $result['CurriculumID'];
+						//echo '<script>alert("ID is: " + ' . $currid . ');</script>';
 					}
 					$conn =null;
 					
+					$conn = getDB('cpe-studentportal');
+										
 						
 					//STUDENT INFO
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\">
 								<div class=\"table-responsive\">
 									<div class=\"alert alert-info\" role=\"alert\">
 									  <i class=\"fa fa-info-circle\"></i> Leaving the Passcode and Year Level empty will automatically generate values for them.
-									</div>
-									<table id=\"studentinfo\" class=\"table\">
+									</div>";
+					echo '<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Curriculum</span>
+								<div class="form-group curriculum">
+								  <select class="form-control" id="curriculum" onclick="curr_cache=this.value;">';
+									
+										require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+										$stmt = $conn->prepare("SELECT COALESCE(students.studnum, 0), 
+										curriculum.*,
+										students.CurriculumID as currid
+										FROM `students`
+										LEFT JOIN curriculum
+										ON students.studnum=:studnum
+										WHERE students.studnum=:studnum");
+										$stmt -> bindParam(':studnum', $studnum);
+										$stmt->execute();
+										
+										foreach(($stmt->fetchAll()) as $row) { 
+												if(($row['id']) === ($row['currid'])) {
+													echo '<option selected ';
+												} else {
+													echo '<option ';
+												}
+												echo 'value="' . $row['id'] . '">' . $row['name'] . '</option>';
+										}
+										
+								  echo '</select>
+								</div>
+							</div><br/>';		
+					echo "<table id=\"studentinfo\" class=\"table\">
 										<thead>
 											<tr>
 											  <th style=\"font-size: 0px\">Old Student Number</th>
@@ -44,12 +77,12 @@
 											  <th>Student Number</th>
 											  <th>Passcode</th>
 											  <th>Year Level</th>
+											  <th>Curriculum</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>";
 
-											$conn = getDB('cpe-studentportal');
 											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
 											$stmt -> bindParam(':studnum', $studnum);
 											$stmt->execute();
@@ -79,7 +112,9 @@
 														  <td contentEditable id=\"studnum\">" . $printstudnum . "</td>
 														  <td contentEditable>" . $row['passcode'] . "</td>
 														  <td  contentEditable>" . $yearlevel . "</td>";
-
+														  echo '<td><div class="form-group permissions"><select class="form-control">';
+															echo '<option value="' . $row['CurriculumID'] . '">' . $row['currname'] . '</option>';
+															echo '</select></div></td>';
 									
 									echo '</tr></tbody></table></div>
 									<div class="table-responsive">
@@ -164,7 +199,6 @@
 									</div></div>
 									
 									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $row['studnum'] . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div></div>';
-									
 									}
 									$conn = null;
 					
@@ -197,8 +231,21 @@
 					
 					//REMAKE Student Grades
 					$conn = getDB('cpe-studentportal');
-					$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT * FROM `grades` LEFT JOIN subjects ON subjects.subjectid = grades.courseid WHERE grades.studnum = :studnum)");
+					//$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT * FROM `grades` LEFT JOIN subjects ON subjects.subjectid = grades.courseid WHERE grades.studnum = :studnum)");
+					$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT subjects.*, 
+					COALESCE(grades.courseid, subjects.subjectid) as courseid,
+					COALESCE(grades.studnum, :studnum) as studnum,
+					COALESCE(grades.1st, '') as `1st`,
+					COALESCE(grades.2nd, '') as `2nd`,
+					COALESCE(grades.3rd, '') as `3rd`
+					FROM `subjects`
+					LEFT JOIN `grades`
+					ON subjects.subjectid = grades.courseid
+					AND grades.studnum=:studnum
+					WHERE subjects.curriculumID=:currid
+					ORDER BY subjects.subjectid ASC)");
 					$stmt -> bindParam(':studnum', $studnum);
+					$stmt -> bindParam(':currid', $currid);
 					$stmt->execute();
 					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					

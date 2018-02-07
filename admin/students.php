@@ -81,6 +81,26 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								<input id="middlename" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Curriculum</span>
+								<!--<input id="curriculum" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">-->
+								<div class="form-group">
+								  <select class="form-control" id="curriculum">
+									<?php
+										require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+										$conn = getDB('cpe-studentportal');
+										$stmt = $conn->prepare("SELECT * from curriculum");
+										$stmt->execute();
+										
+										foreach(($stmt->fetchAll()) as $row) { 
+												echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+										}
+										$conn=null;
+									?>
+								  </select>
+								</div>
+							</div>
+							<br/>
 							<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-user"></i>Insert Student Entry</button>
 						</div></div></div></div></div></div><hr/>
 						

@@ -120,6 +120,30 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/assets/js/arrow-table.min.js"></script>
 	<script src="/functions/js/records.js"></script>
+	<script>
+		$('select', '.curriculum').on('change', function() {
+			if (!confirm('Are you sure you want to change this student\'s curriculum?')) {
+				$(this).val(curr_cache);
+				return false;
+			} else {
+				var $newpos = this.value;
+				//alert( newpos );
+				var $currid = $("#curriculum").val();
+				var $studnum = $('#studnum').text();
+				//alert($studnum + $currid);
+				$.ajax({
+					type: "POST",
+					url: "/php/updateCurr.php",
+					data: {studnum: $studnum, currid: $currid},
+					cache: false,
+					success: function(result){
+						alert("Successfully changed student curriculum! Reloading page.");
+						location.reload(); 			
+					}
+				});			
+			}
+		})
+	</script>
 </body>
 
 </html>

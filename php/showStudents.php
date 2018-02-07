@@ -41,7 +41,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
+			<td ><a class=\"studnum\" href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
@@ -82,7 +82,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
+			<td ><a class=\"studnum\" href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
@@ -123,7 +123,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
+			<td ><a class=\"studnum\" href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
@@ -164,7 +164,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
+			<td ><a class=\"studnum\" href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
@@ -206,7 +206,7 @@
 
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
-			<td><a href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
+			<td ><a class=\"studnum\" href=\"/admin/records.php?studnum=" . $row['studnum'] . "\">" . $row['studnum'] . "</a></td>
 			<td>" . $row['surname'] . "</td>
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>

@@ -25,6 +25,7 @@
 				alert('Please fill the necessary fields.');
 			} else {
 			var $adminid = $("#adminid").text();
+			var $currid = $("#curriculum").val();
 			var tableGrades11 = $('#grades1-1').tableToJSON();
 			var tableGrades12 = $('#grades1-2').tableToJSON();
 			var tableGrades21 = $('#grades2-1').tableToJSON();
@@ -46,17 +47,18 @@
 			+ '","MotherOccupation":"' + $('#motheroccupation').text() + '","Elementary":"' + $('#elementary').text() + '","ElemAddress":"' + $('#elemaddress').text() 
 			+ '","ElemGraduate":"' + $('#elemgrad').text() + '","Secondary":"' + $('#secondary').text() + '","SecAddress":"' + $('#secaddress').text() 
 			+ '","SecGraduate":"' + $('#secgrad').text() + '"}]';
-			//alert($studentData);
+			//alert($currid);
 			//alert(JSON.stringify(tableGrades));
 			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
-				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid},
+				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
 				cache: false,
 				success: function(result){
 					alert("Successfully updated database!");
 					//url.split('?')[0] ;
 					//window.location.href('/admin/records.php');
+					alert(result);
 					location.reload();
 				}
 			});

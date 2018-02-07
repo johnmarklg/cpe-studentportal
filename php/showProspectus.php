@@ -2,41 +2,7 @@
 			  function showStudentRecords($studnum) {			
 
 				require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
-			  
-					//STUDENT INFO
-					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Info</div><div class=\"panel-body\"><div class=\"table-responsive\">
-								<table id=\"studentinfo\" class=\"table\">
-								  <thead>
-									<tr>
-									  <th>Surname</th>
-									  <th>First Name</th>
-									  <th>Middle Name</th>
-									  <th>Student Number</th>
-									</tr>
-								  </thead>
-								  <tbody>
-									<tr>";
-
-											$conn = getDB('cpe-studentportal');
-											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
-											$stmt -> bindParam(':studnum', $studnum);
-											$stmt->execute();
-
-											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-											foreach(($stmt->fetchAll()) as $row) { 
-												echo "<td>" . $row['surname'] . "</td>
-														  <td>" . $row['firstname'] . "</td>
-														  <td>" . $row['middlename'] . "</td>
-														  <td>" . $row['studnum'] . "</td>";
-											}
-									
-									echo '</tr></tbody></table></div></div>
-									
-									
-									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $row['studnum'] . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div></div>';
-									
-								  
+							  
 					echo '<div class="panel panel-default">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
 									<ul class="nav nav-pills nav-justified">
@@ -54,6 +20,9 @@
 										<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
 										</li>
 									</ul>
+								</div>
+								<div class="panel-footer">
+									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $studnum . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div>
 								</div>
 							</div>';
 							

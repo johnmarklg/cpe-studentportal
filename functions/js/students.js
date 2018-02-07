@@ -20,7 +20,7 @@
 					cache: false,
 					success: function(result){
 						//alert("Successfully removed student entry!");
-						//location.reload(); 			
+						location.reload(); 			
 					}
 				});
 			$(this).parents('tr').detach();			
@@ -39,6 +39,7 @@
 		});
 		
 		$("#buttonAdd").click(function() {
+			var $currid = $("#curriculum").val();
 			var $studnum = $("#studnum").val();
 			var $adminid = $("#adminid").text();
 			var $firstname = $("#firstname").val();
@@ -51,9 +52,9 @@
 			var $studinfo = '[{"Student Number":"' + $studnum +
 			'","Surname":"' + $surname + '","First Name":"' + $firstname +
 			'","Middle Name":"' + $middlename + '","CFAT Score":"' + $cfatscore +
-			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted +'"}]';
+			'","Passcode":"' + $passcode + '","Year Started":"' + $yearstarted + '","Curriculum ID":"' + $currid +'"}]';
 			
-			//alert($adminid);
+			//alert($studinfo);
 			
 			if($studnum=="00-0000"||$studnum=="") {
 				alert('Error! Please fill all the necessary fields.');
@@ -65,7 +66,8 @@
 					data: {studinfo: $studinfo, adminid: $adminid},
 					cache: false,
 					success: function(result){
-						//alert("Successfully added a new student record!");
+						//console.log(result);
+						alert("Successfully added a new student record!");
 						location.reload();  	
 					}
 				});

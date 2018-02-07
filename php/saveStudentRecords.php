@@ -6,6 +6,7 @@
 	$jsonstuddata = json_decode($_POST['studdata'], true);
 	$jsongrades = json_decode($_POST['studgrades'], true); 
 	$studnum = $jsonstudinfo[0]['Student Number'];
+	$currid = $_POST['currid'];
 	$updatedby = $_POST['adminid'];
 	$oldstudnum = $jsonstudinfo[0]['Old Student Number'];
 	
@@ -51,92 +52,64 @@
 					$stmt -> bindParam(':oldstudnum', $oldstudnum);
 					$stmt->execute();
 					
-					$stmt = $conn->prepare("SELECT * FROM grades WHERE studnum = :studnum");
+					//for grades, if not exist for the curriculum
+					//$stmt = $conn->prepare("SELECT * FROM grades WHERE studnum = :studnum");
+					/*$stmt = $conn->prepare("SELECT grades.*
+						FROM `grades`
+						LEFT JOIN `subjects`
+						ON subjects.subjectid = grades.courseid
+						WHERE grades.studnum=:studnum AND subjects.curriculumID=:currid");
 					$stmt -> bindParam(':studnum', $studnum);
+					$stmt -> bindParam(':currid', $currid);
 					$stmt->execute();
-					$result = $stmt->fetch(PDO::FETCH_ASSOC);
-					//check if entry/record exists, if not
-					if(!$result) {
-						//create grades records
-						$stmt = $conn->prepare("INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) VALUES
-						(:studnum, 1, '', '', '', now(), :updatedby),
-						(:studnum, 2, '', '', '', now(), :updatedby),
-						(:studnum, 3, '', '', '', now(), :updatedby),
-						(:studnum, 4, '', '', '', now(), :updatedby),
-						(:studnum, 5, '', '', '', now(), :updatedby),
-						(:studnum, 6, '', '', '', now(), :updatedby),
-						(:studnum, 7, '', '', '', now(), :updatedby),
-						(:studnum, 8, '', '', '', now(), :updatedby),
-						(:studnum, 9, '', '', '', now(), :updatedby),
-						(:studnum, 10, '', '', '', now(), :updatedby),
-						(:studnum, 11, '', '', '', now(), :updatedby),
-						(:studnum, 12, '', '', '', now(), :updatedby),
-						(:studnum, 13, '', '', '', now(), :updatedby),
-						(:studnum, 14, '', '', '', now(), :updatedby),
-						(:studnum, 15, '', '', '', now(), :updatedby),
-						(:studnum, 16, '', '', '', now(), :updatedby),
-						(:studnum, 17, '', '', '', now(), :updatedby),
-						(:studnum, 18, '', '', '', now(), :updatedby),
-						(:studnum, 19, '', '', '', now(), :updatedby),
-						(:studnum, 20, '', '', '', now(), :updatedby),
-						(:studnum, 21, '', '', '', now(), :updatedby),
-						(:studnum, 22, '', '', '', now(), :updatedby),
-						(:studnum, 23, '', '', '', now(), :updatedby),
-						(:studnum, 24, '', '', '', now(), :updatedby),
-						(:studnum, 25, '', '', '', now(), :updatedby),
-						(:studnum, 26, '', '', '', now(), :updatedby),
-						(:studnum, 27, '', '', '', now(), :updatedby),
-						(:studnum, 28, '', '', '', now(), :updatedby),
-						(:studnum, 29, '', '', '', now(), :updatedby),
-						(:studnum, 30, '', '', '', now(), :updatedby),
-						(:studnum, 31, '', '', '', now(), :updatedby),
-						(:studnum, 32, '', '', '', now(), :updatedby),
-						(:studnum, 33, '', '', '', now(), :updatedby),
-						(:studnum, 34, '', '', '', now(), :updatedby),
-						(:studnum, 35, '', '', '', now(), :updatedby),
-						(:studnum, 36, '', '', '', now(), :updatedby),
-						(:studnum, 37, '', '', '', now(), :updatedby),
-						(:studnum, 38, '', '', '', now(), :updatedby),
-						(:studnum, 39, '', '', '', now(), :updatedby),
-						(:studnum, 40, '', '', '', now(), :updatedby),
-						(:studnum, 41, '', '', '', now(), :updatedby),
-						(:studnum, 42, '', '', '', now(), :updatedby),
-						(:studnum, 43, '', '', '', now(), :updatedby),
-						(:studnum, 44, '', '', '', now(), :updatedby),
-						(:studnum, 45, '', '', '', now(), :updatedby),
-						(:studnum, 46, '', '', '', now(), :updatedby),
-						(:studnum, 47, '', '', '', now(), :updatedby),
-						(:studnum, 48, '', '', '', now(), :updatedby),
-						(:studnum, 49, '', '', '', now(), :updatedby),
-						(:studnum, 50, '', '', '', now(), :updatedby),
-						(:studnum, 51, '', '', '', now(), :updatedby),
-						(:studnum, 52, '', '', '', now(), :updatedby),
-						(:studnum, 53, '', '', '', now(), :updatedby),
-						(:studnum, 54, '', '', '', now(), :updatedby),
-						(:studnum, 55, '', '', '', now(), :updatedby),
-						(:studnum, 56, '', '', '', now(), :updatedby),
-						(:studnum, 57, '', '', '', now(), :updatedby),
-						(:studnum, 58, '', '', '', now(), :updatedby),
-						(:studnum, 59, '', '', '', now(), :updatedby),
-						(:studnum, 60, '', '', '', now(), :updatedby),
-						(:studnum, 61, '', '', '', now(), :updatedby),
-						(:studnum, 62, '', '', '', now(), :updatedby),
-						(:studnum, 63, '', '', '', now(), :updatedby),
-						(:studnum, 64, '', '', '', now(), :updatedby),
-						(:studnum, 65, '', '', '', now(), :updatedby),
-						(:studnum, 66, '', '', '', now(), :updatedby),
-						(:studnum, 67, '', '', '', now(), :updatedby),
-						(:studnum, 68, '', '', '', now(), :updatedby),
-						(:studnum, 69, '', '', '', now(), :updatedby),
-						(:studnum, 70, '', '', '', now(), :updatedby),
-						(:studnum, 71, '', '', '', now(), :updatedby),
-						(:studnum, 72, '', '', '', now(), :updatedby),
-						(:studnum, 73, '', '', '', now(), :updatedby);");
-						$stmt -> bindParam(':studnum', $studnum);	
-						$stmt -> bindParam(':updatedby', $updatedby);	
-						$stmt->execute();
+					$result = $stmt->fetch(PDO::FETCH_ASSOC);*/
+					
+					//gets all the subjects from the curriculum and checks if the student has a record for all of them
+					$stmt = $conn->prepare("SELECT COALESCE(grades.courseid, subjects.subjectid) as courseid,
+					COALESCE(grades.studnum, '') as studnum
+					FROM `subjects`
+					LEFT JOIN `grades`
+					ON subjects.subjectid = grades.courseid
+					AND grades.studnum=:studnum
+					WHERE subjects.curriculumID=:currid
+					ORDER BY subjects.subjectid ASC");
+					$stmt -> bindParam(':studnum', $studnum);
+					$stmt -> bindParam(':currid', $currid);
+					$stmt->execute();
+					
+					foreach(($stmt->fetchAll()) as $row) {
+						//for every missing entry, insert a blank entry
+						if(($row['studnum'])==='') {
+							$stmti = $conn->prepare("INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) 
+							VALUES (:studnum, :courseid, '', '', '', now(), :updatedby)");
+							$stmti -> bindParam(':studnum', $studnum);
+							$stmti -> bindParam(':courseid', $row['courseid']);
+							$stmti -> bindParam(':updatedby', $updatedby);
+							$stmti->execute();
+						}
 					}
 					
+					//check if entry/record exists, if not create
+					/*if(!$result) {
+						//create grades records
+						
+						$stmt = $conn->prepare("SELECT subjectid FROM `subjects` WHERE subjects.curriculumID=:currid");
+						$stmt -> bindParam(':currid', $currid);
+						$stmt->execute();
+						
+						$concatstmt = "INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) VALUES ";
+						$result = $stmt->fetchAll();
+						foreach($result as $row) {
+							$concatstmt .= "('" . $studnum . "', " . $row['subjectid']. ", '', '', '', now(), " . $updatedby . ")";
+							if ($row != end($result)) {
+								$concatstmt .= ",";
+							} else {
+								$concatstmt .= ";";
+							}
+						}
+						$stmti = $conn->prepare($concatstmt); 
+						$stmti->execute();
+					}*/
 					
 					//close connection
 					$conn = null;
@@ -169,85 +142,44 @@
 						$stmt -> bindParam(':yearstarted', $yearstarted);
 						$stmt->execute();	
 						
-						//create grades records
-						$stmt = $conn->prepare("INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) VALUES
-						(:studnum, 1, '', '', '', now(), :updatedby),
-						(:studnum, 2, '', '', '', now(), :updatedby),
-						(:studnum, 3, '', '', '', now(), :updatedby),
-						(:studnum, 4, '', '', '', now(), :updatedby),
-						(:studnum, 5, '', '', '', now(), :updatedby),
-						(:studnum, 6, '', '', '', now(), :updatedby),
-						(:studnum, 7, '', '', '', now(), :updatedby),
-						(:studnum, 8, '', '', '', now(), :updatedby),
-						(:studnum, 9, '', '', '', now(), :updatedby),
-						(:studnum, 10, '', '', '', now(), :updatedby),
-						(:studnum, 11, '', '', '', now(), :updatedby),
-						(:studnum, 12, '', '', '', now(), :updatedby),
-						(:studnum, 13, '', '', '', now(), :updatedby),
-						(:studnum, 14, '', '', '', now(), :updatedby),
-						(:studnum, 15, '', '', '', now(), :updatedby),
-						(:studnum, 16, '', '', '', now(), :updatedby),
-						(:studnum, 17, '', '', '', now(), :updatedby),
-						(:studnum, 18, '', '', '', now(), :updatedby),
-						(:studnum, 19, '', '', '', now(), :updatedby),
-						(:studnum, 20, '', '', '', now(), :updatedby),
-						(:studnum, 21, '', '', '', now(), :updatedby),
-						(:studnum, 22, '', '', '', now(), :updatedby),
-						(:studnum, 23, '', '', '', now(), :updatedby),
-						(:studnum, 24, '', '', '', now(), :updatedby),
-						(:studnum, 25, '', '', '', now(), :updatedby),
-						(:studnum, 26, '', '', '', now(), :updatedby),
-						(:studnum, 27, '', '', '', now(), :updatedby),
-						(:studnum, 28, '', '', '', now(), :updatedby),
-						(:studnum, 29, '', '', '', now(), :updatedby),
-						(:studnum, 30, '', '', '', now(), :updatedby),
-						(:studnum, 31, '', '', '', now(), :updatedby),
-						(:studnum, 32, '', '', '', now(), :updatedby),
-						(:studnum, 33, '', '', '', now(), :updatedby),
-						(:studnum, 34, '', '', '', now(), :updatedby),
-						(:studnum, 35, '', '', '', now(), :updatedby),
-						(:studnum, 36, '', '', '', now(), :updatedby),
-						(:studnum, 37, '', '', '', now(), :updatedby),
-						(:studnum, 38, '', '', '', now(), :updatedby),
-						(:studnum, 39, '', '', '', now(), :updatedby),
-						(:studnum, 40, '', '', '', now(), :updatedby),
-						(:studnum, 41, '', '', '', now(), :updatedby),
-						(:studnum, 42, '', '', '', now(), :updatedby),
-						(:studnum, 43, '', '', '', now(), :updatedby),
-						(:studnum, 44, '', '', '', now(), :updatedby),
-						(:studnum, 45, '', '', '', now(), :updatedby),
-						(:studnum, 46, '', '', '', now(), :updatedby),
-						(:studnum, 47, '', '', '', now(), :updatedby),
-						(:studnum, 48, '', '', '', now(), :updatedby),
-						(:studnum, 49, '', '', '', now(), :updatedby),
-						(:studnum, 50, '', '', '', now(), :updatedby),
-						(:studnum, 51, '', '', '', now(), :updatedby),
-						(:studnum, 52, '', '', '', now(), :updatedby),
-						(:studnum, 53, '', '', '', now(), :updatedby),
-						(:studnum, 54, '', '', '', now(), :updatedby),
-						(:studnum, 55, '', '', '', now(), :updatedby),
-						(:studnum, 56, '', '', '', now(), :updatedby),
-						(:studnum, 57, '', '', '', now(), :updatedby),
-						(:studnum, 58, '', '', '', now(), :updatedby),
-						(:studnum, 59, '', '', '', now(), :updatedby),
-						(:studnum, 60, '', '', '', now(), :updatedby),
-						(:studnum, 61, '', '', '', now(), :updatedby),
-						(:studnum, 62, '', '', '', now(), :updatedby),
-						(:studnum, 63, '', '', '', now(), :updatedby),
-						(:studnum, 64, '', '', '', now(), :updatedby),
-						(:studnum, 65, '', '', '', now(), :updatedby),
-						(:studnum, 66, '', '', '', now(), :updatedby),
-						(:studnum, 67, '', '', '', now(), :updatedby),
-						(:studnum, 68, '', '', '', now(), :updatedby),
-						(:studnum, 69, '', '', '', now(), :updatedby),
-						(:studnum, 70, '', '', '', now(), :updatedby),
-						(:studnum, 71, '', '', '', now(), :updatedby),
-						(:studnum, 72, '', '', '', now(), :updatedby),
-						(:studnum, 73, '', '', '', now(), :updatedby);");
-						$stmt -> bindParam(':studnum', $studnum);	
-						$stmt -> bindParam(':updatedby', $updatedby);	
+						//gets all the subjects from the curriculum and checks if the student has a record for all of them
+						$stmt = $conn->prepare("SELECT COALESCE(grades.courseid, subjects.subjectid) as courseid,
+						COALESCE(grades.studnum, '') as studnum
+						FROM `subjects`
+						LEFT JOIN `grades`
+						ON subjects.subjectid = grades.courseid
+						AND grades.studnum=:studnum
+						WHERE subjects.curriculumID=:currid
+						ORDER BY subjects.subjectid ASC");
+						$stmt -> bindParam(':studnum', $studnum);
+						$stmt -> bindParam(':currid', $currid);
 						$stmt->execute();
-
+						
+						foreach(($stmt->fetchAll()) as $row) {
+							//for every missing entry, insert a blank entry
+							if(($row['studnum'])==='') {
+								$stmti = $conn->prepare("INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) 
+								VALUES (:studnum, :courseid, '', '', '', now(), :updatedby)");
+								$stmti -> bindParam(':studnum', $studnum);
+								$stmti -> bindParam(':courseid', $row['courseid']);
+								$stmti -> bindParam(':updatedby', $updatedby);
+								$stmti->execute();
+							}
+						}
+						
+						/*$concatstmt = "INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) VALUES ";
+						$result = $stmt->fetchAll();
+						foreach($result as $row) {
+							$concatstmt .= "('" . $studnum . "', " . $row['subjectid']. ", '', '', '', now(), " . $updatedby . ")";
+							if ($row != end($result)) {
+								$concatstmt .= ",";
+							} else {
+								$concatstmt .= ";";
+							}
+						}
+						$stmti = $conn->prepare($concatstmt); 
+						$stmti->execute();*/
+						
 						$conn = null;	
 				}
 		}
@@ -293,6 +225,5 @@
 	} else {
 		echo "<script>alert('Error! No Student Number assigned.');</script>";
 	}
-		
-		print $studnum;
+		//print $stmt;
 ?>

@@ -28,13 +28,22 @@
 								
 								foreach(($stmt->fetchAll()) as $row) { 
 								$time = strtotime($row['datetime']);
-								echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
+								if($row['file'] <> '') {
+									echo '<div class="panel panel-default"><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 250px; width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
+								} else {
+									echo '<div class="panel panel-default">';
+								}
+								echo '<div class="panel-body"><strong>' .
+								$row['poster'] . '</strong> @<i> ' . relativeTime($time) . ':</i><hr/><strong>' . $row['posttitle'] . '</strong><br/>' . $row['post'];
+								echo '</div></div>';
+								}
+								/*echo '<div class="panel panel-default"><div class="panel-body"><strong>' .
 								$row['poster'] . '</strong> @<i> ' . relativeTime($time) . ':</i><hr/><strong>' . $row['posttitle'] . '</strong><br/>' . $row['post'];
 								if($row['file'] <> '') {
 									echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
 								}									
 								echo '</div></div>';
-								}
+								}*/
 								$conn = null;
 						
 						echo '</div>';
