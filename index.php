@@ -59,14 +59,10 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-lg-12">
-							<?php	
-									require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
-									echo showANE();
-							?>
-					</div>
-				</div>
+				<?php	
+						require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
+						echo showANE();
+				?>
 			</div>
             <!-- /.container-fluid -->
 

@@ -50,7 +50,7 @@
 			
 			//alert($currid);
 			//alert(JSON.stringify(tableGrades));
-			/*$.ajax({
+			$.ajax({
 			type: "POST",
 				url: "/php/saveStudentRecords.php",
 				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
@@ -62,7 +62,7 @@
 					alert(result);
 					location.reload();
 				}
-			});*/
+			});
 			return false;
 			}
 		});

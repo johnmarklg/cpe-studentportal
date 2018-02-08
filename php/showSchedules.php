@@ -55,29 +55,29 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td contentEditable\">" . $row['section'] . "</td>
-			<td contentEditable>" . $row['code'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td></tr>";
+			<td \">" . $row['section'] . "</td>
+			<td >" . $row['code'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
 		echo "<tr class=\"hide\" style=\"display:none;\">
 		<td style=\"font-size: 0px\"></td>
-		<td contentEditable></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td></tr>";
+		<td ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//2ND YEAR
@@ -110,29 +110,29 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td contentEditable\">" . $row['section'] . "</td>
-			<td contentEditable>" . $row['code'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td></tr>";
+			<td \">" . $row['section'] . "</td>
+			<td >" . $row['code'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
 		echo "<tr class=\"hide\" style=\"display:none;\">
 		<td style=\"font-size: 0px\"></td>
-		<td contentEditable></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td></tr>";
+		<td ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//THIRD YEAR
@@ -165,29 +165,29 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td contentEditable\">" . $row['section'] . "</td>
-			<td contentEditable>" . $row['code'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td></tr>";
+			<td \">" . $row['section'] . "</td>
+			<td >" . $row['code'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
 		echo "<tr class=\"hide\" style=\"display:none;\">
 		<td style=\"font-size: 0px\"></td>
-		<td contentEditable></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td></tr>";
+		<td ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//FOURTH YEAR
@@ -220,29 +220,29 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td contentEditable\">" . $row['section'] . "</td>
-			<td contentEditable>" . $row['code'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td></tr>";
+			<td \">" . $row['section'] . "</td>
+			<td >" . $row['code'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
 		echo "<tr class=\"hide\" style=\"display:none;\">
 		<td style=\"font-size: 0px\"></td>
-		<td contentEditable></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td></tr>";
+		<td ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div>";
 		
 		//FIFTH YEAR
@@ -275,29 +275,29 @@
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo "<tr>
 			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td contentEditable\">" . $row['section'] . "</td>
-			<td contentEditable>" . $row['code'] . "</td>
-			<td contentEditable>" . $row['subjectsection'] . "</td>
-			<td contentEditable>" . $row['starttime'] . "</td>
-			<td contentEditable>" . $row['endtime'] . "</td>
-			<td contentEditable>" . $row['days'] . "</td>
-			<td contentEditable>" . $row['building'] . "</td>
-			<td contentEditable>" . $row['roomnumber'] . "</td>
-			<td contentEditable>" . $row['instructor'] . "</td></tr>";
+			<td >" . $row['section'] . "</td>
+			<td >" . $row['code'] . "</td>
+			<td >" . $row['subjectsection'] . "</td>
+			<td >" . $row['starttime'] . "</td>
+			<td >" . $row['endtime'] . "</td>
+			<td >" . $row['days'] . "</td>
+			<td >" . $row['building'] . "</td>
+			<td >" . $row['roomnumber'] . "</td>
+			<td >" . $row['instructor'] . "</td></tr>";
 		}
 		$conn = null;
 
 		echo "<tr class=\"hide\" style=\"display:none;\">
 		<td style=\"font-size: 0px\"></td>
-		<td contentEditable></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td>
-		<td contentEditable ></td></tr>";
+		<td ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td>
+		<td  ></td></tr>";
 		echo "</tbody></table></div></div></div></div></div></div></div>";
 	}
 ?>
