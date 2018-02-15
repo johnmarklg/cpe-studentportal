@@ -120,20 +120,33 @@ $conn = getDB('cpe-studentportal');
 											$time = strtotime($row['datetime']);
 											echo '<div class="panel panel-info">';
 											echo '<div class="panel-heading">' . '<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
-											echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
-											echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
-											echo '<hr/>' . $row['post'];
-											if($row['file'] <> '') {
-												echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
+											echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide close" aria-label="close" style="font-size: 2.5vh;" onclick="showhide_cache=this.value;">';
+											if ($row['showbulletin']=='1') { 
+												echo '<option value="1" selected>Show</option> 
+												<option value="0">Hidden</option>'; 
+											} else {
+												echo '<option value="1">Show</option> 
+												<option value="0" selected>Hidden</option>';
 											}
-											echo '</div></div></div>';
+											echo '</select>';
+											//echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
+											if($row['file'] == '') {
+												echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12">';
+											} else {
+												echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-2">' .
+												'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
+												. '</div><div class="col-lg-10">';
+											}
+											echo '<strong>' . $row['posttitle'] . '</strong>';
+											echo '<hr/>' . $row['post'];
+											echo '</div></div></div></div>';
 										}				
 										?>
-										This is where stuff like news and announcements will be placed.
+										<!--This is where stuff like news and announcements will be placed.-->
 									</div>
-									<div class="panel-footer">
+									<!--<div class="panel-footer">
 										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update News and Information</button>
-									</div>
+									</div>-->
 								</div>
 								<div class="tab-pane" id="2">
 									<div class="panel-body">
@@ -182,6 +195,30 @@ $conn = getDB('cpe-studentportal');
 					  })
 			.addClass('active');
      });
+	 
+	 $('select').on('change', function() {
+		if (!confirm('Are you sure you want to change this post\'s visibility on the bulletin?')) {
+            $(this).val(showhide_cache);
+            return false;
+        } else {
+			var $newBool = this.value;
+			var $id = this.id;
+			var $datetime = $(this).attr("name");
+			//alert($datetime);
+			var $data = '[{"ID":"' + $id + '","showBool":"' + $newBool + '","timestamp":"' + $datetime + '"}]';
+			//alert($data);		
+			$.ajax({
+				type: "POST",
+				url: "/php/updatePostVisibility.php",
+				data: {admininfo: $data},
+				cache: false,
+				success: function(result){
+					alert("Successfully changed post visibility!");
+					//location.reload();
+				}
+			});
+		}
+	})
 	 </script>
 </body>
 </html>

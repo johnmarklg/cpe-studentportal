@@ -115,7 +115,7 @@
 									echo '</tr></tbody></table></div></div>
 									<div class="panel-footer">
 										<a class="btn btn-success btn-block" href="/functions/generateprospectus.php?studnum=' . $row['studnum'] . '"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</a>		
-										<hr/>
+										<hr style="margin: 5px;"/>
 										<a class="btn btn-primary btn-block" href="#studdata" data-toggle="collapse"><i class="fa fa-fw fa-file"></i> Student Profile</a>  										  
 									</div></div>';
 									

@@ -95,10 +95,11 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 											<thead>
 												<tr>
 													<!--<th>Transaction Date</th>-->
-													<th>Transaction ID</th>
-													<th>Transaction Description</th>
+													<th>ID</th>
+													<th>Description</th>
 													<th>Charges</th>
 													<th>Amount Paid</th>
+													<th>Balance</th>
 													<th>Date Paid</th>
 												</tr>
 											</thead>
@@ -118,8 +119,13 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 												foreach(($stmt->fetchAll()) as $row) { 
 													echo '<tr><td>' . $row['paymentid'] . '</td>';
 													echo '<td>' . $row['name'] . '</td>';
-													echo '<td>' . $row['charge'] . '</td>';
-													echo '<td>' . $row['amountpaid'] . '</td>';
+													echo '<td>₱ ' . $row['charge'] . '</td>';
+													echo '<td>₱ ' . $row['amountpaid'] . '</td>';
+													if($row['charge']=='0') {
+														echo '<td></td>';
+													} else {
+														echo '<td>₱ ' . ($row['charge'] - $row['amountpaid']) . '</td>';
+													}
 													echo '<td>' . $row['datepaid'] . '</td></tr>';
 												}
 												$conn=null;

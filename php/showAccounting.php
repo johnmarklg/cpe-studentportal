@@ -45,7 +45,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['ContactNo'] . "</td>
-			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
+			<td><a class=\"showReceipt\" href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -79,7 +79,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['ContactNo'] . "</td>
-			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
+			<td><a class=\"showReceipt\" href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -113,7 +113,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['ContactNo'] . "</td>
-			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
+			<td><a class=\"showReceipt\" href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -147,7 +147,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['ContactNo'] . "</td>
-			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
+			<td><a class=\"showReceipt\" href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";
@@ -181,7 +181,7 @@
 			<td>" . $row['firstname'] . "</td>
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['ContactNo'] . "</td>
-			<td><a href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
+			<td><a class=\"showReceipt\" href=\"/functions/generatereceipt.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-print\"></i> E-Receipt</a></td></tr>";
 		}
 		
 		echo "</tbody></table></div></div></div></div></div></div>";

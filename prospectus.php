@@ -75,9 +75,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
-			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
-			  <a class="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
-      
+			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>      
 			</div>
 		  </div>
 		</footer>

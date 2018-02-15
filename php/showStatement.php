@@ -116,7 +116,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 												foreach(($stmt->fetchAll()) as $row) { 
 													echo '<tr><td>' . $row['paymentid'] . '</td>';
 													echo '<td>' . $row['name'] . '</td>';
-													echo '<td>' . $row['charge'] . '</td>';
+													if($row['charge']=='0') {
+													echo '<td>Undefined</td>';
+													} else {
+													echo '<td>' . $row['charge'] . '</td>';	
+													}
 													echo '<td contentEditable>' . $row['amountpaid'] . '</td></tr>';
 												}
 												$conn=null;

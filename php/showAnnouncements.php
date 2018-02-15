@@ -27,12 +27,16 @@
 			}
 			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
-			echo '</div><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
-			echo '<hr/>' . $row['post'];
-			if($row['file'] <> '') {
-				echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
+			if($row['file'] == '') {
+				echo '</div><div class="panel-body"><div class="col-lg-12">';
+			} else {
+				echo '</div><div class="panel-body"><div class="col-lg-2">' .
+				'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
+				. '</div><div class="col-lg-10">';
 			}
-			echo '</div></div>';
+			echo '<strong>' . $row['posttitle'] . '</strong>';
+			echo '<hr/>' . $row['post'];
+			echo '</div></div></div>';
 		}
 		echo '</div>';
 		
@@ -46,12 +50,16 @@
 			echo '<div class="panel panel-info">';
 			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
-			echo '</div><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
-			echo '<hr/>' . $row['post'];
-			if($row['file'] <> '') {
-				echo '<br/><a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '"></a>';
+			if($row['file'] == '') {
+				echo '</div><div class="panel-body"><div class="col-lg-12">';
+			} else {
+				echo '</div><div class="panel-body"><div class="col-lg-2">' .
+				'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
+				. '</div><div class="col-lg-10">';
 			}
-			echo '</div></div>';
+			echo '<strong>' . $row['posttitle'] . '</strong>';
+			echo '<hr/>' . $row['post'];
+			echo '</div></div></div>';
 		}
 		echo '</div>';
 		
@@ -66,12 +74,17 @@
 			echo '<div class="panel panel-danger">';
 			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
-			echo '</div><div class="panel-body"><strong>' . $row['posttitle'] . '</strong>';
-			echo '<hr/>' . $row['post'];
-			if($row['file'] <> '') {
-				echo '<br/><img style="max-height: 25vh; max-width: 100%;" src="/uploads/' . $row['file'] . '">';
+			if($row['file'] == '') {
+				echo '</div><div class="panel-body"><div class="col-lg-12">';
+			} else {
+				echo '</div><div class="panel-body"><div class="col-lg-2">' .
+				'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
+				. '</div><div class="col-lg-10">';
 			}
-			echo '</div><div class="panel-footer"><button id="' . $row['id'] . '" class="btn btn-info btn-block btnApprove">Approve this Post</button></div>';
+			
+			echo '<strong>' . $row['posttitle'] . '</strong>';
+			echo '<hr/>' . $row['post'];
+			echo '</div></div><div class="panel-footer"><button id="' . $row['id'] . '" class="btn btn-info btn-block btnApprove">Approve this Post</button></div>';
 			echo '</div></div>';
 		}
 		

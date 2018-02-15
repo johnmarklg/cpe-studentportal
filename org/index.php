@@ -168,8 +168,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/functions/js/accounting.js"></script>
-	
-	
 </body>
 
 </html>

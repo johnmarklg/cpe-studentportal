@@ -48,8 +48,8 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
 			<td>" . $row['currname'] . "</td>
-			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
+			<td><span ><a class=\"btn btn-primary\" href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus</a></span></td>
+			<td><span class=\"table-remove btn btn-danger\"><i class=\"fa fa-fw fa-times\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -91,8 +91,8 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
 			<td>" . $row['currname'] . "</td>
-			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
+			<td><span ><a class=\"btn btn-primary\" href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus</a></span></td>
+			<td><span class=\"table-remove btn btn-danger\"><i class=\"fa fa-fw fa-times\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -134,8 +134,8 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
 			<td>" . $row['currname'] . "</td>
-			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
+			<td><span ><a class=\"btn btn-primary\" href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus</a></span></td>
+			<td><span class=\"table-remove btn btn-danger\"><i class=\"fa fa-fw fa-times\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -177,8 +177,8 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
 			<td>" . $row['currname'] . "</td>
-			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
+			<td><span ><a class=\"btn btn-primary\" href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus</a></span></td>
+			<td><span class=\"table-remove btn btn-danger\"><i class=\"fa fa-fw fa-times\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;
@@ -221,8 +221,8 @@
 			<td>" . $row['middlename'] . "</td>
 			<td>" . $row['passcode'] . "</td>
 			<td>" . $row['currname'] . "</td>
-			<td><span ><a href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus (PDF)</a></span></td>
-			<td><span class=\"table-remove\"><i class=\"fa fa-fw fa-minus-circle\"></i> Remove</span></td>
+			<td><span ><a class=\"btn btn-primary\" href=\"/functions/generateprospectus.php?studnum=" . $row['studnum'] . "\"><i class=\"fa fa-fw fa-print\"></i> Prospectus</a></span></td>
+			<td><span class=\"table-remove btn btn-danger\"><i class=\"fa fa-fw fa-times\"></i> Remove</span></td>
 			<td style=\"font-size: 0px\" class=\"yearstarted\">" . $row['yearstarted'] . "</td></tr>";
 		}
 		$conn = null;

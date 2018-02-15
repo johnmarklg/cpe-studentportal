@@ -61,7 +61,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				
 				<?php	
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showANE.php');
-						echo showANE();
+						echo showANE($_SESSION['name'][4]);
 				?>
 			</div>
             <!-- /.container-fluid -->
