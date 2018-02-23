@@ -1,5 +1,5 @@
 <?php	
-	function showAnnouncements() {
+	function showAnnouncements($adminid) {
 
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/timefxn.php");
@@ -20,6 +20,11 @@
 		echo '<div class="tab-content"><div class="active tab-pane" id="1">';
 		foreach(($stmt->fetchAll()) as $row) { 
 			$time = strtotime($row['datetime']);
+			$stmti = $conn->prepare("SELECT COUNT(*) FROM comments as commentcount WHERE postid=:postid");
+			$stmti	 -> bindParam(':postid', $row['id']);
+			$stmti->execute();
+			$commentcount = $stmti->fetchColumn(); 
+			
 			if($row['status']=='Pending') {
 				echo '<div class="panel panel-danger">';
 			} else {
@@ -36,7 +41,11 @@
 			}
 			echo '<strong>' . $row['posttitle'] . '</strong>';
 			echo '<hr/>' . $row['post'];
-			echo '</div></div></div>';
+			if($row['status']=='Pending') {
+				echo '</div></div></div>';
+			} else {
+				echo '</div></div><div class="panel-footer"><a href="/admin/post.php?postID=' . $row['id'] . '&adminid=' . $adminid . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
+			}			
 		}
 		echo '</div>';
 		
@@ -47,6 +56,11 @@
 		//approved already
 		foreach(($stmt->fetchAll()) as $row) { 
 			$time = strtotime($row['datetime']);
+			$stmti = $conn->prepare("SELECT COUNT(*) FROM comments as commentcount WHERE postid=:postid");
+			$stmti	 -> bindParam(':postid', $row['id']);
+			$stmti->execute();
+			$commentcount = $stmti->fetchColumn(); 
+													
 			echo '<div class="panel panel-info">';
 			echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 			echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
@@ -59,7 +73,7 @@
 			}
 			echo '<strong>' . $row['posttitle'] . '</strong>';
 			echo '<hr/>' . $row['post'];
-			echo '</div></div></div>';
+			echo '</div></div><div class="panel-footer"><a href="/admin/post.php?postID=' . $row['id'] . '&adminid=' . $adminid . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
 		}
 		echo '</div>';
 		

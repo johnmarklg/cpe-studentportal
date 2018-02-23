@@ -50,3 +50,13 @@ FOR EACH ROW
 BEGIN
   DELETE FROM `invoices` WHERE `studnum` = old.`studnum`;
 END $$
+
+
+DROP TRIGGER IF EXISTS set_path
+
+CREATE TRIGGER set_path BEFORE INSERT ON comments
+ FOR EACH ROW SET NEW.path = 
+ CONCAT(IFNULL((SELECT path FROM comments WHERE commentid = NEW.parentid), '0'), '.' , New.commentid);
+ CREATE TRIGGER set_path BEFORE INSERT ON comments
+FOR EACH ROW SET NEW.path = 
+CONCAT(IFNULL((SELECT path FROM comments WHERE commentid = NEW.parentid), '0'), '.' , (SELECT commentid FROM comments ORDER BY commentid DESC LIMIT 1));

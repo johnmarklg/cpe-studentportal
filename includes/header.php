@@ -60,4 +60,8 @@
 		.side-nav {
 			border: 1px solid #e6e6e6;
 		}
+		a {
+			color: #4f4f4f;
+			text-decoration: none;
+		}
 	</style>

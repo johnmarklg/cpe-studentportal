@@ -118,9 +118,9 @@ $conn = getDB('cpe-studentportal');
 										//approved already
 										foreach(($stmt->fetchAll()) as $row) { 
 											$time = strtotime($row['datetime']);
-											echo '<div class="panel panel-info">';
+											echo '<div class="panel panel-default">';
 											echo '<div class="panel-heading">' . '<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
-											echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide close" aria-label="close" style="font-size: 2.5vh;" onclick="showhide_cache=this.value;">';
+											echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide close" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
 											if ($row['showbulletin']=='1') { 
 												echo '<option value="1" selected>Show</option> 
 												<option value="0">Hidden</option>'; 

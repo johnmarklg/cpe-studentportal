@@ -47,6 +47,9 @@
                     <li>
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> School Calendar</a>
                     </li>
+					<li>
+                        <a href="profilereq.php"><i class="fa fa-fw fa-edit"></i> Approve Profile Updates</a>
+                    </li>
 					<?php
 					if($_SESSION['name'][0]=='Administrator (Elevated)') {
 							echo '<li>

@@ -124,7 +124,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<hr/>
 				<?php	
 					require($_SERVER["DOCUMENT_ROOT"] . '/php/showAnnouncements.php');
-					echo showAnnouncements();
+					echo showAnnouncements($_SESSION['name'][2]);
 				?>
             </div>
             <!-- /.container-fluid -->
