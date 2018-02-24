@@ -83,16 +83,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
 						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new class schedule to the list of open subjects.</a></div>
-						<div id="collapsePanel" class="panel-collapse collapse">
+						<div id="collapsePanel" class="panel-collapse">
 						<div class="panel-body">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Year</span>
-								<input id="year" type="text" class="form-control formTextbox"  placeholder="ex. 1" value="" aria-describedby="basic-addon1">
-							</div>
-							<br/>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Section</span>
-								<input id="section" type="text" class="form-control formTextbox"  placeholder="ex. A" value="" aria-describedby="basic-addon1">
+								<select id="year" class="form-control">
+									<option>Select Year...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+								</select>
+								<!--<input id="year" type="text" class="form-control formTextbox"  placeholder="ex. 1" value="" aria-describedby="basic-addon1">-->
 							</div>
 							<br/>
 							<div class="input-group">
@@ -101,13 +99,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							</div>
 							<br/>
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Units</span>
-								<input id="units" type="text" class="form-control formTextbox"  placeholder="ex. 3.0" value="" aria-describedby="basic-addon1">
+								<span class="input-group-addon" id="basic-addon1">Subject Section</span>
+								<input id="subjectsection" type="text" class="form-control formTextbox" placeholder="ex. 1A" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Subject Section</span>
-								<input id="subjectsection" type="text" class="form-control formTextbox" placeholder="ex. 1A" value="" aria-describedby="basic-addon1">
+								<span class="input-group-addon" id="basic-addon1">Units</span>
+								<input id="units" type="text" class="form-control formTextbox"  placeholder="ex. 3.0" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
 							<div class="input-group">

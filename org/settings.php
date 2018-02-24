@@ -41,16 +41,64 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-lock"></i> Change Password
+                                <i class="fa fa-gear"></i> Settings
                             </li>
                         </ol>
-						<div class="alert alert-info" role="alert">
-						  Your current session will close upon changing your password.
-						</div>
                     </div>
                 </div>
                 <!-- /.row -->
-				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+							 <i class="fa fa-plus-circle"></i> Add Transaction
+							</div>
+							<div class="panel-body">
+								<div class="alert alert-info" role="alert">
+								  <i class="fa fa-info-circle"></i> Input <strong>0</strong> as amount charged if the transaction charges will vary.
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								</div>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon1">Transaction Name</span>
+								  <input id="name" type="text" class="form-control" value="" aria-describedby="basic-addon1">
+								</div>
+								<br/>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon2">Amount to be Charged</span>
+								  <input id="amount" type="text" class="form-control" value="" aria-describedby="basic-addon2">
+								</div>
+								<br/>
+								<form method="post">
+									<button type="button" id="buttonSave" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-credit-card"></i> Add New Charge</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr/>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel-group">
+							<div class="panel panel-danger">
+								<div class="panel-heading">
+									<a data-toggle="collapse" href="#collapsePanel" style="color: #fff;"><i class="fa fa-fw fa-exchange"></i> Current Transactions (click to Toggle)</a>
+								</div>
+								<div id="collapsePanel" class="panel-collapse">
+									<div class="panel-body">
+										<?php
+											require($_SERVER["DOCUMENT_ROOT"] . '/php/showPaymentTable.php');
+											echo showPaymentTable();
+										?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr/>
+				<div class="alert alert-info" role="alert">
+					Your current session will close upon changing your password.
+				</div>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-success">
@@ -97,7 +145,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		</footer>
 		<!-- /footer -->
 		
-		<script src="/functions/js/changepass.js"></script>
+		<script src="/functions/js/settings.js"></script>
 	
     </div>
     <!-- /#wrapper -->

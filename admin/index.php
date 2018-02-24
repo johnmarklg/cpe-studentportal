@@ -74,7 +74,7 @@ $conn = getDB('cpe-studentportal');
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-th"></i> Bulletin Management
+                                <i class="fa fa-gear"></i> Bulletin Settings
                             </li>
                         </ol>
 						<div class="alert alert-success" role="alert">

@@ -27,7 +27,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <div id="wrapper">
 
-        <?php admin_nav(); ?>
+        <?php org_nav(); ?>
 
         <div id="page-wrapper">
 
@@ -166,7 +166,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		<script>
 			$( document ).ready(function() {
 					$('li', '#tabs').filter(function() {
-						return !! $(this).find('a[href="announcements.php"]').length;
+						return !! $(this).find('a[href="/org/announcements.php"]').length;
 					  })
 					  .addClass('active');
 			});
@@ -194,8 +194,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			}
 			});
 		</script>
-	
-		
     </div>
     <!-- /#wrapper -->
 	

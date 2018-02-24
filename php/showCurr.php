@@ -57,7 +57,7 @@
 		<td class="prerequisite" contentEditable ></td>
 		<td class="corequisite" contentEditable ></td>
 		<td class="year" contentEditable ></td>
-		<td><button class="entry-update btn btn-primary"><span><i class="fa fa-fw fa-edit"></i> Update</span></button></td>
+		<td><button class="entry-update btn btn-primary"><span><i class="fa fa-fw fa-save"></i> Save</span></button></td>
 		<td><button class="entry-remove btn btn-danger"><span><i class="fa fa-fw fa-remove"></i> Delete</span></button></td></tr>
 		</tbody></table></div></div></div></div>';
 		

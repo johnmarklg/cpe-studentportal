@@ -67,54 +67,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-							 <i class="fa fa-plus-circle"></i> Add Transaction
-							</div>
-							<div class="panel-body">
-								<div class="alert alert-info" role="alert">
-								  <i class="fa fa-info-circle"></i> Input <strong>0</strong> as amount charged if the transaction charges will vary.
-								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								</div>
-								<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon1">Transaction Name</span>
-								  <input id="name" type="text" class="form-control" value="" aria-describedby="basic-addon1">
-								</div>
-								<br/>
-								<div class="input-group">
-								  <span class="input-group-addon" id="basic-addon2">Amount to be Charged</span>
-								  <input id="amount" type="text" class="form-control" value="" aria-describedby="basic-addon2">
-								</div>
-								<br/>
-								<form method="post">
-									<button type="button" id="buttonSave" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-credit-card"></i> Add New Charge</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel-group">
-							<div class="panel panel-danger">
-								<div class="panel-heading">
-									<a data-toggle="collapse" href="#collapsePanel" style="color: #000;"><i class="fa fa-close"></i> Click here to remove an invoice/account from the database.</a>
-								</div>
-								<div id="collapsePanel" class="panel-collapse collapse">
-									<div class="panel-body">
-										<?php
-											require($_SERVER["DOCUMENT_ROOT"] . '/php/showPaymentTable.php');
-											echo showPaymentTable();
-										?>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr/>
-				<div class="row">
-					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading" style="text-align: center;" id="myTabs">	
 								<ul class="nav nav-pills nav-justified">
@@ -167,7 +119,22 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
-	<script src="/functions/js/accounting.js"></script>
+	<script>
+		$( document ).ready(function() {
+				$('li', '#tabs').filter(function() {
+					return !! $(this).find('a[href="/org/index.php"]').length;
+				  })
+				  .addClass('active');
+		});
+	
+		$('#tabAll').click(function(){
+			$('#tabAll').addClass('active');  
+			$('.tab-pane').each(function(i,t){
+				$('#myTabs li').removeClass('active'); 
+				$(this).addClass('active');  
+			});
+		});
+	</script>
 </body>
 
 </html>

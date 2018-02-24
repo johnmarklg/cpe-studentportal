@@ -36,7 +36,7 @@
                         <a href="/org/announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
                     </li>
 					<li>
-                        <a href="/org/changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                        <a href="/org/settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>
 					<li>
                         <a href="/org/logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>

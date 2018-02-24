@@ -2,6 +2,14 @@
 			  function showStudentRecords($studnum) {			
 
 				require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+					
+					//REMAKE Student Grades
+					$conn = getDB('cpe-studentportal');
+					$stmt = $conn->prepare("SELECT curriculumID FROM students WHERE studnum = :studnum");
+					$stmt -> bindParam(':studnum', $studnum);
+					$stmt->execute();
+					$result = $stmt -> fetch();
+					$currid = $result[0];
 							  
 					echo '<div class="panel panel-default">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
@@ -22,21 +30,30 @@
 									</ul>
 								</div>
 								<div class="panel-footer">
-									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $studnum . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div>
+									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $studnum . '&currid=' . $currid . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div>
 								</div>
 							</div>';
 							
-					//REMAKE Student Grades
-					$conn = getDB('cpe-studentportal');
-					$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT * FROM `grades` LEFT JOIN subjects ON subjects.subjectid = grades.courseid WHERE grades.studnum = :studnum)");
+					
+					$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT subjects.*, 
+					COALESCE(grades.courseid, subjects.subjectid) as courseid,
+					COALESCE(grades.studnum, :studnum) as studnum,
+					COALESCE(grades.1st, '') as `1st`,
+					COALESCE(grades.2nd, '') as `2nd`,
+					COALESCE(grades.3rd, '') as `3rd`
+					FROM `subjects`
+					LEFT JOIN `grades`
+					ON subjects.subjectid = grades.courseid
+					AND grades.studnum=:studnum
+					WHERE subjects.curriculumID=:currid
+					ORDER BY subjects.subjectid ASC)");
 					$stmt -> bindParam(':studnum', $studnum);
+					$stmt -> bindParam(':currid', $currid);
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					//1ST YEAR
 					$stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 1 AND defaultsemester = 1");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					echo '<div class="tab-content">';	
 					
 					echo '<div class="active tab-pane" id="1"><div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 1st Year - 1st Semester</div>
@@ -44,10 +61,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -67,10 +84,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -91,10 +108,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -114,10 +131,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -138,10 +155,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -161,10 +178,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -185,10 +202,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -208,10 +225,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -231,10 +248,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -255,10 +272,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -278,10 +295,10 @@
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
 					foreach(($stmt->fetchAll()) as $row) { 
 						echo '<tr>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
-						echo '<td><div  style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
+						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
+						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -293,5 +310,7 @@
 					echo '</tbody></table></div></div></div></div></div></div>';
 					
 					echo '</div><!--/tabcontent-->';
+					
+				$conn = null;
 			  }
 ?>

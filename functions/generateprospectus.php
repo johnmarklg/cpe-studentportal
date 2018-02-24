@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"] . '/assets/fpdf/fpdf.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 
 $studnum = $_GET['studnum'];
-
+$currid = $_GET['currid'];
 // Initialize the session
 session_start();
 //security check
@@ -17,7 +17,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		exit; }
 	}
 }
-	
+$conn = getDB('cpe-studentportal');
+						
 $pdf = new FPDF('P','mm','legal');
 
 $pdf->AddPage();
@@ -58,12 +59,22 @@ $pdf->Cell(200,5,'First Year', 0,1, 'C');
 $pdf->SetFont('Arial','',7);
 $pdf->Cell(200,5,'1st Semester 1st Year', 0,1); 
 
-$conn = getDB('cpe-studentportal');
-$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT * FROM `grades` LEFT JOIN subjects ON subjects.subjectid = grades.courseid WHERE grades.studnum = :studnum)");
+$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT subjects.*, 
+COALESCE(grades.courseid, subjects.subjectid) as courseid,
+COALESCE(grades.studnum, :studnum) as studnum,
+COALESCE(grades.1st, '') as `1st`,
+COALESCE(grades.2nd, '') as `2nd`,
+COALESCE(grades.3rd, '') as `3rd`
+FROM `subjects`
+LEFT JOIN `grades`
+ON subjects.subjectid = grades.courseid
+AND grades.studnum=:studnum
+WHERE subjects.curriculumID=:currid
+ORDER BY subjects.subjectid ASC)");
 $stmt -> bindParam(':studnum', $studnum);
+$stmt -> bindParam(':currid', $currid);
 $stmt->execute();
 $subjcount = $stmt->rowCount();
-
 $stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 1 AND defaultsemester = 1");
 $stmt->execute();
 $total=0;

@@ -53,48 +53,48 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				
 				<div class="row">
 					<div class="col-lg-12">
+						<?php
+						
+							require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");		
+									
+									$conn = getDB('cpe-studentportal');	
+		
+									$stmt = $conn->prepare("SELECT * FROM `infotext` WHERE referenceid = 1");
+									$stmt->execute();
+									
+									foreach(($stmt->fetchAll()) as $row) { 
+										$title = $row['title'];
+										$text = $row['text'];
+										echo '<div class="panel panel-info"><div class="panel-heading">';
+										echo '<input type="text" id="aboutTitle" value="' . $row['title'] . '" class="form-control">';
+										echo '</div>
+										<div class="panel-body">';
+											echo '<textarea type="text" id="aboutText" name="aboutText" name="aboutText" class="form-control" placeholder="Add something about the Portal..." cols="40" rows="5">'. $row['text'] . '</textarea>';
+										echo '</div>';
+										echo '<div class="panel-footer"><button id="btnSaveAbout" class="btn btn-success btn-block">Save Changes</button></div></div>';
+									}
+						?>
+					</div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
+				<hr/>
+				<div class="alert alert-info" role="alert">
+					  <i class="fa fa-fw fa-info-circle"></i> This is a preview of how the about sections looks to the user. It will update as you edit the text field.
+					  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
 						<div class="panel panel-info">
-							<div class="panel-heading">
-								About CpE Student Portal
+							<div class="panel-heading" id="previewTitle">
+								<?php echo $title; ?>
 							</div>
-							<div class="panel-body">
-								<h3><strong>OVERVIEW</strong></h3>
-								<hr/>
-								<h4>ABOUT CpE Student Portal</h4>
-								<p>CpE Student Portal is for Computer Engineering students Mariano Marcos State University - College of Engineering, that serves as a personal assistant in carrying out academic-related tasks.</p>
-								<p>Students can view their personal details, schedules, current grades, accountabilities, curriculum checklist, and more.</p>
-								<hr/>
-								<h4>FEATURES AVAILABLE</h4>
-								<p>News and Announcements: where a student can read a feed of the latest news and announcements from the faculty/organization.</p>
-								<p>Personal Details: where a student can view his/her personal information.</p>
-								<p>Subject Timetables: where a student can view all subjects with their time schedules for the current term.</p>
-								<p>Records Transcript: shows the final grades in the previous terms of the student.</p>
-								<p>School Calendar: where a student can view upcoming events and holidays within the academic year.</p>
-								<p>Statement of Accounts: shows if a student still has account balance from the organizational office.</p>
-								<hr/>
-								<h4>FORGOT PASSWORD?</h4>
-								<p>Proceed to the Computer Engineering Department, 1st Floor, College of Engineering, Mariano Marcos State University and ask a faculty member.</p>
+							<div class="panel-body" id="previewText">
+								<?php echo $text; ?>
 							</div>
 						</div>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-info">
-							<div class="panel-heading">
-								Student Manuals and Official Papers
-							</div>
-							<div class="panel-body">
-								<ul class="list-group">
-									<li class="list-group-item"><a href="">Official MMSU Student Handbook</a></li>
-									<li class="list-group-item"><a href="/assets/files/citizenschartercoe.pdf">COE Citizen's Charter</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-            </div>
-            <!-- /.container-fluid -->
+			</div>
+			<!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
@@ -114,6 +114,33 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						return !! $(this).find('a[href="about.php"]').length;
 					  })
 					  .addClass('active');
+			});
+			
+			$('#aboutText').keyup(function() {
+				var content = $('#aboutText').val();
+				$('#previewText').html(content);
+			});
+			
+			$('#aboutTitle').keyup(function() {
+				var content = $('#aboutTitle').val();
+				$('#previewTitle').html(content);
+			});
+			
+			$('#btnSaveAbout').click(function() {
+				var $aboutTitle = $('#aboutTitle').val(); 
+				var $aboutText = $('#aboutText').val();
+				alert($aboutText);
+				$.ajax({
+					type: "POST",
+						url: "/php/updateAbout.php",
+						data: {title: $aboutTitle, text: $aboutText},
+						cache: false,
+						success: function(result){
+							//alert(result);
+							alert('Successfully updated the About Section!');
+							location.reload();
+						}
+				});
 			});
 		</script>
 	

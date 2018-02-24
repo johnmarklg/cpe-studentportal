@@ -23,9 +23,13 @@
 	foreach(($stmt->fetchAll()) as $row) { 
 		echo '<tr>
 		<td class="id">' . $row['id'] . '</td>
-		<td class="name">' . $row['name'] . '</td>
-		<td class="amount">' . $row['amount'] . '</td>
-		<td>' . $row['created'] . '</td>
+		<td class="name">' . $row['name'] . '</td>';
+		if($row['amount'] != '0') {
+			echo '<td class="amount">' . $row['amount'] . '</td>';
+		} else {
+			echo '<td class="amount">Undefined</td>';
+		}
+		echo '<td>' . $row['created'] . '</td>
 		<td><span class="invoice-remove"><i class="fa fa-fw fa-minus-circle"></i> Delete</span></td>
 		</tr>';
 	}

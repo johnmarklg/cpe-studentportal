@@ -21,9 +21,9 @@
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" integrity="sha256-GamwdmSkzX/X39UCQREOQHmmuU2ewsnrft1flUimjxA=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css" integrity="sha256-tfn9eK1pJ8CzrxEY/X948VPX9saxc3sNrzhyU5IX+Yg=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cyborg/bootstrap.min.css" integrity="sha256-OS83dfsRdMVkXGhSSJtvinOaQUUIYaFZfF2DBwdFqb0=" crossorigin="anonymous" />-->
-	<!--<link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+	<link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" integrity="sha256-KEHAl1y5UUOWwVkhJfJqQZsTY6phoWRgm7ECedah9Lw=" crossorigin="anonymous" />-->
+	<!--online<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" integrity="sha256-KEHAl1y5UUOWwVkhJfJqQZsTY6phoWRgm7ECedah9Lw=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/simplex/bootstrap.min.css" integrity="sha256-TKhQCpupjJ8Jh7dgjeNgBsEPk1eai3l57eH/w4h48ys=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" integrity="sha256-EcfrF/G54HxW6buGJmPVuNLgViKrjyVncuaq11qAMUY=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/superhero/bootstrap.min.css" />-->
