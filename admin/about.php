@@ -21,6 +21,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
 ?>	
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
 <body>

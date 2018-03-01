@@ -20,6 +20,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
+	calendar_extra();
 ?>		
 	<style>
 			#saveTimetables {
@@ -86,16 +87,27 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						<div id="collapsePanel" class="panel-collapse">
 						<div class="panel-body">
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Year</span>
-								<select id="year" class="form-control">
-									<option>Select Year...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+								<span class="input-group-addon" id="basic-addon1">Course Code</span>
+								<select class="form-control" id="code">
+							<?php
+							require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");		
+							
+							$conn = getDB('cpe-studentportal');	
+		
+							$stmt = $conn->prepare("SELECT * FROM `subjects` ORDER BY subjectid ASC");
+							$stmt->execute();
+									
+							foreach(($stmt->fetchAll()) as $row) { 
+								echo '<option value="' . $row['subjectid']. '">' . $row['coursecode'] . ' - ' . $row['coursetitle'] . '</option>';
+							}
+							?>
 								</select>
-								<!--<input id="year" type="text" class="form-control formTextbox"  placeholder="ex. 1" value="" aria-describedby="basic-addon1">-->
+								<!--<input id="code" type="text" class="form-control formTextbox"  placeholder="ex. Something 101" value="" aria-describedby="basic-addon1">-->
 							</div>
 							<br/>
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Course Code</span>
-								<input id="code" type="text" class="form-control formTextbox"  placeholder="ex. Something 101" value="" aria-describedby="basic-addon1">
+								<span class="input-group-addon" id="basic-addon1">Section</span>
+								<input id="section" type="text" class="form-control formTextbox"  placeholder="ex. A" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
 							<div class="input-group">
@@ -104,25 +116,36 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							</div>
 							<br/>
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Units</span>
-								<input id="units" type="text" class="form-control formTextbox"  placeholder="ex. 3.0" value="" aria-describedby="basic-addon1">
-							</div>
-							<br/>
-							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Start Time</span>
-								<input id="starttime" type="text" class="form-control formTextbox"  placeholder="ex. 9:00" value="" aria-describedby="basic-addon1">
+								<input id="starttime" type="text" class="form-control formTextbox timepicker"  placeholder="ex. 9:00" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">End Time</span>
-								<input id="endtime" type="text" class="form-control formTextbox"  placeholder="ex. 10:00" value="" aria-describedby="basic-addon1">
+								<input id="endtime" type="text" class="form-control formTextbox timepicker"  placeholder="ex. 10:00" value="" aria-describedby="basic-addon1">
 							</div>
-							<br/>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Days</span>
-								<input id="days" type="text" class="form-control formTextbox"  placeholder="ex. MWF" value="" aria-describedby="basic-addon1">
-							</div>
-							<br/>
+							<hr/>
+								<!--<span class="input-group-addon" id="basic-addon1">Days</span>
+								<select multiple class="form-control" id="exampleFormControlSelect2">
+								  <option>Mon</option>
+								  <option>Tue</option>
+								  <option>Wed</option>
+								  <option>Thu</option>
+								  <option>Fri</option>
+								  <option>Sat</option>
+								</select>-->
+								<div class="checkbox">
+								  <label class="checkbox-inline"><input type="checkbox" value="">Monday</label>
+								  <label class="checkbox-inline"><input type="checkbox" value="">Tuesday</label>
+								  <label class="checkbox-inline"><input type="checkbox" value="">Wednesday</label>
+								</div>
+								<div class="checkbox">
+								  <label class="checkbox-inline"><input type="checkbox" value="">Thursday</label>
+								  <label class="checkbox-inline"><input type="checkbox" value="">Friday</label>
+								  <label class="checkbox-inline"><input type="checkbox" value="">Saturday</label>
+								</div>
+								<!--<input id="days" type="text" class="form-control formTextbox"  placeholder="ex. MWF" value="" aria-describedby="basic-addon1">-->
+							<hr/>
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Building</span>
 								<input id="building" type="text" class="form-control formTextbox"  placeholder="ex. COE" value="" aria-describedby="basic-addon1">
@@ -217,6 +240,16 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/functions/js/timetables.js"></script>
+	<script type="text/javascript">
+            $(function () {
+                $('#starttime').datetimepicker({
+                    format: 'LT'
+                });
+				$('#endtime').datetimepicker({
+                    format: 'LT'
+                });
+            });
+        </script>
 		
 </body>
 

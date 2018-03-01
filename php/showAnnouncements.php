@@ -13,7 +13,7 @@
 
 		$conn = getDB('cpe-studentportal');
 		$stmt = $conn->prepare("SELECT * from `posts` WHERE posterid = :posterid ORDER BY datetime DESC");
-		$stmt -> bindParam(':posterid', $_SESSION['name'][2], PDO::PARAM_INT);
+		$stmt -> bindParam(':posterid', $_SESSION['name'][2]);
 		$stmt->execute();
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 

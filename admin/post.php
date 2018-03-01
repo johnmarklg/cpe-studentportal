@@ -112,35 +112,35 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 														echo '<strong>' . $row['name'] . ' - <i>Faculty </strong>@ ' . $row['datetime'] . '</i>';	
 													}
 													echo '<br/>' . $row['comment'];
-													echo '<hr style="margin-top: 5px; margin-bottom: 5px;"/>' . $startbranch . '<div class="input-group">
+													echo '<hr style="margin-top: 5px; margin-bottom: 5px;"/><div class="input-group">
 														<textarea type="text" id="comment' . $row['commentid'] . '"  name="comment" class="form-control" placeholder="Leave a comment..." cols="40" rows="1"></textarea>
 														<span class="input-group-btn">
 														<button id="' . $row['commentid']. '" class="btnComment btn btn-default" type="button">Submit</button>
 														</span>';
 													echo '</div>';
 												} else {
-													echo '<hr/>' . $startbranch;
+													echo '<hr/>' . $startbranch . '<div class="col-lg-' . (14 - $pathsize) . '"><div class="panel"><div class="panel-body">';
 													if($row['name'] == NULL) {
 														echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
 													} else {
 														echo '<strong>' . $row['name'] . ' - <i>Faculty </strong>@ ' . $row['datetime'] . '</i>';	
 													}
-													echo '<br/>' . $startbranch . $row['comment'];
-													echo '<hr style="margin-top: 5px; margin-bottom: 5px;"/>' . $startbranch . '<div class="input-group">
+													echo '<br/>' . $row['comment'];
+													echo '<hr style="margin-top: 5px; margin-bottom: 5px;"/><div class="input-group">
 														<textarea type="text" id="comment' . $row['commentid'] . '"  name="comment" class="form-control" placeholder="Leave a comment." cols="40" rows="1"></textarea>
 														<span class="input-group-btn">
 														<button id="' . $row['commentid']. '" class="btnComment  btn btn-default" type="button">Submit</button>
-														</span></div>';
+														</span></div></div></div></div>';
 												}
 										} else if($pathsize == 7) {
 											//last comment of limit
-											echo '<hr/>' . $startbranch;
+											echo '<hr/>' . $startbranch  . '<div class="col-lg-' . (14 - $pathsize) . '"><div class="panel"><div class="panel-body">';
 												if($row['name'] == NULL) {
 													echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
 												} else {
 													echo '<strong>' . $row['name'] . ' - <i>Faculty </strong>@ ' . $row['datetime'] . '</i>';	
 												}
-												echo '<br/>' . $startbranch . $row['comment'] . '<hr/>';													
+												echo '<br/>' . $row['comment'] . '</div></div></div>';													
 										}
 									}
 								?>
