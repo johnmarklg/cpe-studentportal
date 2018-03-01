@@ -122,9 +122,9 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
+        overflow-x: none;
         background-color: #ededed;
         bottom: 0;
-        overflow: hidden;
         padding-bottom: 40px;
     }
 

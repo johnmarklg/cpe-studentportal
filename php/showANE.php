@@ -36,7 +36,7 @@
 													}
 													echo '<strong>' . $row['posttitle'] . '</strong>';
 													echo '<hr/>' . $row['post'];
-													echo '</div></div><div class="panel-footer"><a href="'. $_SERVER["DOCUMENT_ROOT"] . '/php/showPost.php?postID=' . $row['id'] . '&a_var=&b_var=' . $studnum . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
+													echo '</div></div><div class="panel-footer"><a href="post.php?postID=' . $row['id'] . '&studnum=' . $studnum . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
 													}
 													
 						echo '</div></div>
