@@ -50,12 +50,14 @@
 								
 											$stmt = $conn->prepare("(SELECT * FROM events WHERE YEARWEEK(start) = YEARWEEK(NOW())) UNION ALL (SELECT * FROM holidays WHERE YEARWEEK(start) = YEARWEEK(NOW())) ORDER BY start");
 											$stmt->execute();
-
-											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+											if ($stmt->rowCount() > 0) {
+												foreach(($stmt->fetchAll()) as $row) { 
+												echo '<div class="panel panel-default"><div class="panel-body"><strong>' . $row['title'] . '</strong> @<i>' . $row['start'] . '</i><hr/>' . $row['description'] . '</div></div>';
+												}
+											} else {
+											   echo 'There are no events for this week.';
+											}											
 											
-											foreach(($stmt->fetchAll()) as $row) { 
-											echo '<div class="panel panel-default"><div class="panel-body"><strong>' . $row['title'] . '</strong> @<i>' . $row['start'] . '</i><hr/>' . $row['description'] . '</div></div>';
-											}
 											
 						echo '</div></div></div>';		
 						

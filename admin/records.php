@@ -129,7 +129,7 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 				var $newpos = this.value;
 				//alert( newpos );
 				var $currid = $("#curriculum").val();
-				var $studnum = $('#studnum').text();
+				var $studnum = $('#oldstudnum').text();
 				//alert($studnum + $currid);
 				$.ajax({
 					type: "POST",

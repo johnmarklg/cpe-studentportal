@@ -29,8 +29,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
     <div id="wrapper">
 
         <?php user_nav(); ?>
-
-        <div id="page-wrapper">
+		<div id="page-wrapper">
 
             <div class="container-fluid">
 				<br/>
@@ -65,8 +64,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				?>
 			</div>
             <!-- /.container-fluid -->
-
-        </div>
+		</div>
         <!-- /#page-wrapper -->
 		<footer class="sticky-footer">
 		  <div class="container">

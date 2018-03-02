@@ -73,7 +73,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  Update available course subjects per year level on every semester.
+						   <i class="fa fa-fw fa-info-circle"></i> Update available course subjects per year level on every semester.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -84,7 +84,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
 						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new class schedule to the list of open subjects.</a></div>
-						<div id="collapsePanel" class="panel-collapse">
+						<div id="collapsePanel" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Course Code</span>
@@ -102,7 +102,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							}
 							?>
 								</select>
-								<!--<input id="code" type="text" class="form-control formTextbox"  placeholder="ex. Something 101" value="" aria-describedby="basic-addon1">-->
 							</div>
 							<br/>
 							<div class="input-group">
@@ -125,26 +124,16 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								<input id="endtime" type="text" class="form-control formTextbox timepicker"  placeholder="ex. 10:00" value="" aria-describedby="basic-addon1">
 							</div>
 							<hr/>
-								<!--<span class="input-group-addon" id="basic-addon1">Days</span>
-								<select multiple class="form-control" id="exampleFormControlSelect2">
-								  <option>Mon</option>
-								  <option>Tue</option>
-								  <option>Wed</option>
-								  <option>Thu</option>
-								  <option>Fri</option>
-								  <option>Sat</option>
-								</select>-->
 								<div class="checkbox">
-								  <label class="checkbox-inline"><input type="checkbox" value="">Monday</label>
-								  <label class="checkbox-inline"><input type="checkbox" value="">Tuesday</label>
-								  <label class="checkbox-inline"><input type="checkbox" value="">Wednesday</label>
+								  <label class="checkbox-inline"><input type="checkbox" class="mon" value="">Monday</label>
+								  <label class="checkbox-inline"><input type="checkbox" class="tue" value="">Tuesday</label>
+								  <label class="checkbox-inline"><input type="checkbox" class="wed" value="">Wednesday</label>
 								</div>
 								<div class="checkbox">
-								  <label class="checkbox-inline"><input type="checkbox" value="">Thursday</label>
-								  <label class="checkbox-inline"><input type="checkbox" value="">Friday</label>
-								  <label class="checkbox-inline"><input type="checkbox" value="">Saturday</label>
-								</div>
-								<!--<input id="days" type="text" class="form-control formTextbox"  placeholder="ex. MWF" value="" aria-describedby="basic-addon1">-->
+								  <label class="checkbox-inline"><input type="checkbox" class="thu" value="">Thursday</label>
+								  <label class="checkbox-inline"><input type="checkbox" class="fri" value="">Friday</label>
+								  <label class="checkbox-inline"><input type="checkbox" class="sat" value="">Saturday</label>
+								</div>								
 							<hr/>
 							<div class="input-group">
 								<span class="input-group-addon" id="basic-addon1">Building</span>
@@ -163,7 +152,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							<br/>
 							<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-calendar"></i>Insert New Schedule</button>
 							<script>
-							//short script for enter to click button
 							$(document).ready(function(){
 								$('.formTextbox').keypress(function(e){
 								  if(e.keyCode==13)
@@ -174,21 +162,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div></div></div></div></div></div><hr/>
 						
 						<div class="row">
-									<div class="col-lg-12">
-										<div class="alert alert-info" role="alert">
-										  List of all currently open and available subjects will be placed here.
-										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-										</div>
-									</div>
+							<div class="col-lg-12">
+								<div class="alert alert-warning" role="alert">
+								  <i class="fa fa-fw fa-warning"></i> Caution: Deleting records in the respective tables will permanently remove the entry in the database.
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								</div>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="alert alert-warning" role="alert">
-										  Caution: Deleting records in the respective tables will permanently remove the entry in the database.
-										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-										</div>
-									</div>
-								</div>
+							</div>
+						</div>
 								
 						<div class="panel panel-default">
 									<div class="panel-heading" style="text-align: center;" id="myTabs">	
@@ -210,10 +190,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									</div>
 								</div>
 								<div class="tab-content">
-						<?php	
-						require($_SERVER["DOCUMENT_ROOT"] . '/php/showTimetables.php');
-						echo showTimetables();
-						?>
+								<?php	
+								require($_SERVER["DOCUMENT_ROOT"] . '/php/showTimetables.php');
+								echo showTimetables();
+								?>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
             </div>

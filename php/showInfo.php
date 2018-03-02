@@ -9,8 +9,25 @@
 		$stmt->execute();
 		foreach(($stmt->fetchAll()) as $row) { 
 		echo '<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
+					<div class="col-lg-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								Profile Picture
+							</div>
+							<div class="panel-body">
+								<a href="/uploads/faculty/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/faculty/' . $row['photolink'] . '" style="height: 100%; width: 100%;"/></a>
+							</div>
+							<form action="/php/changeAdminPhoto.php" method="post" enctype="multipart/form-data">
+							<div class="panel-footer">
+								<input type="hidden" value="' . $row['id'] . '" name="refid" id="refid" ></button>
+								<input type="file" class="btn btn-block btn-info" name="fileToUpload" id="fileToUpload" ></button>
+								<button class="btn btn-block btn-success"><i class="fa fa-fw fa-upload"></i> Change Picture</button>
+							</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-9">
+						<div class="panel panel-primary">
 							<div class="panel-heading">
 								Account Information
 							</div>

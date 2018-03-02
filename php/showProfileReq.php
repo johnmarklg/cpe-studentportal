@@ -30,7 +30,16 @@
 			LEFT JOIN students
 			ON profilerequest.studnum = students.studnum
 			WHERE approvalstatus = 0");
-		$stmt->execute();					
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		//check if any entry/record exists, if not
+		if (!($result)) {
+			echo '<div class="alert alert-info" role="alert">
+			 <i class="fa fa-fw fa-info-circle"></i> There are currently no profile update requests.
+			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>';
+		}
+		
 		
 		foreach(($stmt->fetchAll()) as $row) { 
 			echo '<div class="row"><div class="col-lg-12"><div id="'. $row['oldstudnum']. '" class="panel panel-info"><div class="panel-heading"><strong>' . $row['oldstudnum'] . '</strong> - ' . $row['oldsurname'] . ', ' . $row['oldfirstname'] . ' ' . $row['oldmiddlename'] . '</div><div class="panel-body">

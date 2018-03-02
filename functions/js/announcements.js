@@ -1,4 +1,4 @@
-			autosize($('textarea'));
+		autosize($('textarea'));
 		
 		$('.btnApprove').click(function() {
 			var $id = $(this).attr('id');   

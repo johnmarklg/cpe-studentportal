@@ -45,13 +45,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                                 <i class="fa fa-info-circle"></i> About CpE Student Portal
                             </li>
                         </ol>
-						<!--<div class="alert alert-success" role="alert">
-						  You are currently signed in as <a href=""><?php echo $_SESSION["name"][1]?></a>
-						</div>-->
                     </div>
                 </div>
                 <!-- /.row -->
-				
 				<div class="row">
 					<div class="col-lg-12">
 						<?php

@@ -53,7 +53,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						Update school calendar with list of events and holidays as well as activities.
+							<i class="fa fa-fw fa-info-circle"></i> Update school calendar with list of events and holidays as well as activities.
 						  <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>

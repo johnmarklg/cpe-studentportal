@@ -12,28 +12,37 @@
 					  })
 					  .addClass('active');
 		});
+		
+		
 	$("#buttonAdd").click(function() {
 			var $section = $("#section").val();
-			var $code = $("#code").val();
+			var $subjectid = $("#code").val();
 			var $subjectsection = $("#subjectsection").val();
 			var $starttime = $("#starttime").val();
 			var $endtime = $("#endtime").val();
-			var $days = $("#days").val();
+			//var $days = $("#days").val();
+			if ($('input.mon').is(':checked')) { var $mon = 1;} else { var $mon = 0;}
+			if ($('input.tue').is(':checked')) { var $tue = 1;} else { var $tue = 0;}
+			if ($('input.wed').is(':checked')) { var $wed = 1;} else { var $wed = 0;}
+			if ($('input.thu').is(':checked')) { var $thu = 1;} else { var $thu = 0;}
+			if ($('input.fri').is(':checked')) { var $fri = 1;} else { var $fri = 0;}
+			if ($('input.sat').is(':checked')) { var $sat = 1;} else { var $sat = 0;}
+			//var checkedValue = $('.daycheck:checked').val();
 			var $building = $("#building").val();
 			var $roomnumber = $("#roomnumber").val();
 			var $instructor = $("#instructor").val();
-			var $units = $("#units").val();
-			var $year = $("#year").val();
-			
+			//var $units = $("#units").val();
+			//var $year = $("#year").val();
 			var $subjinfo = '[{"Section":"' + $section +
-			'","Code":"' + $code + '","Subject Section":"' + $subjectsection +
-			'","Start Time":"' + $starttime + '","End Time":"' + $endtime +
-			'","Days":"' + $days + '","Building":"' + $building + '","Room Number":"' + $roomnumber +
-			'","Instructor":"' + $instructor + '","Units":"' + $units + '","Year":"' + $year +'"}]';
+			'","SubjectID":"' + $subjectid + '","Subject Section":"' + $subjectsection +
+			'","Start Time":"' + $starttime + '","End Time":"' + $endtime + '","Building":"' + $building + '","Room Number":"' + $roomnumber +
+			'","Monday":"' + $mon + '","Tuesday":"' + $tue + '","Wednesday":"' + $wed
+			+ '","Thursday":"' + $thu + '","Friday":"' + $fri + '","Saturday":"' + $sat +
+			'","Instructor":"' + $instructor + '"}]';
 			
-			//alert($subjinfo);
+			alert($subjinfo);
 			
-			if($section==""||$code==""||$subjectsection==""||$starttime==""||$endtime==""||$days==""||$building==""||$roomnumber==""||$instructor=="") {
+			if($section==""||$subjectid==""||$subjectsection==""||$starttime==""||$endtime==""||($mon==""&&$tue==""&&$wed==""&&$thu==""&&$fri==""&&$sat=="")||$building==""||$roomnumber==""||$instructor=="") {
 				alert('Error! Please fill all the necessary fields.');
 			} else {
 				//alert('okay');
@@ -43,7 +52,7 @@
 					data: {subjinfo: $subjinfo},
 					cache: false,
 					success: function(result){
-						//alert("Successfully added a new student record!");
+						alert("Successfully added a new schedule!");
 						location.reload();  	
 					}
 				});

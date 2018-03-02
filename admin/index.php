@@ -76,12 +76,7 @@ $conn = getDB('cpe-studentportal');
                             <li class="active">
                                 <i class="fa fa-gear"></i> Bulletin Settings
                             </li>
-                        </ol>
-						<div class="alert alert-success" role="alert">
-						  You are currently signed in as <a id="posterName" href=""><?php echo $_SESSION["name"][1]?></a>
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
-						 
+                        </ol> 
                     </div>
                 </div>
                 <!-- /.row -->
@@ -89,7 +84,7 @@ $conn = getDB('cpe-studentportal');
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  This is where you can <i>manage</i> the contents of the <strong>Digital Bulletin</strong>.
+						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>manage</i> the contents of the <strong>Digital Bulletin</strong>.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -158,10 +153,65 @@ $conn = getDB('cpe-studentportal');
 								</div>
 								<div class="tab-pane" id="3">
 									<div class="panel-body">
-										This is where you can edit the photos and names of the current officers and faculty members.
-									</div>
-									<div class="panel-footer">
-										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update Faculty and Officers</button>
+										<div class="panel panel-info">
+											<div class="panel-heading">
+												<i class="fa fa-fw fa-plus-circle"></i>Add Organizational Officer
+											</div>
+											<form action="/php/addOfficer.php" method="post" enctype="multipart/form-data">
+												<div class="panel-body">
+													<div class="input-group">
+													  <span class="input-group-addon" id="basic-addon2">Position Name</span>
+													  <input name="officename" id="officename" type="text" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
+													</div><br/>
+													<div class="input-group">
+													  <span class="input-group-addon" id="basic-addon2">Student Number</span>
+													  <input name="officer" id="officer" type="text" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
+													</div><br/>
+													<div class="input-group">
+													  <span class="input-group-addon" id="basic-addon2">Photo</span>
+													  <input name="fileToUpload" id="fileToUpload" type="file" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
+													</div>	
+												</div>
+												<div class="panel-footer">
+													<input type="submit" name="submit" id="add-office" class="btn btn-default btn-success btn-block"></input>
+												</div>
+											</form>
+										</div>
+										<br/>
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th style="font-size: 0px;">ID</th>
+														<th>Student Number</th>
+														<th>Name</th>
+														<th>Position</th>
+														<th>Contact Number</th>
+														<th>Photo</th>
+														<th></th><th></th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+														$stmt = $conn->prepare("SELECT officers.*, students.surname, students.firstname, students.middlename, students.ContactNo from `officers` 
+														LEFT JOIN students
+														ON officers.studnum = students.studnum
+														ORDER BY id ASC");
+														$stmt->execute();
+														foreach(($stmt->fetchAll()) as $row) { 
+															echo '<tr><td class="id" style="font-size: 0px;">' . $row['id'] . '</td>
+															<td>' . $row['studnum'] . '</td>
+															<td>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . '</td>
+															<td>' . $row['office'] . '</td>
+															<td>' . $row['ContactNo'] . '</td>
+															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '" style="height: 20vh; width: 20vh%;"/></a></td>
+															<td class="replace-photo"><button class="btn btn-info"><i class="fa fa-refresh"></i> Replace Image</button></td>
+															<td class="remove-office"><button class="btn btn-danger"><i class="fa fa-times"></i> Remove Record</button></td></tr>';
+														}				
+													?>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -185,8 +235,12 @@ $conn = getDB('cpe-studentportal');
 		<!-- /footer -->
     </div>
     <!-- /#wrapper -->
-	
+	<?php
+		$conn = null;
+	?>
 	<script>
+	$( '.swipebox' ).swipebox();
+			
 	$( document ).ready(function() {
 			/* Basic Gallery */
 			$( '.swipebox' ).swipebox();
@@ -196,7 +250,24 @@ $conn = getDB('cpe-studentportal');
 			.addClass('active');
      });
 	 
-	 $('select').on('change', function() {
+	 $('.remove-office').click(function () {
+		if(confirm('Do you want to remove this entry from the database?')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			$.ajax({
+				type: "POST",
+					url: "/php/removeOfficer.php",
+					data: {id: $id},
+					cache: false,
+					success: function(result){
+						alert("Successfully removed officer record!");
+						location.reload(); 			
+					}
+				});
+		} else {}
+		});
+	 
+	 $('select', '.showhide').on('change', function() {
 		if (!confirm('Are you sure you want to change this post\'s visibility on the bulletin?')) {
             $(this).val(showhide_cache);
             return false;

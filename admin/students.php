@@ -107,7 +107,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						<div class="row">
 									<div class="col-lg-12">
 										<div class="alert alert-info" role="alert">
-										  List of all students enrolled under BS Computer Engineering, categorized by year level.
+										  <i class="fa fa-fw fa-info-circle"></i> List of all students enrolled under BS Computer Engineering, categorized by year level.
 										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 										</div>
 									</div>

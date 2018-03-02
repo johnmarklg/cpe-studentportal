@@ -8,6 +8,7 @@
 
 body {
     margin-top: 100px;
+	overflow-x: hidden;
     /*background-color: #222;*/
 }
 
@@ -24,7 +25,6 @@ body {
 #page-wrapper {
     width: 100%;
     padding: 0;
-    background-color: #fff;
 }
 
 .huge {
@@ -121,9 +121,9 @@ ul.alert-dropdown {
         margin-left: -225px;
         border: none;
         border-radius: 0;
-        overflow-y: auto;
-        overflow-x: none;
-        background-color: #ededed;
+        /*overflow-y: auto;*/
+		overflow-x: hidden;
+        background-color: #fff;
         bottom: 0;
         padding-bottom: 40px;
     }

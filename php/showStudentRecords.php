@@ -2,31 +2,38 @@
 			  function showStudentRecords($studnum) {			
 
 				require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
-				
+					//get search result if it's clicked
 					if(isset($_REQUEST["search-table"]))
 					{
+						//if blank, set to 00-0000
 						if($_REQUEST["stud-num"]=="") {
 								$studnum = "00-0000";
-						}
-						else {
+						} else {
+						//set searched value to variable
 						$studnum = ($_REQUEST["stud-num"]);
 						}
-					}
-					else {
-						if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='00-0000';}
+					} else {
+						//else, if studnum in URL
+						if(isset($_GET['studnum'])){ 
+							$studnum = $_GET['studnum']; 
+						} else { 
+							//if not set to 00-0000
+							$studnum='00-0000';
+						}
 					}
 					$conn = getDB('cpe-studentportal');
+					
 					//check if record exists
 					$stmt = $conn->prepare("SELECT * FROM students WHERE studnum = :studnum");
 					$stmt -> bindParam(':studnum', $studnum);
 					$stmt->execute();
 					$result = $stmt->fetch(PDO::FETCH_ASSOC);
+					
 					//check if entry/record exists, if not
 					if (!($result)) {
 						$studnum = '00-0000';
 					} else {
 						$currid = $result['CurriculumID'];
-						//echo '<script>alert("ID is: " + ' . $currid . ');</script>';
 					}
 					$conn =null;
 					
@@ -86,8 +93,6 @@
 											$stmt -> bindParam(':studnum', $studnum);
 											$stmt->execute();
 
-											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-											
 											//if first semester
 											if (date('m') > 7) {
 												$fifthyear = date('y') - 4; 

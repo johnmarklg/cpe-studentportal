@@ -54,14 +54,14 @@
                         <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
                     </li>
                     <li>
-                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
+                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About Portal</a>
                     </li>
-					<li>
+					<!--<li>
                         <a href="changepass.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
                     </li>
                     <li>
                         <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

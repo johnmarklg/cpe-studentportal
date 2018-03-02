@@ -5,7 +5,7 @@
 			  
 					//STUDENT PROLFIE
 					echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-primary\"><div class=\"panel-heading\">Student Profile</div><div class=\"panel-body\"><div class=\"table-responsive\">
-								<table id=\"studentinfo\" class=\"table\">
+								<table id=\"studentinfo\" class=\"table table-bordered\">
 								  <thead>
 									<tr>
 									  <th>Surname</th>
@@ -28,7 +28,7 @@
 									echo '<td contentEditable>' . $row['surname'] . '</td>
 											  <td contentEditable>' . $row['firstname'] . '</td>
 											  <td contentEditable>' . $row['middlename'] . '</td>
-											  <td id="studnum" contentEditable>' . $row['studnum'] . '</td>';
+											  <td style="background-color: #eee;" id="studnum">' . $row['studnum'] . '</td>';
 											
 									
 									echo '</tr></tbody></table></div>

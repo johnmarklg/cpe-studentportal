@@ -18,7 +18,7 @@
 					data: {infodata: $invoiceinfo},
 					cache: false,
 					success: function(result){
-						//alert("Successfully removed student entry!");
+						alert("Successfully removed entry!");
 						location.reload(); 			
 					}
 				});

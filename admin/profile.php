@@ -80,6 +80,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	<script src="/functions/js/admininfo.js"></script>
+	<script>
+		$( '.swipebox' ).swipebox();	
+	</script>
 </body>
 
 </html>

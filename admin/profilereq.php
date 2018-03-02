@@ -207,7 +207,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			+ '","MotherOccupation":"' + $MotherOccupation + '","Elementary":"' + $Elementary + '","ElemAddress":"' + $ElemAddress 
 			+ '","ElemGraduate":"' + $ElemGraduate + '","Secondary":"' + $Secondary + '","SecAddress":"' + $SecAddress 
 			+ '","SecGraduate":"' + $SecGraduate + '","studnum":"' + $studnum +'"}]';
-			alert($profileData);
+			//alert($profileData);
 			var $adminid = $('#adminid').text();
 			//alert($adminid);
 			$.ajax({
@@ -216,7 +216,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					data: {profiledata: $profileData, adminid: $adminid, requestid: $requestid},
 					cache: false,
 					success: function(result){
-						alert(result);
+						alert('Successfully updated student\'s personal profile.');
 						location.reload();
 					}
 				});

@@ -56,10 +56,10 @@
 				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
 				cache: false,
 				success: function(result){
-					alert("Successfully updated database!");
+					alert("Successfully updated student record!");
 					//url.split('?')[0] ;
 					//window.location.href('/admin/records.php');
-					alert(result);
+					//alert(result);
 					location.reload();
 				}
 			});

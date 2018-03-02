@@ -21,6 +21,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
 ?>
+	<style>
+			.curriculum-remove:hover {
+				color: #f00;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+	</style>
+
 </head>
 
 <body>
@@ -48,6 +56,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                     </div>
                 </div>
                 <!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-danger" role="alert">
+						  <i class="fa fa-fw fa-warning"></i> Warning: Deleting curriculums cannot be undone. All dependent records on this curriculum will not be loaded after. Do at your own risk.
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>
+					</div>
+				</div>
 				
 				<div class="row">
 					<div class="col-lg-12">
@@ -62,7 +78,50 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 												<input id="currname" type="text" class="form-control formTextbox"  placeholder="ex. BSCPE-2008" value="" aria-describedby="basic-addon1">
 											</div>
 											<br/>
-											<button type="button" id="buttonAdd" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-list"></i> Add New Curriculum</button>
+											<button type="button" id="curriculum-add" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-list"></i> Add New Curriculum</button>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+							<div class="panel-group">
+								<div class="panel panel-warning">
+									<div class="panel-heading"><a style="color: #fff;" data-toggle="collapse" href="#collapsePanel2"><i class="fa fa-minus-circle"></i> Click here to remove a <strong>Curriculum</strong>.</a>
+									</div>
+									<div id="collapsePanel2" class="panel-collapse collapse">
+										<div class="panel-body">
+											<?php
+											require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+
+											$conn = getDB('cpe-studentportal');
+											$stmt = $conn->prepare("SELECT * from curriculum");
+											$stmt->execute();
+											
+											echo '<div class="table-responsive"><table id="curricula" class="table table-bordered">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Name</th>
+													<th style="font-size: 0;">Delete</th>
+												</tr>
+											</thead>
+											<tbody>';
+											
+											foreach(($stmt->fetchAll()) as $row) { 
+												echo '<tr>
+												<td class="id">' . $row['id'] . '</td>
+												<td class="name">' . $row['name'] . '</td>
+												<td><span class="curriculum-remove"><i class="fa fa-fw fa-minus-circle"></i> Delete</span></td>
+												</tr>';
+											}
+											
+											echo '</tbody></table></div>';
+
+											$conn = null;
+											?>
 										</div>
 									</div>
 								</div>
@@ -72,8 +131,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<hr style="margin-top: 0;"/>
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-warning" role="alert">
-						  Caution: Altering records in the respective tables may cause inconsistencies and errors with current records using the respective curriculum.
+						<div class="alert alert-info" role="alert">
+						  <i class="fa fa-fw fa-info-circle"></i> You may only update or save one record at a time. The page will reload automatically every time.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -132,6 +191,42 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script>
 	
+		$('#curriculum-add').click(function() {
+			var $name = $('#currname').val();
+			$.ajax({
+				type: "POST",
+					url: "/php/addCurriculum.php",
+					data: {name: $name},
+					cache: false,
+					success: function(result){
+						alert("Successfully added curriculum!");
+						location.reload();
+					}
+				});
+				return false;
+		});
+	
+		$('.curriculum-remove').click(function () {
+		if(confirm('Do you want to really remove this curriculum from the database? Note: This will not delete saved records dependent on this curriculum.')) {
+			var $row = $(this).closest("tr");    // Find the row
+			var $id = $row.find(".id").text(); // Find the text
+			var $colname = $row.find(".name").text(); // Find the text
+			var $colinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
+			alert($colinfo);
+			$.ajax({
+				type: "POST",
+					url: "/php/removeCurriculum.php",
+					data: {infodata: $colinfo},
+					cache: false,
+					success: function(result){
+						alert("Successfully removed entry!");
+						location.reload(); 			
+					}
+				});
+		} else {}
+		});
+		
+		
 		$subjectid = 0;
 		
 		$('select', '.curriculum').on('change', function() {

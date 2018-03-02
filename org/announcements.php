@@ -72,12 +72,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                             <li class="active">
                                 <i class="fa fa-bullhorn"></i> Announcements
                             </li>
-                        </ol>
-						<div class="alert alert-success" role="alert">
-						  You are currently signed in as <a id="posterName" href=""><?php echo $_SESSION["name"][1]?></a>
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
-						 
+                        </ol> 
                     </div>
                 </div>
                 <!-- /.row -->
@@ -85,7 +80,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  Update students on recent events and important announcements.
+							<i class="fa fa-fw fa-info-circle"></i> Update fellow students on recent events and important announcements.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>

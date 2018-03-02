@@ -17,7 +17,7 @@
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="profile.php"><i class="fa fa-fw fa-lock"></i> Change Password</a>
+                            <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -64,17 +64,17 @@
                         <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
                     </li>
                     <li>
-                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About CpE Student Portal</a>
+                        <a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About Portal</a>
                     </li>
                     <li>
+                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
+                    </li>
+					<!--<li>
                         <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
                     </li>
 					<li>
-                        <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
-                    </li>
-					<li>
                         <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

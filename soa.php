@@ -135,7 +135,10 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 									</div>
 							</div>
 							<div class="panel-footer">
-								<button id="printReceipt" name="printReceipt" class="btn btn-info btn-block"><i class="fa fa-fw fa-print"></i> Print Electronic Receipt</button>
+								<?php
+								echo '<a class="btn btn-success btn-block" href="/functions/generatereceipt.php?studnum=' . $studnum . '"><i class="fa fa-print"></i> Print E-Receipt</a>';
+								?>
+								<!--<button id="printReceipt" name="printReceipt" class="btn btn-info btn-block"><i class="fa fa-fw fa-print"></i> Print Electronic Receipt</button>-->
 							</div>
 						</div>
                     </div>

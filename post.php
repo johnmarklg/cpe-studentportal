@@ -27,7 +27,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <div id="wrapper">
 
-        <?php admin_nav(); ?>
+        <?php user_nav(); ?>
 
         <div id="page-wrapper">
 
@@ -55,7 +55,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 								<?php
 									$postID = $_GET['postID'];
-									$adminid = $_GET['adminid'];
+									$studnum = $_GET['studnum'];
 									
 									require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 									require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/timefxn.php");
@@ -69,8 +69,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									
 									foreach(($stmt->fetchAll()) as $row) { 
 										$time = strtotime($row['datetime']);
-										echo '<div class="panel panel-info">';
-										echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
+										echo '<div class="panel panel-primary"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 										if($row['file'] == '') {
 											echo '</div><div class="panel-body"><div class="col-lg-12">';
 										} else {
@@ -83,11 +82,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 										echo '</div></div>
 										<div class="panel-footer">
 										<textarea type="text" id="comment0"  name="comment" class="form-control" placeholder="Leave a comment." cols="40" rows="1"></textarea>
-										<button id="0" class="btnComment  btn btn-success btn-block" type="button">Submit</button>
-										</div></div><div><div>';
+										<button id="0" class="btnComment btn btn-success btn-block" type="button">Submit</button>
+										</div></div>';
 									}
 									
-									$stmt = $conn->prepare("SELECT comments.*, students.surname, students.firstname, students.middlename, administrators.name
+									$stmt = $conn->prepare("SELECT comments.*, students.surname, students.firstname, students.middlename, administrators.name, administrators.position
 										FROM `comments` 
 										LEFT JOIN `students`
 										ON students.studnum = comments.commenterid
@@ -97,51 +96,37 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									$stmt -> bindParam(':id', $postID);
 									$stmt->execute();
 									
+									$oldpath=0;
+									//initialize value
 									foreach(($stmt->fetchAll()) as $row) { 
 										$time = strtotime($row['datetime']);
 										$patharr = explode('.', $row['path']);
 										$pathsize = sizeof($patharr);
-										$startbranch = str_repeat("<div class=\"col-lg-1\"></div>", $pathsize - 2);
-										//main comment
-										if($pathsize < 7) {
-												if($pathsize==2) {
-													echo '</div></div><div class="panel panel-info"><div class="panel-body">';
-													if($row['name'] == NULL) {
-														echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
-													} else {
-														echo '<strong>' . $row['name'] . ' - <i>Faculty </strong>@ ' . $row['datetime'] . '</i>';	
-													}
-													echo '<br/>' . $row['comment'];
-													echo '<hr style="margin-top: 5px; margin-bottom: 5px;"/><div class="input-group">
-														<textarea type="text" id="comment' . $row['commentid'] . '"  name="comment" class="form-control" placeholder="Leave a comment..." cols="40" rows="1"></textarea>
-														<span class="input-group-btn">
-														<button id="' . $row['commentid']. '" class="btnComment btn btn-default" type="button">Submit</button>
-														</span>';
-													echo '</div>';
-												} else {
-													echo '<hr/>' . $startbranch . '<div class="col-lg-' . (14 - $pathsize) . '"><div class="panel"><div class="panel-body">';
-													if($row['name'] == NULL) {
-														echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
-													} else {
-														echo '<strong>' . $row['name'] . ' - <i>Faculty </strong>@ ' . $row['datetime'] . '</i>';	
-													}
-													echo '<br/>' . $row['comment'];
-													echo '<hr style="margin-top: 5px; margin-bottom: 5px;"/><div class="input-group">
-														<textarea type="text" id="comment' . $row['commentid'] . '"  name="comment" class="form-control" placeholder="Leave a comment." cols="40" rows="1"></textarea>
-														<span class="input-group-btn">
-														<button id="' . $row['commentid']. '" class="btnComment  btn btn-default" type="button">Submit</button>
-														</span></div></div></div></div>';
-												}
-										} else if($pathsize == 7) {
-											//last comment of limit
-											echo '<hr/>' . $startbranch  . '<div class="col-lg-' . (14 - $pathsize) . '"><div class="panel"><div class="panel-body">';
-												if($row['name'] == NULL) {
-													echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
-												} else {
-													echo '<strong>' . $row['name'] . ' - <i>Faculty </strong>@ ' . $row['datetime'] . '</i>';	
-												}
-												echo '<br/>' . $row['comment'] . '</div></div></div>';													
+										$diff = $oldpath - $pathsize;
+										if($diff==0) {
+											echo '</div></div>';
+										} else if ($diff>0) {
+											echo str_repeat('</div></div>', $diff + 1);
 										}
+										if($pathsize<6) {
+											echo '<div class="panel panel-info" style="border-width: 0 0 0 1px; margin-bottom: 0.6em;"><div class="panel-heading">';
+											if($row['name'] == NULL) {
+												echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
+											} else {
+												echo '<strong>' . $row['name'] . ' - <i>'. $row['position'] . ' </strong>@ ' . $row['datetime'] . '</i>';	
+											}
+											echo '</div>
+											<div class="panel-body" style="padding-right: 5px; padding-bottom: 1em;">' . $row['comment']; 
+											if($pathsize!=5) {
+											echo '<hr style="margin-top: 10px; margin-bottom: 10px;"/>
+											<div class="input-group">
+												<textarea type="text" id="comment' . $row['commentid'] . '"  name="comment" class="form-control" placeholder="Comment here..." cols="40" rows="1"></textarea>
+												<span class="input-group-btn"><button id="' . $row['commentid']. '" class="btnComment btn btn-default" type="button">Submit</button></span>
+											</div><hr style="margin-top: 10px; margin-bottom: 10px;"/>';
+											}
+										}
+											$oldpath = $pathsize;
+										//}
 									}
 								?>
 						</div>
@@ -173,8 +158,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			
 			$('.btnComment').click(function() {
 			var $parentid = $(this).attr('id');   
-			var $commenttext = $(('#comment' + $parentid)).val();   
-			var $commenterid = "<?php echo $_GET['adminid']; ?>";
+			var $commenttext = $(('#comment' + $parentid)).val().replace(/\n/g, "<br />");   
+			var $commenterid = "<?php echo $_GET['studnum']; ?>";
 			var $postid = "<?php echo $_GET['postID']; ?>";
 			var $commentinfo = '[{"parentID":"' + $parentid + '","commentText":"' + $commenttext  + '","commenterID":"' + $commenterid  + '","postID":"' + $postid+ '"}]';
 			//alert($commentinfo);

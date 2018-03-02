@@ -1,14 +1,12 @@
 <?php	
-
 	function showPaymentTable() {
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 
 	$conn = getDB('cpe-studentportal');
 	$stmt = $conn->prepare("SELECT * from payments");
 	$stmt->execute();
-	$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-	echo '<div class="table-responsive"><table id="myannouncements" class="table">
+	
+	echo '<div class="table-responsive"><table id="transactions" class="table table-bordered">
 	<thead>
 		<tr>
 			<th>Transaction ID</th>

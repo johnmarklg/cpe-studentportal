@@ -22,282 +22,68 @@
 						</ul>
 					</div>
 				</div>';
-		
 		echo '<div class="tab-content">';
 		
-		//1ST YEAR
-		echo '<div class="active tab-pane" id="1">';
-		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
-		<div class=\"panel-heading\">First Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
-		<table id=\"tablefirst\" class=\"table\">
-		<thead>
-		<tr>
-		<th style=\"font-size: 0px\">ID</th>
-		<th>Section</th>
-		<th>Code</th>
-		<th>Subject Section</th>
-		<th>Start Time</th>
-		<th>End Time</th>
-		<th>Days</th>
-		<th>Building</th>
-		<th>Room Number</th>
-		<th>Instructor</th>
-		</tr>
-		</thead>
-		<tbody class=\"list\">";
-
-		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=1 ORDER BY section");
-		$stmt->execute();
-
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-		foreach(($stmt->fetchAll()) as $row) { 
-			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td \">" . $row['section'] . "</td>
-			<td >" . $row['code'] . "</td>
-			<td >" . $row['subjectsection'] . "</td>
-			<td >" . $row['starttime'] . "</td>
-			<td >" . $row['endtime'] . "</td>
-			<td >" . $row['days'] . "</td>
-			<td >" . $row['building'] . "</td>
-			<td >" . $row['roomnumber'] . "</td>
-			<td >" . $row['instructor'] . "</td></tr>";
-		}
-		$conn = null;
-
-		echo "<tr class=\"hide\" style=\"display:none;\">
-		<td style=\"font-size: 0px\"></td>
-		<td ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td></tr>";
-		echo "</tbody></table></div></div></div></div></div></div>";
 		
-		//2ND YEAR
-		echo '<div class="tab-pane" id="2">';
-		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
-		<div class=\"panel-heading\">Second Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
-		<table id=\"tablesecond\" class=\"table\">
-		<thead>
-		<tr>
-		<th style=\"font-size: 0px\">ID</th>
-		<th>Section</th>
-		<th>Code</th>
-		<th>Subject Section</th>
-		<th>Start Time</th>
-		<th>End Time</th>
-		<th>Days</th>
-		<th>Building</th>
-		<th>Room Number</th>
-		<th>Instructor</th>
-		</tr>
-		</thead>
-		<tbody class=\"list\">";
-
 		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=2 ORDER BY section");
-		$stmt->execute();
+		//loop 5 times
+		for ($x = 1; $x <= 5; $x++) {
+			echo '<div class="';
+			if($x == 1) {
+				echo 'active ';
+			}
+			echo 'tab-pane" id="' . $x . '"><div class="row"><div class="col-lg-12"><div class="panel panel-default">
+			<div class="panel-body"><div class="table-responsive">
+			<table id="table' . $x . '" class="table">
+			<thead>
+			<tr>
+			<th style="font-size: 0px">ID</th>
+			<th>Section</th>
+			<th>Course Code</th>
+			<th>Units</th>
+			<th>Subject Section</th>
+			<th>Start Time</th>
+			<th>End Time</th>
+			<th>Days</th>
+			<th>Building</th>
+			<th>Room Number</th>
+			<th>Instructor</th>
+			</tr>
+			</thead>
+			<tbody class="list">';
 
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+			LEFT JOIN `subjects`
+			ON schedules.subjectid = subjects.subjectid
+			WHERE subjects.defaultyear=:year");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
 
-		foreach(($stmt->fetchAll()) as $row) { 
-			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td \">" . $row['section'] . "</td>
-			<td >" . $row['code'] . "</td>
-			<td >" . $row['subjectsection'] . "</td>
-			<td >" . $row['starttime'] . "</td>
-			<td >" . $row['endtime'] . "</td>
-			<td >" . $row['days'] . "</td>
-			<td >" . $row['building'] . "</td>
-			<td >" . $row['roomnumber'] . "</td>
-			<td >" . $row['instructor'] . "</td></tr>";
-		}
+			foreach(($stmt->fetchAll()) as $row) { 
+				echo '<tr>
+				<td style="font-size: 0px" class="id">' . $row['id'] . '</td>
+				<td class="section">' . $row['section'] . '</td>
+				<td  class="code">' . $row['coursecode'] . '</td>
+				<td  class="units">' . $row['units'] . '</td>
+				<td >' . $row['subjectsection'] . '</td>
+				<td >' . $row['starttime'] . '</td>
+				<td >' . $row['endtime'] . '</td><td>';
+				//input days here
+				if($row['mon']==1) {echo 'M';}
+				if($row['tue']==1) {echo 'T';}
+				if($row['wed']==1) {echo 'W';}
+				if($row['thu']==1) {echo 'Th';}
+				if($row['fri']==1) {echo 'F';}
+				if($row['sat']==1) {echo 'S';}
+				echo '</td><td >' . $row['building'] . '</td>
+				<td >' . $row['roomnumber'] . '</td>
+				<td >' . $row['instructor'] . '</td></tr>';
+			}
+			echo '</tbody></table></div></div></div></div></div></div>';
+			
+		} 
 		$conn = null;
 
-		echo "<tr class=\"hide\" style=\"display:none;\">
-		<td style=\"font-size: 0px\"></td>
-		<td ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td></tr>";
-		echo "</tbody></table></div></div></div></div></div></div>";
 		
-		//THIRD YEAR
-		echo '<div class="tab-pane" id="3">';
-		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
-		<div class=\"panel-heading\">Third Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
-		<table id=\"tablethird\" class=\"table\">
-		<thead>
-		<tr>
-		<th style=\"font-size: 0px\">ID</th>
-		<th>Section</th>
-		<th>Code</th>
-		<th>Subject Section</th>
-		<th>Start Time</th>
-		<th>End Time</th>
-		<th>Days</th>
-		<th>Building</th>
-		<th>Room Number</th>
-		<th>Instructor</th>
-		</tr>
-		</thead>
-		<tbody class=\"list\">";
-
-		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=3 ORDER BY section");
-		$stmt->execute();
-
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-		foreach(($stmt->fetchAll()) as $row) { 
-			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td \">" . $row['section'] . "</td>
-			<td >" . $row['code'] . "</td>
-			<td >" . $row['subjectsection'] . "</td>
-			<td >" . $row['starttime'] . "</td>
-			<td >" . $row['endtime'] . "</td>
-			<td >" . $row['days'] . "</td>
-			<td >" . $row['building'] . "</td>
-			<td >" . $row['roomnumber'] . "</td>
-			<td >" . $row['instructor'] . "</td></tr>";
-		}
-		$conn = null;
-
-		echo "<tr class=\"hide\" style=\"display:none;\">
-		<td style=\"font-size: 0px\"></td>
-		<td ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td></tr>";
-		echo "</tbody></table></div></div></div></div></div></div>";
-		
-		//FOURTH YEAR
-		echo '<div class="tab-pane" id="4">';
-		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
-		<div class=\"panel-heading\">Fourth Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
-		<table id=\"tablefourth\" class=\"table\">
-		<thead>
-		<tr>
-		<th style=\"font-size: 0px\">ID</th>
-		<th>Section</th>
-		<th>Code</th>
-		<th>Subject Section</th>
-		<th>Start Time</th>
-		<th>End Time</th>
-		<th>Days</th>
-		<th>Building</th>
-		<th>Room Number</th>
-		<th>Instructor</th>
-		</tr>
-		</thead>
-		<tbody class=\"list\">";
-
-		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=4 ORDER BY section");
-		$stmt->execute();
-
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-		foreach(($stmt->fetchAll()) as $row) { 
-			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td \">" . $row['section'] . "</td>
-			<td >" . $row['code'] . "</td>
-			<td >" . $row['subjectsection'] . "</td>
-			<td >" . $row['starttime'] . "</td>
-			<td >" . $row['endtime'] . "</td>
-			<td >" . $row['days'] . "</td>
-			<td >" . $row['building'] . "</td>
-			<td >" . $row['roomnumber'] . "</td>
-			<td >" . $row['instructor'] . "</td></tr>";
-		}
-		$conn = null;
-
-		echo "<tr class=\"hide\" style=\"display:none;\">
-		<td style=\"font-size: 0px\"></td>
-		<td ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td></tr>";
-		echo "</tbody></table></div></div></div></div></div></div>";
-		
-		//FIFTH YEAR
-		echo '<div class="tab-pane" id="5">';
-		echo "<div class=\"row\"><div class=\"col-lg-12\"><div class=\"panel panel-default\">
-		<div class=\"panel-heading\">Fifth Year</div><div class=\"panel-body\"><div class=\"table-responsive\">
-		<table id=\"tablefifth\" class=\"table\">
-		<thead>
-		<tr>
-		<th style=\"font-size: 0px\">ID</th>
-		<th>Section</th>
-		<th>Code</th>
-		<th>Subject Section</th>
-		<th>Start Time</th>
-		<th>End Time</th>
-		<th>Days</th>
-		<th>Building</th>
-		<th>Room Number</th>
-		<th>Instructor</th>
-		</tr>
-		</thead>
-		<tbody class=\"list\">";
-
-		$conn = getDB('cpe-studentportal');
-		$stmt = $conn->prepare("SELECT * from `schedules` WHERE year=5 ORDER BY section");
-		$stmt->execute();
-
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-		foreach(($stmt->fetchAll()) as $row) { 
-			echo "<tr>
-			<td style=\"font-size: 0px\">" . $row['id'] . "</td>
-			<td >" . $row['section'] . "</td>
-			<td >" . $row['code'] . "</td>
-			<td >" . $row['subjectsection'] . "</td>
-			<td >" . $row['starttime'] . "</td>
-			<td >" . $row['endtime'] . "</td>
-			<td >" . $row['days'] . "</td>
-			<td >" . $row['building'] . "</td>
-			<td >" . $row['roomnumber'] . "</td>
-			<td >" . $row['instructor'] . "</td></tr>";
-		}
-		$conn = null;
-
-		echo "<tr class=\"hide\" style=\"display:none;\">
-		<td style=\"font-size: 0px\"></td>
-		<td ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td>
-		<td  ></td></tr>";
-		echo "</tbody></table></div></div></div></div></div></div></div>";
 	}
 ?>

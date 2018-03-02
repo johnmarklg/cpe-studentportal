@@ -21,6 +21,7 @@
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" integrity="sha256-GamwdmSkzX/X39UCQREOQHmmuU2ewsnrft1flUimjxA=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css" integrity="sha256-tfn9eK1pJ8CzrxEY/X948VPX9saxc3sNrzhyU5IX+Yg=" crossorigin="anonymous" />-->
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cyborg/bootstrap.min.css" integrity="sha256-OS83dfsRdMVkXGhSSJtvinOaQUUIYaFZfF2DBwdFqb0=" crossorigin="anonymous" />-->
+	<!--<link href="/assets/bootstrap/css/bootstrap-darkly.min.css" rel="stylesheet">-->
 	<link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />-->
 	<!--online<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" integrity="sha256-KEHAl1y5UUOWwVkhJfJqQZsTY6phoWRgm7ECedah9Lw=" crossorigin="anonymous" />-->
@@ -44,6 +45,10 @@
     
 	<!-- Bootstrap Core JavaScript -->
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- Chosen-->
+	<link rel="stylesheet" href="/assets/chosen/chosen.min.css">
+	<script src="/assets/chosen/chosen.jquery.min.js"></script>
 	
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
