@@ -71,7 +71,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 							<div id="title1a" class="panel-heading" style="text-align: center;">
 								<?php echo $title[8]; ?>
 							</div>
-							<div style="text-align: center;color:#555555;" class="panel-body">
+							<div style="text-align: center;color:whitesmoke;" class="panel-body">
 								<audio controls preload="metadata" style=" width: 100%;">
 									<source src="/assets/mp3/march.mp3" type="audio/mpeg">
 									Your browser does not support the audio element.
@@ -88,7 +88,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 							<div id="title2a" class="panel-heading" style="text-align: center;">
 								<?php echo $title[9]; ?>
 							</div>
-							<div style="text-align: center;color:#555555;" class="panel-body">
+							<div style="text-align: center;color:whitesmoke;" class="panel-body">
 								<audio controls preload="metadata" style=" width: 100%;">
 									<source src="/assets/mp3/hymn.mp3" type="audio/mpeg">
 									Your browser does not support the audio element.

@@ -1,18 +1,25 @@
 		.navbar {
 			border-width: 0 1px 1px 1px;
 		}
-		.navbar-inverse {
-			background-color: #fff;
-			border-color: #e6e6e6;
-		}
 		.side-nav {
-			border: 1px solid #e6e6e6;
+			border: 0px solid #e6e6e6;
+			top:50px;
 		}
+		.navbar-inverse {
+			background-color: #303030;
+			border-color: transparent;
+		}
+		/*.navbar-brand {
+			position: absolute;
+			left: 50%;
+			margin-left: -50px !important;
+			display: block;
+		}*/
 		a {
-			color: #4f4f4f;
+			color: #whitesmoke;
 			text-decoration: none;
 		}
 		
 		.navbar-nav>li {
-			background-color: whitesmoke;
+			background-color: #303030;
 		}

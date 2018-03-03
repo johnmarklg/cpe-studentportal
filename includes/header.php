@@ -17,7 +17,7 @@
 	?>
 	
 	<!--<link href="/assets/bootstrap/css/bootstrap-darkly.min.css" rel="stylesheet">-->
-	<link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/bootstrap/css/bootstrap-darkly.min.css" rel="stylesheet">
 	
 	<!-- Custom CSS -->
     <link href="/assets/bootstrap/css/sb-admin.css" rel="stylesheet">

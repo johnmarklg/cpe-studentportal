@@ -76,7 +76,7 @@ body {
     border: 1px solid rgba(0,0,0,.15);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background-color: #fff;
+    background-color: #303030;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
@@ -123,14 +123,14 @@ ul.alert-dropdown {
         border-radius: 0;
         /*overflow-y: auto;*/
 		overflow-x: hidden;
-        background-color: #fff;
+        background-color: #303030;
         bottom: 0;
         padding-bottom: 40px;
     }
 
     .side-nav>li>a {
         width: 225px;
-		background-color: #fff
+		background-color: #303030
     }
 
     .side-nav li a:hover,

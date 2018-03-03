@@ -28,7 +28,7 @@
 									echo '<td contentEditable>' . $row['surname'] . '</td>
 											  <td contentEditable>' . $row['firstname'] . '</td>
 											  <td contentEditable>' . $row['middlename'] . '</td>
-											  <td style="background-color: #eee;" id="studnum">' . $row['studnum'] . '</td>';
+											  <td style="background-color: #222;" id="studnum">' . $row['studnum'] . '</td>';
 											
 									
 									echo '</tr></tbody></table></div>
