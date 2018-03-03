@@ -53,7 +53,6 @@ $conn = getDB('cpe-studentportal');
 		.image-preview-input-title {
 			margin-left:2px;
 		}
-	
 	</style>
 </head>
 
@@ -144,10 +143,36 @@ $conn = getDB('cpe-studentportal');
 								</div>
 								<div class="tab-pane" id="2">
 									<div class="panel-body">
-										This is where you can manage the gallery and video playback.
-									</div>
-									<div class="panel-footer">
-										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update Multimedia</button>
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+											Banner Video Management
+											</div>
+											<div class="panel-body">
+												<form action="/php/uploadBannerVideo.php" method="post" enctype="multipart/form-data">
+														<input name="vidToUpload" id="vidToUpload" type="file" class="btn btn-info btn-block" accept="video/*">
+														<input type="submit" name="submit" value="Upload Video" id="upload-video" class="btn btn-default btn-success btn-block"></input>
+												</form>
+												<hr/>
+												<div class="panel panel-info">
+													<div class="panel-heading">
+														<a data-toggle="collapse" href="#collapsePanelVid"><i class="fa fa-fw fa-youtube"></i> Click to Show Current Uploaded Banner Video</a>
+													</div>
+													<div id="collapsePanelVid" class="panel-collapse collapse">
+													<div class="panel-body">
+														<div class="alert alert-info" role="alert">
+														  <i class="fa fa-fw fa-info-circle"></i> You may have to clear your browser cache to be able to see the changes.
+														  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+														</div>
+														<video preload="none" style="width: 100%;" controls>
+														  <source src="/uploads/video/movie.mp4" type="video/mp4">
+														  <source src="/uploads/video/movie.ogg" type="video/ogg">
+															Your browser does not support the video tag. Please update your browser!
+														</video>
+													</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="tab-pane" id="3">
@@ -245,5 +270,8 @@ $conn = getDB('cpe-studentportal');
 		$conn = null;
 	?>
 	<script src="/functions/js/bulletin.js"></script>
+	<script>
+	
+	</script>
 </body>
 </html>
