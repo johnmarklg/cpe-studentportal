@@ -5,12 +5,17 @@
 					
 					//REMAKE Student Grades
 					$conn = getDB('cpe-studentportal');
-					$stmt = $conn->prepare("SELECT curriculumID FROM students WHERE studnum = :studnum");
+					$stmt = $conn->prepare("SELECT * FROM students WHERE studnum = :studnum");
 					$stmt -> bindParam(':studnum', $studnum);
 					$stmt->execute();
-					$result = $stmt -> fetch();
-					$currid = $result[0];
-							  
+					//$result = $stmt -> fetch();
+					//$currid = $result[0];
+					foreach(($stmt->fetchAll()) as $row) { 
+						$currid = $row['CurriculumID'];
+						$surname = $row['surname'];
+						$firstname = $row['firstname'];
+						$middlename = $row['middlename'];
+					}					
 					echo '<div class="panel panel-default">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
 									<ul class="nav nav-pills nav-justified">
@@ -30,7 +35,16 @@
 									</ul>
 								</div>
 								<div class="panel-footer">
-									<div class="panel-footer"><a href="/functions/generateprospectus.php?studnum=' . $studnum . '&currid=' . $currid . '"><button class="btn btn-primary btn-block"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</button></a></div>
+									<div class="panel-footer">
+									<form action="/functions/generateprospectus.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="studnum" id="studnum" value="'. $studnum . '"></input>
+									<input type="hidden" name="currid" id="currid" value="'. $currid. '"></input>
+									<input type="hidden" name="surname" id="surname" value="'. $surname . '"></input>
+									<input type="hidden" name="firstname" id="firstname" value="'. $firstname . '"></input>
+									<input type="hidden" name="middlename" id="middlename" value="'. $middlename . '"></input>
+									<input type="submit" value="Prospectus" class="btn btn-primary btn-block"></input>
+									</form>
+									</div>
 								</div>
 							</div>';
 							

@@ -163,7 +163,7 @@ $conn = getDB('cpe-studentportal');
 														  <i class="fa fa-fw fa-info-circle"></i> You may have to clear your browser cache to be able to see the changes.
 														  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 														</div>
-														<video preload="none" style="width: 100%;" controls>
+														<video height="600" preload="none" style="width: 100%;" controls>
 														  <source src="/uploads/video/movie.mp4" type="video/mp4">
 														  <source src="/uploads/video/movie.ogg" type="video/ogg">
 															Your browser does not support the video tag. Please update your browser!
@@ -171,6 +171,14 @@ $conn = getDB('cpe-studentportal');
 													</div>
 													</div>
 												</div>
+											</div>
+										</div><hr/>
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+											Photo Gallery Management
+											</div>
+											<div class="panel-body">
+												
 											</div>
 										</div>
 									</div>

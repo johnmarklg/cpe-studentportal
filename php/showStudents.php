@@ -57,7 +57,16 @@
 				<td class="middlename">' . $row['middlename'] . '</td>
 				<td class="passcode">' . $row['passcode'] . '</td>
 				<td>' . $row['currname'] . '</td>
-				<td><span><a class="btn btn-primary" href="/functions/generateprospectus.php?studnum=' . $row['studnum'] . '&currid=' . $row['CurriculumID']. '"><i class="fa fa-fw fa-print"></i> Prospectus</a></span></td>
+				<td><span>
+				<form action="/functions/generateprospectus.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="studnum" id="studnum" value="'. $row['studnum'] . '"></input>
+				<input type="hidden" name="currid" id="currid" value="'. $row['CurriculumID'] . '"></input>
+				<input type="hidden" name="surname" id="surname" value="'. $row['surname'] . '"></input>
+				<input type="hidden" name="firstname" id="firstname" value="'. $row['firstname'] . '"></input>
+				<input type="hidden" name="middlename" id="middlename" value="'. $row['middlename'] . '"></input>
+				<input type="submit" value="Prospectus" class="btn btn-primary"></input>
+				</form>
+				</span></td>
 				<td><span class="table-remove btn btn-danger"><i class="fa fa-fw fa-times"></i> Remove</span></td>
 				<td style="font-size: 0px" class="yearstarted">' . $row['yearstarted'] . '</td></tr>';
 			}

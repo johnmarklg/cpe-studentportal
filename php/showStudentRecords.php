@@ -107,7 +107,14 @@
 														  
 									echo '</tr></tbody></table></div></div>
 									<div class="panel-footer">
-										<a class="btn btn-success btn-block" href="/functions/generateprospectus.php?currid=' . $row['CurriculumID'] . '&studnum=' . $row['studnum'] . '"><i class="fa fa-fw fa-print"></i> Download Prospectus (PDF)</a>		
+										<form action="/functions/generateprospectus.php" method="post" enctype="multipart/form-data">
+										<input type="hidden" name="studnum" id="studnum" value="'. $row['studnum'] . '"></input>
+										<input type="hidden" name="currid" id="currid" value="'. $row['CurriculumID'] . '"></input>
+										<input type="hidden" name="surname" id="surname" value="'. $row['surname'] . '"></input>
+										<input type="hidden" name="firstname" id="firstname" value="'. $row['firstname'] . '"></input>
+										<input type="hidden" name="middlename" id="middlename" value="'. $row['middlename'] . '"></input>
+										<input type="submit" value="Prospectus" class="btn btn-primary btn-block"></input>
+										</form>
 										<hr style="margin: 5px;"/>
 										<a class="btn btn-primary btn-block" href="#studdata" data-toggle="collapse"><i class="fa fa-fw fa-file"></i> Student Profile</a>  										  
 									</div></div>';
