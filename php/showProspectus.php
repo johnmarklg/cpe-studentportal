@@ -16,7 +16,7 @@
 						$firstname = $row['firstname'];
 						$middlename = $row['middlename'];
 					}					
-					echo '<div class="panel panel-default">
+					echo '<div class="panel panel-info">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
 									<ul class="nav nav-pills nav-justified">
 										<li class="active">
@@ -42,7 +42,7 @@
 									<input type="hidden" name="surname" id="surname" value="'. $surname . '"></input>
 									<input type="hidden" name="firstname" id="firstname" value="'. $firstname . '"></input>
 									<input type="hidden" name="middlename" id="middlename" value="'. $middlename . '"></input>
-									<input type="submit" value="Prospectus" class="btn btn-primary btn-block"></input>
+									<input type="submit" value="Show Prospectus" class="btn btn-primary btn-block"></input>
 									</form>
 									</div>
 								</div>
@@ -78,7 +78,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -101,7 +101,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -125,7 +125,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -148,7 +148,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -172,7 +172,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -195,7 +195,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -219,7 +219,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -242,7 +242,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -265,7 +265,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -289,7 +289,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';
@@ -312,7 +312,7 @@
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['1st'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['2nd'] . '</div></td>';
 						echo '<td><div contentEditable style="width: 100%; height: 100%;">' . $row['3rd'] . '</div></td>';
-						echo '<td><div style="width: 100%; height: 100%;"><a href="/admin/history.php?studnum=' . $studnum . '&courseid=' . $row['courseid'] . '"">' . $row['coursecode'] . '</a></div></td>';
+						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursecode'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['coursetitle'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['units'] . '</div></td>';
 						echo '<td><div style="width: 100%; height: 100%;">' . $row['prerequisite'] . '</div></td>';

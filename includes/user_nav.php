@@ -39,7 +39,7 @@
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
                     </li>
 					<li>
-                        <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Prospectus</a>
+                        <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Grades Transcript</a>
                     </li>
                     <li>
                         <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Schedules</a>
