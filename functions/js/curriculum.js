@@ -1,72 +1,116 @@
-		$('#tabAll').click(function(){
-			$('#tabAll').addClass('active');  
-			$('.tab-pane').each(function(i,t){
-				$('#myTabs li').removeClass('active'); 
-				$(this).addClass('active');  
+	$('#curriculum-add').click(function() {
+		var $name = $('#currname').val();
+		$.ajax({
+			type: "POST",
+				url: "/php/addCurriculum.php",
+				data: {name: $name},
+				cache: false,
+				success: function(result){
+					alert("Successfully added curriculum!");
+					location.reload();
+				}
 			});
-		});
-		
-		$( document ).ready(function() {
-					$('li', '#tabs').filter(function() {
-						return !! $(this).find('a[href="curriculum.php"]').length;
-					  })
-					  .addClass('active');
-		});
-	$("#buttonAdd").click(function() {
-			var $section = $("#section").val();
-			var $code = $("#code").val();
-			var $subjectsection = $("#subjectsection").val();
-			var $starttime = $("#starttime").val();
-			var $endtime = $("#endtime").val();
-			var $days = $("#days").val();
-			var $building = $("#building").val();
-			var $roomnumber = $("#roomnumber").val();
-			var $instructor = $("#instructor").val();
-			var $units = $("#units").val();
-			var $year = $("#year").val();
-			
-			var $subjinfo = '[{"Section":"' + $section +
-			'","Code":"' + $code + '","Subject Section":"' + $subjectsection +
-			'","Start Time":"' + $starttime + '","End Time":"' + $endtime +
-			'","Days":"' + $days + '","Building":"' + $building + '","Room Number":"' + $roomnumber +
-			'","Instructor":"' + $instructor + '","Units":"' + $units + '","Year":"' + $year +'"}]';
-			
-			//alert($subjinfo);
-			
-			if($section==""||$code==""||$subjectsection==""||$starttime==""||$endtime==""||$days==""||$building==""||$roomnumber==""||$instructor=="") {
-				alert('Error! Please fill all the necessary fields.');
-			} else {
-				//alert('okay');
-				$.ajax({
-				type: "POST",
-					url: "/php/addSchedule.php",
-					data: {subjinfo: $subjinfo},
-					cache: false,
-					success: function(result){
-						//alert("Successfully added a new student record!");
-						location.reload();  	
-					}
-				});
-			}
-		});
-		
-		$('.table-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			var $code = $row.find(".code").text(); // Find the text
-			var $subjinfo = '[{"id":"' + $id + '","code":"' + $code + '"}]';
-			//alert($subjinfo);
+			return false;
+	});
+
+	$('.curriculum-remove').click(function () {
+	if(confirm('Do you want to really remove this curriculum from the database? Note: This will not delete saved records dependent on this curriculum.')) {
+		var $row = $(this).closest("tr");    // Find the row
+		var $id = $row.find(".id").text(); // Find the text
+		var $colname = $row.find(".name").text(); // Find the text
+		var $colinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
+		alert($colinfo);
+		$.ajax({
+			type: "POST",
+				url: "/php/removeCurriculum.php",
+				data: {infodata: $colinfo},
+				cache: false,
+				success: function(result){
+					alert("Successfully removed entry!");
+					location.reload(); 			
+				}
+			});
+	} else {}
+	});
+
+
+	$subjectid = 0;
+
+	$('select', '.curriculum').on('change', function() {
+		if((this.value)!=0) {
+			var $currid = this.value;
+			var $currname = this.options[this.value].text;
+			//alert( newpos );
+			//alert($currid + ' ' + $currname);
 			$.ajax({
 				type: "POST",
-					url: "/php/removeSchedule.php",
-					data: {subjinfo: $subjinfo},
-					cache: false,
-					success: function(result){
-						alert("Successfully removed schedule entry!");
-						//location.reload(); 			
-					}
-				});
-			$(this).parents('tr').detach();			
-		} else {}
-		});
+				url: "/php/showCurr.php",
+				data: {currid: $currid, currname: $currname},
+				cache: false,
+				success: function(result){
+					$('.currdiv').remove();
+					$(result).appendTo(".container-fluid");
+				}
+			});
+		}
+	})
+	$( document ).ready(function() {
+				$('li', '#tabs').filter(function() {
+					return !! $(this).find('a[href="curriculum.php"]').length;
+				  })
+				  .addClass('active');
+	});
+
+	$('.container-fluid').on('click', '.entry-add', function () {
+		$table = $(this).closest('table');
+		var $clone = $table.find('tr.hide').clone(true).removeClass('hide').toggle();
+		$table.append($clone);
+	});
+
+	$('.container-fluid').on('click', '.entry-remove', function () {
+		$subjectid = $(this).parents('tr').find('td.subjectid').text();
+		//alert($subjectid);
+		$subjectdata = $(this).parents('tr').tableToJSON();
+		//alert($subjectdata);
+		if($subjectid != "") {
+			$.ajax({
+				type: "POST",
+				url: "/php/deleteSubject.php",
+				data: {subjectid: $subjectid},
+				cache: false,
+				success: function(result){
+					alert('Subject successfully deleted from the database.');
+					location.reload();
+				}
+			});
+		} else {
+			$(this).parents('tr').detach();
+		}
+	});
+
+	$('.container-fluid').on('click', '.entry-update', function () {
+		$subjectid = $(this).parents('tr').find('td.subjectid').text();
+		$currid = $('#curriculum').find(":selected").val();
+		//alert($subjectid + ', ' + $currid);
+		$defaultyear = $(this).parents('tr').find('.defaultyear').text();
+		$defaultsemester = $(this).parents('tr').find('.defaultsemester').text();
+		$coursecode = $(this).parents('tr').find('.coursecode').text();
+		$coursetitle = $(this).parents('tr').find('.coursetitle').text();
+		$units = $(this).parents('tr').find('.units').text();
+		$prerequisite = $(this).parents('tr').find('.prerequisite').text();
+		$corequisite = $(this).parents('tr').find('.corequisite').text();
+		$year = $(this).parents('tr').find('.year').text();
+		$subjectdata = '[{"Default Year":"' + $defaultyear + '","Default Semester":"' + $defaultsemester + '","Course Code":"' + $coursecode + '","Course Title":"' + $coursetitle + '","Units":"' + $units + '","Pre-Requisite":"' + $prerequisite + '","Co-Requisite":"' + $corequisite + '","Year":"' + $year+ '"}]';
+		//alert($subjectdata);
+		$.ajax({
+				type: "POST",
+				url: "/php/updateSubject.php",
+				data: {subjectid: $subjectid, currid: $currid, subjectdata: $subjectdata},
+				cache: false,
+				success: function(result){
+					//alert(result);
+					alert('Successfully updated from the database.');
+					location.reload();
+				}
+			});
+	});

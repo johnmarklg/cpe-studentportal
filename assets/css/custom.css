@@ -1,0 +1,18 @@
+		.navbar {
+			border-width: 0 1px 1px 1px;
+		}
+		.navbar-inverse {
+			background-color: #fff;
+			border-color: #e6e6e6;
+		}
+		.side-nav {
+			border: 1px solid #e6e6e6;
+		}
+		a {
+			color: #4f4f4f;
+			text-decoration: none;
+		}
+		
+		.navbar-nav>li {
+			background-color: whitesmoke;
+		}

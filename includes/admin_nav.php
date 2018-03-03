@@ -36,7 +36,7 @@
                         <a href="announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
                     </li>
                     <li>
-                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
+                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Schedules</a>
                     </li>
                     <li>
                         <a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student List</a>

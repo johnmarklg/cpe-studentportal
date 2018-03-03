@@ -25,3 +25,15 @@
 				});
 				return false;
 		});
+		
+		$( '.swipebox' ).swipebox();	
+		
+		$('#toggle-pass').click(function() {
+			if(($(this).text()) == 'Show') {
+				$(this).text('Hide');
+				$('#password').attr('type','text');
+			} else {
+				$(this).text('Show');
+				$('#password').attr('type','password');
+			}
+		});

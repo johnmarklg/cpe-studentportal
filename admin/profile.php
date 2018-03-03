@@ -20,6 +20,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
+	announcement_extra();
 ?>
 </head>
 
@@ -52,7 +53,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  Initial page. You can adjust settings and edit your account information here.
+							<i class="fa fa-fw fa-info-circle"></i> This is where you can view and manage your user credentials and information.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -80,9 +81,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
     </div>
     <!-- /#wrapper -->
 	<script src="/functions/js/admininfo.js"></script>
-	<script>
-		$( '.swipebox' ).swipebox();	
-	</script>
+	
 </body>
 
 </html>

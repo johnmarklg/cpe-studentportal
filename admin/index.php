@@ -124,7 +124,6 @@ $conn = getDB('cpe-studentportal');
 												<option value="0" selected>Hidden</option>';
 											}
 											echo '</select>';
-											//echo '<a href="" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
 											if($row['file'] == '') {
 												echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12">';
 											} else {
@@ -205,8 +204,15 @@ $conn = getDB('cpe-studentportal');
 															<td>' . $row['office'] . '</td>
 															<td>' . $row['ContactNo'] . '</td>
 															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '" style="height: 20vh; width: 20vh%;"/></a></td>
-															<td class="replace-photo"><button class="btn btn-info"><i class="fa fa-refresh"></i> Replace Image</button></td>
-															<td class="remove-office"><button class="btn btn-danger"><i class="fa fa-times"></i> Remove Record</button></td></tr>';
+															<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
+																	<input type="file" class="btn btn-info" name="fileToUpload2" id="fileToUpload2"></input></td>
+																	<input type="hidden" value="' . $row['studnum'] . '" name="refid" id="refid" ></input>
+															<td>
+															<input type="submit" value="Replace Photo" class="btn btn-info replace-photo"></input></form>
+															</td>
+															<td>
+															<button class="btn btn-danger remove-office"><i class="fa fa-times"></i> Delete</button>
+															</td></tr>';
 														}				
 													?>
 												</tbody>
@@ -238,58 +244,6 @@ $conn = getDB('cpe-studentportal');
 	<?php
 		$conn = null;
 	?>
-	<script>
-	$( '.swipebox' ).swipebox();
-			
-	$( document ).ready(function() {
-			/* Basic Gallery */
-			$( '.swipebox' ).swipebox();
-			$('li', '#tabs').filter(function() {
-						return !! $(this).find('a[href="index.php"]').length;
-					  })
-			.addClass('active');
-     });
-	 
-	 $('.remove-office').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
-			var $row = $(this).closest("tr");    // Find the row
-			var $id = $row.find(".id").text(); // Find the text
-			$.ajax({
-				type: "POST",
-					url: "/php/removeOfficer.php",
-					data: {id: $id},
-					cache: false,
-					success: function(result){
-						alert("Successfully removed officer record!");
-						location.reload(); 			
-					}
-				});
-		} else {}
-		});
-	 
-	 $('select', '.showhide').on('change', function() {
-		if (!confirm('Are you sure you want to change this post\'s visibility on the bulletin?')) {
-            $(this).val(showhide_cache);
-            return false;
-        } else {
-			var $newBool = this.value;
-			var $id = this.id;
-			var $datetime = $(this).attr("name");
-			//alert($datetime);
-			var $data = '[{"ID":"' + $id + '","showBool":"' + $newBool + '","timestamp":"' + $datetime + '"}]';
-			//alert($data);		
-			$.ajax({
-				type: "POST",
-				url: "/php/updatePostVisibility.php",
-				data: {admininfo: $data},
-				cache: false,
-				success: function(result){
-					alert("Successfully changed post visibility!");
-					//location.reload();
-				}
-			});
-		}
-	})
-	 </script>
+	<script src="/functions/js/bulletin.js"></script>
 </body>
 </html>

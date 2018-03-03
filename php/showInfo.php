@@ -34,22 +34,28 @@
 							<div class="panel-body">
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1">Username</span>
-								  <input id="username" type="text" class="form-control" value="' . $row['username'] . '" aria-describedby="basic-addon1">
+								  <input id="username" type="text" class="form-control" value="' . $row['username'] . '" aria-describedby="basic-addon1" autocomplete>
 								</div>
 								<br/>
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon2">Password</span>
-								  <input id="password" type="password" class="form-control" value="' . $row['password'] . '" aria-describedby="basic-addon2">
+								  <input id="password" type="password" class="form-control" value="' . $row['password'] . '" aria-describedby="basic-addon2" autocomplete>
+								  <span id="toggle-pass" class="btn input-group-addon" id="basic-addon2">Show</span>
 								</div>
 								<br/>
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon3">Email Address</span>
-								  <input id="email" type="text" class="form-control" value="' . $row['email'] . '" aria-describedby="basic-addon3">
+								  <input id="email" type="text" class="form-control" value="' . $row['email'] . '" aria-describedby="basic-addon3" autocomplete>
 								</div>
 								<br/>
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon4">Name</span>
-								  <input id="fullname" type="text" class="form-control" value="' . $row['name'] . '" aria-describedby="basic-addon4">
+								  <input id="fullname" type="text" class="form-control" value="' . $row['name'] . '" aria-describedby="basic-addon4" autocomplete>
+								</div>
+								<br/>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon5">Permission Level</span>
+								  <input style="background-color: #ddd;" disabled type="text" class="form-control" value="' . $row['position'] . '" aria-describedby="basic-addon5">
 								</div>
 								<br/>
 								<form method="post">

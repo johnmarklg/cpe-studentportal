@@ -42,7 +42,7 @@
                         <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Prospectus</a>
                     </li>
                     <li>
-                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Timetables</a>
+                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Schedules</a>
                     </li>
 					<li>
                         <a href="soa.php"><i class="fa fa-fw fa-credit-card"></i> Statement of Accounts</a>

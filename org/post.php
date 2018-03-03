@@ -20,6 +20,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
+	announcement_extra();
 ?>		
 </head>
 
@@ -55,7 +56,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 								<?php
 									$postID = $_GET['postID'];
-									$adminid = $_GET['adminid'];
+									$adminid = $_SESSION['name'][2];
 									
 									require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 									require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/timefxn.php");
@@ -69,7 +70,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									
 									foreach(($stmt->fetchAll()) as $row) { 
 										$time = strtotime($row['datetime']);
-										echo '<div class="panel panel-primary"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
+										echo '<div id="' . $postID . '" name="' . $adminid . '" class="panel panel-primary post"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 										if($row['file'] == '') {
 											echo '</div><div class="panel-body"><div class="col-lg-12">';
 										} else {
@@ -148,37 +149,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		</footer>
 		<!-- /footer -->
 		
-		<script>
-			$( document ).ready(function() {
-					$('li', '#tabs').filter(function() {
-						return !! $(this).find('a[href="/org/announcements.php"]').length;
-					  })
-					  .addClass('active');
-			});
-			
-			$('.btnComment').click(function() {
-			var $parentid = $(this).attr('id');   
-			var $commenttext = $(('#comment' + $parentid)).val().replace(/\n/g, "<br />");   
-			var $commenterid = "<?php echo $_GET['adminid']; ?>";
-			var $postid = "<?php echo $_GET['postID']; ?>";
-			var $commentinfo = '[{"parentID":"' + $parentid + '","commentText":"' + $commenttext  + '","commenterID":"' + $commenterid  + '","postID":"' + $postid+ '"}]';
-			//alert($commentinfo);
-			if($commenttext === '' || $commenttext === ' ' ) {
-				alert('Error. Please input comment first.');
-			} else {
-			$.ajax({
-					type: "POST",
-						url: "/php/postComment.php",
-						data: {commentinfo: $commentinfo},
-						cache: false,
-						success: function(result){
-							//alert(result);
-							location.reload();
-						}
-					});
-			}
-			});
-		</script>
+		<script src="/functions/js/post.js"></script>
+		
     </div>
     <!-- /#wrapper -->
 	

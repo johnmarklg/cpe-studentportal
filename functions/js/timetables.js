@@ -13,8 +13,17 @@
 					  .addClass('active');
 		});
 		
+		$(function () {
+			$('#starttime').datetimepicker({
+				format: 'LT'
+			});
+			$('#endtime').datetimepicker({
+				format: 'LT'
+			});
+		});
 		
-	$("#buttonAdd").click(function() {
+		
+		$("#buttonAdd").click(function() {
 			var $section = $("#section").val();
 			var $subjectid = $("#code").val();
 			var $subjectsection = $("#subjectsection").val();

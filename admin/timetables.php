@@ -220,16 +220,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/functions/js/timetables.js"></script>
-	<script type="text/javascript">
-            $(function () {
-                $('#starttime').datetimepicker({
-                    format: 'LT'
-                });
-				$('#endtime').datetimepicker({
-                    format: 'LT'
-                });
-            });
-        </script>
 		
 </body>
 

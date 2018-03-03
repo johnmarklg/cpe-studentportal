@@ -79,7 +79,7 @@
 					header: {
 						left: 'prev, next',
 						center: 'title',
-						right: 'month,listWeek'
+						right: 'month,agendaWeek,listWeek'
 					},
 					themeSystem: 'bootstrap3',
 					navLinks: true, // can click day/week names to navigate views

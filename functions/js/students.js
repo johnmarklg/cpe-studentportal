@@ -5,6 +5,62 @@
 				$(this).addClass('active');  
 			});
 		});
+		
+		$bool = false;
+		$(".surname, .firstname, .middlename, .passcode").dblclick(function () {
+			var $status = $(this).attr('contenteditable');
+			if($bool==false) {
+				if($status == 'false') {
+					$cache_val = $(this).text();
+					//alert($cache_val);
+					$bool = true;
+					$(this).attr('contenteditable', true);
+					$(this).css({"border-color": "#b0d0ed", "border-width":"3px", "border-style":"solid"});
+					//#C1E0FF
+				} else {
+					$bool = false;
+					$(this).attr('contenteditable', false);
+					$(this).css({"border":"none"})
+				}
+			} else {
+				if ($status== 'true') {
+					//save and false editable again
+					$bool = false;
+					if(($(this).text()) === $cache_val) {} else {
+						if(confirm('Do you really want to update this entry?')) {
+							//save and update
+							var $row = $(this).closest("tr");    // Find the row
+							var $studnum = $row.find(".studnum").text(); // Find the text
+							var $header = $(this).closest('table').find('th').eq($(this).index()).text();
+							var $update = $(this).text();
+							if ($header === 'Surname') {
+								var $colname = 'surname';
+							} else if ($header === 'First Name') {
+								var $colname = 'firstname';
+							} else if ($header === 'Middle Name') {
+								var $colname = 'middlename';
+							} else {
+								var $colname = 'passcode';
+							}
+							$.ajax({
+								type: "POST",
+								url: "/php/updateBasicProfile.php",
+								data: {studnum: $studnum, colname: $colname, update: $update},
+								cache: false, 
+								success: function(result){
+									//alert(result);
+									console.log('Update Successful.')
+								}
+							});
+						} else {
+							$(this).text($cache_val);
+						}
+					}					
+					$(this).attr('contenteditable', false);
+					$(this).css({"border":"none"})
+				}
+			}
+		});
 
 		$('.table-remove').click(function () {
 		if(confirm('Do you want to remove this entry from the database?')) {

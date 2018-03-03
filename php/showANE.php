@@ -36,7 +36,7 @@
 													}
 													echo '<strong>' . $row['posttitle'] . '</strong>';
 													echo '<hr/>' . $row['post'];
-													echo '</div></div><div class="panel-footer"><a href="post.php?postID=' . $row['id'] . '&studnum=' . $studnum . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
+													echo '</div></div><div class="panel-footer"><a href="post.php?postID=' . $row['id'] . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
 													}
 													
 						echo '</div></div>

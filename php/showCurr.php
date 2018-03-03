@@ -12,7 +12,7 @@
 
 		echo '<div class="row currdiv"><div class="col-lg-12"><div class="panel panel-primary">
 		<div class="panel-heading" style="text-align: center;">' . $currname . '</div><div class="panel-body"><div class="table-responsive">
-		<table id="currtable" class="table">
+		<table id="currtable" class="table table-bordered">
 		<thead>
 		<tr>
 		<th>Subject ID</th>

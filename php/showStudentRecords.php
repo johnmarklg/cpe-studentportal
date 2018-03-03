@@ -74,20 +74,8 @@
 								  echo '</select>
 								</div>
 							</div><br/>';		
-					echo "<table id=\"studentinfo\" class=\"table\">
-										<thead>
-											<tr>
-											  <th style=\"font-size: 0px\">Old Student Number</th>
-											  <th>Surname</th>
-											  <th>First Name</th>
-											  <th>Middle Name</th>
-											  <th>Student Number</th>
-											  <th>Passcode</th>
-											  <th>Year Level</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>";
+					echo '<table id="studentinfo" class="table"><thead><tr><th style="font-size: 0px">Old Student Number</th><th>Surname</th><th>First Name</th>
+							<th>Middle Name</th><th>Student Number</th><th>Passcode</th><th>Year Level</th></tr></thead><tbody><tr>';
 
 											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
 											$stmt -> bindParam(':studnum', $studnum);
@@ -109,13 +97,13 @@
 													$yearlevel = $fifthyear - $row['yearstarted'] + 5;
 													$printstudnum = $row['studnum'];
 												}
-												echo "<td style=\"font-size: 0px\" id=\"oldstudnum\">" . $row['studnum'] . "</td>
-														  <td contentEditable>" . $row['surname'] . "</td>
-														  <td contentEditable>" . $row['firstname'] . "</td>
-														  <td contentEditable>" . $row['middlename'] . "</td>
-														  <td contentEditable id=\"studnum\">" . $printstudnum . "</td>
-														  <td contentEditable>" . $row['passcode'] . "</td>
-														  <td  contentEditable>" . $yearlevel . "</td>";
+												echo '<td style="font-size: 0px" id="oldstudnum">' . $row['studnum'] . '</td>
+														  <td id="surname" contentEditable>' . $row['surname'] . '</td>
+														  <td id="firstname" contentEditable>' . $row['firstname'] . '</td>
+														  <td id="middlename" contentEditable>' . $row['middlename'] . '</td>
+														  <td contentEditable id="studnum">' . $printstudnum . '</td>
+														  <td contentEditable>' . $row['passcode'] . '</td>
+														  <td  contentEditable>' . $yearlevel . '</td>';
 														  
 									echo '</tr></tbody></table></div></div>
 									<div class="panel-footer">
@@ -234,9 +222,8 @@
 					echo '<div class="tab-content">';	
 					
 					
-					//REMAKE Student Grades
 					$conn = getDB('cpe-studentportal');
-					//$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT * FROM `grades` LEFT JOIN subjects ON subjects.subjectid = grades.courseid WHERE grades.studnum = :studnum)");
+					
 					$stmt = $conn->prepare("CREATE TEMPORARY TABLE IF NOT EXISTS temptable AS (SELECT subjects.*, 
 					COALESCE(grades.courseid, subjects.subjectid) as courseid,
 					COALESCE(grades.studnum, :studnum) as studnum,
@@ -252,7 +239,6 @@
 					$stmt -> bindParam(':studnum', $studnum);
 					$stmt -> bindParam(':currid', $currid);
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					//1ST YEAR
 					$stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 1 AND defaultsemester = 1");
@@ -280,7 +266,6 @@
 					
 					$stmt = $conn->prepare("SELECT * from temptable WHERE  defaultyear = 1 AND defaultsemester = 2");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 1st Year - 2nd Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades1-2" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -304,7 +289,6 @@
 					//2ND YEAR
 					$stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 2 AND defaultsemester = 1");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="tab-pane" id="2"><div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 2nd Year - 1st Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades2-1" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -327,7 +311,6 @@
 					
 					$stmt = $conn->prepare("SELECT * from temptable WHERE  defaultyear = 2 AND defaultsemester = 2");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 2nd Year - 2nd Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades2-2" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -351,7 +334,6 @@
 					//3RD YEAR
 					$stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 3 AND defaultsemester = 1");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="tab-pane" id="3"><div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 3rd Year - 1st Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades3-1" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -374,7 +356,6 @@
 					
 					$stmt = $conn->prepare("SELECT * from temptable WHERE  defaultyear = 3 AND defaultsemester = 2");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 3rd Year - 2nd Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades3-2" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -398,7 +379,6 @@
 					//4TH YEAR
 					$stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 4 AND defaultsemester = 1");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="tab-pane" id="4"><div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 4th Year - 1st Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades4-1" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -421,7 +401,6 @@
 					
 					$stmt = $conn->prepare("SELECT * from temptable WHERE  defaultyear = 4 AND defaultsemester = 2");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 4th Year - 2nd Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades4-2" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -444,8 +423,7 @@
 					
 					$stmt = $conn->prepare("SELECT * from temptable WHERE  defaultyear = 4 AND defaultsemester = 3");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-					
+				
 					echo '<div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 4th Year - Mid Year/Summer</div>
 					<div class="panel-body"><div class="table-responsive"><table id="gradesmid" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
 					<th>Units</th><th>Pre-Requisites</th><th>Co-Requisites</th><th>Year</th><th style="font-size: 0px">id</th></tr></thead><tbody>';
@@ -468,7 +446,6 @@
 					//5TH YEAR
 					$stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 5 AND defaultsemester = 1");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="tab-pane" id="5"><div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 5th Year - 1st Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades5-1" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>
@@ -491,7 +468,6 @@
 					
 					$stmt = $conn->prepare("SELECT * from temptable WHERE  defaultyear = 5 AND defaultsemester = 2");
 					$stmt->execute();
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 					
 					echo '<div class="row"><div class="col-lg-12"><div class="panel panel-success"><div class="panel-heading">Grades Transcript: 5th Year - 2nd Semester</div>
 					<div class="panel-body"><div class="table-responsive"><table id="grades5-2" class="table"><thead><tr><th>1st</th><th>2nd</th><th>3rd</th><th>Code</th><th>Course Title</th>

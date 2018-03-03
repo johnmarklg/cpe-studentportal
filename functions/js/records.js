@@ -4,6 +4,29 @@
 			focusTarget: 'div'
 		});
 		
+		$('select', '.curriculum').on('change', function() {
+			if (!confirm('Are you sure you want to change this student\'s curriculum?')) {
+				$(this).val(curr_cache);
+				return false;
+			} else {
+				var $newpos = this.value;
+				//alert( newpos );
+				var $currid = $("#curriculum").val();
+				var $studnum = $('#oldstudnum').text();
+				//alert($studnum + $currid);
+				$.ajax({
+					type: "POST",
+					url: "/php/updateCurr.php",
+					data: {studnum: $studnum, currid: $currid},
+					cache: false,
+					success: function(result){
+						alert("Successfully changed student curriculum! Reloading page.");
+						location.reload(); 			
+					}
+				});			
+			}
+		})
+		
 		$( document ).ready(function() {
 					$('li', '#tabs').filter(function() {
 						return !! $(this).find('a[href="records.php"]').length;
@@ -21,7 +44,7 @@
 		});
 		
 		$("#saveStudentRecords").click(function(){
-			if($('#studnum').text()=='') {
+			if($('#studnum').text()==''||$('#surname').text()==''||$('#firstname').text()=='') {
 				alert('Please fill the necessary fields.');
 			} else {
 			var $adminid = $("#adminid").text();
@@ -57,9 +80,6 @@
 				cache: false,
 				success: function(result){
 					alert("Successfully updated student record!");
-					//url.split('?')[0] ;
-					//window.location.href('/admin/records.php');
-					//alert(result);
 					location.reload();
 				}
 			});

@@ -114,6 +114,6 @@
 									</div></div>';
 								}
 										
-									echo '<div class="panel-footer"><button id="updateStudentProfile" class="btn btn-primary btn-block"><i class="fa fa-fw fa-save"></i> Save Changes</button></div></div>';
+									echo '<div class="panel-footer"><button id="updateStudentProfile" value="' . $row['studnum'] . '" class="btn btn-primary btn-block"><i class="fa fa-fw fa-save"></i> Save Changes</button></div></div>';
 			  }
 ?>

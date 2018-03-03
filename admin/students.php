@@ -120,26 +120,26 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 										</div>
 									</div>
 								</div>
-								
+						
 						<div class="panel panel-default">
-									<div class="panel-heading" style="text-align: center;" id="myTabs">	
-										<ul class="nav nav-pills nav-justified">
-											<li class="active">
-											<a  href="#1" data-toggle="tab">First Year</a>
-											</li>
-											<li><a href="#2" data-toggle="tab">Second Year</a>
-											</li>
-											<li><a href="#3" data-toggle="tab">Third Year</a>
-											</li>
-											<li><a href="#4" data-toggle="tab">Fourth Year</a>
-											</li>
-											<li><a href="#5" data-toggle="tab">Fifth Year</a>
-											</li>
-											<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
-											</li>
-										</ul>
-									</div>
-								</div>
+							<div class="panel-heading" style="text-align: center;" id="myTabs">	
+								<ul class="nav nav-pills nav-justified">
+									<li class="active">
+									<a  href="#1" data-toggle="tab">First Year</a>
+									</li>
+									<li><a href="#2" data-toggle="tab">Second Year</a>
+									</li>
+									<li><a href="#3" data-toggle="tab">Third Year</a>
+									</li>
+									<li><a href="#4" data-toggle="tab">Fourth Year</a>
+									</li>
+									<li><a href="#5" data-toggle="tab">Fifth Year</a>
+									</li>
+									<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 						<?php	
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showStudents.php');
 						echo showStudents();

@@ -7,9 +7,14 @@
 	$oldstudnum = $_POST['oldstudnum'];
 	
 	$conn = getDB('cpe-studentportal');
-					
-		//update personal datasheet
-		foreach ($jsonstudprofile as $key => $value) {
+		
+		$stmt = $conn->prepare("SELECT requestid FROM profilerequest WHERE approvalstatus = 0 AND studnum= :studnum");
+		$stmt -> bindParam(':studnum', $oldstudnum);
+		$stmt->execute(); 
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);			
+		//check if entry/record exists, meaning there's still a request
+		if (!($result)) {
+			foreach ($jsonstudprofile as $key => $value) {		
 				try { $stmt = $conn->prepare("INSERT INTO `profilerequest` 
 				(`studnum`, `surname`, `firstname`, `middlename`, 
 				`Gender`, `Status`, `Citizenship`, `DateOfBirth`, 
@@ -49,6 +54,11 @@
 					//var_dump($e->getMessage());
 				}
 		}
+		} else {
+			$msg =  "Error! A request is still on pending.";
+		}
+			
+		//update personal datasheet
 		
 		$conn = null;
 		print $msg;

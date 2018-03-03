@@ -8,7 +8,8 @@
 	} else {
 		$conn=getdb('cpe-studentportal');	
 		
-		$filenamekey = md5(uniqid($_FILES["fileToUpload"]["name"], true)); 
+		//$filenamekey = md5(uniqid($_FILES["fileToUpload"]["name"], true));
+		$filenamekey = $officer;
 		$extension = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
 		$filenamekey .= "." . $extension;
 		
