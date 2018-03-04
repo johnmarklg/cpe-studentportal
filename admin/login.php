@@ -34,7 +34,8 @@ if($_POST){
 	announcement_extra();
 ?>	
 </head>
-  <body style="background-image: url(/assets/images/login-background.png);">
+  <body style="background-color: #222222;
+  background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;">
 	<div class="main">
 		<div class="container">
 			<div class="row">
@@ -42,7 +43,7 @@ if($_POST){
 				<div class="col-lg-4">
 				<div class="panel">
 					<div class="panel-heading">
-					<img src="/assets/images/login-header.png" style="background: white; max-width:100%;max-height:100%;" />
+					<img src="/assets/images/login-header.png" style="max-width:100%;max-height:100%;" />
 					</div>
 					<div class="panel-body">
 						<?php echo $errorMsgLogin; ?>
@@ -58,7 +59,7 @@ if($_POST){
 									<input type="password" class="form-control" aria-describedby="password-addon" name="password" id="password" required autocomplete="off"/>
 								</div>
 								<br/>
-								<input type="submit" value="Sign In" class="btn btn-block"/>
+								<input type="submit" value="Sign In" class="btn btn-success btn-block"/>
 						</form>
 					</div>
 				</div>

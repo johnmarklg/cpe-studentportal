@@ -35,15 +35,16 @@ if($_POST){
 ?>	
 </head>
 
-  <body style="background-image: url(/assets/images/login-background2.png);">
+  <body style="background-color: #222222;
+  background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;">
 	<div class="main">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4">
-				<div class="panel">
+				<div class="panel" style="background-color: #343434;">
 					<div class="panel-heading">
-					<img id="login-header" src="/assets/images/login-header.png" style="background: white; max-width:100%;max-height:100%;" />
+					<img id="login-header" src="/assets/images/login-header.png" style="max-width:100%;max-height:100%;" />
 					<div id="login-note" style="display: none;">
 						<ul>
                             <li>
@@ -75,7 +76,7 @@ if($_POST){
 									<input type="password" class="form-control" aria-describedby="password-addon" name="password" id="password" required autocomplete="off"/>
 								</div>
 								<br/>
-								<input type="submit" value="Sign In" class="btn btn-block"/>
+								<input type="submit" value="Sign In" class="btn btn-success btn-block"/>
 						</form>
 					</div>
 				</div>
