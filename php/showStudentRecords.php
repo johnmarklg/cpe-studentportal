@@ -203,7 +203,7 @@
 									</div>';
 									}
 									$conn = null;
-					
+			if($studnum<>'00-0000') {	
 					echo '<div class="panel panel-default">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
 									<ul class="nav nav-pills nav-justified">
@@ -223,7 +223,6 @@
 									</ul>
 								</div>
 							</div>';
-					
 					echo '<div class="alert alert-info" role="alert">
 						  <i class="fa fa-fw fa-info-circle"></i> You may click the <strong>Course Code</strong> for each subject to view change history.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -501,5 +500,6 @@
 					
 				$conn = null;
 				
-			  }
+			}
+	}
 ?>

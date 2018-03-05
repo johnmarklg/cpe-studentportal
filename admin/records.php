@@ -27,6 +27,7 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 			#saveStudentRecords {
 			  position: fixed;
 			  display: block;
+			  background-color: #00bc8c;
 			  right: 0;
 			  bottom: 0;
 			  margin-right: 40px;
@@ -61,11 +62,19 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
                 </div>
                 <!-- /.row -->
 				
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
 						  <i class="fa fa-info-circle"></i> To add a new student entry, you can fill up the empty fields below then press [Enter] or click the <i class="fa fa-fw fa-save"></i> to create.
 						  <br/>Make sure that no record is currently loaded or it will be overwritten.
+						</div>
+					</div>
+				</div>-->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+						  <i class="fa fa-info-circle"></i> Input [Student Number] in the text field below then click [<i class="fa fa-search"></i>] to load student records.
+						  <br/>Alternatively, open the student records via the links found in the [Student List] page.
 						</div>
 					</div>
 				</div>
