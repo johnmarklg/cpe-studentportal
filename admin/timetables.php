@@ -194,8 +194,20 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								require($_SERVER["DOCUMENT_ROOT"] . '/php/showTimetables.php');
 								echo showTimetables();
 								?>
+								</div>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							Weekly Timetables
+							</div>
+							<div style="padding: 0;" class="panel-body table-responsive">
+							<div id="timetable1" class="jqs-demo mb-3"></div>
+							</div>
+					</div>
+				</div>
             </div>
             <!-- /.container-fluid -->
 
@@ -220,6 +232,59 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/functions/js/timetables.js"></script>
+	<script>
+		$(function () {
+			$("#timetable1").jqs({
+				mode: "read",
+				hour: 12,
+				days: [
+					  "MON",
+					  "TUE",
+					  "WED",
+					  "THU",
+					  "FRI",
+					  "SAT",
+					  "SUN"
+				  ],
+				  hours: [],
+				data: [{
+					day: 0,
+					periods: [
+						{start: "08:00 AM",
+						end: "09:30 am",
+						title: "A black period",
+						backgroundColor: "#000",
+						borderColor:"#000",
+						textColor: "#fff"},
+						{start: "10:00am",
+						end: "12:00pm",
+						title: "A black period",
+						backgroundColor: "#000",
+						borderColor:"#000",
+						textColor: "#fff"}
+					]
+				}, {
+					day: 5,
+					periods: [
+						{start: "08:00 AM",
+						end: "09:30 am",
+						title: "A black period",
+						backgroundColor: "#222",
+						borderColor:"#000",
+						textColor: "#fff"},
+						{start: "10:00 am",
+						end: "12:00 pm",
+						title: "A black period",
+						backgroundColor: "#000",
+						borderColor:"#000",
+						textColor: "#fff"}
+					]
+				}]
+			});
+			//$(".jqs-table td:last-child").remove();
+			//$(".jqs-grid-head div.jqs-grid-day:last-child").remove();
+		});
+	</script>
 		
 </body>
 

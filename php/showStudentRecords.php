@@ -11,11 +11,13 @@
 						} else {
 						//set searched value to variable
 						$studnum = ($_REQUEST["stud-num"]);
+						echo '<form><button type="button" id="saveStudentRecords" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button></form>';
 						}
 					} else {
 						//else, if studnum in URL
 						if(isset($_GET['studnum'])){ 
-							$studnum = $_GET['studnum']; 
+							$studnum = $_GET['studnum'];
+							echo '<form><button type="button" id="saveStudentRecords" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button></form>';
 						} else { 
 							//if not set to 00-0000
 							$studnum='00-0000';

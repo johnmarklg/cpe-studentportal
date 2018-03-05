@@ -21,6 +21,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
 ?>
+	<style>
+		.invoice-remove:hover {
+		  color: #f00;
+		  cursor: pointer;
+		  text-decoration: underline;
+		}
+	</style>
 </head>
 
 <body>

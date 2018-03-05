@@ -3,7 +3,8 @@
 		
 			$subjectid = $_POST['subjectid'];
 			$currid = $_POST['currid'];
-			
+			$adminid = $_POST['adminid'];
+	
 			$conn = getDB('cpe-studentportal');
 			
 			$jsonsubject = json_decode($_POST['subjectdata'], true);
@@ -40,6 +41,13 @@
 						$stmt->execute();
 					}	
 				}
+				
+			$stmt = $conn->prepare("INSERT INTO `activitylog` 
+			(userid, action, timestamp) 
+			VALUES (:userid, 15, now())");
+			$stmt -> bindParam(':userid', $adminid);
+			$stmt->execute(); 
+			
 			$conn = null;
 			
 		print $subjectid;

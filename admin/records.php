@@ -100,10 +100,6 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
         </div>
         <!-- /#page-wrapper -->
 		
-		<form>
-				<button type="button" id="saveStudentRecords" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button>
-		</form>	
-
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">

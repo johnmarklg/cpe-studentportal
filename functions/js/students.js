@@ -67,12 +67,13 @@
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $studnum = $row.find(".studnum").text(); // Find the text
+			var $adminid = $("#adminid").text();
 			var $studinfo = '[{"studnum":"' + $studnum + '"}]';
 			//alert($studinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removeStudent.php",
-					data: {studinfo: $studinfo},
+					data: {studinfo: $studinfo, adminid: $adminid},
 					cache: false,
 					success: function(result){
 						//alert("Successfully removed student entry!");

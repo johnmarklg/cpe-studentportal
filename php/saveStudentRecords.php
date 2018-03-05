@@ -52,18 +52,6 @@
 					$stmt -> bindParam(':oldstudnum', $oldstudnum);
 					$stmt->execute();
 					
-					//for grades, if not exist for the curriculum
-					//$stmt = $conn->prepare("SELECT * FROM grades WHERE studnum = :studnum");
-					/*$stmt = $conn->prepare("SELECT grades.*
-						FROM `grades`
-						LEFT JOIN `subjects`
-						ON subjects.subjectid = grades.courseid
-						WHERE grades.studnum=:studnum AND subjects.curriculumID=:currid");
-					$stmt -> bindParam(':studnum', $studnum);
-					$stmt -> bindParam(':currid', $currid);
-					$stmt->execute();
-					$result = $stmt->fetch(PDO::FETCH_ASSOC);*/
-					
 					//gets all the subjects from the curriculum and checks if the student has a record for all of them
 					$stmt = $conn->prepare("SELECT COALESCE(grades.courseid, subjects.subjectid) as courseid,
 					COALESCE(grades.studnum, '') as studnum
@@ -88,29 +76,6 @@
 							$stmti->execute();
 						}
 					}
-					
-					//check if entry/record exists, if not create
-					/*if(!$result) {
-						//create grades records
-						
-						$stmt = $conn->prepare("SELECT subjectid FROM `subjects` WHERE subjects.curriculumID=:currid");
-						$stmt -> bindParam(':currid', $currid);
-						$stmt->execute();
-						
-						$concatstmt = "INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) VALUES ";
-						$result = $stmt->fetchAll();
-						foreach($result as $row) {
-							$concatstmt .= "('" . $studnum . "', " . $row['subjectid']. ", '', '', '', now(), " . $updatedby . ")";
-							if ($row != end($result)) {
-								$concatstmt .= ",";
-							} else {
-								$concatstmt .= ";";
-							}
-						}
-						$stmti = $conn->prepare($concatstmt); 
-						$stmti->execute();
-					}*/
-					
 					//close connection
 					$conn = null;
 			}
@@ -142,6 +107,13 @@
 						$stmt -> bindParam(':yearstarted', $yearstarted);
 						$stmt->execute();	
 						
+						$stmt = $conn->prepare("INSERT INTO `activitylog` 
+						(userid, action, target, timestamp) 
+						VALUES (:userid, 11, :target, now())");
+						$stmt -> bindParam(':userid', $updatedby);
+						$stmt -> bindParam(':target', $value['Student Number']);
+						$stmt->execute(); 
+						
 						//gets all the subjects from the curriculum and checks if the student has a record for all of them
 						$stmt = $conn->prepare("SELECT COALESCE(grades.courseid, subjects.subjectid) as courseid,
 						COALESCE(grades.studnum, '') as studnum
@@ -166,20 +138,6 @@
 								$stmti->execute();
 							}
 						}
-						
-						/*$concatstmt = "INSERT INTO `grades` (`studnum`, `courseid`, `1st`, `2nd`, `3rd`, `lastupdated`, `updatedby`) VALUES ";
-						$result = $stmt->fetchAll();
-						foreach($result as $row) {
-							$concatstmt .= "('" . $studnum . "', " . $row['subjectid']. ", '', '', '', now(), " . $updatedby . ")";
-							if ($row != end($result)) {
-								$concatstmt .= ",";
-							} else {
-								$concatstmt .= ";";
-							}
-						}
-						$stmti = $conn->prepare($concatstmt); 
-						$stmti->execute();*/
-						
 						$conn = null;	
 				}
 		}
@@ -209,16 +167,24 @@
 					$stmt->execute();
 		}
 			
+			
+		$stmt = $conn->prepare("INSERT INTO `activitylog` 
+		(userid, action, target, timestamp) 
+		VALUES (:userid, 5, :target, now())");
+		$stmt -> bindParam(':userid', $updatedby);
+		$stmt -> bindParam(':target', $studnum);
+		$stmt->execute(); 
+		
 		//update grades
 		foreach ($jsongrades as $key => $value) {
-					$stmt = $conn->prepare("UPDATE `grades` SET 1st = :first, 2nd = :second, 3rd = :third, updatedby=:updatedby WHERE courseid = :id AND studnum = :studnum");
-					$stmt -> bindParam(':first', $value['1st']);
-					$stmt -> bindParam(':second', $value['2nd']);
-					$stmt -> bindParam(':third', $value['3rd']);
-					$stmt -> bindParam(':id', $value['id']);
-					$stmt -> bindParam(':studnum', $studnum);
-					$stmt -> bindParam(':updatedby', $updatedby);
-					$stmt->execute();
+			$stmt = $conn->prepare("UPDATE `grades` SET 1st = :first, 2nd = :second, 3rd = :third, updatedby=:updatedby WHERE courseid = :id AND studnum = :studnum");
+			$stmt -> bindParam(':first', $value['1st']);
+			$stmt -> bindParam(':second', $value['2nd']);
+			$stmt -> bindParam(':third', $value['3rd']);
+			$stmt -> bindParam(':id', $value['id']);
+			$stmt -> bindParam(':studnum', $studnum);
+			$stmt -> bindParam(':updatedby', $updatedby);
+			$stmt->execute();
 		}
 		
 		$conn = null;

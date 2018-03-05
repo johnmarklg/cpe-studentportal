@@ -2,7 +2,9 @@
 		
 		$('.btnApprove').click(function() {
 			var $id = $(this).attr('id');   
-			var $postinfo = '[{"id":"' + $id + '"}]';
+			var $posterid = $(this).val();
+			var $approver= $(this).attr('name');   
+			var $postinfo = '[{"id":"' + $id + '","posterid":"' + $posterid + '","approver":"' + $approver + '"}]';
 			//alert($postinfo);
 			if(confirm('Do you want to approve this post for publishing?')) {
 				$.ajax({
@@ -11,6 +13,7 @@
 						data: {postData: $postinfo},
 						cache: false,
 						success: function(result){
+							//alert(result);
 							location.reload();
 						}
 					});
@@ -19,8 +22,10 @@
 		
 		$('.post-remove').click(function () {
 			var $id = $(this).attr('id'); 
-			var $postinfo = '[{"id":"' + $id + '"}]';
-			//alert($postinfo);
+			var $posterid = $(this).attr('value');
+			var $deleter= $(this).attr('name');   
+			var $postinfo = '[{"id":"' + $id + '","posterid":"' + $posterid + '","deleter":"' + $deleter + '"}]';
+			alert($postinfo);
 			if(confirm('Do you want to remove this entry from the database?')) {
 				$.ajax({
 					type: "POST",
@@ -28,6 +33,7 @@
 						data: {postData: $postinfo},
 						cache: false,
 						success: function(result){
+							alert(result);
 							//deleted
 							location.reload();
 						}

@@ -96,10 +96,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					</div><div class="panel-footer"><div class="btn-group btn-group-justified" role="group" aria-label="...">
 							  <div class="btn-group" role="group">
 								<button type="button" id="saveEvent" class="btn btn-default btn-info"><i class="fa fa-fw fa-bullhorn"></i> General Event</button>
-							  </div>
+								</div>
 							  <div class="btn-group" role="group">
 								<button type="button" id="saveHoliday" class="btn btn-default btn-success"><i class="fa fa-fw fa-calendar"></i>Holiday</button>
 							  </div>
+							  <input id="adminid" value="<?php echo $_SESSION['name'][2] ?>" type="hidden"></input>
 							</div></div></div></div></div>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->

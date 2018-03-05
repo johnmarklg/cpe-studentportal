@@ -53,6 +53,12 @@
 		$stmt -> bindParam(':studnum', $value['studnum']);
 		$stmt->execute();
 		
+		$stmt = $conn->prepare("INSERT INTO `activitylog` 
+		(userid, action, target, timestamp) 
+		VALUES (:userid, 4, :target, now())");
+		$stmt -> bindParam(':userid', $adminid);
+		$stmt -> bindParam(':target', $value['studnum']);
+		$stmt->execute(); 
 		
 		//update request table
 		$stmt = $conn->prepare("UPDATE `profilerequest` SET

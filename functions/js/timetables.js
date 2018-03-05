@@ -15,10 +15,10 @@
 		
 		$(function () {
 			$('#starttime').datetimepicker({
-				format: 'LT'
+				format: 'h:ma'
 			});
 			$('#endtime').datetimepicker({
-				format: 'LT'
+				format: 'h:ma'
 			});
 		});
 		

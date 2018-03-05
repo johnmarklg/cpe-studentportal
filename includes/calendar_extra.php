@@ -13,3 +13,7 @@
 	<link href="/assets/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet">
 	<link href="/assets/datetimepicker/bootstrap-datetimepicker-standalone.css" rel="stylesheet">
 	
+	<script src="/assets/jquery-scheduler/js/jquery.schedule.min.js"></script>
+	<link href="/assets/jquery-scheduler/css/jquery.schedule.min.css" rel="stylesheet">
+	
+	

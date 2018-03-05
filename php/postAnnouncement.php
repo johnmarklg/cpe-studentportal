@@ -86,6 +86,12 @@
 		}
 	}
 		
+	$stmt = $conn->prepare("INSERT INTO `activitylog` 
+	(userid, action, timestamp) 
+	VALUES (:userid, 6, now())");
+	$stmt -> bindParam(':userid', $posterID);
+	$stmt->execute(); 		
+			
 	//close connection
 	$conn = null;
 	

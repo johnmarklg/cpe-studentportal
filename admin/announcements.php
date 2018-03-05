@@ -117,10 +117,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
 				<hr/>
-				<?php	
-					require($_SERVER["DOCUMENT_ROOT"] . '/php/showAnnouncements.php');
-					echo showAnnouncements($_SESSION['name'][2]);
-				?>
+				<div class="row">
+					<div class="col-lg-12">				
+						<?php	
+							require($_SERVER["DOCUMENT_ROOT"] . '/php/showAnnouncements.php');
+							echo showAnnouncements($_SESSION['name'][2]);
+						?>
+					</div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
             </div>
             <!-- /.container-fluid -->
 

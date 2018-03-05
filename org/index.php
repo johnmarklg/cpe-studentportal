@@ -31,11 +31,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			  margin-bottom: 40px;
 			  z-index: 900;
 			}
-			  .invoice-remove:hover {
-			  color: #f00;
-			  cursor: pointer;
-			}
-
 	</style>
 </head>
 

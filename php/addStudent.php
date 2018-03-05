@@ -47,7 +47,15 @@
 			//$stmti -> bindParam(':studnum', $studnum);	
 			//$stmti -> bindParam(':subjectid', $id['subjectid'], PDO::PARAM_INT);	
 			//$stmti -> bindParam(':updatedby', $updatedby);	
-			print $concatstmt;
+			//print $concatstmt;
+			
+			$stmt = $conn->prepare("INSERT INTO `activitylog` 
+			(userid, action, target, timestamp) 
+			VALUES (:userid, 11, :target, now())");
+			$stmt -> bindParam(':userid', $updatedby);
+			$stmt -> bindParam(':target', $studnum);
+			$stmt->execute(); 
+			
 			
 			//loop through all subject ids involved
 			/*foreach(($stmt->fetchAll()) as $id) {

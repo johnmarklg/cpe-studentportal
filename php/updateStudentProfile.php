@@ -15,7 +15,7 @@
 		//check if entry/record exists, meaning there's still a request
 		if (!($result)) {
 			foreach ($jsonstudprofile as $key => $value) {		
-				try { $stmt = $conn->prepare("INSERT INTO `profilerequest` 
+				$stmt = $conn->prepare("INSERT INTO `profilerequest` 
 				(`studnum`, `surname`, `firstname`, `middlename`, 
 				`Gender`, `Status`, `Citizenship`, `DateOfBirth`, 
 				`PlaceOfBirth`, `ContactNo`, `Address`, `Father`, 
@@ -47,13 +47,13 @@
 				$stmt -> bindParam(':SecAddress', $value['SecAddress']);
 				$stmt -> bindParam(':SecGraduate', $value['SecGraduate']);
 				$stmt->execute(); 
+				$stmt = $conn->prepare("INSERT INTO `activitylog` 
+				(userid, action, timestamp) 
+				VALUES (:userid, 3, now())");
+				$stmt -> bindParam(':userid', $value['Student Number']);
+				$stmt->execute(); 
 				$msg = "Update request successfully sent.";
-				}
-				catch(Exception $e) {
-					$msg =  "Error! A request is still on pending.";
-					//var_dump($e->getMessage());
-				}
-		}
+			}
 		} else {
 			$msg =  "Error! A request is still on pending.";
 		}

@@ -106,7 +106,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 										} else if ($diff>0) {
 											echo str_repeat('</div></div>', $diff + 1);
 										}
-										if($pathsize<6) {
+										if($pathsize<7) {
 											echo '<div class="panel panel-info" style="border-width: 0 0 0 1px; margin-bottom: 0.6em;"><div class="panel-heading">';
 											if($row['name'] == NULL) {
 												echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
@@ -114,8 +114,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 												echo '<strong>' . $row['name'] . ' - <i>'. $row['position'] . ' </strong>@ ' . $row['datetime'] . '</i>';	
 											}
 											echo '</div>
-											<div class="panel-body" style="padding-right: 5px; padding-bottom: 1em;">' . $row['comment']; 
-											if($pathsize!=5) {
+											<div class="panel-body" style="padding: 10px; padding-right: 3px; padding-bottom: 1em;">' . $row['comment']; 
+											if($pathsize!=6) {
 											echo '<hr style="margin-top: 10px; margin-bottom: 10px;"/>
 											<div class="input-group">
 												<textarea type="text" id="comment' . $row['commentid'] . '"  name="comment" class="form-control" placeholder="Comment here..." cols="40" rows="1"></textarea>

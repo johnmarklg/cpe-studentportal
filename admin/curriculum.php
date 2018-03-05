@@ -79,6 +79,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 											</div>
 											<br/>
 											<button type="button" id="curriculum-add" class="btn btn-default btn-success btn-block"><i class="fa fa-fw fa-list"></i> Add New Curriculum</button>
+											<input type="hidden" id="adminid" value="<?php echo $_SESSION['name'][2]?>"></input>
 										</div>
 									</div>
 								</div>

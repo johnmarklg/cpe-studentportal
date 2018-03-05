@@ -15,6 +15,13 @@ if($_POST){
     if(strlen(trim($username))>1 && strlen(trim($password))>1){
         $id = $userClass->studentLogin($username,$password);
         if($id){
+				$conn = getDB('cpe-studentportal');													
+
+				$stmt = $conn->prepare("INSERT INTO `activitylog` (userid, action, timestamp) VALUES (:userid, 1, now())");
+				$stmt -> bindParam(':userid', $username);
+				$stmt->execute();
+										
+				$conn = null;
                 $url = 'index.php';
                 header("Location: $url"); 
         }else{

@@ -48,7 +48,7 @@
                         <a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> School Calendar</a>
                     </li>
 					<li>
-                        <a href="profilereq.php"><i class="fa fa-fw fa-edit"></i> Approve Profile Updates</a>
+                        <a href="profilereq.php"><i class="fa fa-fw fa-user"></i> Profile Requests</a>
                     </li>
 					<?php
 					if($_SESSION['name'][0]=='Administrator (Elevated)') {
@@ -56,11 +56,14 @@
 								<a href="administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
 							</li>';
 							echo '<li>
-								<a href="curriculum.php"><i class="fa fa-fw fa-list"></i> Curricula/Curriculums</a>
+								<a href="curriculum.php"><i class="fa fa-fw fa-list"></i> Curriculums</a>
 							</li>';
 					}
 					?>
                     <li>
+                        <a href="activity.php"><i class="fa fa-fw fa-edit"></i> Activity Log</a>
+                    </li>
+					<li>
                         <a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
                     </li>
                     <li>

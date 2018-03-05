@@ -114,15 +114,6 @@ $conn = getDB('cpe-studentportal');
 											$time = strtotime($row['datetime']);
 											echo '<div class="panel panel-default">';
 											echo '<div class="panel-heading">' . '<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
-											echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide close" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
-											if ($row['showbulletin']=='1') { 
-												echo '<option value="1" selected>Show</option> 
-												<option value="0">Hidden</option>'; 
-											} else {
-												echo '<option value="1">Show</option> 
-												<option value="0" selected>Hidden</option>';
-											}
-											echo '</select>';
 											if($row['file'] == '') {
 												echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12">';
 											} else {
@@ -132,7 +123,18 @@ $conn = getDB('cpe-studentportal');
 											}
 											echo '<strong>' . $row['posttitle'] . '</strong>';
 											echo '<hr/>' . $row['post'];
-											echo '</div></div></div></div>';
+											echo '</div></div></div>';
+											echo '<div class="panel-footer">';
+											echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide form-control" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
+											if ($row['showbulletin']=='1') { 
+												echo '<option value="1" selected>Show</option> 
+												<option value="0">Hidden</option>'; 
+											} else {
+												echo '<option value="1">Show</option> 
+												<option value="0" selected>Hidden</option>';
+											}
+											echo '</select>';
+											echo '</div></div>';
 										}				
 										?>
 										<!--This is where stuff like news and announcements will be placed.-->

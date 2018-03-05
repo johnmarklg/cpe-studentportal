@@ -29,15 +29,17 @@
 			var $enddate = $('#endDate').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
-			//alert($eventData);
+			var $adminid = $('#adminid').val();
+			//alert($adminid);
 			
 			$.ajax({
 				type: "POST",
 				url: "../php/updateEvents.php",
-				data: {events: $eventData},
+				data: {events: $eventData, adminid: $adminid},
 				cache: false,
 				success: function(result){
-					//alert("Successfully updated database!");
+					//alert(result);
+					alert("Successfully added event to database!");
 					location.reload(true); 
 				}
 			});
@@ -51,17 +53,19 @@
 			var $eventlocation = $('#eventLoc').val();
 			var $startdate = $('#startDate').val();
 			var $enddate = $('#endDate').val();
+			var $adminid = $('#adminid').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
-			//alert($eventData);
+			//alert($adminid);
 			
 			$.ajax({
 				type: "POST",
 				url: "../php/updateHolidays.php",
-				data: {events: $eventData},
+				data: {events: $eventData, adminid: $adminid},
 				cache: false,
 				success: function(result){
-					//alert("Successfully updated database!");
+					//alert(result);
+					alert("Successfully added holiday to database!");
 					location.reload(true); 
 				}
 			});
@@ -106,14 +110,18 @@
 		if(confirm('Do you want to remove this entry from the database?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
-			var $eventinfo = '[{"id":"' + $id + '"}]';
+			var $adminid = $('#adminid').val();
+			var $eventinfo = '[{"id":"' + $id + '","adminid":"' + $adminid+'"}]';
+			alert($eventinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removeEvent.php",
 					data: {eventinfo: $eventinfo},
 					cache: false,
 					success: function(result){
-						//alert("Successfully removed student entry!");
+						//alert(result);
+						alert("Successfully removed event from database!");
+						location.reload();
 					}
 				});
 			$(this).parents('tr').detach();			
@@ -123,14 +131,18 @@
 		if(confirm('Do you want to remove this entry from the database?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
-			var $holidayinfo = '[{"id":"' + $id + '"}]';
+			var $adminid = $('#adminid').val();
+			var $holidayinfo = '[{"id":"' + $id + '","adminid":"' + $adminid+'"}]';
+			alert($holidayinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removeHoliday.php",
 					data: {holidayinfo: $holidayinfo},
 					cache: false,
 					success: function(result){
-						//alert("Successfully removed student entry!");
+						//alert(result);
+						alert("Successfully removed holiday from database!");
+						location.reload();
 					}
 				});
 			$(this).parents('tr').detach();			

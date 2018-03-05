@@ -17,10 +17,6 @@
 								</div>
 							</div>';
 					
-					echo '<div class="alert alert-info" role="alert">
-						  <i class="fa fa-fw fa-info-circle"></i> When saving, only the changes in the active tab/s will be saved to database.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>';
 					echo '<div class="tab-content">';
 					//General Events
 					echo '<div class="active tab-pane" id="1">';

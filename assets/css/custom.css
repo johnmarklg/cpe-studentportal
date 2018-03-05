@@ -27,7 +27,9 @@
 			color: #whitesmoke;
 			text-decoration: none;
 		}
-		
 		.navbar-nav>li {
 			background-color: #303030;
+		}
+		.bootstrap-datetimepicker-widget {
+			color: black;
 		}

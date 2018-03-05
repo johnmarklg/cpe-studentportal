@@ -9,13 +9,14 @@
 		if(confirm('Do you want to remove this entry from the database?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
+			var $orgid = $('#orgid').val();
 			var $colname = $row.find(".name").text(); // Find the text
 			var $invoiceinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
 			//alert($invoiceinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removePayment.php",
-					data: {infodata: $invoiceinfo},
+					data: {infodata: $invoiceinfo, orgid: $orgid},
 					cache: false,
 					success: function(result){
 						alert("Successfully removed entry!");
@@ -63,6 +64,7 @@
 	
 		$('#buttonSave').click(function() {
 			var $name = $('#name').val();
+			var $orgid = $('#orgid').val();
 			var $amount = $('#amount').val();
 			$colname = $name.replace(/\s/g,'');
 			$colname = $colname.toLowerCase();
@@ -72,7 +74,7 @@
 			$.ajax({
 				type: "POST",
 					url: "/php/addPayment.php",
-					data: {infodata: $payinfo},
+					data: {infodata: $payinfo, orgid: $orgid},
 					cache: false,
 					success: function(result){
 						//alert("Successfully updated personal details! Please relogin.");

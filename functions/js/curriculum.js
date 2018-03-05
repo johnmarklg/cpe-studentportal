@@ -1,9 +1,10 @@
 	$('#curriculum-add').click(function() {
 		var $name = $('#currname').val();
+		var $adminid= $('#adminid').val();
 		$.ajax({
 			type: "POST",
 				url: "/php/addCurriculum.php",
-				data: {name: $name},
+				data: {name: $name, adminid: $adminid},
 				cache: false,
 				success: function(result){
 					alert("Successfully added curriculum!");
@@ -19,11 +20,12 @@
 		var $id = $row.find(".id").text(); // Find the text
 		var $colname = $row.find(".name").text(); // Find the text
 		var $colinfo = '[{"id":"' + $id + '","colname":"' + $colname + '"}]';
-		alert($colinfo);
+		var $adminid= $('#adminid').val();
+		//alert($colinfo);
 		$.ajax({
 			type: "POST",
 				url: "/php/removeCurriculum.php",
-				data: {infodata: $colinfo},
+				data: {infodata: $colinfo, adminid: $adminid},
 				cache: false,
 				success: function(result){
 					alert("Successfully removed entry!");
@@ -68,15 +70,17 @@
 	});
 
 	$('.container-fluid').on('click', '.entry-remove', function () {
-		$subjectid = $(this).parents('tr').find('td.subjectid').text();
+	if(confirm('Do you want to really remove this subject from the curriculum?')) {
+		var $subjectid = $(this).parents('tr').find('td.subjectid').text();
 		//alert($subjectid);
-		$subjectdata = $(this).parents('tr').tableToJSON();
+		var $adminid= $('#adminid').val();
+		var $subjectdata = $(this).parents('tr').tableToJSON();
 		//alert($subjectdata);
 		if($subjectid != "") {
 			$.ajax({
 				type: "POST",
 				url: "/php/deleteSubject.php",
-				data: {subjectid: $subjectid},
+				data: {subjectid: $subjectid, adminid: $adminid},
 				cache: false,
 				success: function(result){
 					alert('Subject successfully deleted from the database.');
@@ -86,6 +90,7 @@
 		} else {
 			$(this).parents('tr').detach();
 		}
+	}
 	});
 
 	$('.container-fluid').on('click', '.entry-update', function () {
@@ -102,10 +107,11 @@
 		$year = $(this).parents('tr').find('.year').text();
 		$subjectdata = '[{"Default Year":"' + $defaultyear + '","Default Semester":"' + $defaultsemester + '","Course Code":"' + $coursecode + '","Course Title":"' + $coursetitle + '","Units":"' + $units + '","Pre-Requisite":"' + $prerequisite + '","Co-Requisite":"' + $corequisite + '","Year":"' + $year+ '"}]';
 		//alert($subjectdata);
+		var $adminid= $('#adminid').val();
 		$.ajax({
 				type: "POST",
 				url: "/php/updateSubject.php",
-				data: {subjectid: $subjectid, currid: $currid, subjectdata: $subjectdata},
+				data: {subjectid: $subjectid, currid: $currid, subjectdata: $subjectdata, adminid: $adminid},
 				cache: false,
 				success: function(result){
 					//alert(result);
