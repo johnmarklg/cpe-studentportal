@@ -21,11 +21,14 @@
 	}
 
 	class PDF extends FPDF {
+		function Heading(){
+		
+		}
 		function Footer(){
 			$this->SetY(-18);
 			$this->SetFont('Arial','',10);
 			$this->Cell(10,7, 'BY: ', 0, 0);
-			$this->Cell(50,6, $this->Image($_SERVER["DOCUMENT_ROOT"] . "/assets/images/signature.png",25,105,35,35), 'B', 1);
+			$this->Cell(50,6, ' ', 'B', 1);
 			$this->SetFont('Arial','B',10);
 			$this->Cell(10,7, '', 0, 0);
 			$this->Cell(50,7, 'TREASURER', 0, 1, 'C');
@@ -80,14 +83,19 @@
 	$pdf->Cell(29,7,'AMOUNT',1,0, 'C');
 	$pdf->Cell(29,7,'BALANCE',1,1, 'C');
 
-	$stmt = $conn->prepare("SELECT transactions.datepaid, transactions.id,
+	/*$stmt = $conn->prepare("SELECT transactions.datepaid, transactions.id,
 	payments.id as paymentid, payments.name,
 	payments.amount as charge,
 	COALESCE(transactions.studnum, 0) AS studnum,
 	COALESCE(transactions.amountpaid, 0) AS amountpaid
 	FROM `payments`
 	LEFT JOIN transactions
-	ON transactions.studnum = :studnum AND transactions.paymentid = payments.id");
+	ON transactions.studnum = :studnum AND transactions.paymentid = payments.id");*/
+	$stmt = $conn->prepare("SELECT transactions.*, payments.amount as charge, payments.name 
+	FROM transactions 
+	LEFT JOIN payments 
+	ON payments.id = transactions.paymentid 
+	WHERE transactions.studnum = :studnum AND amountpaid <> 0");
 	$stmt -> bindParam(':studnum', $studnum);
 	$stmt->execute();
 

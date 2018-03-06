@@ -19,10 +19,12 @@
 				$stmt->execute();	
 				
 				$stmt = $conn->prepare("INSERT INTO `activitylog` 
-				(userid, action, timestamp) 
-				VALUES (:userid, 9, now())");
+				(userid, action, target, timestamp) 
+				VALUES (:userid, 9, :target, now())");
 				$stmt -> bindParam(':userid', $adminid);
+				$stmt -> bindParam(':target', $value['Event Name']);
 				$stmt->execute(); 
+				
 			}
 			catch(PDOException $e) {
 				echo "Error: " . $e->getMessage();

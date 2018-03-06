@@ -8,7 +8,11 @@
 			$colName = $value['colname'];
 			
 			$conn = getDB('cpe-studentportal');
-			
+			$stmt = $conn->prepare("SELECT name from payments where id=:id");
+			$stmt -> bindParam(':id', $value['id']);
+			$stmt->execute();
+			$colname = $stmt->fetchColumn(); 
+				
 			$stmt = $conn->prepare("DELETE FROM payments where id=:id");
 			$stmt -> bindParam(':id', $value['id']);
 			$stmt->execute();
@@ -17,9 +21,10 @@
 			$stmt->execute();
 			
 			$stmt = $conn->prepare("INSERT INTO `activitylog` 
-			(userid, action, timestamp) 
-			VALUES (:userid, 18, now())");
+			(userid, action, target, timestamp) 
+			VALUES (:userid, 18, :target, now())");
 			$stmt -> bindParam(':userid', $orgid);
+			$stmt -> bindParam(':target', $colname);
 			$stmt->execute(); 
 			
 			/*$stmt = $conn->prepare("ALTER TABLE `invoices`

@@ -60,9 +60,9 @@
 	if ($uploadOk == 0) {
 		//no image uploaded
 		//echo "Sorry, your file was not uploaded.";
-		$stmt = $conn->prepare("INSERT INTO `posts` (status, posterid, poster, posttitle, post, file, filetype, filesize, datetime) VALUES ('Pending', :posterid, :poster, :posttitle, :post, '', '', '', now())");
+		$stmt = $conn->prepare("INSERT INTO `posts` (status, posterid, posttitle, post, file, filetype, filesize, datetime) VALUES ('Pending', :posterid, :posttitle, :post, '', '', '', now())");
 		$stmt -> bindParam(':posterid', $posterID);
-		$stmt -> bindParam(':poster', $poster);
+		//$stmt -> bindParam(':poster', $poster);
 		$stmt -> bindParam(':posttitle', $postTitle);
 		$stmt -> bindParam(':post', $postText);
 		$stmt->execute();
@@ -71,7 +71,7 @@
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $filenamekey)) {
 			//no problem
 			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-			$stmt = $conn->prepare("INSERT INTO `posts` (status, posterid, poster, posttitle, post, file, filetype, filesize, datetime) VALUES ('Pending', :posterid, :poster, :posttitle, :post, :file, :filetype, :filesize, now())");
+			$stmt = $conn->prepare("INSERT INTO `posts` (status, posterid, posttitle, post, file, filetype, filesize, datetime) VALUES ('Pending', :posterid, :posttitle, :post, :file, :filetype, :filesize, now())");
 			$stmt -> bindParam(':posterid', $posterID);
 			$stmt -> bindParam(':poster', $poster);
 			$stmt -> bindParam(':posttitle', $postTitle);

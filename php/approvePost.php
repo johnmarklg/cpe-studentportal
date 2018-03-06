@@ -14,7 +14,7 @@
 		(userid, action, target, timestamp) 
 		VALUES (:userid, 7, :target, now())");
 		$stmt -> bindParam(':userid', $value['approver']);
-		$stmt -> bindParam(':target', $value['posterid']);
+		$stmt -> bindParam(':target', $value['id']);
 		$stmt->execute(); 
 		
 	}

@@ -15,7 +15,10 @@
 												</div>
 												<div class="panel-body tab-content" style="overflow: auto; max-height:635px;">';
 								
-													$stmt = $conn->prepare("SELECT * from `posts` WHERE status='Approved' ORDER BY datetime DESC");
+													$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
+													LEFT JOIN administrators
+													ON administrators.id = posts.posterid
+													WHERE status='Approved' ORDER BY datetime DESC");
 													$stmt->execute();
 													
 													foreach(($stmt->fetchAll()) as $row) { 

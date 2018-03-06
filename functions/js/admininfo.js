@@ -2,6 +2,10 @@
 			return !! $(this).find('a[href="profile.php"]').length;
 		  })
 		  .addClass('active');
+		$('li', '#tabs').filter(function() {
+			return !! $(this).find('a[href="/org/profile.php"]').length;
+		  })
+		  .addClass('active');
 		
 		$('#buttonSaveInfo').click(function() {
 			var $username = $('#username').val();

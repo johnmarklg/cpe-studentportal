@@ -72,8 +72,11 @@ $conn = getDB('cpe-studentportal');
                             <li>
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
-                            <li class="active">
+							<li>
                                 <i class="fa fa-gear"></i> Bulletin Settings
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-bullhorn"></i> Announcements
                             </li>
                         </ol> 
                     </div>
@@ -83,7 +86,7 @@ $conn = getDB('cpe-studentportal');
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>manage</i> the contents of the <strong>Digital Bulletin</strong>.
+						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>manage</i> which posts/announcements will be shown on the <strong>Digital Bulletin</strong>.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
@@ -91,24 +94,21 @@ $conn = getDB('cpe-studentportal');
 				
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="myTabs">	
-								<ul class="nav nav-pills nav-justified">
-									<li class="active">
-									<a  href="#1" data-toggle="tab"><i class="fa fa-paperclip"></i> News and Information</a>
-									</li>
-									<li><a href="#2" data-toggle="tab"><i class="fa fa-film"></i> Multimedia</a>
-									</li>
-									<li><a href="#3" data-toggle="tab"><i class="fa fa-group"></i> Faculty and Officers</a>
-									</li>
-								</ul>
-							</div>
-							<div class="tab-content">
-								<div class="active tab-pane" id="1">
-									<div class="panel-body">
-										<?php
-										$stmt = $conn->prepare("SELECT * from `posts` WHERE `status` = 'Approved' ORDER BY datetime DESC");
-										$stmt->execute();
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+							Shown Announcements
+							</div><div class="panel-body">
+								<?php
+									if($_SESSION['name'][0]=='Administrator (Elevated)') {$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
+									LEFT JOIN administrators
+									ON administrators.id = posts.posterid
+									WHERE `status` = 'Approved' ORDER BY datetime DESC"); } else {
+									$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
+									LEFT JOIN administrators
+									ON administrators.id = posts.posterid
+									WHERE `status` = 'Approved' AND showbulletin != 2 ORDER BY datetime DESC");	
+									}
+									$stmt->execute();
 										//approved already
 										foreach(($stmt->fetchAll()) as $row) { 
 											$time = strtotime($row['datetime']);
@@ -127,132 +127,22 @@ $conn = getDB('cpe-studentportal');
 											echo '<div class="panel-footer">';
 											echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide form-control" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
 											if ($row['showbulletin']=='1') { 
-												echo '<option value="1" selected>Show</option> 
-												<option value="0">Hidden</option>'; 
-											} else {
+												echo '<option value="1" selected>Shown</option> 
+												<option value="0">Hide</option>
+												<option value="2">Dismiss</option>'; 
+											} else if ($row['showbulletin']=='0') {
 												echo '<option value="1">Show</option> 
-												<option value="0" selected>Hidden</option>';
+												<option value="0" selected>Hidden</option>
+												<option value="2">Dismiss</option>';
+											} else {
+												echo '<option value="1">Undismiss, Show</option> 
+												<option value="0">Undismiss, Hide</option>
+												<option value="2" selected>Dismissed</option>';
 											}
 											echo '</select>';
 											echo '</div></div>';
 										}				
-										?>
-										<!--This is where stuff like news and announcements will be placed.-->
-									</div>
-									<!--<div class="panel-footer">
-										<button class="btn btn-block btn-primary"><i class="fa fa-fw fa-save"></i> Update News and Information</button>
-									</div>-->
-								</div>
-								<div class="tab-pane" id="2">
-									<div class="panel-body">
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-											Banner Video Management
-											</div>
-											<div class="panel-body">
-												<form action="/php/uploadBannerVideo.php" method="post" enctype="multipart/form-data">
-														<input name="vidToUpload" id="vidToUpload" type="file" class="btn btn-info btn-block" accept="video/*">
-														<input type="submit" name="submit" value="Upload Video" id="upload-video" class="btn btn-default btn-success btn-block"></input>
-												</form>
-												<hr/>
-												<div class="panel panel-info">
-													<div class="panel-heading">
-														<a data-toggle="collapse" href="#collapsePanelVid"><i class="fa fa-fw fa-youtube"></i> Click to Show Current Uploaded Banner Video</a>
-													</div>
-													<div id="collapsePanelVid" class="panel-collapse collapse">
-													<div class="panel-body">
-														<div class="alert alert-info" role="alert">
-														  <i class="fa fa-fw fa-info-circle"></i> You may have to clear your browser cache to be able to see the changes.
-														  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-														</div>
-														<video height="600" preload="none" style="width: 100%;" controls>
-														  <source src="/uploads/video/movie.mp4" type="video/mp4">
-														  <source src="/uploads/video/movie.ogg" type="video/ogg">
-															Your browser does not support the video tag. Please update your browser!
-														</video>
-													</div>
-													</div>
-												</div>
-											</div>
-										</div><hr/>
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-											Photo Gallery Management
-											</div>
-											<div class="panel-body">
-												
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="tab-pane" id="3">
-									<div class="panel-body">
-										<div class="panel panel-info">
-											<div class="panel-heading">
-												<i class="fa fa-fw fa-plus-circle"></i>Add Organizational Officer
-											</div>
-											<form action="/php/addOfficer.php" method="post" enctype="multipart/form-data">
-												<div class="panel-body">
-													<div class="input-group">
-													  <span class="input-group-addon" id="basic-addon2">Position Name</span>
-													  <input name="officename" id="officename" type="text" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
-													</div><br/>
-													<div class="input-group">
-													  <span class="input-group-addon" id="basic-addon2">Student Number</span>
-													  <input name="officer" id="officer" type="text" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
-													</div><br/>
-													<div class="input-group">
-													  <span class="input-group-addon" id="basic-addon2">Photo</span>
-													  <input name="fileToUpload" id="fileToUpload" type="file" class="form-control" value="" autocomplete="off" aria-describedby="basic-addon2">
-													</div>	
-												</div>
-												<div class="panel-footer">
-													<input type="submit" name="submit" id="add-office" class="btn btn-default btn-success btn-block"></input>
-												</div>
-											</form>
-										</div>
-										<br/>
-										<div class="table-responsive">
-											<table class="table">
-												<thead>
-													<tr>
-														<th style="font-size: 0px;">ID</th>
-														<th>Student Number</th>
-														<th>Name</th>
-														<th>Position</th>
-														<th>Contact Number</th>
-														<th>Photo</th>
-														<th></th><th></th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php
-														$stmt = $conn->prepare("SELECT officers.*, students.surname, students.firstname, students.middlename, students.ContactNo from `officers` 
-														LEFT JOIN students
-														ON officers.studnum = students.studnum
-														ORDER BY id ASC");
-														$stmt->execute();
-														foreach(($stmt->fetchAll()) as $row) { 
-															echo '<tr><td class="id" style="font-size: 0px;">' . $row['id'] . '</td>
-															<td>' . $row['studnum'] . '</td>
-															<td>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . '</td>
-															<td>' . $row['office'] . '</td>
-															<td>' . $row['ContactNo'] . '</td>
-															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '" style="height: 20vh; width: 20vh%;"/></a></td>
-															<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
-																	<input type="file" class="btn btn-info" name="fileToUpload2" id="fileToUpload2"></input></td>
-																	<input type="hidden" value="' . $row['studnum'] . '" name="refid" id="refid" ></input>
-															<td>
-															<input type="submit" value="Replace Photo" class="btn btn-info replace-photo"></input></form>
-															</td>
-															<td>
-															<button class="btn btn-danger remove-office"><i class="fa fa-times"></i> Delete</button>
-															</td></tr>';
-														}				
-													?>
-												</tbody>
-											</table>
-										</div>
+								?>
 									</div>
 								</div>
 							</div>
@@ -280,8 +170,5 @@ $conn = getDB('cpe-studentportal');
 		$conn = null;
 	?>
 	<script src="/functions/js/bulletin.js"></script>
-	<script>
-	
-	</script>
 </body>
 </html>

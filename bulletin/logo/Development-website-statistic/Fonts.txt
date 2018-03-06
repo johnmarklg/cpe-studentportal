@@ -1,7 +1,0 @@
-Fonts used in this design;
-
-
-
-Font: Bitter,
-Author: Sol Matas,
-Url: http://www.fontsquirrel.com/fonts/Bitter;

@@ -48,7 +48,7 @@
 			$stmt = $conn->prepare("SELECT activitylog.*, administrators.name FROM activitylog 
 			LEFT JOIN administrators
 			ON activitylog.userid = administrators.id
-			WHERE userid = :studnum ORDER BY timestamp DESC LIMIT 10");
+			WHERE userid = :studnum ORDER BY timestamp DESC LIMIT 25");
 			$stmt -> bindParam(':studnum', $studnum);
 			$stmt->execute();
 			
@@ -129,31 +129,60 @@
 					</div>';
 			}
 			
-			$stmt = $conn->prepare("SELECT activitylog.*, administrators.name FROM activitylog 
+			$stmt = $conn->prepare("SELECT activitylog.*, students.surname, students.firstname, students.middlename, administrators.name
+			FROM activitylog 
 			LEFT JOIN administrators
 			ON activitylog.target = administrators.id
-			WHERE userid = :adminid ORDER BY timestamp DESC LIMIT 15");
+            LEFT JOIN students
+        	ON students.studnum = activitylog.target
+            WHERE userid = :adminid ORDER BY timestamp DESC LIMIT 50");
 			$stmt -> bindParam(':adminid', $adminid);
 			$stmt->execute();
 			
 			foreach(($stmt->fetchAll()) as $row) { 
 					echo '<div class="panel panel-info"><div class="panel-body">';
 					if($row['action'] == 2) {
-						echo 'Logged in to Student Portal Administrator at ' . $row['timestamp'];
+						echo 'Logged in to Student Portal at ' . $row['timestamp'];
 					} else if($row['action'] == 4) {
-						echo 'Approved a <a href="/admin/profilereq.php">Personal Profile Update</a> by '. $row['target']. ' at ' . $row['timestamp'];
+						echo 'Approved a <a href="/admin/profilereq.php">Personal Profile Update</a> by <a href="/admin/records.php?studnum=' . $row['target'] . '">' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . ' ['. $row['target']. ']</a> at ' . $row['timestamp'];
+					} else if($row['action'] == 5) {
+						echo 'Modified the records of <a href="/admin/records.php?studnum=' . $row['target']. '">' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . ' [' . $row['target']. ']</a> at ' . $row['timestamp'];
 					} else if($row['action'] == 6) {
 						echo 'Posted an <a href="/admin/announcements.php">Announcement</a> at ' . $row['timestamp'];
 					} else if($row['action'] == 7) {
-						echo 'Approved an <a href="/admin/post.php?postID="' . $row['target'] . '">Announcement</a> by ' . $row['name'] . ' at ' . $row['timestamp'];
+						echo 'Approved an <a href="/admin/post.php?postID=' . $row['target'] . '">announcement</a> at ' . $row['timestamp'];
 					} else if($row['action'] == 8) {
 						if($row['userid'] == $row['target']) {
 							echo 'Deleted <a href="/admin/announcements.php">Announcement</a> at ' . $row['timestamp'];
 						} else {
 							echo 'Deleted an <a href="/admin/announcements.php">Announcement</a> by ' . $row['name'] . ' at ' . $row['timestamp'];
 						}
+					} else if($row['action'] == 9) {
+						echo 'Added a new <a href="/admin/calendar.php">event/holiday</a> entry titled <i>' . $row['target']. '</i> in the calendar at ' . $row['timestamp'];
+					} else if($row['action'] == 10) {
+						echo 'Deleted an <a href="/admin/calendar.php">event/holiday</a> entry   titled <i>' . $row['target']. '</i> in the calendar at ' . $row['timestamp'];
+					} else if($row['action'] == 11) {
+						echo 'Added a new <a href="/admin/records.php?studnum=' . $row['target'] . '">student entry</a> with [' . $row['target']. '] at ' . $row['timestamp'];
+					} else if($row['action'] == 12) {
+						echo 'Removed <a href="/admin/records.php?studnum=' . $row['target'] . '">student entry</a> with [' . $row['target']. '] at ' . $row['timestamp'];
+					} else if($row['action'] == 17) {
+						echo 'Added a new payment/transaction named <i>' . $row['target'] . '</i> at ' . $row['timestamp'];
+					} else if($row['action'] == 18) {
+						echo 'Removed a payment/transaction named <i>' . $row['target'] . '</i> at ' . $row['timestamp'];
+					} else if($row['action'] == 19) {
+						echo 'Updated <a href="/org/statement.php?studnum=' . $row['target'] . '">financial accountabilities</a> of <a href="/admin/records.php?studnum=' . $row['target']. '">' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . ' [' . $row['target']. ']</a> at ' . $row['timestamp'];
 					} else if($row['action'] == 23) {
 						echo 'Commented at a <a href="/admin/post.php?postID=' . $row['target'] . '">post</a> at ' . $row['timestamp'];
+					} else if($row['action'] == 24) {
+						echo 'Set a <a href="/admin/post.php?postID=' . $row['target'] . '">post</a> to <i>show</i> in the bulletin at ' . $row['timestamp'];
+					} else if($row['action'] == 25) {
+						echo 'Set a <a href="/admin/post.php?postID=' . $row['target'] . '">post</a> to <i>not show</i> in the bulletin at ' . $row['timestamp'];
+					} else if($row['action'] == 26) {
+						echo 'Dismissed a <a href="/admin/post.php?postID=' . $row['target'] . '">post</a> from the selection of posts/announcements to show or hide at ' . $row['timestamp'];
+					} else if($row['action'] == 27) {
+						echo 'Added a <a href="/admin/records.php?studnum=' . $row['target'] . '">student</a> on the list of organizational officers at ' . $row['timestamp'];
+					} else if($row['action'] == 28) {
+						echo 'Removed a <a href="/admin/records.php?studnum=' . $row['target'] . '">student</a> on the list of organizational officers at ' . $row['timestamp'];
 					}
 					echo '</div>
 					</div>';

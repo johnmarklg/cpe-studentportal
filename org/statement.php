@@ -6,7 +6,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
   header("location: login.php");
   exit;
 } else {
-	if($_SESSION['name'][0]<>'Limited') {
+	if(($_SESSION['name'][0]<>'Limited')&&($_SESSION['name'][0]<>'Administrator (Elevated)')) {
 		header("location: logout.php");
 		exit;
 	}
@@ -27,7 +27,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 
     <div id="wrapper">
 
-        <?php org_nav(); ?>
+        <?php if($_SESSION['name'][0]=='Limited') {org_nav(); } else if ($_SESSION['name'][0]=='Administrator (Elevated)') { admin_nav2();}?>
 		
         <div id="page-wrapper">
 
@@ -129,9 +129,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 										</table>
 									</div>
 							</div>
-							<div class="panel-footer">
+							<?php
+							if($_SESSION['name'][0]=='Limited') {
+							echo '<div class="panel-footer">
 								<button id="saveStatement" name="saveStatement" class="btn btn-success btn-block">Update Statement</button>
-							</div>
+							</div>';
+							}
+							?>
 						</div>
                     </div>
                 </div>

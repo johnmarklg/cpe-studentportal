@@ -21,10 +21,10 @@
 		echo '<div class="panel panel-default">
 					<div class="panel-heading">
 						<ul class="nav nav-pills nav-justified">
-							<li class="active"><a  href="#1" data-toggle="tab">My Announcements</a></li>
-							<li><a href="#2" data-toggle="tab">All Approved</a></li>';
+							<li class="active"><a  href="#a" data-toggle="tab">My Announcements</a></li>
+							<li><a href="#b" data-toggle="tab">All Approved</a></li>';
 							if($typecheck['position'] != "Limited") { 
-								echo '<li><a href="#3" data-toggle="tab">For Approval <span class="badge">' . $pendingcount . '</span></a></li>'; 
+								echo '<li><a href="#c" data-toggle="tab">For Approval <span class="badge">' . $pendingcount . '</span></a></li>'; 
 							}
 			echo '</ul>
 				</div>
@@ -32,14 +32,18 @@
 		
 		
 		//LOGGED IN ADMIN'S POSTS
-		$stmt = $conn->prepare("SELECT * from `posts` WHERE posterid = :posterid ORDER BY datetime DESC");
+		$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster 
+		FROM `posts` 
+		LEFT JOIN administrators
+		ON administrators.id = posts.posterid
+		WHERE posterid = :posterid ORDER BY datetime DESC");
 		$stmt -> bindParam(':posterid', $_SESSION['name'][2]);
 		$stmt->execute();
 		
 		
 		
 		echo '<div class="tab-content">';
-		echo '<div class="active tab-pane" id="1">';
+		echo '<div class="active tab-pane" id="a">';
 			foreach(($stmt->fetchAll()) as $row) { 
 				$time = strtotime($row['datetime']);
 				$stmti = $conn->prepare("SELECT COUNT(*) FROM comments as commentcount WHERE postid=:postid");
@@ -71,9 +75,13 @@
 		echo '</div>';
 		
 		//ALL APPROVED
-		$stmt = $conn->prepare("SELECT * from `posts` WHERE `status` = 'Approved' ORDER BY datetime DESC");
+		$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster 
+		from `posts` 
+		LEFT JOIN administrators
+		ON administrators.id = posts.posterid
+		WHERE `status` = 'Approved' ORDER BY datetime DESC");
 		$stmt->execute();
-		echo '<div class="tab-pane" id="2">';
+		echo '<div class="tab-pane" id="b">';
 		foreach(($stmt->fetchAll()) as $row) { 
 			$time = strtotime($row['datetime']);
 			$stmti = $conn->prepare("SELECT COUNT(*) FROM comments as commentcount WHERE postid=:postid");
@@ -104,11 +112,14 @@
 		
 		//for APPROVAL/PENDING FOR NOW
 		if($typecheck['position'] != "Limited") {
-			$stmt = $conn->prepare("SELECT * from `posts` WHERE posterid <> :posterid AND status = 'Pending' ORDER BY datetime DESC");
+			$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
+			LEFT JOIN administrators
+			ON administrators.id = posts.posterid
+			WHERE posterid <> :posterid AND status = 'Pending' ORDER BY datetime DESC");
 			$stmt -> bindParam(':posterid', $_SESSION['name'][2], PDO::PARAM_INT);
 			$stmt->execute();
 			
-			echo '<div class="tab-pane" id="3">';
+			echo '<div class="tab-pane" id="c">';
 			foreach(($stmt->fetchAll()) as $row) { 
 				$time = strtotime($row['datetime']);
 				echo '<div class="panel panel-danger"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
@@ -123,9 +134,9 @@
 				
 				echo '<strong>' . $row['posttitle'] . '</strong>';
 				echo '<hr/>' . $row['post'];
-				echo '</div></div><div class="panel-footer"><button value="' . $row['posterid'] . '" name="' . $adminid . '" id="' . $row['id'] . '" class="btn btn-info btn-block btnApprove">Approve this Post</button></div></div>';
+				echo '</div></div><div class="panel-footer"><button value="' . $row['posterid'] . '" name="' . $adminid . '" id="' . $row['id'] . '" class="btn btn-info btn-block btnApprove">Approve this Post</button></div>';
 			}
-			echo '</div></div>';
+			echo '</div></div></div>';
 		}
 		//echo '</div></div></div>';
 		

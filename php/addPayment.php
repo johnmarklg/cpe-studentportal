@@ -15,9 +15,10 @@
 			$stmt->execute();	
 			
 			$stmt = $conn->prepare("INSERT INTO `activitylog` 
-			(userid, action, timestamp) 
-			VALUES (:userid, 17, now())");
+			(userid, action, target, timestamp) 
+			VALUES (:userid, 17, :target, now())");
 			$stmt -> bindParam(':userid', $orgid);
+			$stmt -> bindParam(':target', $value['Name']);
 			$stmt->execute(); 
 			
 			/*$stmt = $conn->prepare("ALTER TABLE `invoices` 

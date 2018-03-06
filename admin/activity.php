@@ -53,8 +53,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  <i class="fa fa-info-circle"></i> Input [Student Number] in the text field below then click [<i class="fa fa-search"></i>] to load student records.
-						  <br/>Alternatively, open the student records via the links found in the [Student List] page.
+						  <i class="fa fa-info-circle"></i> Input [Student Number] in the text field below then click [<i class="fa fa-search"></i>] to load recent activity.
+						  <br/>Alternatively, you may access the entries via [Student List] page under [<i class="fa fa-graduation-cap"></i> Students].
 						</div>
 					</div>
 				</div>

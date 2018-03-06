@@ -2,7 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 	$officename = $_POST['officename'];
 	$officer = $_POST['officer'];
-	
+	$adminid = $_POST['adminid'];
 	if(($officename=='')&&($officer=='')) {
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	} else {
@@ -68,6 +68,13 @@
 				echo "Sorry, there was an error uploading your file.";
 			}
 		}
+		$stmt = $conn->prepare("INSERT INTO `activitylog` 
+		(userid, action, target, timestamp) 
+		VALUES (:userid, 27, :target, now())");
+		$stmt -> bindParam(':userid', $adminid);
+		$stmt -> bindParam(':target', $officer);
+		$stmt->execute(); 
+			
 		//close connection
 		$conn = null;
 		

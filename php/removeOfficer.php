@@ -2,6 +2,8 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 
 	$officer = $_POST['id'];
+	$adminid = $_POST['adminid'];
+	$studnum = $_POST['studnum'];
 		
 	$conn = getDB('cpe-studentportal');
 	
@@ -22,5 +24,12 @@
 	$stmt -> bindParam(':id', $officer);
 	$stmt->execute();
 	
+	$stmt = $conn->prepare("INSERT INTO `activitylog` 
+	(userid, action, target, timestamp) 
+	VALUES (:userid, 28, :target, now())");
+	$stmt -> bindParam(':userid', $adminid);
+	$stmt -> bindParam(':target', $studnum);
+	$stmt->execute(); 
+		
 	$conn = null;
 ?>

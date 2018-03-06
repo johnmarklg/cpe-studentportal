@@ -61,7 +61,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									
 									$conn = getDB('cpe-studentportal');	
 		
-									$stmt = $conn->prepare("SELECT * FROM `posts` WHERE id = :id");
+									$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster 
+									FROM `posts` 
+									LEFT JOIN administrators
+									ON administrators.id = posts.posterid
+									WHERE posts.id = :id");
 									$stmt -> bindParam(':id', $postID);
 									$stmt->execute();
 									

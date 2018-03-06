@@ -6,7 +6,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
   header("location: login.php");
   exit;
 } else {
-	if(($_SESSION['name'][0]<>'Administrator') && ($_SESSION['name'][0]<>'Administrator (Elevated)') && ($_SESSION['name'][0]<>'Limited')) {
+	if(($_SESSION['name'][0]<>'Limited')) {
 		header("location: logout.php");
 		exit;
 	}
@@ -64,7 +64,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									
 									$conn = getDB('cpe-studentportal');	
 		
-									$stmt = $conn->prepare("SELECT * FROM `posts` WHERE id = :id");
+									$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster 
+									FROM `posts` 
+									LEFT JOIN administrators
+									ON administrators.id = posts.posterid
+									WHERE posts.id = :id");
 									$stmt -> bindParam(':id', $postID);
 									$stmt->execute();
 									

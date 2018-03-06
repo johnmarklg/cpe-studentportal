@@ -36,6 +36,12 @@
                         <a href="/org/announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
                     </li>
 					<li>
+                        <a href="/org/officers.php"><i class="fa fa-fw fa-users"></i> Officers</a>
+                    </li>
+					<li>
+                        <a href="/org/profile.php"><i class="fa fa-fw fa-certificate"></i> Organizational Profile</a>
+                    </li>
+					<li>
                         <a href="/org/settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>
 					<li>

@@ -27,7 +27,7 @@
 		} else {}
 		});
 		
-		$('#buttonChangePassOrg').click(function() {
+		/*$('#buttonChangePassOrg').click(function() {
 		var $id = $('#orgid').val();;
 		var $verifyoldpass = $('#oldpasschk').val();;
 		var $oldpass = $('#oldpass').val();
@@ -60,7 +60,7 @@
 		}
 		//alert($userInfo);
 			return false;
-	});
+	});*/
 	
 		$('#buttonSave').click(function() {
 			var $name = $('#name').val();
@@ -68,9 +68,11 @@
 			var $amount = $('#amount').val();
 			$colname = $name.replace(/\s/g,'');
 			$colname = $colname.toLowerCase();
-			//var $amount = $('#amount').val();
 			var $payinfo = '[{"Name":"' + $name + '","columnName":"' + $colname + '","Amount":"' + $amount + '"}]';
 			//alert($payinfo);
+			if($amount==='' || $name==='') {
+				alert('Please fill all the necessary fields!');
+			} else {
 			$.ajax({
 				type: "POST",
 					url: "/php/addPayment.php",
@@ -82,5 +84,5 @@
 						//window.location.replace('logout.php');
 					}
 				});
-				return false;
+			}
 		});

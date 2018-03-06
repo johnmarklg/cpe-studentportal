@@ -112,7 +112,7 @@
 			var $id = $row.find(".id").text(); // Find the text
 			var $adminid = $('#adminid').val();
 			var $eventinfo = '[{"id":"' + $id + '","adminid":"' + $adminid+'"}]';
-			alert($eventinfo);
+			//alert($eventinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removeEvent.php",
@@ -133,7 +133,7 @@
 			var $id = $row.find(".id").text(); // Find the text
 			var $adminid = $('#adminid').val();
 			var $holidayinfo = '[{"id":"' + $id + '","adminid":"' + $adminid+'"}]';
-			alert($holidayinfo);
+			//alert($holidayinfo);
 			$.ajax({
 				type: "POST",
 					url: "/php/removeHoliday.php",

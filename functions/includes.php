@@ -17,6 +17,9 @@
 	function admin_nav(){
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/admin_nav.php");
 	}
+	function admin_nav2(){
+		require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/admin_nav2.php");
+	}
 	function org_nav(){
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/includes/org_nav.php");
 	}

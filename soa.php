@@ -122,7 +122,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 													echo '<td>₱ ' . $row['charge'] . '</td>';
 													echo '<td>₱ ' . $row['amountpaid'] . '</td>';
 													if($row['charge']=='0') {
-														echo '<td></td>';
+														echo '<td>Undefined</td>';
 													} else {
 														echo '<td>₱ ' . ($row['charge'] - $row['amountpaid']) . '</td>';
 													}

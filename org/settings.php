@@ -102,8 +102,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
-				<hr/>
-				<div class="alert alert-info" role="alert">
+				<!--<div class="alert alert-info" role="alert">
 					Your current session will close upon changing your password.
 				</div>
 				<div class="row">
@@ -136,7 +135,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
             </div>
             <!-- /.container-fluid -->
 

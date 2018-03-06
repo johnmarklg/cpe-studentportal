@@ -17,11 +17,11 @@
 					<div class="dropdown-backdrop"></div>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
+                            <a href="/admin/profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -33,13 +33,13 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-gear"></i> Bulletin Settings <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo6" class="collapse">
                             <li>
-								<a href="index.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
+								<a href="/admin/index.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
 							</li>
 							<li>
-								<a href="multimedia.php"><i class="fa fa-fw fa-film"></i> Multimedia</a>
+								<a href="/admin/multimedia.php"><i class="fa fa-fw fa-film"></i> Multimedia</a>
 							</li>
 							<li>
-								<a href="officers.php"><i class="fa fa-fw fa-users"></i> Officers</a>
+								<a href="/admin/officers.php"><i class="fa fa-fw fa-users"></i> Officers</a>
 							</li>							
                         </ul>
                     </li>
@@ -47,21 +47,21 @@
 					if($_SESSION['name'][0]=='Administrator (Elevated)') {
 						echo '<li><a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-terminal"></i> Elevated Admin <i class="fa fa-fw fa-caret-down"></i></a><ul id="demo2" class="collapse">';
 							echo '<li>
-								<a href="administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
+								<a href="/admin/administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
 							</li>';
 							echo '<li>
-								<a href="curriculum.php"><i class="fa fa-fw fa-list"></i> Curriculums</a>
+								<a href="/admin/curriculum.php"><i class="fa fa-fw fa-list"></i> Curriculums</a>
 							</li></ul></li>';
 					}
 					?>   
 					<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-bullhorn"></i> Events and Announcements <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo5" class="collapse">
-                            <li class="active">
-								<a href="announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
+                            <li>
+								<a href="/admin/announcements.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
 							</li>
 							<li>
-								<a href="calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
+								<a href="/admin/calendar.php"><i class="fa fa-fw fa-calendar"></i> Academic Calendar</a>
 							</li>							
                         </ul>
                     </li>
@@ -69,16 +69,16 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-graduation-cap"></i> Students <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo4" class="collapse">
                             <li>
-								<a href="profilereq.php"><i class="fa fa-fw fa-edit"></i> Profile Requests</a>
+								<a href="/admin/profilereq.php"><i class="fa fa-fw fa-edit"></i> Profile Requests</a>
 							</li>
 							<li>
-								<a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student List</a>
+								<a href="/admin/students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student List</a>
 							</li>
 							<li>
-								<a href="records.php"><i class="fa fa-fw fa-table"></i> Student Records</a>
+								<a href="/admin/records.php"><i class="fa fa-fw fa-table"></i> Student Records</a>
 							</li>
 							<li>
-								<a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Scheduler</a>
+								<a href="/admin/timetables.php"><i class="fa fa-fw fa-book"></i> Subject Scheduler</a>
 							</li>
                         </ul>
                     </li>
@@ -88,36 +88,36 @@
 										<a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-clock-o"></i> Activity Log <i class="fa fa-fw fa-caret-down"></i></a>
 										<ul id="demo3" class="collapse">
 											<li>
-												<a href="activity.php"><i class="fa fa-fw fa-graduation-cap"></i> Students</a>
+												<a href="/admin/activity.php"><i class="fa fa-fw fa-graduation-cap"></i> Students</a>
 											</li>
 											<li>
-												<a href="activity-admin.php"><i class="fa fa-fw fa-users"></i> Administrators</a>
+												<a href="/admin/activity-admin.php"><i class="fa fa-fw fa-users"></i> Administrators</a>
 											</li>
 										</ul>
 									</li>';
 							} else {
-								echo '<li><a href="activity.php"><i class="fa fa-fw fa-clock-o"></i> Activity Log</a></li>';
+								echo '<li><a href="/admin/activity.php"><i class="fa fa-fw fa-clock-o"></i> Activity Log</a></li>';
 							}
 					?>
 					<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-info"></i> Info Text <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-								<a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
+								<a href="/admin/geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
 							</li>
 							<li>
-								<a href="about.php"><i class="fa fa-fw fa-info-circle"></i> About Portal</a>
+								<a href="/admin/about.php"><i class="fa fa-fw fa-info-circle"></i> About Portal</a>
 							</li>
 							<li>
-								<a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
+								<a href="/admin/hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
 							</li>
                         </ul>
                     </li>
 					<!--<li>
-                        <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
+                        <a href="/admin/profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
                     </li>
 					<li>
-                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
+                        <a href="/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Sign Out</a>
                     </li>-->
                 </ul>
             </div>
