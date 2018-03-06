@@ -15,10 +15,12 @@
 		
 		$(function () {
 			$('#starttime').datetimepicker({
-				format: 'h:ma'
+				format: 'h:mma',
+				stepping: 30
 			});
 			$('#endtime').datetimepicker({
-				format: 'h:ma'
+				format: 'h:ma',
+				stepping: 30
 			});
 		});
 		

@@ -158,7 +158,7 @@ if ($stmt -> rowCount() > 0)
 }
 
 ////////////////////////////////////////SECOND YEAR 
-
+$pdf->Ln();
 $stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 2 AND defaultsemester = 1");
 $stmt->execute();
 $persem=0;
@@ -227,6 +227,7 @@ $pdf->Cell(13,5,$persem . '.0','T',1, 'C');
 }
 
 ////////////////////////////////////////THIRD YEAR 
+$pdf->Ln();
 $stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 3 AND defaultsemester = 1");
 $stmt->execute();
 $persem=0;
@@ -293,6 +294,7 @@ $pdf->Cell(13,5,$persem . '.0','T',1, 'C');
 }
 
 ////////////////////////////////////////FOURTH YEAR 
+$pdf->Ln();
 $stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 4 AND defaultsemester = 1");
 $stmt->execute();
 $persem=0;
@@ -388,6 +390,7 @@ $pdf->Cell(13,5,$persem . '.0','T',1, 'C');
 }
 
 ////////////////////////////////////////FIFTH YEAR 
+$pdf->Ln();
 $stmt = $conn->prepare("SELECT * from temptable WHERE defaultyear = 5 AND defaultsemester = 1");
 $stmt->execute();
 $persem=0;

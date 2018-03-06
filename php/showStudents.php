@@ -33,6 +33,7 @@
 				<th>Curriculum</th>
 				<th style="font-size: 0px"></th>
 				<th style="font-size: 0px"></th>
+				<th style="font-size: 0px"></th>
 				<th style="font-size: 0px">Year Started</th>
 			</tr>
 			</thead>
@@ -67,6 +68,10 @@
 				<input type="submit" value="Prospectus" class="btn btn-primary"></input>
 				</form>
 				</span></td>
+				<td><form action="/admin/activity.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="studnum" id="studnum" value="'. $row['studnum'] . '"></input>
+				<input type="submit" value="Activity Log" class="btn btn-primary"></input>
+				</form></td>
 				<td><span class="table-remove btn btn-danger"><i class="fa fa-fw fa-times"></i> Remove</span></td>
 				<td style="font-size: 0px" class="yearstarted">' . $row['yearstarted'] . '</td></tr>';
 			}

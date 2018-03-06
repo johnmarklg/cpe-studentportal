@@ -168,6 +168,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 														<th>Username</th>
 														<th>Password</th>
 														<th>Email Address</th>
+														<th>Activity Log</th>
 														<th>Permission Level</th>
 														<th style="font-size: 0;"></th>
 													</tr>
@@ -180,10 +181,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 													foreach(($stmt->fetchAll()) as $row) { 
 															echo '<tr>
 																<td class="id">' . $row['id'] . '</td>
-																<td>' . $row['name'] . '</td>
+																<td id="' . $row['id'] .'">' . $row['name'] . '</td>
 																<td>' . $row['username'] . '</td>
 																<td class="passwd"><i name="' . md5($row['password']) . '" id="' . $row['password'] . '">' . md5($row['password']) . '</i></td>
 																<td>' . $row['email'] . '</td>';
+																echo '<td><form action="/admin/activity-admin.php" method="post" enctype="multipart/form-data">
+																<input type="hidden" name="refid" id="refid" value="'. $row['id'] . '"></input>
+																<input type="submit" value="Activity Log" class="btn btn-primary"></input>
+																</form></td>';
 																echo '<td><div class="form-group permissions">
 																  <select class="form-control" onclick="permissions_cache=this.value;" >';
 																echo '<option value="Administrator" '; if($row['position']=="Administrator") { echo 'selected>'; } else { echo '>'; } echo 'Administrator</option>';
