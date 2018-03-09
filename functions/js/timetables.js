@@ -19,7 +19,7 @@
 				stepping: 30
 			});
 			$('#endtime').datetimepicker({
-				format: 'h:ma',
+				format: 'h:mma',
 				stepping: 30
 			});
 		});
@@ -51,7 +51,7 @@
 			+ '","Thursday":"' + $thu + '","Friday":"' + $fri + '","Saturday":"' + $sat +
 			'","Instructor":"' + $instructor + '"}]';
 			
-			alert($subjinfo);
+			//alert($subjinfo);
 			
 			if($section==""||$subjectid==""||$subjectsection==""||$starttime==""||$endtime==""||($mon==""&&$tue==""&&$wed==""&&$thu==""&&$fri==""&&$sat=="")||$building==""||$roomnumber==""||$instructor=="") {
 				alert('Error! Please fill all the necessary fields.');

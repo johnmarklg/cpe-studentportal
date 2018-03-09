@@ -35,10 +35,6 @@
 	<!-- Bootstrap Core JavaScript -->
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 	
-	<!-- Chosen-->
-	<link rel="stylesheet" href="/assets/chosen/chosen.min.css">
-	<script src="/assets/chosen/chosen.jquery.min.js"></script>
-	
 	<!-- PACE -->
 	<script src="/assets/pace/pace.min.js"></script>
 	<link rel="stylesheet" href="/assets/pace/pace-theme-flash.css">

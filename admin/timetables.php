@@ -197,17 +197,42 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								</div>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+						  <i class="fa fa-fw fa-info-circle"></i> Note: The timetables is best viewed on a larger screen. Please refer to the table above instead if it does not display correctly on your device.
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>
+					</div>
+				</div>
+						
+
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 							Weekly Timetables
 							</div>
-							<div style="padding: 0;" class="panel-body table-responsive">
-							<div id="timetable1" class="jqs-demo mb-3"></div>
+							<div style="padding: 0;" class="panel-body">
+							<div id="timetable1"></div>
 							</div>
+						</div>
 					</div>
 				</div>
+
+				<!--<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							Weekly Timetables
+							</div>
+							<div class="panel-body">
+							<div id="calendar"></div>
+							</div>
+						</div>
+					</div>
+				</div>-->
             </div>
             <!-- /.container-fluid -->
 
@@ -247,45 +272,72 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					  "SUN"
 				  ],
 				  hours: [],
-				data: [{
-					day: 0,
-					periods: [
-						{start: "08:00 AM",
-						end: "09:30 am",
-						title: "A black period",
-						backgroundColor: "#000",
-						borderColor:"#000",
-						textColor: "#fff"},
-						{start: "10:00am",
-						end: "12:00pm",
-						title: "A black period",
-						backgroundColor: "#000",
-						borderColor:"#000",
-						textColor: "#fff"}
-					]
-				}, {
-					day: 5,
-					periods: [
-						{start: "08:00 AM",
-						end: "09:30 am",
-						title: "A black period",
-						backgroundColor: "#222",
-						borderColor:"#000",
-						textColor: "#fff"},
-						{start: "10:00 am",
-						end: "12:00 pm",
-						title: "A black period",
-						backgroundColor: "#000",
-						borderColor:"#000",
-						textColor: "#fff"}
-					]
-				}]
+					data: [{
+						day: 0,
+						periods: [
+							{start: "08:00 AM",
+							end: "09:30 am",
+							title: "A black period",
+							textColor: "#fff"},
+							{start: "10:00am",
+							end: "12:00pm",
+							title: "A black period",
+							backgroundColor: "whitesmoke",
+							borderColor:"#000",
+							textColor: "#000"}
+						]
+					}, {
+						day: 5,
+						periods: [
+							{start: "08:00 AM",
+							end: "09:30 am",
+							title: "A black period",
+							backgroundColor: "#222",
+							borderColor:"#000",
+							textColor: "#fff"},
+							{start: "10:00 am",
+							end: "12:00 pm",
+							title: "A black period",
+							backgroundColor: "#000",
+							borderColor:"#000",
+							textColor: "#fff"}
+						]
+					}]
 			});
 			//$(".jqs-table td:last-child").remove();
 			//$(".jqs-grid-head div.jqs-grid-day:last-child").remove();
 		});
 	</script>
-		
+	<!--<script>
+		$('#calendar').fullCalendar({
+		header: {
+				left: '',
+				center: '',
+				right: '',
+			},
+			editable: true,
+			views: {
+				settimana: {
+					type: 'agendaWeek',
+					duration: {
+						days: 7
+					},
+					title: 'Apertura',
+					columnFormat: 'ddd', // Format the day to only show like 'Monday'
+					hiddenDays: [6, 0] // Hide Sunday and Saturday?
+				}
+			},
+			defaultView: 'settimana',
+			events: [
+				{
+				  title:  'My Event',
+				  start:  '2010-01-01T14:30:00',
+				  allDay: false
+				}
+				// other events here...
+			  ]
+		});
+	</script>-->
 </body>
 
 </html>

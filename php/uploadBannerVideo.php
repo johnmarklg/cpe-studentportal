@@ -15,10 +15,10 @@
 			unlink($target_file) or die("Couldn't delete file.");
 		}
 		
-		if ($_FILES["vidToUpload"]["size"] > 50000000) {
+		/*if ($_FILES["vidToUpload"]["size"] > 5000000000) {
 			echo "Sorry, your file is too large.";
 			$uploadOk = 0;
-		}
+		}*/
 		
 		if($videoFileType != "mp4" && $videoFileType != "ogg" && $videoFileType != "webm") {
 			echo "Sorry, this file format is not supported by HTML5.";
