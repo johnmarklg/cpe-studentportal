@@ -56,7 +56,7 @@ $conn = getDB('cpe-studentportal');
                                 <i class="fa fa-gear"></i> Bulletin Settings
                             </li>
                             <li class="active">
-                                <i class="fa fa-film"></i> Multimedia
+                                <i class="fa fa-photo"></i> Gallery
                             </li>
                         </ol> 
                     </div>
@@ -66,102 +66,58 @@ $conn = getDB('cpe-studentportal');
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="myTabs">	
-								<ul class="nav nav-pills nav-justified">
-									<li class="active">
-									<a  href="#a" data-toggle="tab"><i class="fa fa-film"></i> Banner Video</a>
-									</li>
-									<li><a href="#b" data-toggle="tab"><i class="fa fa-photo"></i> Photo Gallery</a>
-									</li>
-								</ul>
+							<div class="panel-heading">
+								Bulletin Slideshow
 							</div>
-							<div class="tab-content">
-								<div class="active tab-pane" id="a">
-									<div class="panel-body">
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-											 Banner Video Management
+							<div class="panel-body">
+								<!-- The file upload form used as target for the file upload widget -->
+								<form id="fileupload"  method="POST" enctype="multipart/form-data">
+									<!-- Redirect browsers with JavaScript disabled to the origin page action="https://jquery-file-upload.appspot.com/"-->
+									<noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+									<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+									<div class="row fileupload-buttonbar">
+										<div class="col-lg-7">
+											<!-- The fileinput-button span is used to style the file input field as button -->
+											<span class="btn btn-success fileinput-button">
+												<i class="glyphicon glyphicon-plus"></i>
+												<span>Add images...</span>
+												<input type="file" name="files[]" multiple accept="image/*">
+											</span>
+											<button type="submit" class="btn btn-primary start">
+												<i class="glyphicon glyphicon-upload"></i>
+												<span>Start upload</span>
+											</button>
+											<button type="reset" class="btn btn-warning cancel">
+												<i class="glyphicon glyphicon-ban-circle"></i>
+												<span>Cancel upload</span>
+											</button>
+											<!--<button type="button" class="btn btn-danger delete">
+												<i class="glyphicon glyphicon-trash"></i>
+												<span>Delete</span>
+											</button>-->
+											<!-- The global file processing state -->
+											<span class="fileupload-process"></span>
+										</div>
+										<!-- The global progress state -->
+										<div class="col-lg-5 fileupload-progress fade">
+											<!-- The global progress bar -->
+											<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+												<div class="progress-bar progress-bar-success" style="width:0%;"></div>
 											</div>
-											<div class="panel-body">
-												<form action="/php/uploadBannerVideo.php" method="post" enctype="multipart/form-data">
-														<input name="vidToUpload" id="vidToUpload" type="file" class="btn btn-info btn-block" accept="video/*">
-														<input type="submit" name="submit" value="Upload Video" id="upload-video" class="btn btn-default btn-success btn-block"></input>
-												</form>
-												<hr/>
-												<div class="panel panel-info">
-													<div class="panel-heading">
-														<a data-toggle="collapse" href="#collapsePanelVid" style="color: white;"><i class="fa fa-file-video"></i> Click to Hide/Show Current Uploaded Banner Video</a>
-													</div>
-													<div id="collapsePanelVid" class="panel-collapse">
-													<div class="panel-body">
-														<!--<div class="alert alert-info" role="alert">
-														  <i class="fa fa-fw fa-info-circle"></i> You may have to clear your browser cache to be able to see the changes.
-														  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-														</div>-->
-														<video height="400" style="width: 100%;" preload="auto" controls loop>
-														  <source src="/uploads/video/movie.mp4?t=<?php echo date('timestamp');?>" type="video/mp4">
-														  <source src="/uploads/video/movie.ogg?t=<?php echo date('timestamp');?>" type="video/ogg">
-															Your browser does not support the video tag. Please update your browser!
-														</video>
-													</div>
-													</div>
-												</div>
-											</div>
+											<!-- The extended global progress state -->
+											<div class="progress-extended">&nbsp;</div>
+										</div>
+									</div><hr/>
+									<!-- The table listing the files available for upload/download -->
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											Uploaded Images
+										</div>
+										<div class="panel-body table-responsive">
+											<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 										</div>
 									</div>
-								</div>
-								<div class="tab-pane" id="b">
-									<div class="panel-body">
-										<!-- The file upload form used as target for the file upload widget -->
-										<form id="fileupload"  method="POST" enctype="multipart/form-data">
-											<!-- Redirect browsers with JavaScript disabled to the origin page action="https://jquery-file-upload.appspot.com/"-->
-											<noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
-											<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-											<div class="row fileupload-buttonbar">
-												<div class="col-lg-7">
-													<!-- The fileinput-button span is used to style the file input field as button -->
-													<span class="btn btn-success fileinput-button">
-														<i class="glyphicon glyphicon-plus"></i>
-														<span>Add images...</span>
-														<input type="file" name="files[]" multiple accept="image/*">
-													</span>
-													<button type="submit" class="btn btn-primary start">
-														<i class="glyphicon glyphicon-upload"></i>
-														<span>Start upload</span>
-													</button>
-													<button type="reset" class="btn btn-warning cancel">
-														<i class="glyphicon glyphicon-ban-circle"></i>
-														<span>Cancel upload</span>
-													</button>
-													<!--<button type="button" class="btn btn-danger delete">
-														<i class="glyphicon glyphicon-trash"></i>
-														<span>Delete</span>
-													</button>-->
-													<!-- The global file processing state -->
-													<span class="fileupload-process"></span>
-												</div>
-												<!-- The global progress state -->
-												<div class="col-lg-5 fileupload-progress fade">
-													<!-- The global progress bar -->
-													<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-														<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-													</div>
-													<!-- The extended global progress state -->
-													<div class="progress-extended">&nbsp;</div>
-												</div>
-											</div><hr/>
-											<!-- The table listing the files available for upload/download -->
-											<div class="panel panel-primary">
-												<div class="panel-heading">
-													Uploaded Images
-												</div>
-												<div class="panel-body table-responsive">
-													<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -300,7 +256,7 @@ $conn = getDB('cpe-studentportal');
 	<script src="/assets/js/main.js"></script>
 	<script>
 		$('li', '#tabs').filter(function() {
-			return !! $(this).find('a[href="multimedia.php"]').length;
+			return !! $(this).find('a[href="gallery.php"]').length;
 		  })
 		  .addClass('active');
 	</script>

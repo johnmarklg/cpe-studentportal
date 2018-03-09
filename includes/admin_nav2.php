@@ -36,7 +36,10 @@
 								<a href="/admin/index.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
 							</li>
 							<li>
-								<a href="/admin/multimedia.php"><i class="fa fa-fw fa-film"></i> Multimedia</a>
+								<a href="gallery.php"><i class="fa fa-fw fa-photo"></i> Gallery</a>
+							</li>
+							<li>
+								<a href="videos.php"><i class="fa fa-fw fa-film"></i> Videos</a>
 							</li>
 							<li>
 								<a href="/admin/officers.php"><i class="fa fa-fw fa-users"></i> Officers</a>
