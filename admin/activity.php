@@ -63,7 +63,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<!-- Search -->
 				<div class="row">
 					<div class="col-lg-12">
-					<form method="post">
+					<form method="get">
 						<div class="input-group">
 								<input type="text" id="refid" name="refid" value="" class="form-control" placeholder="Search by Student Number"></input>
 								<span class="input-group-btn">

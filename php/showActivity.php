@@ -4,8 +4,8 @@
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		
 		//get search result if it's clicked
-		if(isset($_POST["studnum"])) {
-			$studnum = $_POST["studnum"];
+		if(isset($_GET["studnum"])) {
+			$studnum = $_GET["studnum"];
 		} else if(isset($_REQUEST["search-table"]))
 		{
 			$studnum = ($_REQUEST["refid"]);
@@ -74,8 +74,8 @@
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		
 		//get search result if it's clicked
-		if(isset($_POST["refid"])) {
-			$adminid = $_POST["refid"];
+		if(isset($_GET["refid"])) {
+			$adminid = $_GET["refid"];
 		} else if(isset($_REQUEST["search-table"]))
 		{
 			$adminid = ($_REQUEST["refid"]);

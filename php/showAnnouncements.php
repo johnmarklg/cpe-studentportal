@@ -137,6 +137,8 @@
 				echo '</div></div><div class="panel-footer"><button value="' . $row['posterid'] . '" name="' . $adminid . '" id="' . $row['id'] . '" class="btn btn-info btn-block btnApprove">Approve this Post</button></div>';
 			}
 			echo '</div></div></div>';
+		} else {
+			echo '</div>';
 		}
 		//echo '</div></div></div>';
 		

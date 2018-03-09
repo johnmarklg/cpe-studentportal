@@ -68,7 +68,7 @@
 				<input type="submit" value="Prospectus" class="btn btn-primary"></input>
 				</form>
 				</span></td>
-				<td><form action="/admin/activity.php" method="post" enctype="multipart/form-data">
+				<td><form action="/admin/activity.php" method="get" enctype="multipart/form-data">
 				<input type="hidden" name="studnum" id="studnum" value="'. $row['studnum'] . '"></input>
 				<input type="submit" value="Activity Log" class="btn btn-primary"></input>
 				</form></td>

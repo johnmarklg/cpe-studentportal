@@ -83,9 +83,9 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 				<!-- Search -->
 				<div class="row">
 					<div class="col-lg-12">
-					<form method="post">
+					<form method="get">
 						<div class="input-group">
-								<input type="text" id="stud-num" name="stud-num" value="<?php echo $studnum ?>" class="form-control" placeholder="Search by Student Number...">
+								<input type="text" id="studnum" name="studnum" value="<?php echo $studnum ?>" class="form-control" placeholder="Search by Student Number...">
 								<span class="input-group-btn">
 									<button id="search-table" name="search-table" class="btn btn-default"><i class="fa fa-search"></i></button>
 								</span>
