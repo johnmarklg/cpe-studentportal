@@ -79,7 +79,8 @@
 				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
 				cache: false,
 				success: function(result){
-					alert("Successfully updated student record!");
+					alert(result);
+					//alert("Successfully updated student record!");
 					location.reload();
 				}
 			});

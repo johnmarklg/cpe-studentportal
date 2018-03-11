@@ -124,7 +124,7 @@
 					cache: false,
 					success: function(result){
 						//console.log(result);
-						alert("Successfully added a new student record!");
+						alert(result);
 						location.reload();  	
 					}
 				});
