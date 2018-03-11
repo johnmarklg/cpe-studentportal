@@ -102,7 +102,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 										<!-- image-preview-input -->
 										<div class="btn btn-default image-preview-input">
 											<span><i class="fa fa-upload"></i></span>
-											<span class="image-preview-input-title">Add Image...</span>
+											<span class="image-preview-input-title">Add Attachment...</span>
 											<input type="file" class="btn btn-info" onchange="readURL(this);" name="fileToUpload" id="fileToUpload">
 										</div>
 									</span>

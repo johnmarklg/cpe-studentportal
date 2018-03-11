@@ -30,16 +30,17 @@
 													$commentcount = $stmti->fetchColumn(); 
 													
 													echo '<div class="panel panel-info"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
-													if($row['file'] == '') {
-														echo '</div><div class="panel-body"><div class="col-lg-12">';
-													} else {
-														echo '</div><div class="panel-body"><div class="col-lg-3">' .
+													if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
+														echo '</div><div class="panel-body"><div class="col-lg-4">' .
 														'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
-														. '</div><div class="col-lg-9">';
+														. '</div><div class="col-lg-8"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
+													} else if ($row['file'] == ''){
+														echo '</div><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
+													} else {
+														echo '</div><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '<hr/>
+														<a href="/uploads/' . $row['file'] . '" title="' . $row['posttitle'] . '">Click here to view/download attachment</a></div>';
 													}
-													echo '<strong>' . $row['posttitle'] . '</strong>';
-													echo '<hr/>' . $row['post'];
-													echo '</div></div><div class="panel-footer"><a href="post.php?postID=' . $row['id'] . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
+													echo '</div><div class="panel-footer"><a href="post.php?postID=' . $row['id'] . '"><i class="fa fa-fw fa-comment"></i> '. $commentcount . ' comments</a></div></div>';
 													}
 													
 						echo '</div></div>

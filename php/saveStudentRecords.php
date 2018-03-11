@@ -36,6 +36,18 @@
 					}
 					//establish connection
 					$conn = getDB('cpe-studentportal');
+					if($oldstudnum != ($value['Student Number'])) {
+						//update comments if studnum changed
+						$stmt = $conn->prepare("UPDATE comments SET commenterid = :studnum WHERE commenterid = :oldstudnum");
+						$stmt -> bindParam(':studnum', $value['Student Number']);
+						$stmt -> bindParam(':oldstudnum', $oldstudnum);
+						$stmt->execute();
+						//update unapproved profile requests
+						$stmt = $conn->prepare("UPDATE profilerequest SET studnum = :studnum WHERE studnum = :oldstudnum AND approvalstatus = 0");
+						$stmt -> bindParam(':studnum', $value['Student Number']);
+						$stmt -> bindParam(':oldstudnum', $oldstudnum);
+						$stmt->execute();
+					}					
 					//update records
 					$stmt = $conn->prepare("UPDATE students SET surname = :surname, firstname = :firstname, middlename = :middlename , studnum = :studnum, passcode = :passcode, yearstarted = :yearstarted WHERE studnum = :oldstudnum");
 					$stmt -> bindParam(':surname', $value['Surname']);

@@ -44,7 +44,7 @@
 		});
 		
 		$("#saveStudentRecords").click(function(){
-			if($('#studnum').text()==''||$('#surname').text()==''||$('#firstname').text()=='') {
+			if(($('#studnum').text()=='')||($('#surname').text()=='')||($('#firstname').text()=='')) {
 				alert('Please fill the necessary fields.');
 			} else {
 			var $adminid = $("#adminid").text();

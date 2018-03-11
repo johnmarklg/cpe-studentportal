@@ -75,15 +75,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									foreach(($stmt->fetchAll()) as $row) { 
 										$time = strtotime($row['datetime']);
 										echo '<div id="' . $postID . '" name="' . $adminid . '" class="panel panel-primary post"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
-										if($row['file'] == '') {
-											echo '</div><div class="panel-body"><div class="col-lg-12">';
-										} else {
-											echo '</div><div class="panel-body"><div class="col-lg-2">' .
-											'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
-											. '</div><div class="col-lg-10">';
-										}
+										echo '</div><div class="panel-body"><div class="col-lg-12">';
 										echo '<strong>' . $row['posttitle'] . '</strong>';
-										echo '<hr/>' . $row['post'];
+										echo '<hr/>' . $row['post'] . '<br></br>';
+										if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
+											echo '<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40; " src="/uploads/' . $row['file'] . '"></a>';
+										} else if($row['filetype']== '') {} else {
+											echo '<a href="/uploads/' . $row['file'] . '" title="' . $row['posttitle'] . '">Click to View/Download Attached File</a>';
+										}
 										echo '</div></div>
 										<div class="panel-footer">
 										<textarea type="text" id="comment0"  name="comment" class="form-control" placeholder="Leave a comment." cols="40" rows="1"></textarea>
@@ -114,7 +113,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 											echo str_repeat('</div></div>', $diff + 1);
 										}
 										if($pathsize<6) {
-											echo '<div class="panel panel-info" style="border-width: 0 0 0 1px; margin-bottom: 0.6em;"><div class="panel-heading">';
+											echo '<div class="panel panel-info" style="border-width: 1 1 1 1px; margin-bottom: 0.6em;"><div class="panel-heading">';
 											if($row['name'] == NULL) {
 												echo '<strong>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename']. '</strong> @<i> ' . $row['datetime'] . '</i>';
 											} else {

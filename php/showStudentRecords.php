@@ -6,11 +6,11 @@
 					if(isset($_REQUEST["search-table"]))
 					{
 						//if blank, set to 00-0000
-						if($_REQUEST["studnum"]=="") {
+						if($_REQUEST["refid"]=="") {
 								$studnum = "00-0000";
 						} else {
 						//set searched value to variable
-						$studnum = ($_REQUEST["studnum"]);
+						$studnum = ($_REQUEST["refid"]);
 						echo '<form><button type="button" id="saveStudentRecords" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button></form>';
 						}
 					} else {
