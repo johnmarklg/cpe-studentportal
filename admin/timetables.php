@@ -34,6 +34,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			}
 			  .table-remove:hover {
 			  color: #f00;
+			  text-decoration: underline;
 			  cursor: pointer;
 			}
 			.table-add:hover {
@@ -98,8 +99,9 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							$stmt->execute();
 									
 							foreach(($stmt->fetchAll()) as $row) { 
-								echo '<option value="' . $row['subjectid']. '">' . $row['coursecode'] . ' - ' . $row['coursetitle'] . '</option>';
+								echo '<option value="' . $row['subjectid']. '">' . $row['defaultyear'] . '-' . $row['defaultsemester'] . ' ' . $row['coursecode'] . ' - ' . $row['coursetitle'] . '</option>';
 							}
+							$conn = null;	
 							?>
 								</select>
 							</div>
@@ -171,30 +173,30 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 								
 						<div class="panel panel-default">
-									<div class="panel-heading" style="text-align: center;" id="myTabs">	
-										<ul class="nav nav-pills nav-justified">
-											<li class="active">
-											<a  href="#1" data-toggle="tab">First Year</a>
-											</li>
-											<li><a href="#2" data-toggle="tab">Second Year</a>
-											</li>
-											<li><a href="#3" data-toggle="tab">Third Year</a>
-											</li>
-											<li><a href="#4" data-toggle="tab">Fourth Year</a>
-											</li>
-											<li><a href="#5" data-toggle="tab">Fifth Year</a>
-											</li>
-											<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="tab-content">
+							<div class="panel-heading" style="text-align: center;" id="myTabs">	
+								<ul class="nav nav-pills nav-justified">
+									<li class="active">
+									<a  href="#1" data-toggle="tab">First Year</a>
+									</li>
+									<li><a href="#2" data-toggle="tab">Second Year</a>
+									</li>
+									<li><a href="#3" data-toggle="tab">Third Year</a>
+									</li>
+									<li><a href="#4" data-toggle="tab">Fourth Year</a>
+									</li>
+									<li><a href="#5" data-toggle="tab">Fifth Year</a>
+									</li>
+									<!--<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+									</li>-->
+								</ul>
+							</div>
+							<div class="tab-content panel-body">
 								<?php	
 								require($_SERVER["DOCUMENT_ROOT"] . '/php/showTimetables.php');
 								echo showTimetables();
 								?>
-								</div>
+							</div>
+						</div>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
 
@@ -211,38 +213,57 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">
-							Weekly Timetables
-							</div>
-							<div style="padding: 0;" class="panel-body">
-							<div id="timetable1"></div>
+							<div class="panel-heading" style="text-align: center;" id="myTabs2">	
+								<ul class="nav nav-pills nav-justified">
+									<li class="active">
+									<a  href="#1b" data-toggle="tab">First Year</a>
+									</li>
+									<li><a href="#2b" data-toggle="tab">Second Year</a>
+									</li>
+									<li><a href="#3b" data-toggle="tab">Third Year</a>
+									</li>
+									<li><a href="#4b" data-toggle="tab">Fourth Year</a>
+									</li>
+									<li><a href="#5b" data-toggle="tab">Fifth Year</a>
+									</li>
+								</ul>
+							</div>						
+							<div class="panel-body tab-content ">
+								<div class="tab-pane active" id="1b">
+									<div style="padding: 0;" class="panel-body">
+										<div id="timetable1"></div>
+									</div>
+								</div>
+								<div class="tab-pane" id="2b">
+									<div style="padding: 0;" class="panel-body">
+										<div id="timetable2"></div>
+									</div>
+								</div>
+								<div class="tab-pane" id="3b">
+									<div style="padding: 0;" class="panel-body">
+										<div id="timetable3"></div>
+									</div>
+								</div>
+								<div class="tab-pane" id="4b">
+									<div style="padding: 0;" class="panel-body">
+										<div id="timetable4"></div>
+									</div>
+								</div>
+								<div class="tab-pane" id="5b">
+									<div style="padding: 0;" class="panel-body">
+										<div id="timetable5"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<!--<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-							Weekly Timetables
-							</div>
-							<div class="panel-body">
-							<div id="calendar"></div>
-							</div>
-						</div>
-					</div>
-				</div>-->
             </div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
 		
-		<!--<form>
-				<button type="button" id="saveTimetables" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button>
-		</form>	
--->
 		<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
@@ -257,87 +278,187 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/functions/js/timetables.js"></script>
-	<script>
-		$(function () {
-			$("#timetable1").jqs({
-				mode: "read",
-				hour: 12,
-				days: [
-					  "MON",
-					  "TUE",
-					  "WED",
-					  "THU",
-					  "FRI",
-					  "SAT",
-					  "SUN"
-				  ],
-				  hours: [],
-					data: [{
-						day: 0,
-						periods: [
-							{start: "08:00 AM",
-							end: "09:30 am",
-							title: "A black period",
-							textColor: "#fff"},
-							{start: "10:00am",
-							end: "12:00pm",
-							title: "A black period",
-							backgroundColor: "whitesmoke",
-							borderColor:"#000",
-							textColor: "#000"}
-						]
-					}, {
-						day: 5,
-						periods: [
-							{start: "08:00 AM",
-							end: "09:30 am",
-							title: "A black period",
-							backgroundColor: "#222",
-							borderColor:"#000",
-							textColor: "#fff"},
-							{start: "10:00 am",
-							end: "12:00 pm",
-							title: "A black period",
-							backgroundColor: "#000",
-							borderColor:"#000",
-							textColor: "#fff"}
-						]
-					}]
+	<!--First Year-->
+	<?php 
+		$conn = getDB('cpe-studentportal');	
+		for ($x = 1; $x <= 5; $x++) {
+			echo '<script>
+				$(document).ready(function () {
+					$("#timetable' . $x . '").jqs({
+						mode: "read",
+						hour: 12,
+						days: [
+							  "MON",
+							  "TUE",
+							  "WED",
+							  "THU",
+							  "FRI",
+							  "SAT",
+							  "SUN"
+						  ],
+						data: [{
+								day: 0,
+								periods: [';
+
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+				LEFT JOIN `subjects`
+				ON schedules.subjectid = subjects.subjectid
+				WHERE subjects.defaultyear=:year AND schedules.mon = 1");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			$arrayres = $stmt->fetchAll();
+			$lastrow = end($arrayres);
+			foreach(($arrayres) as $row) { 
+				//last row
+				if($row == $lastrow) {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"}';
+				} else {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"},';
+				}
+			}
+			//tuesday
+			echo ']},{
+				day: 1,
+				periods: [';
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+				LEFT JOIN `subjects`
+				ON schedules.subjectid = subjects.subjectid
+				WHERE subjects.defaultyear=:year AND schedules.tue = 1");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			$arrayres = $stmt->fetchAll();
+			$lastrow = end($arrayres);
+			foreach(($arrayres) as $row) { 
+				//last row
+				if($row == $lastrow) {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"}';
+				} else {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"},';
+				}
+			}
+			//wednesday
+			echo ']},{
+				day: 2,
+				periods: [';
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+				LEFT JOIN `subjects`
+				ON schedules.subjectid = subjects.subjectid
+				WHERE subjects.defaultyear=:year AND schedules.wed = 1");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			$arrayres = $stmt->fetchAll();
+			$lastrow = end($arrayres);
+			foreach(($arrayres) as $row) { 
+				//last row
+				if($row == $lastrow) {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"}';
+				} else {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"},';
+				}
+			}
+			//thursday
+			echo ']},{
+				day: 3,
+				periods: [';
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+				LEFT JOIN `subjects`
+				ON schedules.subjectid = subjects.subjectid
+				WHERE subjects.defaultyear=:year AND schedules.thu = 1");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			$arrayres = $stmt->fetchAll();
+			$lastrow = end($arrayres);
+			foreach(($arrayres) as $row) { 
+				//last row
+				if($row == $lastrow) {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"}';
+				} else {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"},';
+				}
+			}
+			//friday
+			echo ']},{
+				day: 4,
+				periods: [';
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+				LEFT JOIN `subjects`
+				ON schedules.subjectid = subjects.subjectid
+				WHERE subjects.defaultyear=:year AND schedules.fri = 1");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			$arrayres = $stmt->fetchAll();
+			$lastrow = end($arrayres);
+			foreach(($arrayres) as $row) { 
+				//last row
+				if($row == $lastrow) {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"}';
+				} else {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"},';
+				}
+			}
+			//saturday
+			echo ']},{
+				day: 5,
+				periods: [';
+			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
+				LEFT JOIN `subjects`
+				ON schedules.subjectid = subjects.subjectid
+				WHERE subjects.defaultyear=:year AND schedules.sat = 1");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			$arrayres = $stmt->fetchAll();
+			$lastrow = end($arrayres);
+			foreach(($arrayres) as $row) { 
+				//last row
+				if($row == $lastrow) {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"}';
+				} else {
+				echo '{start: "' . $row['starttime'] . '",
+						end: "' . $row['endtime'] . '",
+						title: "' . $row['coursecode'] . '",
+						textColor: "#fff"},';
+				}
+			}
+			echo ']}]
+				});
 			});
-			//$(".jqs-table td:last-child").remove();
-			//$(".jqs-grid-head div.jqs-grid-day:last-child").remove();
-		});
-	</script>
-	<!--<script>
-		$('#calendar').fullCalendar({
-		header: {
-				left: '',
-				center: '',
-				right: '',
-			},
-			editable: true,
-			views: {
-				settimana: {
-					type: 'agendaWeek',
-					duration: {
-						days: 7
-					},
-					title: 'Apertura',
-					columnFormat: 'ddd', // Format the day to only show like 'Monday'
-					hiddenDays: [6, 0] // Hide Sunday and Saturday?
-				}
-			},
-			defaultView: 'settimana',
-			events: [
-				{
-				  title:  'My Event',
-				  start:  '2010-01-01T14:30:00',
-				  allDay: false
-				}
-				// other events here...
-			  ]
-		});
-	</script>-->
+			</script>';
+		}
+		$conn = null;
+	?>
 </body>
 
 </html>

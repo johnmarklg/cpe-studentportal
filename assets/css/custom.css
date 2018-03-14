@@ -12,12 +12,12 @@
 			background-color: #222;
 			border-color: transparent;
 		}
-		.navbar-brand {
+		/*.navbar-brand {
 			position: absolute;
 			left: 50%;
 			margin-left: -90px !important;
 			display: block;
-		}
+		}*/
 		@media (min-width:768px){
 			.navbar-brand {
 				padding: 10px 15px 20px 15px

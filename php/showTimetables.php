@@ -10,8 +10,7 @@
 			if($x == 1) {
 				echo 'active ';
 			}
-			echo 'tab-pane" id="' . $x . '"><div class="row"><div class="col-lg-12"><div class="panel panel-default">
-			<div class="panel-body"><div class="table-responsive">
+			echo 'tab-pane" id="' . $x . '"><div class="table-responsive">
 			<table id="table' . $x . '" class="table">
 			<thead>
 			<tr>
@@ -59,7 +58,7 @@
 				<td >' . $row['instructor'] . '</td>
 				<td><span class="table-remove"><i class="fa fa-fw fa-minus-circle"></i> Remove</span></td></tr>';
 			}
-			echo '</tbody></table></div></div></div></div></div></div>';
+			echo '</tbody></table></div></div>';
 			
 		} 
 		
