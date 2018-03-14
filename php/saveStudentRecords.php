@@ -24,7 +24,7 @@
 	$stmt->execute();
 	$result = $stmt->fetch(PDO::FETCH_ASSOC);			
 	
-	if(!$result) {	
+	//if(!$result) {	
 		//if studnum was input
 		if($studnum != "00-0000") {
 			//update opened records
@@ -208,5 +208,5 @@
 			print 'Successfully added/updated student record!';
 			$conn = null;
 		} else {}
-	} else { print 'Error! Student Number already exists in the database.'; }
+	//} else { print 'Error! Student Number already exists in the database.'; }
 ?>
