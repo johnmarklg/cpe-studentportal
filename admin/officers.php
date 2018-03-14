@@ -151,7 +151,7 @@ $conn = getDB('cpe-studentportal');
 															<td>' . $row['surname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . '</td>
 															<td>' . $row['office'] . '</td>
 															<td>' . $row['ContactNo'] . '</td>
-															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '" style="height: 20vh; width: 20vh%;"/></a></td>
+															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '?t=' . date('timestamp') . '" style="height: 20vh; width: 20vh%;"/></a></td>
 															<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
 																	<input type="file" class="btn btn-info" name="fileToUpload2" id="fileToUpload2"></input></td>
 																	<input type="hidden" value="' . $row['studnum'] . '" name="refid" id="refid" ></input>

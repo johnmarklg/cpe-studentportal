@@ -4,6 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 
 $studnum = $_POST['studnum'];
 $currid = $_POST['currid'];
+$currname = $_POST['currname'];
 // Initialize the session
 session_start();
 //security check
@@ -59,7 +60,7 @@ $pdf->Cell(100, 5, '', 0, 1);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(0,5,'Bachelor of Science in Computer Engineering',0,1, 'C');
 $pdf->SetFont('Arial','',10);
-$pdf->Cell(0,5,'(BSCPE-2008 Curriculum)',0,1,'C');
+$pdf->Cell(0,5,'(' . $currname . ')',0,1,'C');
 $pdf->Cell(0,5,'',0,1);
 
 $pdf->SetFont('Arial','B',8);

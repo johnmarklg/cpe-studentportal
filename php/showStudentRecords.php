@@ -79,7 +79,7 @@
 					echo '<table id="studentinfo" class="table"><thead><tr><th style="font-size: 0px">Old Student Number</th><th>Surname</th><th>First Name</th>
 							<th>Middle Name</th><th>Student Number</th><th>Passcode</th><th>Year Level</th></tr></thead><tbody><tr>';
 
-											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
+											$stmt = $conn->prepare("SELECT students.*, curriculum.name as currname FROM students LEFT JOIN curriculum ON students.CurriculumID = curriculum.id WHERE `studnum` = :studnum");
 											$stmt -> bindParam(':studnum', $studnum);
 											$stmt->execute();
 
@@ -115,6 +115,7 @@
 										<input type="hidden" name="surname" id="surname" value="'. $row['surname'] . '"></input>
 										<input type="hidden" name="firstname" id="firstname" value="'. $row['firstname'] . '"></input>
 										<input type="hidden" name="middlename" id="middlename" value="'. $row['middlename'] . '"></input>
+										<input type="hidden" name="currname" id="currname" value="'. $row['currname'] . '"></input>
 										<input type="submit" value="Prospectus" class="btn btn-primary btn-block"></input>
 										</form>
 										<hr style="margin: 5px;"/>

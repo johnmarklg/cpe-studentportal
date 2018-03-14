@@ -65,6 +65,7 @@
 				<input type="hidden" name="surname" id="surname" value="'. $row['surname'] . '"></input>
 				<input type="hidden" name="firstname" id="firstname" value="'. $row['firstname'] . '"></input>
 				<input type="hidden" name="middlename" id="middlename" value="'. $row['middlename'] . '"></input>
+				<input type="hidden" name="currname" id="currname" value="'. $row['currname'] . '"></input>
 				<input type="submit" value="Prospectus" class="btn btn-primary"></input>
 				</form>
 				</span></td>

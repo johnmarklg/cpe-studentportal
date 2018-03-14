@@ -5,7 +5,7 @@
 					
 					//REMAKE Student Grades
 					$conn = getDB('cpe-studentportal');
-					$stmt = $conn->prepare("SELECT * FROM students WHERE studnum = :studnum");
+					$stmt = $conn->prepare("SELECT students.*, curriculum.name as currname FROM `students` LEFT JOIN curriculum ON curriculum.id = students.CurriculumID WHERE students.studnum = :studnum");
 					$stmt -> bindParam(':studnum', $studnum);
 					$stmt->execute();
 					//$result = $stmt -> fetch();
@@ -15,6 +15,7 @@
 						$surname = $row['surname'];
 						$firstname = $row['firstname'];
 						$middlename = $row['middlename'];
+						$currname = $row['currname'];
 					}					
 					echo '<div class="panel panel-info">
 								<div class="panel-heading" style="text-align: center;" id="myTabs">	
@@ -42,6 +43,7 @@
 									<input type="hidden" name="surname" id="surname" value="'. $surname . '"></input>
 									<input type="hidden" name="firstname" id="firstname" value="'. $firstname . '"></input>
 									<input type="hidden" name="middlename" id="middlename" value="'. $middlename . '"></input>
+									<input type="hidden" name="currname" id="currname" value="'. $currname . '"></input>
 									<input type="submit" value="Show Prospectus" class="btn btn-primary btn-block"></input>
 									</form>
 									</div>

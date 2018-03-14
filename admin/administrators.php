@@ -185,7 +185,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 																<td>' . $row['username'] . '</td>
 																<td class="passwd"><i name="' . md5($row['password']) . '" id="' . $row['password'] . '">' . md5($row['password']) . '</i></td>
 																<td>' . $row['email'] . '</td>';
-																echo '<td><form action="/admin/activity-admin.php" method="post" enctype="multipart/form-data">
+																echo '<td><form action="/admin/activity-admin.php" method="get" enctype="multipart/form-data">
 																<input type="hidden" name="refid" id="refid" value="'. $row['id'] . '"></input>
 																<input type="submit" value="Activity Log" class="btn btn-primary"></input>
 																</form></td>';
