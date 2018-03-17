@@ -9,7 +9,6 @@
 			return !! $(this).find('a[href="/org/officers.php"]').length;
 		  })
 		  .addClass('active');
-		
 	});
 
 	$('.remove-office').click(function () {

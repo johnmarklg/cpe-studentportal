@@ -102,8 +102,12 @@ $conn = getDB('cpe-studentportal');
 									</li>
 									<li><a id="2a" href="#2b" data-toggle="tab">For Ticker</a>
 									</li>
-									<li><a id="3a" href="#3b" data-toggle="tab">Dismissed</a>
-									</li>
+									<?php
+									if($_SESSION['name'][0]=='Administrator (Elevated)') {
+										echo '<li><a id="3a" href="#3b" data-toggle="tab">Dismissed</a>
+										</li>';
+									}
+									?>
 								</ul>
 							</div>
 
