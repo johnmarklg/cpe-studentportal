@@ -16,7 +16,7 @@
                 <li class="dropdown">
                     <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 					<i class="fa fa-user"></i> <?php echo $_SESSION["name"][1]?> <b class="caret"></b></a>
-					<div class="dropdown-backdrop"></div>
+					<!--<div class="dropdown-backdrop"></div>-->
                     <ul class="dropdown-menu">
                         <li>
                             <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>

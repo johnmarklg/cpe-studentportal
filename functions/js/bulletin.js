@@ -25,7 +25,9 @@
 				success: function(result){
 					//alert(result);
 					alert("Successfully removed officer record!");
-					location.reload(); 			
+					//location.reload(); 
+					var $myUrl = 'officers.php?t=' + new Date().getTime();
+					window.location = $myUrl;
 				}
 			});
 	} else {}
@@ -53,6 +55,8 @@
 				//alert(result);
 				alert("Successfully changed post visibility!");
 				location.reload();
+				//var $myUrl = 'officers.php?t=' + new Date().getTime();
+				//window.location = $myUrl;
 			}
 		});
 	}

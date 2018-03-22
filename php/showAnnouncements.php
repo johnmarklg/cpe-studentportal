@@ -58,7 +58,7 @@
 				}
 				echo '<div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 				echo '<a href="" value="' . $row['posterid'] . '" name="' . $adminid . '" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
-				if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
+				if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')||($row['filetype'] == 'jpeg')) {
 					echo '</div><div class="panel-body"><div class="col-lg-2">' .
 					'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
 					. '</div><div class="col-lg-10"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
@@ -99,7 +99,7 @@
 			if(($row['posterid'] == $adminid)||($permissioncheck == 'Administrator (Elevated)')) {
 				echo '<a href="" value="' . $row['posterid'] . '" name="' . $adminid . '" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
 			}
-			if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
+			if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')||($row['filetype'] == 'jpeg')) {
 				echo '</div><div class="panel-body"><div class="col-lg-2">' .
 				'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
 				. '</div><div class="col-lg-10"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
@@ -127,7 +127,7 @@
 				$time = strtotime($row['datetime']);
 				echo '<div class="panel panel-danger"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
 				echo '<a href="" value="' . $row['posterid'] . '" name="' . $adminid . '" id="' . $row['id'] .'" class="post-remove close" data-dismiss="alert" aria-label="close">&times;</a>';
-				if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
+				if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')||($row['filetype'] == 'jpeg')) {
 					echo '</div><div class="panel-body"><div class="col-lg-2">' .
 					'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
 					. '</div><div class="col-lg-10"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';

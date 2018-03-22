@@ -14,7 +14,9 @@
 						cache: false,
 						success: function(result){
 							//alert(result);
-							location.reload();
+							//location.reload();
+							var $myUrl = 'announcements.php?t=' + new Date().getTime();
+							window.location = $myUrl;
 						}
 					});
 			} else {}

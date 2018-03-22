@@ -1,0 +1,260 @@
+/*CAROUSEL*/
+
+#myCarousel .carousel-caption {
+    left:0;
+	right:0;
+	bottom:0;
+	text-align:left;
+	padding:10px;
+	background:rgba(0,0,0,0.6);
+	text-shadow:none;
+}
+
+#myCarousel .list-group {
+	position:absolute;
+	top:0;
+	right:0;
+}
+#myCarousel .list-group-item {
+	border-radius:0px;
+	cursor:pointer;
+}
+#myCarousel .list-group .active {
+	background-color:#eee;	
+}
+
+@media (min-width: 992px) { 
+	#myCarousel {padding-right:33.3333%;}
+	#myCarousel .carousel-controls {display:none;} 	
+}
+@media (max-width: 991px) { 
+	.carousel-caption p,
+	#myCarousel .list-group {display:none;} 
+}
+
+#rcorners4 {
+    border-radius: 5px;
+    background:rgba(66,66,66,0.8);
+    padding:5px;
+} 
+
+
+/*ticker*/
+.container {
+    width: 450px;
+    height: 500px;
+    margin: 0px;
+    overflow: hidden;
+
+    position: relative;
+    box-sizing: border-box;
+}
+
+.marquee {
+    top: 6em;
+    position: relative;
+    box-sizing: border-box;
+    animation: marquee 40s linear infinite;
+}
+
+.marquee:hover {
+    animation-play-state: paused;
+}
+
+/* Make it move! */
+@keyframes marquee {
+    0%   { top:   40em }
+    100% { top: -90em }
+}
+
+/* Make it look pretty */
+.microsoft .marquee {
+	margin: 0;
+    padding: 0 1em;
+    line-height: 1.5em;
+    font: 1em 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
+}
+
+.microsoft:before, .microsoft::before,
+.microsoft:after,  .microsoft::after {
+    left: 0;
+    z-index: 1;
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 2em;
+    background-image: linear-gradient(top, #FFF, rgba(255,255,255,0));
+}
+
+.microsoft:after, .microsoft::after {
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+.microsoft:before, .microsoft::before {
+    top: 0;
+}
+
+/* Style the links */
+.vanity {
+    color: #333;
+    text-align: center;
+    font: .75em 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
+}
+
+.vanity a, .microsoft a {
+    color: #1570A6;
+    transition: color .5s;
+    text-decoration: none;
+}
+
+.vanity a:hover, .microsoft a:hover {
+    color: #F65314;
+}
+
+
+/*timer*/
+body, html {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  height: 100%;
+  width: 100%;
+	 
+}
+
+html {
+  display: table;
+}
+
+body {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+	line-height: 1;
+}
+
+.containerweather {
+    position: relative;	
+}
+
+.text-block {
+    position: absolute;
+    bottom: 100px;
+    left: 10px;
+    background-color:rgba(68,195,255,0.30);
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
+}
+
+.text-block1 {
+    position: absolute;
+    bottom: 100px;
+    left: 170px;
+    background-color:rgba(68,195,255,0.30);
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
+}
+
+.text-block2 {
+   position: absolute;
+    bottom: 40px;
+    left: 10px;
+    background-color:rgba(68,195,255,0.30);
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
+}
+
+.text-block3 {
+    position: absolute;
+    bottom: 40px;
+    left: 170px;
+    background-color:rgba(68,195,255,0.30);
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
+
+}
+
+.text-block4 {
+    position: absolute;
+    bottom: 10px;
+    left: 90px;
+    color: white;
+}
+
+.text-block5 {
+    position: absolute;
+    bottom: 5px;
+    left: 90px;
+    color: white;
+
+}
+
+#first {
+font-family:monospace ;
+font-weight:normal;
+font-style:normal;  
+font-size: 60px;
+  background-color: rgba(63,63,63,1.00);
+  color:rgba(255,255,255,1.00);
+}
+
+
+/*carousel officers*/
+.vertical .carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;}
+
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+     -moz-transition: 0.6s ease-in-out top;
+      -ms-transition: 0.6s ease-in-out top;
+       -o-transition: 0.6s ease-in-out top;
+          transition: 0.6s ease-in-out top;
+}
+
+.carousel.vertical .active {
+  top: 0;
+}
+
+.carousel.vertical .next {
+  top: 100%;
+}
+
+.carousel.vertical .prev {
+  top: -100%;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+  top: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+
+.carousel.vertical .active.left {
+  top: -100%;
+}
+
+.carousel.vertical .active.right {
+  top: 100%;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}

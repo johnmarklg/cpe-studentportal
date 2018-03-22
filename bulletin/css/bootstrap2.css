@@ -4997,9 +4997,9 @@ a.badge:focus {
 }
 
 #overlay_image{ 
-  position:absolute;	
+  position:absolute;
   top: 20px;
-  left:-5px;
+  
 opacity: 0.7;
 }
 
@@ -6962,45 +6962,62 @@ body {
 }
 
 .containerweather {
-    position: relative;
+    position: relative;	
 }
 
 .text-block {
     position: absolute;
-    bottom: 150px;
-    right: 250px;
+    bottom: 100px;
+    left: 10px;
     background-color:rgba(68,195,255,0.30);
     color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
 }
 
 .text-block1 {
     position: absolute;
-    bottom: 150px;
-    right: 25px;
+    bottom: 100px;
+    left: 170px;
     background-color:rgba(68,195,255,0.30);
     color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
 }
 
 .text-block2 {
-    position: absolute;
-    bottom: 50px;
-    right: 250px;
+   position: absolute;
+    bottom: 40px;
+    left: 10px;
     background-color:rgba(68,195,255,0.30);
     color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
 }
 
 .text-block3 {
     position: absolute;
-    bottom: 50px;
-    right: 55px;
+    bottom: 40px;
+    left: 170px;
     background-color:rgba(68,195,255,0.30);
     color: white;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 150px;
+    height: 50px
+
+}
+
+.text-block4 {
+    position: absolute;
+    bottom: 10px;
+    left: 90px;
+    color: white;
+
 }

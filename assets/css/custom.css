@@ -33,3 +33,7 @@
 		.bootstrap-datetimepicker-widget {
 			color: black;
 		}
+		.dropdown-backdrop {
+			z-index: -1;
+			display: none;
+		}
