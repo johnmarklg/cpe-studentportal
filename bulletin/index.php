@@ -9,9 +9,12 @@
         <link rel="stylesheet" href="css/bootstrap2.css">
         <link rel="stylesheet" href="css/bulletin.css">
         <style>
+			html {
+				overflow: hidden;
+			}
             .container-fluid {
-            padding-left: 0;
-            padding-right: 0;
+				padding-left: 0;
+				padding-right: 0;
             }	
         </style>
     </head>
@@ -287,11 +290,11 @@
         </div>
         <!--  SECTION-1 --><!-- FOOTER --><!-- / FOOTER --> 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-        <!--<script src="js/jquery-1.11.3.min.js"></script> -->
-        <script
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <!--<script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>-->
         <!-- Include all compiled plugins (below), or include individual files as needed --> 
         <script src="js/bootstrap.js"></script>
     </body>
