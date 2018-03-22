@@ -245,12 +245,43 @@
             <div class="col-md-2" style="padding-left:0;padding-right:0">
                 <div id="first" class="timetext"></div>
             </div>
-            <div class="col-md-10" style="padding-left:0;padding-right:0">
+			 <div class="col-md-10" style="padding-left:0;padding-right:0">
                 <style type="text/css">
                     .html-wpsites {height:60px;background-color:rgba(65,64,64,1.00);font-family:Arial;font-size:60px;color:#ffffff;}
                 </style>
                 <marquee class="html-wpsites" direction="left" behavior="scroll" scrollamount="20" width="100%" bgcolor="rgba(255,255,255,1.00)">
-				Please contact these numbers for inquiry, advertisement or suggestions: 09171699984/6708224 || BS CPE 5A POLSCI 2-3PM class is cancelled due to urgent matters. || ICPEP DAY on Friday! Please wear your org shirt! || All classes of Engr. Eklavu today is cancelled. || Final passsing of thesis title will be on 3/10/18 || Thesis defence starts on the last week of April || Dummy Announcement! || Dummy Announcement! || Dummy Announcement! || Dummy Announcement! ||
+			<?php
+				$conn = getDB('cpe-studentportal');
+				
+				$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster 
+				from `posts` 
+				LEFT JOIN administrators
+				ON administrators.id = posts.posterid
+				WHERE `status` = 'Approved' AND `showbulletin` = 3 ORDER BY datetime DESC");
+				$stmt->execute();
+				$tick = 0;
+				foreach(($stmt->fetchAll()) as $row) { 
+					$posttitle[$tick] = $row['posttitle'];
+					$post[$tick] = $row['post'];
+					$file[$tick] = $row['file'];
+					$filetype[$tick] = $row['filetype'];
+					$poster[$tick] = $row['poster'];
+					$datetime[$tick] = $row['datetime'];
+					//increment
+					$tick++;
+				}
+				$conn = null;
+				for ($x=0; $x<$tick; $x++) {
+					echo '<i>' . $datetime[$x] . '</i> <b>' . $posttitle[$x] . '</b>: ' . $post[$x];
+					if($file[$x] != '') {
+						echo ' -- Attachment may be viewed/downloaded through the Student Portal.';
+					}
+					if($x != $tick) {
+					echo ' || ';
+					}
+				}
+			?>
+           	<!--Please contact these numbers for inquiry, advertisement or suggestions: 09171699984/6708224 || BS CPE 5A POLSCI 2-3PM class is cancelled due to urgent matters. || ICPEP DAY on Friday! Please wear your org shirt! || All classes of Engr. Eklavu today is cancelled. || Final passsing of thesis title will be on 3/10/18 || Thesis defence starts on the last week of April || Dummy Announcement! || Dummy Announcement! || Dummy Announcement! || Dummy Announcement! ||-->
 				</marquee>
             </div>
         </div>
