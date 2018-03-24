@@ -202,7 +202,7 @@
                 <img src="assets/images/qrnobg.png"  style="height:450px; width: 100%">
             </div>
             <div class="col-md-4 text-center">
-                <div id="myCarousel" class="carousel slide vertical" style="width: 450px; height: 330px; top: 90px ">
+                <div id="myCarousel3" class="carousel slide vertical" style="width: 450px; height: 330px; top: 90px ">
                     <!-- Carousel items -->
                     <h3 style="font-size: 25px; margin-top: 25px; margin-left: 15px; margin-right: 15px">CpE Faculty & Organization</h3>
                     <div class="carousel-inner">
