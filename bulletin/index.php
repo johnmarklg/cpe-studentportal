@@ -24,7 +24,7 @@
         <header>
             <div class="jumbotron" align="center">
                 <div class="embed-responsive embed-responsive-16by9" align="center" >
-                    <video loop autoplay class="embed-responsive-item">
+                    <video muted loop autoplay class="embed-responsive-item">
                         <source src="assets/videos/video1.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -139,11 +139,11 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-center"  style="height: 400px; padding-top: 5px">
-                    <img src="assets/images/MissionVission2.png" style="height: 500px">
+                    <img class="center-block" style="width: 100%;" src="assets/images/MissionVission2.png" style="height: 500px">
                 </div>
-                <div class="col-md-4 text-center" style="height:300px; padding-top:10px;">
-                    <div id="rcorners4">
-                        <div id="myCarousel2" class="carousel slide" data-ride="#myCarousel2" style="height: 300px;">
+                <div class="col-md-4 text-center" style="height:350px; padding-top:10px;">
+                    <div class="center-block" id="rcorners4">
+                        <div id="myCarousel2" class="height: 100%;" class="carousel slide" data-ride="#myCarousel2" style="height: 300px;">
                             <!-- Indicators -->
                             <!--<ol class="carousel-indicators">
                                 <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
@@ -199,12 +199,13 @@
         <!--container-->
         <div class ="row">
             <div class="col-md-4 centered">
-                <img src="assets/images/qrnobg.png"  style="height:450px; width: 100%">
+                <img class="center-block" src="assets/images/qrnobg.png"  style="height:450px; width: 100%">
             </div>
-            <div class="col-md-4 text-center">
-                <div id="myCarousel3" class="carousel slide vertical" style="width: 450px; height: 330px; top: 90px ">
+            <div class="col-md-4 centered text-center">
+                <div id="myCarousel3" class="carousel slide vertical" style="width: 100%; height: 330px; top: 80px ">
                     <!-- Carousel items -->
-                    <h3 style="font-size: 25px; margin-top: 25px; margin-left: 15px; margin-right: 15px">CpE Faculty & Organization</h3>
+                    <h3 style="font-size: 25px;">
+					ICpEP.se Officers</h3>
                     <div class="carousel-inner">
 					<?php
 						$conn = getDB('cpe-studentportal');
@@ -229,13 +230,13 @@
 						$conn = null;
 						for ($v=0; $v<$counter; $v++) {
 							if($v==0) {
-								echo '<div class="item active">';
+								echo '<div class="item active text-center">';
 							} else {
-								echo '<div class="item">';
+								echo '<div class="item text-center">';
 							}
 							
-							echo '<img style="width: 200px; height: 200px; margin-left: 70px" src="/uploads/officers/' . $photolink[$v] . '">
-                            <h3 style="font-size: 20px; margin-top: 25px; margin-left: 15px; margin-right: 15px">ICPEP ORGANIZATION</h3>
+							echo '<img class="center-block" style="width: 200px; height: 200px;" src="/uploads/officers/' . $photolink[$v] . '">
+                            <h3 style="font-size: 20px; margin-top: 25px;">ICPEP ORGANIZATION</h3>
                             <p style="font-size: 15px; margin-bottom: 2px">' . $surname[$v] . ', ' . $firstname[$v] . ' ' . $middlename[$v] .'</p>
                             <p style="font-size: 15px;">' . $position[$v] .'</p>
                             <p style="font-size: 15px;">' . $contactnum[$v] . '</p>
@@ -263,11 +264,12 @@
                             <p style="font-size: 15px;">President</p>
                             <p style="font-size: 15px;">09090909099</p>
                         </div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div style="position: fixed; bottom: 0;" class="row">
             <div class="col-md-2" style="padding-left:0;padding-right:0">
                 <div id="first" class="timetext"></div>
             </div>
@@ -333,7 +335,7 @@
 			$('#calendar').fullCalendar({
 				defaultView: 'listWeek',
 				header: false,
-				height: 350,
+				height: 380,
 				themeSystem: 'bootstrap3',
 				navLinks: true, // can click day/week names to navigate views
 				eventLimit: true, // allow "more" link when too many events
