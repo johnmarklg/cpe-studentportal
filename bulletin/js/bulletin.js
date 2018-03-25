@@ -37,15 +37,15 @@ $(document).ready(function(){
 })*/
 //announcements
 $('#myCarousel').carousel({
-  interval: 1000
+  interval: 10000
 })
 //gallery
 $('#myCarousel2').carousel({
-  interval: 1800
+  interval: 9800
 })
 //officers
 $('#myCarousel3').carousel({
-  interval: 2400
+  interval: 6800
 })
 
 //timer
