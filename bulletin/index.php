@@ -53,7 +53,7 @@
 								//console.log(video_list);
 								
 								video_player = document.getElementById("idle_video");
-								console.log(dir_src + video_list[video_index]);
+								//console.log(dir_src + video_list[video_index]);
 								video_player.setAttribute("src", dir_src + video_list[video_index]);
 								video_player.play();
 								//alert("Successfully removed event from database!");
@@ -150,18 +150,40 @@
 				<div class="row">
 					<div id="calendar"></div>
 				</div>
+				<hr/>
 				<div class="row">
-					<img class="center-block" src="assets/images/qrnobg.png"  style="height:450px; width: 100%">
+					<img class="center-block" src="assets/images/howtoconnect.png"  style="width: 100%">
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="row">
-					<img class="center-block" style="width: 100%;" src="assets/images/MissionVission2.png" style="height: 500px">
+							<?php
+								  require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+								  
+								  $conn = getDB('cpe-studentportal');
+								  
+								  $stmt = $conn->prepare("SELECT text FROM infotext WHERE referenceid > 1 AND referenceid < 5");
+								  $stmt->execute();
+								  $init = 0;
+								  foreach(($stmt->fetchAll()) as $row) { 
+									$infotext[$init] = $row['text'];
+									$init++;
+								  }
+								  //0 = Mission Vision, 1 = Core Values, 2 = Goals and Objectives
+								  $conn = null;
+								  
+								echo '<img class="center-block" style="width: 100%;" src="assets/images/missionvision.png" style="height: 500px">
+								<br/> ' . $infotext[0] . '<br/>
+								<img class="center-block" style="width: 100%;" src="assets/images/corevalues.png" style="height: 500px">
+								<br/>  ' . $infotext[1];
+								/*'<img class="center-block" style="width: 100%;" src="assets/images/goalsobj.png" style="height: 500px">
+								<br/>  ' . $infotext[2];*/
+							?>
 				</div>
 				<div class="row centered">
 					<div id="myCarousel3" class="carousel slide vertical text-centered " style="text-align: center; width: 100%; height: 330px;">
-						 <h3 class="text-centered">ICpEP.se Officers</h3>
-						 <br/>
+						 <!--<h3 class="text-centered">ICpEP.se Officers</h3>-->
+						 <hr/>
 						 <div class="carousel-inner">
 							<?php
 							   $conn = getDB('cpe-studentportal');
@@ -189,13 +211,12 @@
 									echo '<div class="item active text-center">';
 								} else {
 									echo '<div class="item text-center">';
-								}
-								
+								}	
 								echo '<img class="center-block" style="width: 200px; height: 200px;" src="/uploads/officers/' . $photolink[$v] . '">
-													 <h3 style="font-size: 20px; margin-top: 25px;">ICPEP ORGANIZATION</h3>
-													 <p style="font-size: 15px; margin-bottom: 2px">' . $surname[$v] . ', ' . $firstname[$v] . ' ' . $middlename[$v] .'</p>
-													 <p style="font-size: 15px;">' . $position[$v] .'</p>
-													 <p style="font-size: 15px;">' . $contactnum[$v] . '</p>
+													 <!--<h3 style="font-size: 20px; margin-top: 25px;">ICPEP ORGANIZATION</h3>-->
+													 <h3 style="font-size: 17px; margin-bottom: 2px">' . $surname[$v] . ', ' . $firstname[$v] . ' ' . $middlename[$v] .'</h3>
+													 <h4 style="font-size: 15px;">' . $position[$v] .'</h4>
+													 <h5 style="font-size: 15px;">' . $contactnum[$v] . '</h5>
 								</div>';
 							   }
 							   ?>
@@ -238,10 +259,11 @@
                         </div>
                     </div>
 				</div>
+				<hr/>
 				<div class="row">
-					<!--<div class="text-center" style="height:510px; padding-top: 10px">
-						<a class="twitter-timeline" data-height="510px" data-theme="dark" href="https://twitter.com/USCMMSU?ref_src=twsrc%5Etfw">Tweets by USCMMSU</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-					</div>-->
+					<div class="text-center" style="height:450px; padding-top: 10px">
+						<a class="twitter-timeline" data-height="470px" data-theme="dark" href="https://twitter.com/USCMMSU?ref_src=twsrc%5Etfw">Tweets by USCMMSU</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -309,7 +331,7 @@
          $('#calendar').fullCalendar({
          	defaultView: 'listWeek',
          	header: false,
-         	height: 380,
+         	height: 360,
          	themeSystem: 'bootstrap3',
          	navLinks: true, // can click day/week names to navigate views
          	eventLimit: true, // allow "more" link when too many events
@@ -328,37 +350,6 @@
          		});
          	}
          });
-		 
-		 
-		 /*$( document ).ready(function() {
-			//console.log( "ready!" );
-			var videoSource = new Array();
-			videoSource[0] = '/uploads/videos/files/(1) 9GAG- Go Fun The World_3.mp4';
-			videoSource[1] = '/uploads/videos/files/(1) Angry doggo - 9GAG.mp4';
-			var i = 0; // define i
-			var videoCount = videoSource.length;
-
-			function videoPlay(videoNum) {
-				document.getElementById("myVideo").setAttribute("src", videoSource[videoNum]);
-				document.getElementById("myVideo").load();
-				document.getElementById("myVideo").play();
-			}
-			
-			document.getElementById('myVideo').addEventListener('ended', myHandler, false);
-			console.log(videoSource[i]);
-			videoPlay(i); // play the video
-
-			function myHandler() {
-				i++;
-				console.log(videoSource[i]);
-				if (i == (videoCount - 1)) {
-					i = 0;
-					videoPlay(i);
-				} else {
-					videoPlay(i);
-				}
-			}
-		});*/
       </script>
    </body>
 </html>
