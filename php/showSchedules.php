@@ -3,38 +3,10 @@
 
 		require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
 		
-		echo '<div class="panel panel-default">
-					<div class="panel-heading" style="text-align: center;" id="myTabs">	
-						<ul class="nav nav-pills nav-justified">
-							<li class="active">
-							<a  href="#1" data-toggle="tab">First Year</a>
-							</li>
-							<li><a href="#2" data-toggle="tab">Second Year</a>
-							</li>
-							<li><a href="#3" data-toggle="tab">Third Year</a>
-							</li>
-							<li><a href="#4" data-toggle="tab">Fourth Year</a>
-							</li>
-							<li><a href="#5" data-toggle="tab">Fifth Year</a>
-							</li>
-							<li><a id="tabAll"  href="#0" data-toggle="tab">Show All</a>
-							</li>
-						</ul>
-					</div>
-				</div>';
-		echo '<div class="tab-content">';
-		
-		
 		$conn = getDB('cpe-studentportal');
-		//loop 5 times
-		for ($x = 1; $x <= 5; $x++) {
-			echo '<div class="';
-			if($x == 1) {
-				echo 'active ';
-			}
-			echo 'tab-pane" id="' . $x . '"><div class="row"><div class="col-lg-12"><div class="panel panel-default">
+			echo '<div class="row"><div class="col-lg-12"><div class="panel panel-default">
 			<div class="panel-body"><div class="table-responsive">
-			<table id="table' . $x . '" class="table">
+			<table id="tablesched" class="table">
 			<thead>
 			<tr>
 			<th style="font-size: 0px">ID</th>
@@ -52,11 +24,20 @@
 			</thead>
 			<tbody class="list">';
 
+			
+			/*if (date('m') > 7) {
+				$fifthyear = date('y') - 4; 
+			} else { //if second semester
+				$fifthyear = date('y') - 5;
+			}*/
+			$myyear = mb_substr($_SESSION["name"][4], 0, 2);
+			$actualyear = date('y') - $myyear;
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 			LEFT JOIN `subjects`
 			ON schedules.subjectid = subjects.subjectid
 			WHERE subjects.defaultyear=:year");
-			$stmt -> bindParam(':year', $x);
+			//$stmt -> bindParam(':year', $x);
+			$stmt->bindParam(':year', $actualyear);
 			$stmt->execute();
 
 			foreach(($stmt->fetchAll()) as $row) { 
@@ -79,9 +60,8 @@
 				<td >' . $row['roomnumber'] . '</td>
 				<td >' . $row['instructor'] . '</td></tr>';
 			}
-			echo '</tbody></table></div></div></div></div></div></div>';
-			
-		} 
+			echo '</tbody></table></div></div></div></div></div>';	
+		 
 		$conn = null;
 
 		

@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" <!--href="index.php"-->><img style="max-width:50%" src="/assets/images/cpe-portal-white.png"></a>
+                <a class="navbar-brand" <!--href="index.php"--><img style="max-width:50%" src="/assets/images/cpe-portal-white.png"></a>
             </div>
 			<ul class="nav navbar-right top-nav">
                 <li class="dropdown">
