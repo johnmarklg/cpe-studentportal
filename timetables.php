@@ -80,6 +80,15 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				
 				<div class="row">
 					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+						  <i class="fa fa-fw fa-info-circle"></i> This timetable is best viewed on a larger screen. Please refer to the table above instead if it does not display correctly on your device.
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
 						<div class="panel panel-default">			
 							<div class="panel-body ">
 								<div style="padding: 0;" class="panel-body">
