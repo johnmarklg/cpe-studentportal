@@ -183,6 +183,8 @@
 						echo 'Added a <a href="/admin/records.php?studnum=' . $row['target'] . '">student</a> on the list of organizational officers at ' . $row['timestamp'];
 					} else if($row['action'] == 28) {
 						echo 'Removed a <a href="/admin/records.php?studnum=' . $row['target'] . '">student</a> on the list of organizational officers at ' . $row['timestamp'];
+					} else if($row['action'] == 29) {
+						echo 'Denied <a href="/admin/records.php?studnum=' . $row['target'] . '">student\'s</a> profile update request at ' . $row['timestamp'];
 					}
 					echo '</div>
 					</div>';

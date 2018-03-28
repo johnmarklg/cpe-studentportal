@@ -4,6 +4,27 @@
 			  })
 			  .addClass('active');
 	});
+	
+	$('.deleteReq').click(function() {
+		if(confirm('Do you want to deny this request?')) {
+			var $requestid = $(this).attr('id'); 
+			var $adminid = $('#adminid').text();	
+			var $studnum = $('#cachestudnum' + $requestid).text();  	
+			//alert($requestid + $adminid + $studnum);
+			$.ajax({
+				type: "POST",
+					url: "/php/denyProfileChange.php",
+					data: {adminid: $adminid, requestid: $requestid, studnum: $studnum},
+					cache: false,
+					success: function(result){
+						alert(result);
+						location.reload();
+					}
+				});
+		}
+	});
+		
+		
 	$('.btnApproveChange').click(function() {
 		var $requestid = $(this).attr('id');   
 		var $requesterid = $(this).attr('name');   

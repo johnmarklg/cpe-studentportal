@@ -21,9 +21,7 @@
 											$stmt = $conn->prepare("SELECT * FROM students WHERE `studnum` = :studnum");
 											$stmt -> bindParam(':studnum', $studnum);
 											$stmt->execute();
-
-											$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
+								
 								foreach(($stmt->fetchAll()) as $row) { 
 									echo '<td contentEditable>' . $row['surname'] . '</td>
 											  <td contentEditable>' . $row['firstname'] . '</td>

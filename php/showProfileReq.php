@@ -44,7 +44,11 @@
 			WHERE approvalstatus = 0");
 			$stmt->execute();
 			foreach(($stmt->fetchAll()) as $row) { 
-			echo '<div class="row"><div class="col-lg-12"><div id="'. $row['oldstudnum']. '" class="panel panel-info"><div class="panel-heading"><strong>' . $row['oldstudnum'] . '</strong> - ' . $row['oldsurname'] . ', ' . $row['oldfirstname'] . ' ' . $row['oldmiddlename'] . '</div><div class="panel-body">
+			echo '<div class="row"><div class="col-lg-12">
+			<div id="'. $row['oldstudnum']. '" class="panel panel-info">
+			<div class="panel-heading"><strong>' . $row['oldstudnum'] . '</strong> - ' . $row['oldsurname'] . ', ' . $row['oldfirstname'] . ' ' . $row['oldmiddlename'] . 
+			'<a href="#" id="'. $row['requestid']. '" class="deleteReq close" data-dismiss="alert" aria-label="close">&times;</a></div>
+			<div class="panel-body">
 						<div hidden id="cache' . $row['oldstudnum'] . '">
 							<p id="cachestudnum' . $row['requestid']. '">' . $row['oldstudnum'] . '</p>
 							<p id="cachesurname' . $row['requestid']. '">' . $row['oldsurname'] . '</p>
@@ -227,7 +231,10 @@
 								}
 							echo '</tbody>
 						</table>
-					</div></div><div class="panel-footer"><button name="'. $row['oldstudnum']. '" id="'. $row['requestid']. '" class="btnApproveChange btn btn-block btn-success"><i class="fa fa-fw fa-check"></i> Approve Change(s)</button></div></div></div></div>';
+					</div></div><div class="panel-footer">
+					<button name="'. $row['oldstudnum']. '" id="'. $row['requestid']. '" class="btnApproveChange btn btn-block btn-success">
+					<i class="fa fa-fw fa-check"></i> Approve Change(s)
+					</button></div></div></div></div>';
 				}
 			}
 		}

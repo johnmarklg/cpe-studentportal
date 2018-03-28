@@ -5,10 +5,10 @@ var io = require('socket.io')(http) //require socket.io module and pass the http
 
 var intervalTimer;
 
-/*var gpioUP = new gpio(27,'out'); // up
-var gpioDOWN= new gpio(22,'out'); // down
-var gpioLEFT= new gpio(17,'out'); // left
-var gpioRIGHT = new gpio(18,'out'); // right
+/*var gpioUP = new gpio(27,'out'); // up17
+var gpioDOWN= new gpio(22,'out'); // down18
+var gpioLEFT= new gpio(17,'out'); // left27
+var gpioRIGHT = new gpio(18,'out'); // right22
 */
 
 var drivevalue = 0; //static variable for current status
@@ -37,36 +37,51 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
   socket.on('drive', function(data) { //get light switch status from client
     drivevalue = data;
   });
-  
+  //control = [up,down,left,right]
+  function setGPIO(drive, steer) {
+	  if(drive===1) {
+			if(steer===1) {
+				//console.log('Forward Left');
+				control = [1,0,1,0];
+			} else if(steer===2) {
+				//console.log('Forward Right');
+				control = [1,0,0,1];
+			} else if(steer===3) {
+				//console.log('Forward');
+				control = [1,0,0,0];
+			}
+		} else if (drive===2) {
+			if(steer===1) {
+				//console.log('Reverse Right(Left)');
+				control = [0,1,1,0];
+			} else if(steer===2) {
+				//console.log('Reverse Left(Right)');
+				control = [0,1,0,1];
+			} else if(steer===3) {
+				//console.log('Reverse');
+				control = [0,1,0,0];
+			}
+		} else {
+			if(steer===1) {
+				//console.log('Left');
+				control = [0,0,1,0];
+			} else if(steer===2) {
+				//console.log('Right');
+				control = [0,0,0,1];
+			} else {
+				//console.log('Halt');
+				control = [0,0,0,0];
+			}
+		}
+		return control;
+  }
   intervalTimer = setInterval(function() {
+	  var ctrl = setGPIO(drivevalue, steervalue);
+	  //ctrl = [up,down,left,right]
+	  console.log(ctrl[0] +',' + ctrl[1] +','+ ctrl[2] +','+ ctrl[3])
 		/*gpioDOWN.writeSync(down);
 		gpioUP.writeSync(up);
 		gpioLEFT.writeSync(left);
 		gpioRIGHT.writeSync(right);*/
-		if(drivevalue===1) {
-			if(steervalue===1) {
-				console.log('Forward Left');
-			} else if(steervalue===2) {
-				console.log('Forward Right');
-			} else if(steervalue===3) {
-				console.log('Forward');
-			}
-		} else if (drivevalue===2) {
-			if(steervalue===1) {
-				console.log('Reverse Right');
-			} else if(steervalue===2) {
-				console.log('Reverse Left');
-			} else if(steervalue===3) {
-				console.log('Reverse');
-			}
-		} else {
-			if(steervalue===1) {
-				console.log('Left');
-			} else if(steervalue===2) {
-				console.log('Right');
-			} else {
-				console.log('Halt');
-			}
-		}
 	}, 200);
 });

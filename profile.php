@@ -59,6 +59,28 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 					</div>
 				</div>
 				
+				<?php
+					require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
+					$conn = getDB('cpe-studentportal');
+					$stmt = $conn->prepare("SELECT requestid FROM profilerequest WHERE `studnum` = :studnum AND approvalstatus = 0");
+					$stmt -> bindParam(':studnum', $_SESSION['name'][4]);
+					$stmt->execute();
+					
+					$result = $stmt->fetch(); 
+
+					if($result) {
+						echo '<div class="row">
+							<div class="col-lg-12">
+								<div class="alert alert-warning" role="alert">
+								  <i class="fa fa-fw fa-warning"></i> You currently have a pending profile update request!
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								</div>
+							</div>
+						</div>';
+					}
+					$conn = null;
+				?>
+				
 				<div class="row">
 					<div class="col-lg-12">
 						<?php	

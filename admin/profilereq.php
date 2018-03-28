@@ -58,7 +58,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="alert alert-warning" role="alert">
 						 <i class="fa fa-fw fa-warning"></i> Caution: Approving record updates will permanently change the entry in the database.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>
 				</div>
