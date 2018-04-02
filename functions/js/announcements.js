@@ -27,7 +27,7 @@
 			var $posterid = $(this).attr('value');
 			var $deleter= $(this).attr('name');   
 			var $postinfo = '[{"id":"' + $id + '","posterid":"' + $posterid + '","deleter":"' + $deleter + '"}]';
-			alert($postinfo);
+			//alert($postinfo);
 			if(confirm('Do you want to remove this entry from the database?')) {
 				$.ajax({
 					type: "POST",
@@ -37,7 +37,7 @@
 						success: function(result){
 							alert(result);
 							//deleted
-							location.reload();
+							location.reload(true);
 						}
 					});
 			} else {}

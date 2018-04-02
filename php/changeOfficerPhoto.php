@@ -4,7 +4,6 @@
 	
 	$conn=getdb('cpe-studentportal');	
 	
-	//$filenamekey = md5(uniqid($_FILES["fileToUpload"]["name"], true)); 
 	$filenamekey = $refid;
 	$extension = pathinfo($_FILES["fileToUpload2"]["name"], PATHINFO_EXTENSION);
 	$filenamekey .= "." . $extension;
@@ -44,7 +43,7 @@
 			//$uploadOk = 0;
 		}
 		
-		if ($_FILES["fileToUpload2"]["size"] > 500000) {
+		if ($_FILES["fileToUpload2"]["size"] > 5000000) {
 			echo "Sorry, your file is too large.";
 			$uploadOk = 0;
 		}
@@ -73,5 +72,15 @@
 	//close connection
 	$conn = null;
 	
-	header('Location: ' . $_SERVER['HTTP_REFERER']);
+	$url = $_SERVER['HTTP_REFERER'];
+	
+	preg_match('/\/[a-z0-9]+.php/', $url, $match); 
+	
+	//$url = 'http://www.mydomain.co.uk/blist.php?prodCodes=NC023-NC022-NC024-NCB33&customerID=NHFGR'; preg_match('/\/[a-z0-9]+.php/', $url, $match); 
+	$page = array_shift($match); 
+	//echo $page;
+	
+	header('Location: /admin' . $page . '?t=' . date('timestamp'));
+	
+	//header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
