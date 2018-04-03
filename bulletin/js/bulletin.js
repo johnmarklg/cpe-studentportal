@@ -32,23 +32,18 @@ $(document).ready(function(){
 	$('#myCarousel .list-group-item').outerHeight(triggerheight);
 })
 
-/*$('.carousel').carousel({
-  interval: 1000
-})*/
 //announcements
 $('#myCarousel').carousel({
-  interval: 10000
+  interval: 1000
 })
 //gallery
 $('#myCarousel2').carousel({
-  interval: 9800
+  interval: 800
 })
 //officers
 $('#myCarousel3').carousel({
-  interval: 6800
+  interval: 700
 })
-
-//timer
 
 setInterval(function(){
   var date = new Date();

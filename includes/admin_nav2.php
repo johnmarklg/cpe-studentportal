@@ -43,7 +43,10 @@
 							</li>
 							<li>
 								<a href="/admin/officers.php"><i class="fa fa-fw fa-users"></i> Officers</a>
-							</li>							
+							</li>
+							<li>
+								<a href="/admin/power.php"><i class="fa fa-fw fa-power"></i> Power</a>
+							</li>
                         </ul>
                     </li>
 					<?php

@@ -28,53 +28,6 @@
                <video id="idle_video" onended="onVideoEnded();" class="embed-responsive-item">
                   <source src="" type="video/mp4">
                </video>
-			   <script>
-					var dir_src = "/uploads/videos/files/";
-					//"(1) 9GAG- Go Fun The World_3.mp4","(1) Angry doggo - 9GAG.mp4"
-					var video_index = 0;
-					var video_player = null;
-					var video_list = [];
-
-					function onload(){
-						//console.log("body loaded");
-						$.ajax({
-							type: "POST",
-							url: "/php/getVideos.php",
-							cache: false,
-							success: function(result){
-								$video_list = $.parseJSON(result);
-								//console.log($video_list);
-								
-								$.each($video_list, function() {
-								  video_list.push(this);
-								  //alert(this);
-								});
-								
-								//console.log(video_list);
-								
-								video_player = document.getElementById("idle_video");
-								//console.log(dir_src + video_list[video_index]);
-								video_player.setAttribute("src", dir_src + video_list[video_index]);
-								video_player.play();
-								//alert("Successfully removed event from database!");
-								//location.reload();
-							}
-						});
-					}
-
-					function onVideoEnded(){
-						//console.log("video ended");
-						if(video_index < video_list.length - 1){
-							video_index++;
-						}
-						else{
-							video_index = 0;
-						}
-						//console.log(dir_src + video_list[video_index]);
-						video_player.setAttribute("src", dir_src + video_list[video_index]);
-						video_player.play();
-					}
-				</script>
             </div>
             <div id="overlay_image" class="col-lg-12">
                <img src="assets/images/logo tag.png" alt="Source Image Not Found" style="height: 200px; width: 1050px">
@@ -86,62 +39,9 @@
 	  <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
 		<div class="row">
 			<div class="col-lg-12" style="padding-left: 0; padding-right: 0;">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner"  style="height: 400px">
-					   <?php
-						  require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/database.php");
-						  
-						  $conn = getDB('cpe-studentportal');
-						  
-						  $stmt = $conn->prepare("SELECT posts.*, administrators.name as poster 
-						  from `posts` 
-						  LEFT JOIN administrators
-						  ON administrators.id = posts.posterid
-						  WHERE `status` = 'Approved' AND `showbulletin` = 1 ORDER BY datetime DESC");
-						  $stmt->execute();
-						  $init = 0;
-						  foreach(($stmt->fetchAll()) as $row) { 
-							$posttitle[$init] = $row['posttitle'];
-							$post[$init] = $row['post'];
-							$file[$init] = $row['file'];
-							$filetype[$init] = $row['filetype'];
-							$poster[$init] = $row['poster'];
-							$datetime[$init] = $row['datetime'];
-							//increment
-							$init++;
-						  }
-						  $conn = null;
-						  for ($x=0; $x<$init; $x++) {
-							//echo $init;
-							//echo $posttitle[$x] . '<br/>';
-							if($x != 0) {
-							echo '<div class="item" style="height: 400px">';
-							} else {
-							echo '<div class="item active" style="height: 400px">';	
-							}
-							echo '<img src="/uploads/' . $file[$x] . '" alt="Error! File not found!" style="height: 400px; margin: auto;">
-												<div class="carousel-caption">
-													<h4><a href="#">' . $posttitle[$x] . '</a> <i>' . $poster[$x] . '</i></h4>
-													<p>' . $post[$x] . '</p>
-												</div>
-											</div>';
-						  }
-						  echo '</div>
-										<!-- End Carousel Inner -->
-										<ul class="list-group col-sm-4" style="padding: 0;">';
-						  
-						  for ($y=0; $y<$init; $y++) {
-							if($y != 0) {
-								echo '<li data-target="#myCarousel" data-slide-to="' . $y . '" class="list-group-item">';
-							} else {
-								echo '<li data-target="#myCarousel" data-slide-to="' . $y . '" class="list-group-item active">';
-							}
-								echo '<h4 style="color:black">' . $posttitle[$y] . '</h4></li>';
-						  }
-						  ?>
-						</ul>
-					</div>
+				<div id="myCarousel" class="carousel slide row" data-ride="carousel">
+					<!--Announcements-->
+					<div id="announcements" class="carousel-inner"  style="height: 400px"></div>
 				</div>
 			</div>
 		</div>
@@ -184,42 +84,8 @@
 					<div id="myCarousel3" class="carousel slide vertical text-centered " style="text-align: center; width: 100%; height: 330px;">
 						 <!--<h3 class="text-centered">ICpEP.se Officers</h3>-->
 						 <hr/>
-						 <div class="carousel-inner">
-							<?php
-							   $conn = getDB('cpe-studentportal');
-							   
-							   $stmt = $conn->prepare("SELECT officers.*, students.surname, students.firstname, students.middlename, students.ContactNo from `officers` 
-							   LEFT JOIN students
-							   ON officers.studnum = students.studnum
-							   ORDER BY id ASC");
-							   $stmt->execute();
-							   $counter = 0;
-							   foreach(($stmt->fetchAll()) as $row) { 
-								$studnum[$counter] = $row['studnum'];
-								$surname[$counter] = $row['surname'];
-								$firstname[$counter] = $row['firstname'];
-								$middlename[$counter] = $row['middlename'];
-								$contactnum[$counter] = $row['ContactNo'];
-								$photolink[$counter] = $row['photolink'];
-								$position[$counter] = $row['office'];
-								//increment
-								$counter++;
-							   }
-							   $conn = null;
-							   for ($v=0; $v<$counter; $v++) {
-								if($v==0) {
-									echo '<div class="item active text-center">';
-								} else {
-									echo '<div class="item text-center">';
-								}	
-								echo '<img class="center-block" style="width: 200px; height: 200px;" src="/uploads/officers/' . $photolink[$v] . '">
-													 <!--<h3 style="font-size: 20px; margin-top: 25px;">ICPEP ORGANIZATION</h3>-->
-													 <h3 style="font-size: 17px; margin-bottom: 2px">' . $surname[$v] . ', ' . $firstname[$v] . ' ' . $middlename[$v] .'</h3>
-													 <h4 style="font-size: 15px;">' . $position[$v] .'</h4>
-													 <h5 style="font-size: 15px;">' . $contactnum[$v] . '</h5>
-								</div>';
-							   }
-							   ?>
+						 <div id="officers" class="carousel-inner">
+							<!--Officers-->
 						 </div>
 					</div>
 				</div>
@@ -227,35 +93,8 @@
 			<div class="col-md-4">
 				<div class="row">
 					<div id="myCarousel2" class="carousel slide" data-ride="#myCarousel2" style="width: 100%;">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                           <?php
-                              $dir_path = $_SERVER["DOCUMENT_ROOT"]  . "/uploads/gallery/files/";
-                              //$extensions_array = array ('jpg','png','jpeg');
-                              $bool = 0;
-                              if (is_dir($dir_path))
-                              {
-                              	$files = scandir($dir_path);
-                              
-                              	for($i = 0; $i < count ($files); $i++)
-                              	{
-                              		if($files[$i] !='.' && $files[$i] != '..')
-                              		{
-                              			$file = pathinfo($files[$i]);
-                              $ext = pathinfo($files[$i], PATHINFO_EXTENSION);
-                              //echo '<p style="color: white;">' . $files[$i] . '</p>';
-                              if(($files[$i] != '.gitignore')&&($files[$i] != '.htaccess')&&($files[$i] != 'thumbnail')) {
-                              if($bool == 0) {
-                              echo "<div class=\"item active\"><img src=\"/uploads/gallery/files/$files[$i]\" style='width:320px;height:300px;'></div>";	
-                              $bool = 1;
-                              } else {
-                              echo "<div class=\"item\"><img src=\"/uploads/gallery/files/$files[$i]\" style='width:320px;height:300px;'></div>";	
-                              }
-                              }
-                              		}
-                              	} 
-                              }
-                              ?>
+                        <!-- Gallery -->
+                        <div id="gallery" class="carousel-inner">
                         </div>
                     </div>
 				</div>
@@ -327,29 +166,222 @@
       <script src="/assets/js/list.min.js"></script>
       <link href="/assets/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" />
       <script src="/assets/fullcalendar/js/fullcalendar.min.js"></script>
+	  
+	  
+	  <script>
+		var dir_src = "/uploads/videos/files/";
+		//"(1) 9GAG- Go Fun The World_3.mp4","(1) Angry doggo - 9GAG.mp4"
+		var video_index = 0;
+		var video_player = null;
+		var video_list = [];
+		
+		window.setInterval(function(){
+			//Update Video List
+			//clear list
+			video_list = [];
+			$.ajax({
+				type: "POST",
+				url: "/php/getVideos.php",
+				cache: false,
+				success: function(result){
+					$video_list = $.parseJSON(result);
+					
+					$.each($video_list, function() {
+					  video_list.push(this);
+					});
+					
+					//console.log(video_list);
+					
+					/*video_player = document.getElementById("idle_video");
+					video_player.setAttribute("src", dir_src + video_list[video_index]);
+					video_player.play();*/
+				}
+			});
+		}, 10000);
+		
+		
+		function onload(){
+			//console.log("body loaded");
+			$.ajax({
+				type: "POST",
+				url: "/php/getVideos.php",
+				cache: false,
+				success: function(result){
+					$video_list = $.parseJSON(result);
+					//console.log($video_list);
+					
+					$.each($video_list, function() {
+					  video_list.push(this);
+					  //alert(this);
+					});
+					
+					//console.log(video_list);
+					
+					video_player = document.getElementById("idle_video");
+					//console.log(dir_src + video_list[video_index]);
+					video_player.setAttribute("src", dir_src + video_list[video_index]);
+					video_player.play();
+					//alert("Successfully removed event from database!");
+					//location.reload();
+				}
+			});
+		}
+
+		function onVideoEnded(){
+			//console.log("video ended");
+			if(video_index < video_list.length - 1){
+				video_index++;
+			}
+			else{
+				video_index = 0;
+			}
+			//console.log(dir_src + video_list[video_index]);
+			video_player.setAttribute("src", dir_src + video_list[video_index]);
+			video_player.play();
+		}
+	</script>
+	
+	
+	  <script>
+		$( document ).ready(function() {
+			//gallery!
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/gallery.php",
+				//data: {postData: $postinfo},
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#gallery').html(result);
+				}
+			});
+			//announcements!
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/announcements.php",
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#announcements').html(result);
+				}
+			});
+			//officers!
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/officers.php",
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#officers').html(result);
+				}
+			});
+		});
+		
+		window.setInterval(function(){
+			// gallery
+			console.log('Updating Gallery and Announcements...');
+			
+			$("#myCarousel2").carousel("pause").removeData();
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/gallery.php",
+				//data: {postData: $postinfo},
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#gallery').html(result);
+					$('#myCarousel2').carousel({
+					  interval: 800
+					});
+				}
+			});
+			// announcements
+			$("#myCarousel").carousel("pause").removeData();
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/announcements.php",
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#announcements').html(result);
+					$("#myCarousel").carousel({
+					  interval: 1200,
+					  cycle: true
+					});
+				}
+			});
+			// officers
+			$("#myCarousel3").carousel("pause").removeData();
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/officers.php",
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#officers').html(result);
+					$("#myCarousel3").carousel({
+					  interval: 700,
+					  cycle: true
+					});
+				}
+			});
+		}, 10000);
+		//update every 5 minutes
+	  </script>
+	  
       <script>
-         $('#calendar').fullCalendar({
-         	defaultView: 'listWeek',
-         	header: false,
-         	height: 360,
-         	themeSystem: 'bootstrap3',
-         	navLinks: true, // can click day/week names to navigate views
-         	eventLimit: true, // allow "more" link when too many events
-         
-         	events: "/functions/events.php",
-         
-         	eventRender: function (event, element) {
-         		element.attr('href', 'javascript:void(0);');
-         		element.click(function() {
-         			$("#beginTime").html(moment(event.start).format('MMM Do h:mm A'));
-         			$("#closeTime").html(moment(event.end).format('MMM Do h:mm A'));
-         			$("#eventDesc").html(event.description);
-         			$("#eventTitle").html(event.title);
-         			$("#eventLocat").html(event.location);
-         			$('#modal1').modal('show');
-         		});
-         	}
-         });
+		$( document ).ready(function() {
+			$('#calendar').fullCalendar({
+				defaultView: 'listWeek',
+				header: false,
+				height: 360,
+				themeSystem: 'bootstrap3',
+				navLinks: true, // can click day/week names to navigate views
+				eventLimit: true, // allow "more" link when too many events
+			 
+				events: "/functions/events.php",
+			 
+				eventRender: function (event, element) {
+					element.attr('href', 'javascript:void(0);');
+					element.click(function() {
+						$("#beginTime").html(moment(event.start).format('MMM Do h:mm A'));
+						$("#closeTime").html(moment(event.end).format('MMM Do h:mm A'));
+						$("#eventDesc").html(event.description);
+						$("#eventTitle").html(event.title);
+						$("#eventLocat").html(event.location);
+						$('#modal1').modal('show');
+					});
+				}
+			 });
+		});
+		
+		window.setInterval(function(){
+			 //reload calendar
+			 console.log('Reloading Calendar');
+			 $('#calendar').fullCalendar('destroy');
+			 $('#calendar').fullCalendar({
+				defaultView: 'listWeek',
+				header: false,
+				height: 360,
+				themeSystem: 'bootstrap3',
+				navLinks: true, // can click day/week names to navigate views
+				eventLimit: true, // allow "more" link when too many events
+			 
+				events: "/functions/events.php",
+			 
+				eventRender: function (event, element) {
+					element.attr('href', 'javascript:void(0);');
+					element.click(function() {
+						$("#beginTime").html(moment(event.start).format('MMM Do h:mm A'));
+						$("#closeTime").html(moment(event.end).format('MMM Do h:mm A'));
+						$("#eventDesc").html(event.description);
+						$("#eventTitle").html(event.title);
+						$("#eventLocat").html(event.location);
+						$('#modal1').modal('show');
+					});
+				}
+			 });
+		}, 10000);
       </script>
    </body>
 </html>

@@ -24,12 +24,17 @@
 }
 
 @media (min-width: 992px) { 
-	#myCarousel {padding-right:33.3333%;}
+	#myCarousel {padding-right:0%;}
+	/*#myCarousel {padding-right:33.3333%;}*/
 	#myCarousel .carousel-controls {display:none;} 	
 }
 @media (max-width: 991px) { 
 	.carousel-caption p,
-	#myCarousel .list-group {display:none;} 
+	#myCarousel .list-group {display:none; } 
+}
+
+#myCarousel .list-group {
+	width: 100%;
 }
 
 #rcorners4 {
