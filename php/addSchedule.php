@@ -5,10 +5,11 @@
 		
 	foreach ($jsonsubjinfo as $key => $value) {	
 			$conn = getDB('cpe-studentportal');
-			$stmt = $conn->prepare("INSERT INTO schedules (section, subjectid, subjectsection, starttime, endtime, mon, tue, wed, thu, fri, sat, building, roomnumber, instructor) 
-			VALUES (:section, :subjectid, :subjectsection, :starttime, :endtime, :mon, :tue, :wed, :thu, :fri, :sat, :building, :roomnumber, :instructor)");
+			$stmt = $conn->prepare("INSERT INTO schedules (section, subjectid, coursetype, subjectsection, starttime, endtime, mon, tue, wed, thu, fri, sat, building, roomnumber, instructor) 
+			VALUES (:section, :subjectid, :coursetype, :subjectsection, :starttime, :endtime, :mon, :tue, :wed, :thu, :fri, :sat, :building, :roomnumber, :instructor)");
 			$stmt -> bindParam(':section', $value['Section']);
 			$stmt -> bindParam(':subjectid', $value['SubjectID']);
+			$stmt -> bindParam(':coursetype', $value['Type']);
 			$stmt -> bindParam(':subjectsection', $value['Subject Section']);
 			$stmt -> bindParam(':starttime', $value['Start Time']);
 			$stmt -> bindParam(':endtime', $value['End Time']);
@@ -25,4 +26,5 @@
 			$conn = null;	
 	}
 	
+	echo 'Successfully added subject schedule!';
 ?>

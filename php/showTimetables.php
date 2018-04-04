@@ -6,18 +6,36 @@
 		$conn = getDB('cpe-studentportal');
 		//loop 5 times
 		for ($x = 1; $x <= 5; $x++) {
+			
+			$stmt = $conn->prepare("SELECT DISTINCT section FROM `schedules`
+			LEFT JOIN subjects
+			ON subjects.subjectid = schedules.subjectid
+			WHERE subjects.defaultyear = :year");
+			$stmt -> bindParam(':year', $x);
+			$stmt->execute();
+			
+			$sections = array();
+			foreach($stmt->fetchAll() as $row) { 
+				array_push($sections, $row['section']);
+			}
+			
+			foreach($sections as $key=>$section) {
+				//echo $section;
+			}
+			
 			echo '<div class="';
 			if($x == 1) {
 				echo 'active ';
 			}
-			echo 'tab-pane" id="' . $x . '"><div class="table-responsive">
+			echo 'tab-pane" id="' . $x . '"><input class="search form-control" placeholder="Filter by Section/Course Code"/><br/><div class="table-responsive">
 			<table id="table' . $x . '" class="table">
 			<thead>
 			<tr>
 			<th style="font-size: 0px">ID</th>
 			<th>Section</th>
 			<th>Course Code</th>
-			<th>Units</th>
+			<th>Type</th>
+			<!--<th>Units</th>-->
 			<th>Subject Section</th>
 			<th>Start Time</th>
 			<th>End Time</th>
@@ -42,7 +60,8 @@
 				<td style="font-size: 0px" class="id">' . $row['id'] . '</td>
 				<td class="section">' . $row['section'] . '</td>
 				<td  class="code">' . $row['coursecode'] . '</td>
-				<td  class="units">' . $row['units'] . '</td>
+				<td  class="type">' . (($row['coursetype']=="0")?'Lec':'Lab') . '</td>
+				<!--<td  class="units">' . $row['units'] . '</td>-->
 				<td >' . $row['subjectsection'] . '</td>
 				<td >' . $row['starttime'] . '</td>
 				<td >' . $row['endtime'] . '</td><td>';
@@ -61,6 +80,18 @@
 			echo '</tbody></table></div></div>';
 			
 		} 
+		
+		echo "<script>
+		var options = {
+		  valueNames: [ 'section', 'code' ]
+		};
+		var listfifth = new List('5', options);
+		var listfourth = new List('4', options);
+		var listthird = new List('3', options);
+		var listsecond = new List('2', options);
+		var listfirst = new List('1', options);
+		</script>";
+		
 		
 		$conn = null;
 	}
@@ -127,6 +158,7 @@
 			echo '</tbody></table></div></div></div></div></div></div>';
 			
 		} 
+		
 		
 		$conn = null;
 	}

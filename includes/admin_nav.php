@@ -34,7 +34,7 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-gear"></i> Bulletin Settings <i class="fa fa-fw fa-caret-down"></i></a>
 						<?php
-						if((basename($_SERVER['SCRIPT_NAME'])=='index.php')||(basename($_SERVER['SCRIPT_NAME'])=='gallery.php')||(basename($_SERVER['SCRIPT_NAME'])=='videos.php')||(basename($_SERVER['SCRIPT_NAME'])=='officers.php')) {
+						if((basename($_SERVER['SCRIPT_NAME'])=='index.php')||(basename($_SERVER['SCRIPT_NAME'])=='gallery.php')||(basename($_SERVER['SCRIPT_NAME'])=='power.php')||(basename($_SERVER['SCRIPT_NAME'])=='videos.php')||(basename($_SERVER['SCRIPT_NAME'])=='officers.php')) {
 							echo '<ul id="demo6" class="collapse in">';
 						} else {
 							echo '<ul id="demo6" class="collapse">';

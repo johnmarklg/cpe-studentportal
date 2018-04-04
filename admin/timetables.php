@@ -21,7 +21,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/functions/includes.php");
 	get_header();
 	calendar_extra();
-?>		
+?>	
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/jquery-scheduler/jquery.schedule.css">
+    
 	<style>
 			#saveTimetables {
 			  position: fixed;
@@ -84,7 +87,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
-						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new class schedule to the list of open subjects.</a></div>
+						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel" style="color: white;"><i class="fa fa-plus-circle"></i> Click here to insert a new class schedule to the list of open subjects.</a></div>
 						<div id="collapsePanel" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="input-group">
@@ -99,10 +102,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							$stmt->execute();
 									
 							foreach(($stmt->fetchAll()) as $row) { 
-								echo '<option value="' . $row['subjectid']. '">' . $row['defaultyear'] . '-' . $row['defaultsemester'] . ' ' . $row['coursecode'] . ' - ' . $row['coursetitle'] . '</option>';
+								echo '<option value="' . $row['subjectid']. '">' . $row['coursecode'] . ' - ' . $row['coursetitle'] . ' (' . $row['defaultyear'] . '-' . $row['defaultsemester'] . ') </option>';
 							}
 							$conn = null;	
 							?>
+								</select>
+							</div>
+							<br/>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Course Type</span>
+								<select class="form-control" id="type">
+									<option value="0">Lecture</option>
+									<option value="1">Laboratory</option>
 								</select>
 							</div>
 							<br/>
@@ -186,8 +197,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									</li>
 									<li><a href="#5" data-toggle="tab">Fifth Year</a>
 									</li>
-									<!--<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
-									</li>-->
 								</ul>
 							</div>
 							<div class="tab-content panel-body">
@@ -199,7 +208,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
-
+				
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
@@ -208,12 +217,74 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
-						
-
+				
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading" style="text-align: center;" id="myTabs2">	
+							<div class="panel-heading">
+								<?php 
+									$conn = getDB('cpe-studentportal');	
+									
+									echo '<select id="tableselect" class="form-control"><option value="0">Select Year and Section</option>';
+									$counter = 1;
+									for ($x = 1; $x <= 5; $x++) {
+										$stmt = $conn->prepare("SELECT DISTINCT section FROM `schedules`
+										LEFT JOIN subjects
+										ON subjects.subjectid = schedules.subjectid
+										WHERE subjects.defaultyear = :year");
+										$stmt -> bindParam(':year', $x);
+										$stmt->execute();
+										
+										$sections = array();
+										foreach($stmt->fetchAll() as $row) { 
+											array_push($sections, $row['section']);
+										}
+										
+										foreach($sections as $key=>$section) {
+											echo '<option value="' . $counter . '">' . $x . $section. '</option>';		
+											$counter+=1;
+										}
+									}
+									echo '</select>';
+								?>
+							</div>
+							<div class="panel-body">
+								<div id="timetable"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<script>
+					$('#tableselect').on('change', function() {
+						//$('#timetable').empty();
+						var $tableid = this.value;
+						var $tablename = this.options[this.value].text;
+						var $year = $tablename.charAt(0);
+						var $section = $tablename.charAt(1);
+						if($tableid != 0) {
+							//alert($year);
+							//alert($section);
+							$.ajax({
+								type: "POST",
+								url: "/php/getTable.php",
+								data: {year: $year, section: $section},
+								cache: false,
+								success: function(result){
+									//alert(result);
+									$("#timetable").jqs({mode: "read",hour: 12, days: ["MON","TUE","WED","THU","FRI","SAT","SUN"], periodTextColor: "#fff",periodDuration: 30});									
+									$("#timetable").jqs('reset');									
+									eval("$('#timetable').jqs('import', " + result + ");");
+									//console.log(result);
+									//location.reload();  	
+								}
+							});
+						}
+					});
+				</script>
+					
+							<!--<div class="panel-heading" style="text-align: center;" id="myTabs2">	
 								<ul class="nav nav-pills nav-justified">
 									<li class="active">
 									<a  href="#1b" data-toggle="tab">First Year</a>
@@ -227,13 +298,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									<li><a href="#5b" data-toggle="tab">Fifth Year</a>
 									</li>
 								</ul>
-							</div>						
-							<div class="panel-body tab-content ">
-								<div class="tab-pane active" id="1b">
-									<div style="padding: 0;" class="panel-body">
-										<div id="timetable1"></div>
-									</div>
-								</div>
+							</div>	-->			
+							<!--<div class="panel-body tab-content ">
+								<div class="tab-pane active" id="1b">-->
+								<!--</div>
 								<div class="tab-pane" id="2b">
 									<div style="padding: 0;" class="panel-body">
 										<div id="timetable2"></div>
@@ -253,11 +321,11 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									<div style="padding: 0;" class="panel-body">
 										<div id="timetable5"></div>
 									</div>
-								</div>
-							</div>
+								</div>-->
+							<!--</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
             </div>
             <!-- /.container-fluid -->
 
@@ -272,38 +340,21 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		  </div>
 		</footer>
 		<!-- /footer -->
-		
     </div>
     <!-- /#wrapper -->
 	
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/functions/js/timetables.js"></script>
-	<!--First Year-->
-	<?php 
-		$conn = getDB('cpe-studentportal');	
-		for ($x = 1; $x <= 5; $x++) {
-			echo '<script>
-				$(document).ready(function () {
-					$("#timetable' . $x . '").jqs({
-						mode: "read",
-						hour: 12,
-						days: [
-							  "MON",
-							  "TUE",
-							  "WED",
-							  "THU",
-							  "FRI",
-							  "SAT",
-							  "SUN"
-						  ],
-						data: [{
-								day: 0,
-								periods: [';
-
+	<?php	
+			/*echo '
+			<script>
+			$(document).ready(function () {
+			var $timetable3 = $("#timetable' . $x . '").jqs({mode: "read",hour: 12, days: ["MON","TUE","WED","THU","FRI","SAT","SUN"], periodTextColor: "#fff",periodDuration: 30,
+			data: [{day: 0, periods: [';
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 				LEFT JOIN `subjects`
 				ON schedules.subjectid = subjects.subjectid
-				WHERE subjects.defaultyear=:year AND schedules.mon = 1");
+				WHERE subjects.defaultyear=:year AND schedules.mon = 1 ORDER BY TIME(schedules.starttime) ASC");
 			$stmt -> bindParam(':year', $x);
 			$stmt->execute();
 			$arrayres = $stmt->fetchAll();
@@ -311,21 +362,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			foreach(($arrayres) as $row) { 
 				//last row
 				if($row == $lastrow) {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"}';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"}';
 				} else {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"},';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"},';
 				}
 			}
-			//tuesday
-			echo ']},{
-				day: 1,
-				periods: [';
+			echo ']},
+			{day: 1, periods: [';
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 				LEFT JOIN `subjects`
 				ON schedules.subjectid = subjects.subjectid
@@ -337,21 +380,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			foreach(($arrayres) as $row) { 
 				//last row
 				if($row == $lastrow) {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"}';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"}';
 				} else {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"},';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"},';
 				}
 			}
-			//wednesday
-			echo ']},{
-				day: 2,
-				periods: [';
+			echo ']},
+			{day: 2, periods: [';
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 				LEFT JOIN `subjects`
 				ON schedules.subjectid = subjects.subjectid
@@ -363,21 +398,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			foreach(($arrayres) as $row) { 
 				//last row
 				if($row == $lastrow) {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"}';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"}';
 				} else {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"},';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"},';
 				}
 			}
-			//thursday
-			echo ']},{
-				day: 3,
-				periods: [';
+			echo ']},
+			{day: 3, periods: [';
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 				LEFT JOIN `subjects`
 				ON schedules.subjectid = subjects.subjectid
@@ -389,21 +416,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			foreach(($arrayres) as $row) { 
 				//last row
 				if($row == $lastrow) {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"}';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"}';
 				} else {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"},';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"},';
 				}
 			}
-			//friday
-			echo ']},{
-				day: 4,
-				periods: [';
+			echo ']},
+			{day: 4, periods: [';
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 				LEFT JOIN `subjects`
 				ON schedules.subjectid = subjects.subjectid
@@ -415,21 +434,14 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			foreach(($arrayres) as $row) { 
 				//last row
 				if($row == $lastrow) {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"}';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"}';
 				} else {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"},';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"},';
 				}
 			}
 			//saturday
-			echo ']},{
-				day: 5,
-				periods: [';
+			echo ']},
+			{day: 5, periods: [';
 			$stmt = $conn->prepare("SELECT schedules.*, subjects.units, subjects.coursecode, subjects.defaultyear, subjects.defaultsemester FROM`schedules` 
 				LEFT JOIN `subjects`
 				ON schedules.subjectid = subjects.subjectid
@@ -441,22 +453,15 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			foreach(($arrayres) as $row) { 
 				//last row
 				if($row == $lastrow) {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"}';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"}';
 				} else {
-				echo '{start: "' . $row['starttime'] . '",
-						end: "' . $row['endtime'] . '",
-						title: "' . $row['coursecode'] . '",
-						textColor: "#fff"},';
+				echo '{start: "' . $row['starttime'] . '", end: "' . $row['endtime'] . '", title: "' . $row['coursecode'] . '"},';
 				}
 			}
-			echo ']}]
-				});
+			echo ']}]});
 			});
 			</script>';
-		}
+		}*/
 		$conn = null;
 	?>
 </body>

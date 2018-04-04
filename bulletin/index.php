@@ -279,7 +279,7 @@
 		
 		window.setInterval(function(){
 			// gallery
-			console.log('Updating Gallery and Announcements...');
+			//console.log('Updating Gallery and Announcements...');
 			
 			$("#myCarousel2").carousel("pause").removeData();
 			$.ajax({
@@ -357,7 +357,7 @@
 		
 		window.setInterval(function(){
 			 //reload calendar
-			 console.log('Reloading Calendar');
+			 //console.log('Reloading Calendar');
 			 $('#calendar').fullCalendar('destroy');
 			 $('#calendar').fullCalendar({
 				defaultView: 'listWeek',

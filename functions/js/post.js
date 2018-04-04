@@ -14,7 +14,6 @@
 	var $commenterid = $(".post").attr('name');   
 	var $postid = $(".post").attr('id');   
 	var $commentinfo = '[{"parentID":"' + $parentid + '","commentText":"' + $commenttext  + '","commenterID":"' + $commenterid  + '","postID":"' + $postid+ '"}]';
-	//alert($commentinfo);
 	if($commenttext === '' || $commenttext === ' ' ) {
 		alert('Error. Please input comment first.');
 	} else {

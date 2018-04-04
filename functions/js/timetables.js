@@ -28,6 +28,7 @@
 		$("#buttonAdd").click(function() {
 			var $section = $("#section").val();
 			var $subjectid = $("#code").val();
+			var $coursetype = $("#type").val();
 			var $subjectsection = $("#subjectsection").val();
 			var $starttime = $("#starttime").val();
 			var $endtime = $("#endtime").val();
@@ -49,11 +50,11 @@
 			'","Start Time":"' + $starttime + '","End Time":"' + $endtime + '","Building":"' + $building + '","Room Number":"' + $roomnumber +
 			'","Monday":"' + $mon + '","Tuesday":"' + $tue + '","Wednesday":"' + $wed
 			+ '","Thursday":"' + $thu + '","Friday":"' + $fri + '","Saturday":"' + $sat +
-			'","Instructor":"' + $instructor + '"}]';
+			'","Instructor":"' + $instructor + '","Type":"' + $coursetype + '"}]';
 			
 			//alert($subjinfo);
 			
-			if($section==""||$subjectid==""||$subjectsection==""||$starttime==""||$endtime==""||($mon==""&&$tue==""&&$wed==""&&$thu==""&&$fri==""&&$sat=="")||$building==""||$roomnumber==""||$instructor=="") {
+			if($coursetype==""||$section==""||$subjectid==""||$subjectsection==""||$starttime==""||$endtime==""||($mon==""&&$tue==""&&$wed==""&&$thu==""&&$fri==""&&$sat=="")||$building==""||$roomnumber==""||$instructor=="") {
 				alert('Error! Please fill all the necessary fields.');
 			} else {
 				//alert('okay');
@@ -63,7 +64,8 @@
 					data: {subjinfo: $subjinfo},
 					cache: false,
 					success: function(result){
-						alert("Successfully added a new schedule!");
+						alert(result);
+						//alert("Successfully added a new schedule!");
 						location.reload();  	
 					}
 				});
@@ -84,7 +86,7 @@
 					cache: false,
 					success: function(result){
 						alert("Successfully removed schedule entry!");
-						//location.reload(); 			
+						location.reload(); 			
 					}
 				});
 			$(this).parents('tr').detach();			
