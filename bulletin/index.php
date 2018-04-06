@@ -109,7 +109,7 @@
 				</div>
 			</div>
 		</div>
-		<div style="position: fixed; bottom: 0;" class="row">
+		<div style="position: fixed; bottom: 0; width: 100%;" class="row">
             <div class="col-md-2" style="padding-left:0;padding-right:0">
                <span><div id="first" class="timetext" style="font-size: 60px;"></div></span>
             </div>
@@ -128,31 +128,36 @@
                      WHERE `status` = 'Approved' AND `showbulletin` = 3 ORDER BY datetime DESC");
                      $stmt->execute();
                      $tick = 0;
-                     foreach(($stmt->fetchAll()) as $row) { 
-                     	$posttitle[$tick] = $row['posttitle'];
-                     	$post[$tick] = $row['post'];
-                     	$file[$tick] = $row['file'];
-                     	$filetype[$tick] = $row['filetype'];
-                     	$poster[$tick] = $row['poster'];
-                     	$datetime[$tick] = $row['datetime'];
-                     	//increment
-                     	$tick++;
-                     }
-                     $conn = null;
-                     for ($x=0; $x<$tick; $x++) {
-                     	echo '<small>[' . $datetime[$x] . ']</small> <b>' . $posttitle[$x] . '</b>: ' . $post[$x];
-                     	if($file[$x] != '') {
-                     		echo ' (Attachment may be viewed/downloaded through the Student Portal)';
-                     	}
-                     	if($x != ($tick-1)) {
-                     	echo ' || ';
-                     	}
-                     }
+					 $tickers = $stmt->fetchAll();
+					 if($tickers) {
+						 foreach($tickers as $row) { 
+							$posttitle[$tick] = $row['posttitle'];
+							$post[$tick] = $row['post'];
+							$file[$tick] = $row['file'];
+							$filetype[$tick] = $row['filetype'];
+							$poster[$tick] = $row['poster'];
+							$datetime[$tick] = $row['datetime'];
+							//increment
+							$tick++;
+						 }
+						 $conn = null;
+						 for ($x=0; $x<$tick; $x++) {
+							echo '<small>[' . $datetime[$x] . ']</small> <b>' . $posttitle[$x] . '</b>: ' . $post[$x];
+							if($file[$x] != '') {
+								echo ' (Attachment may be viewed/downloaded through the Student Portal)';
+							}
+							if($x != ($tick-1)) {
+							echo ' || ';
+							}
+						 }
+					 } else {
+						echo '    ';
+					 }
                      ?>
                   </span>
                </marquee>
             </div>
-         </div>
+        </div>
 	</div>
       
 	  
