@@ -30,7 +30,7 @@
                </video>
             </div>
             <div id="overlay_image" class="col-lg-12">
-               <img src="assets/images/logo tag.png" alt="Source Image Not Found" style="height: 200px; width: 1050px">
+               <img src="assets/images/logo tag.png" alt="Source Image Not Found" style="height: 200px; width: 100%">
             </div>
          </div>
          <!-- / HEADER --> 

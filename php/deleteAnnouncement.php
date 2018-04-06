@@ -32,5 +32,5 @@
 		
 		$conn = null;	
 	}
-	
+	echo 'Post successfully removed!'
 ?>
