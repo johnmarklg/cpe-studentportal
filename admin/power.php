@@ -57,7 +57,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 				</div>
-				
+					
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-primary">
@@ -123,34 +123,37 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 			$('.powerbutton').click(function() {
 				var $button = this.id; 
 				var $command = '';
+				var $response = '';
 				switch($button) {
 					case 'portalShutdown':
-						$command = 'sudo shutdown -h now';
+						$command = "sudo shutdown -h now";
+						$response = "Shutting down Student Portal. Please wait 10 seconds before plugging out."
 						break;
 					case 'portalRestart':
-						$command = 'sudo shutdown -r now';
+						$command = "sudo shutdown -r now";
+						$response = "Restarting Student Portal..."
 						break;
 					case 'bulletinShutdown':
-						$command = "ssh -v pi@192.168.137.2\n" + 'sudo shutdown -h now';
+						$command = "ssh pi@192.168.7.2 sudo shutdown -h now";
+						$response = "Shutting down the Digital Bulletin. Please wait 10 seconds before plugging out."
 						break;
 					case 'bulletinRestart':
-						$command = "ssh -v pi@192.168.137.2\n" + 'sudo shutdown -r now';
+						$command = "ssh pi@192.168.7.2 sudo shutdown -r now";
+						$response = "Restarting Digital Bulletin..."
 						break;
 					default:
 						alert('Error. Incorrect ID');
 				}
-				alert($command);
-				/*$.ajax({
+				//alert($command);
+				$.ajax({
 					type: "POST",
-						url: "/php/updateAbout.php",
-						data: {title: $aboutTitle, text: $aboutText},
+						url: "/php/piControl.php",
+						data: {command: $command},
 						cache: false,
 						success: function(result){
-							//alert(result);
-							alert('Successfully updated the About Section!');
-							location.reload();
+							alert($response);
 						}
-				});*/
+				});
 			});
 		</script>
     </div>

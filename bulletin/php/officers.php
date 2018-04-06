@@ -30,10 +30,8 @@
 		$officers .= '<div class="item text-center">';
 	}	
 	$officers .= '<img class="center-block" style="width: 200px; height: 200px;" src="/uploads/officers/' . $photolink[$v] . '">
-						 <!--<h3 style="font-size: 20px; margin-top: 25px;">ICPEP ORGANIZATION</h3>-->
-						 <h3 style="font-size: 17px; margin-bottom: 2px">' . $surname[$v] . ', ' . $firstname[$v] . ' ' . $middlename[$v] .'</h3>
-						 <h4 style="font-size: 15px;">' . $position[$v] .'</h4>
-						 <h5 style="font-size: 15px;">' . $contactnum[$v] . '</h5>
+						 <h3 style="font-size: 2vw; margin-bottom: 2px">' . $surname[$v] . ', ' . $firstname[$v] . ' ' . $middlename[$v] .'</h3>
+						 <h4 style="font-size: 1.7vw;">' . $position[$v] .'</h4>
 	</div>';
    }
    

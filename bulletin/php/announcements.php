@@ -32,7 +32,7 @@
 		}
 		$announcements .= '<img src="/uploads/' . $file[$x] . '" alt="Error! File not found!" style="height: 400px; margin: auto;">
 			<div class="carousel-caption">
-				<h4><a href="">' . $posttitle[$x] . '</a> <i>' . $poster[$x] . '</i></h4><p>' . $post[$x] . '</p>
+				<h4><a style="font-size: 5vw;" href="">' . $posttitle[$x] . '</a> <i style="font-size: 2.5vw;">' . $poster[$x] . '</i></h4><p style="font-size: 2vw;">' . $post[$x] . '</p>
 			</div>
 		</div>';
 	}

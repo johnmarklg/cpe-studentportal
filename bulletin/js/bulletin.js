@@ -8,7 +8,7 @@ $(document).ready(function(){
     
 	var clickEvent = false;
 	$('#myCarousel').carousel({
-		interval:   4000	
+		interval:   20000	
 	}).on('click', '.list-group li', function() {
 			clickEvent = true;
 			$('.list-group li').removeClass('active');
@@ -33,17 +33,21 @@ $(document).ready(function(){
 })
 
 //announcements
-$('#myCarousel').carousel({
-  interval: 1000
+/*$('#myCarousel').carousel({
+  interval: 20000
 })
 //gallery
 $('#myCarousel2').carousel({
-  interval: 800
+  interval: 10000
 })
 //officers
 $('#myCarousel3').carousel({
-  interval: 700
+  interval: 15000
 })
+//faculty
+$('#myCarousel4').carousel({
+  interval: 15000
+})*/
 
 setInterval(function(){
   var date = new Date();

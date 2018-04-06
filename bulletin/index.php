@@ -48,15 +48,15 @@
 		<div class="row" style="padding-top: 10px;">
 			<div class="col-md-4">
 				<div class="row">
-					<div id="myCarousel4" class="carousel slide vertical text-centered " style="text-align: center; width: 100%; height: 280px;">
-						 <!--<h3 class="text-centered">ICpEP.se Officers</h3>-->
-						 <div id="faculty" class="carousel-inner">
-						 </div>
-					</div>
+					<div id="myCarousel2" class="carousel slide" data-ride="#myCarousel2" style="width: 100%;">
+                        <!-- Gallery -->
+                        <div id="gallery" class="carousel-inner">
+                        </div>
+                    </div>
 				</div>
 				<hr/>
 				<div class="row">
-					<img class="center-block" src="assets/images/howtoconnect.png"  style="width: 100%">
+					<div id="calendar" style="font-size: 1.7vw;"></div>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -77,17 +77,17 @@
 								  $conn = null;
 								  
 								echo '<img class="center-block" style="width: 100%;" src="assets/images/missionvision.png" style="height: 500px">
-								<br/> ' . $infotext[0] . '<br/>
-								<img class="center-block" style="width: 100%;" src="assets/images/corevalues.png" style="height: 500px">
+								<br/> ' . $infotext[0] . '<br/>';
+								/*<img class="center-block" style="width: 100%;" src="assets/images/corevalues.png" style="height: 500px">
 								<br/>  ' . $infotext[1];
-								/*'<img class="center-block" style="width: 100%;" src="assets/images/goalsobj.png" style="height: 500px">
+								/'<img class="center-block" style="width: 100%;" src="assets/images/goalsobj.png" style="height: 500px">
 								<br/>  ' . $infotext[2];*/
 							?>
 				</div>
+				<hr style="margin-top: 10px; margin-bottom: 10px;"/>
 				<div class="row centered">
 					<div id="myCarousel3" class="carousel slide vertical text-centered " style="text-align: center; width: 100%; height: 330px;">
-						 <!--<h3 class="text-centered">ICpEP.se Officers</h3>-->
-						 <hr/>
+						 <img class="center-block" src="assets/images/officers.png"><br/>
 						 <div id="officers" class="carousel-inner">
 							<!--Officers-->
 						 </div>
@@ -96,27 +96,28 @@
 			</div>
 			<div class="col-md-4">
 				<div class="row">
-					<div id="myCarousel2" class="carousel slide" data-ride="#myCarousel2" style="width: 100%;">
-                        <!-- Gallery -->
-                        <div id="gallery" class="carousel-inner">
-                        </div>
-                    </div>
+					<div id="myCarousel4" class="carousel slide vertical text-centered " style="text-align: center; width: 100%;">
+						 <img class="center-block" src="assets/images/faculty.png">
+						 <br/>
+						 <div id="faculty" class="carousel-inner">
+						 </div>
+					</div>
 				</div>
 				<hr/>
 				<div class="row">
-					<div id="calendar"></div>
+					<img class="center-block" src="assets/images/howtoconnect.png"  style="width: 100%;">
 				</div>
 			</div>
 		</div>
 		<div style="position: fixed; bottom: 0;" class="row">
             <div class="col-md-2" style="padding-left:0;padding-right:0">
-               <div id="first" class="timetext"></div>
+               <span><div id="first" class="timetext" style="font-size: 60px;"></div></span>
             </div>
             <div class="col-md-10" style="padding-left:0;padding-right:0">
                <style type="text/css">
                   .html-wpsites {height:60px;background-color:rgba(65,64,64,1.00);font-family:Arial;font-size:60px;color:#ffffff;}
                </style>
-               <marquee class="html-wpsites" direction="left" behavior="scroll" scrollamount="50" width="100%" bgcolor="rgba(255,255,255,1.00)"><span>
+               <marquee class="html-wpsites" direction="left" behavior="scroll" scrollamount="15" width="100%" bgcolor="rgba(255,255,255,1.00)"><span>
                   <?php
                      $conn = getDB('cpe-studentportal');
                      
@@ -255,6 +256,10 @@
 				success: function(result){
 					//console.log(result);
 					$('#gallery').html(result);
+					$("#myCarousel2").carousel({
+					  interval: 10000,
+					  cycle: true
+					});
 				}
 			});
 			//announcements!
@@ -265,6 +270,10 @@
 				success: function(result){
 					//console.log(result);
 					$('#announcements').html(result);
+					$("#myCarousel").carousel({
+					  interval: 20000,
+					  cycle: true
+					});
 				}
 			});
 			//officers!
@@ -275,18 +284,22 @@
 				success: function(result){
 					//console.log(result);
 					$('#officers').html(result);
+					$("#myCarousel3").carousel({
+					  interval: 12000,
+					  cycle: true
+					});
 				}
 			});
 			// faculty
 			$.ajax({
 				type: "POST",
-				url: "/bulletin/php/officers.php",
+				url: "/bulletin/php/faculty.php",
 				cache: false,
 				success: function(result){
 					//console.log(result);
 					$('#faculty').html(result);
 					$("#myCarousel4").carousel({
-					  interval: 1700,
+					  interval: 15000,
 					  cycle: true
 					});
 				}
@@ -295,8 +308,6 @@
 		
 		window.setInterval(function(){
 			// gallery
-			//console.log('Updating Gallery and Announcements...');
-			
 			$("#myCarousel2").carousel("pause").removeData();
 			$.ajax({
 				type: "POST",
@@ -307,7 +318,7 @@
 					//console.log(result);
 					$('#gallery').html(result);
 					$('#myCarousel2').carousel({
-					  interval: 800
+					  interval: 10000
 					});
 				}
 			});
@@ -321,7 +332,7 @@
 					//console.log(result);
 					$('#announcements').html(result);
 					$("#myCarousel").carousel({
-					  interval: 1200,
+					  interval: 20000,
 					  cycle: true
 					});
 				}
@@ -336,7 +347,7 @@
 					//console.log(result);
 					$('#officers').html(result);
 					$("#myCarousel3").carousel({
-					  interval: 700,
+					  interval: 12000,
 					  cycle: true
 					});
 				}
@@ -345,19 +356,19 @@
 			$("#myCarousel4").carousel("pause").removeData();
 			$.ajax({
 				type: "POST",
-				url: "/bulletin/php/officers.php",
+				url: "/bulletin/php/faculty.php",
 				cache: false,
 				success: function(result){
 					//console.log(result);
 					$('#faculty').html(result);
 					$("#myCarousel4").carousel({
-					  interval: 1700,
+					  interval: 15000,
 					  cycle: true
 					});
 				}
 			});
-		}, 10000);
-		//update every 5 minutes
+		}, 900000);
+		//update every 15 minutes
 	  </script>
 	  
       <script>
@@ -365,7 +376,7 @@
 			$('#calendar').fullCalendar({
 				defaultView: 'listWeek',
 				header: false,
-				height: 450,
+				height: 470,
 				themeSystem: 'bootstrap3',
 				navLinks: true, // can click day/week names to navigate views
 				eventLimit: true, // allow "more" link when too many events
@@ -393,7 +404,7 @@
 			 $('#calendar').fullCalendar({
 				defaultView: 'listWeek',
 				header: false,
-				height: 360,
+				height: 470,
 				themeSystem: 'bootstrap3',
 				navLinks: true, // can click day/week names to navigate views
 				eventLimit: true, // allow "more" link when too many events
