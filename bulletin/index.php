@@ -48,7 +48,11 @@
 		<div class="row" style="padding-top: 10px;">
 			<div class="col-md-4">
 				<div class="row">
-					<div id="calendar"></div>
+					<div id="myCarousel4" class="carousel slide vertical text-centered " style="text-align: center; width: 100%; height: 280px;">
+						 <!--<h3 class="text-centered">ICpEP.se Officers</h3>-->
+						 <div id="faculty" class="carousel-inner">
+						 </div>
+					</div>
 				</div>
 				<hr/>
 				<div class="row">
@@ -100,9 +104,7 @@
 				</div>
 				<hr/>
 				<div class="row">
-					<div class="text-center" style="height:450px; padding-top: 10px">
-						<a class="twitter-timeline" data-height="470px" data-theme="dark" href="https://twitter.com/USCMMSU?ref_src=twsrc%5Etfw">Tweets by USCMMSU</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-					</div>
+					<div id="calendar"></div>
 				</div>
 			</div>
 		</div>
@@ -275,6 +277,20 @@
 					$('#officers').html(result);
 				}
 			});
+			// faculty
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/officers.php",
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#faculty').html(result);
+					$("#myCarousel4").carousel({
+					  interval: 1700,
+					  cycle: true
+					});
+				}
+			});
 		});
 		
 		window.setInterval(function(){
@@ -325,6 +341,21 @@
 					});
 				}
 			});
+			// faculty
+			$("#myCarousel4").carousel("pause").removeData();
+			$.ajax({
+				type: "POST",
+				url: "/bulletin/php/officers.php",
+				cache: false,
+				success: function(result){
+					//console.log(result);
+					$('#faculty').html(result);
+					$("#myCarousel4").carousel({
+					  interval: 1700,
+					  cycle: true
+					});
+				}
+			});
 		}, 10000);
 		//update every 5 minutes
 	  </script>
@@ -334,7 +365,7 @@
 			$('#calendar').fullCalendar({
 				defaultView: 'listWeek',
 				header: false,
-				height: 360,
+				height: 450,
 				themeSystem: 'bootstrap3',
 				navLinks: true, // can click day/week names to navigate views
 				eventLimit: true, // allow "more" link when too many events
