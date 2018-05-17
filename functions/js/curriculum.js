@@ -1,8 +1,9 @@
 	$('#curriculum-add').click(function() {
 		var $name = $('#currname').val();
 		var $adminid= $('#adminid').val();
-		$.ajax({
-			type: "POST",
+		if(confirm('Are you sure you want to add this curriculum?')) {
+			$.ajax({
+				type: "POST",
 				url: "/php/addCurriculum.php",
 				data: {name: $name, adminid: $adminid},
 				cache: false,
@@ -12,10 +13,11 @@
 				}
 			});
 			return false;
+		}
 	});
 
 	$('.curriculum-remove').click(function () {
-	if(confirm('Do you want to really remove this curriculum from the database? Note: This will not delete saved records dependent on this curriculum.')) {
+	if(confirm('Are you sure you want to remove this curriculum from the database? Note: This will not delete saved records dependent on this curriculum.')) {
 		var $row = $(this).closest("tr");    // Find the row
 		var $id = $row.find(".id").text(); // Find the text
 		var $colname = $row.find(".name").text(); // Find the text
@@ -70,7 +72,7 @@
 	});
 
 	$('.container-fluid').on('click', '.entry-remove', function () {
-	if(confirm('Do you want to really remove this subject from the curriculum?')) {
+	if(confirm('Are you sure you want to remove this subject from the curriculum?')) {
 		var $subjectid = $(this).parents('tr').find('td.subjectid').text();
 		//alert($subjectid);
 		var $adminid= $('#adminid').val();
@@ -106,9 +108,9 @@
 		$corequisite = $(this).parents('tr').find('.corequisite').text();
 		$year = $(this).parents('tr').find('.year').text();
 		$subjectdata = '[{"Default Year":"' + $defaultyear + '","Default Semester":"' + $defaultsemester + '","Course Code":"' + $coursecode + '","Course Title":"' + $coursetitle + '","Units":"' + $units + '","Pre-Requisite":"' + $prerequisite + '","Co-Requisite":"' + $corequisite + '","Year":"' + $year+ '"}]';
-		//alert($subjectdata);
 		var $adminid= $('#adminid').val();
-		$.ajax({
+		if(confirm('Are you sure you want to add/update this subject?')) {
+			$.ajax({
 				type: "POST",
 				url: "/php/updateSubject.php",
 				data: {subjectid: $subjectid, currid: $currid, subjectdata: $subjectdata, adminid: $adminid},
@@ -119,4 +121,5 @@
 					location.reload();
 				}
 			});
+		}
 	});

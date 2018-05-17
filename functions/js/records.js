@@ -4,7 +4,7 @@
 			focusTarget: 'div'
 		});
 		
-		$('select', '.curriculum').on('change', function() {
+		$('body').on('change', '.curriculum', function() {
 			if (!confirm('Are you sure you want to change this student\'s curriculum?')) {
 				$(this).val(curr_cache);
 				return false;
@@ -25,11 +25,11 @@
 					}
 				});			
 			}
-		})
+		});
 		
 		$( document ).ready(function() {
 					$('li', '#tabs').filter(function() {
-						return !! $(this).find('a[href="records.php"]').length;
+						return !! $(this).find('a[href="students.php"]').length;
 					  })
 					  .addClass('active');
 			});
@@ -70,20 +70,20 @@
 			+ '","MotherOccupation":"' + $('#motheroccupation').text() + '","Elementary":"' + $('#elementary').text() + '","ElemAddress":"' + $('#elemaddress').text() 
 			+ '","ElemGraduate":"' + $('#elemgrad').text() + '","Secondary":"' + $('#secondary').text() + '","SecAddress":"' + $('#secaddress').text() 
 			+ '","SecGraduate":"' + $('#secgrad').text() + '"}]';
-			
-			//alert($currid);
-			//alert(JSON.stringify(tableGrades));
-			$.ajax({
-			type: "POST",
-				url: "/php/saveStudentRecords.php",
-				data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
-				cache: false,
-				success: function(result){
-					alert(result);
-					//alert("Successfully updated student record!");
-					location.reload();
-				}
-			});
-			return false;
+			var r = confirm("Are you sure you want to save changes to this student record?");
+			if (r == true) {
+				$.ajax({
+					type: "POST",
+					url: "/php/saveStudentRecords.php",
+					data: {studgrades: JSON.stringify(tableGrades), studinfo: JSON.stringify(tableStudInfo), studdata: $studentData, adminid: $adminid, currid: $currid},
+					cache: false,
+					success: function(result){
+						alert(result);
+						//alert("Successfully updated student record!");
+						location.reload();
+					}
+				});
+				return false;
+			}
 			}
 		});

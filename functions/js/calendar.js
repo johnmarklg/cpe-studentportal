@@ -11,8 +11,71 @@
 			} else {}
 		});
 
-		$('.input-group.date').datetimepicker({format: "YYYY-MM-DD HH:mm:00"});
-	
+		//$('.input-group.date').datetimepicker({format: "YYYY-MM-DD HH:mm:00"});
+		
+		$(function() {
+
+		  $('#startDate').datetimepicker({
+			format: "YYYY-MM-DD HH:mm:00",
+			useCurrent: true
+		  }).on('dp.change', function(e) {
+		  
+		   // Adding two years so I can set the Min Date
+			var tt = moment(new Date(e.date));
+			tt.add(2, 'years');
+			$('#endDate').data('DateTimePicker').maxDate(tt);
+
+			  // Set the Min date
+			$('#endDate').data('DateTimePicker').minDate(e.date);
+
+			//Set the Max Date
+			var m = moment(new Date(e.date));
+			m.add(6, 'days');
+			m.add(23, 'hours');
+			m.add(59, 'minutes');
+			m.add(59, 'seconds');
+			$('#endDate').data('DateTimePicker').maxDate(m);
+
+			  // Set End Date
+			var temp = moment(new Date(e.date));
+			temp.add(23, 'hours');
+			temp.add(59, 'minutes');
+			temp.add(59, 'seconds');
+
+			$('#endDate').data('DateTimePicker').date(temp);
+		  });
+
+		  $('#endDate').datetimepicker({
+			format: "YYYY-MM-DD HH:mm:00",
+			useCurrent: false
+		  });
+
+
+		});
+
+		
+		/*$('#endDate').datetimepicker({
+			format: "YYYY-MM-DD HH:mm:00",
+			useCurrent: false
+		});
+		
+		$('#startDate').datetimepicker({
+			format: "YYYY-MM-DD HH:mm:00",
+			minDate: new Date()
+		}).on("change", function(e) {
+			var minNew = e.date;
+			var pickEnd = $('#endDate');
+			var minOld = pickEnd.data("DateTimePicker").minDate();
+			
+			if(minOld) {
+				pickEnd.data("DateTimePicker").minDate(minNew);
+			} else {
+				pickEnd.data("DateTimePicker").minDate(minNew);
+			}
+			//$('#endDate').data("DateTimePicker").setMinDate(e.date);
+		});*/
+		
+		
 		$('#tabAll').click(function(){
 			$('#tabAll').addClass('active');  
 			$('.tab-pane').each(function(i,t){
@@ -30,21 +93,28 @@
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
 			var $adminid = $('#adminid').val();
-			//alert($adminid);
 			
-			$.ajax({
-				type: "POST",
-				url: "../php/updateEvents.php",
-				data: {events: $eventData, adminid: $adminid},
-				cache: false,
-				success: function(result){
-					//alert(result);
-					alert("Successfully added event to database!");
-					location.reload(true); 
+			if (($eventname === '')||($eventinfo === '')||($eventlocation=== '')||($startdate === '')||($enddate === '')) {
+				alert('Please make sure all fields are filled!');
+			} else {
+				var r = confirm("Are you sure you want to save this event?");
+				if (r == true) {
+				
+					$.ajax({
+						type: "POST",
+						url: "../php/updateEvents.php",
+						data: {events: $eventData, adminid: $adminid},
+						cache: false,
+						success: function(result){
+							//alert(result);
+							alert("Successfully added event to database!");
+							location.reload(true); 
+						}
+					});
+					
+					return false;
 				}
-			});
-			
-			return false;
+			}
 		});
 
 		$("#saveHoliday").click(function(){
@@ -56,21 +126,27 @@
 			var $adminid = $('#adminid').val();
 			var $eventData = '[{"Start Date":"' + $startdate + '","End Date":"' + $enddate +
 			'","Event Name":"' + $eventname + '","Event Location":"' + $eventlocation + '","Event Info":"' + $eventinfo + '"}]';
-			//alert($adminid);
 			
-			$.ajax({
-				type: "POST",
-				url: "../php/updateHolidays.php",
-				data: {events: $eventData, adminid: $adminid},
-				cache: false,
-				success: function(result){
-					//alert(result);
-					alert("Successfully added holiday to database!");
-					location.reload(true); 
+			if (($eventname === '')||($eventinfo === '')||($eventlocation=== '')||($startdate === '')||($enddate === '')) {
+				alert('Please make sure all fields are filled!');
+			} else {
+				var r = confirm("Are you sure you want to save this holiday?");
+				if (r == true) {
+				
+					$.ajax({
+						type: "POST",
+						url: "../php/updateHolidays.php",
+						data: {events: $eventData, adminid: $adminid},
+						cache: false,
+						success: function(result){
+							//alert(result);
+							alert("Successfully added holiday to database!");
+							location.reload(true); 
+						}
+					});	
+					return false;
 				}
-			});
-			
-			return false;
+			}
 		});
 
 		$(document).ready(function() {
@@ -107,7 +183,7 @@
 			});
 
 		$('.event-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
+		if(confirm('Are you sure you want to remove this event?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $adminid = $('#adminid').val();
@@ -128,7 +204,7 @@
 		} else {}
 		});
 		$('.holiday-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
+		if(confirm('Are you sure you want to remove this holiday?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $adminid = $('#adminid').val();

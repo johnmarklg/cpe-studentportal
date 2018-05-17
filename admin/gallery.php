@@ -65,9 +65,24 @@ $conn = getDB('cpe-studentportal');
 				
 				<div class="row">
 					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>manage</i> which photos/images will be shown on the gallery of the <strong>Digital Bulletin</strong>.
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+						</div>
+						<div class="alert alert-warning" role="alert">
+						  <i class="fa fa-fw fa-warning"></i> There is a maximum of only <strong>15</strong> images/photos uploaded at a time. Allowed file types are <strong>GIF, JPG, JPEG and PNG</strong>
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+						  <br/>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-lg-12">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								Bulletin Slideshow
+								Gallery Slideshow
 							</div>
 							<div class="panel-body">
 								<!-- The file upload form used as target for the file upload widget -->
@@ -76,21 +91,21 @@ $conn = getDB('cpe-studentportal');
 									<noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 									<!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 									<div class="row fileupload-buttonbar">
-										<div class="col-lg-7">
+										<div class="col-lg-12 btn-group btn-group-justified">
 											<!-- The fileinput-button span is used to style the file input field as button -->
-											<span class="btn btn-success fileinput-button">
+											<span class="btn btn-success btn-justified fileinput-button">
 												<i class="glyphicon glyphicon-plus"></i>
 												<span>Add images...</span>
-												<input type="file" name="files[]" multiple accept="image/*">
+												<input type="file" name="files[]" multiple accept="image/png,image/jpg,image/jpeg,image/gif">
 											</span>
-											<button type="submit" class="btn btn-primary start">
+											<!--<button type="submit" class="btn btn-primary start">
 												<i class="glyphicon glyphicon-upload"></i>
 												<span>Start upload</span>
 											</button>
 											<button type="reset" class="btn btn-warning cancel">
 												<i class="glyphicon glyphicon-ban-circle"></i>
 												<span>Cancel upload</span>
-											</button>
+											</button>-->
 											<!--<button type="button" class="btn btn-danger delete">
 												<i class="glyphicon glyphicon-trash"></i>
 												<span>Delete</span>
@@ -98,16 +113,15 @@ $conn = getDB('cpe-studentportal');
 											<!-- The global file processing state -->
 											<span class="fileupload-process"></span>
 										</div>
+										<br/>
 										<!-- The global progress state -->
-										<div class="col-lg-5 fileupload-progress fade">
-											<!-- The global progress bar -->
+										<div class="col-lg-12 fileupload-progress fade">
 											<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
 												<div class="progress-bar progress-bar-success" style="width:0%;"></div>
 											</div>
-											<!-- The extended global progress state -->
 											<div class="progress-extended">&nbsp;</div>
 										</div>
-									</div><hr/>
+									</div>
 									<!-- The table listing the files available for upload/download -->
 									<div class="panel panel-primary">
 										<div class="panel-heading">
@@ -188,28 +202,28 @@ $conn = getDB('cpe-studentportal');
 	<script id="template-download" type="text/x-tmpl">
 	{% for (var i=0, file; file=o.files[i]; i++) { %}
 		<tr class="template-download fade">
-			<td>
+			<!--<td>
 				<span class="preview">
 					{% if (file.thumbnailUrl) { %}
 						<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
 					{% } %}
 				</span>
-			</td>
+			</td>-->
 			<td>
 				<p class="name">
 					{% if (file.url) { %}
-						<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+						<a class="swipebox" href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
 					{% } else { %}
 						<span>{%=file.name%}</span>
 					{% } %}
 				</p>
 				{% if (file.error) { %}
-					<div><span class="label label-danger">Error</span> {%=file.error%}</div>
+					<!--<div><span class="label label-danger">Error</span> {%=file.error%}</div>-->
 				{% } %}
 			</td>
-			<td>
+			<!--<td>
 				<span class="size">{%=o.formatFileSize(file.size)%}</span>
-			</td>
+			</td>-->
 			<td>
 				{% if (file.deleteUrl) { %}
 					<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
@@ -255,6 +269,8 @@ $conn = getDB('cpe-studentportal');
 	<!-- The main application script -->
 	<script src="/assets/js/main.js"></script>
 	<script>
+		$( '.swipebox' ).swipebox();
+			
 		$('li', '#tabs').filter(function() {
 			return !! $(this).find('a[href="gallery.php"]').length;
 		  })

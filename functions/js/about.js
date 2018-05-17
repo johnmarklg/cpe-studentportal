@@ -18,16 +18,16 @@
 	$('#btnSaveAbout').click(function() {
 		var $aboutTitle = $('#aboutTitle').val(); 
 		var $aboutText = $('#aboutText').val();
-		//alert($aboutText);
-		$.ajax({
-			type: "POST",
+		if(confirm('Are you sure you want to save changes to this section?')) {
+			$.ajax({
+				type: "POST",
 				url: "/php/updateAbout.php",
 				data: {title: $aboutTitle, text: $aboutText},
 				cache: false,
 				success: function(result){
-					//alert(result);
 					alert('Successfully updated the About Section!');
 					location.reload();
 				}
-		});
+			});
+		}
 	});

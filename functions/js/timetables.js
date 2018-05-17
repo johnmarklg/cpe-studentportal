@@ -53,27 +53,30 @@
 			'","Instructor":"' + $instructor + '","Type":"' + $coursetype + '"}]';
 			
 			//alert($subjinfo);
-			
-			if($coursetype==""||$section==""||$subjectid==""||$subjectsection==""||$starttime==""||$endtime==""||($mon==""&&$tue==""&&$wed==""&&$thu==""&&$fri==""&&$sat=="")||$building==""||$roomnumber==""||$instructor=="") {
+			//($mon==""&&$tue==""&&$wed==""&&$thu==""&&$fri==""&&$sat=="")||
+			if($coursetype==""||$section==""||$subjectid==""||$subjectsection==""||$starttime==""||$endtime==""||$building==""||$roomnumber==""||$instructor=="") {
 				alert('Error! Please fill all the necessary fields.');
 			} else {
 				//alert('okay');
-				$.ajax({
-				type: "POST",
-					url: "/php/addSchedule.php",
-					data: {subjinfo: $subjinfo},
-					cache: false,
-					success: function(result){
-						alert(result);
-						//alert("Successfully added a new schedule!");
-						location.reload();  	
-					}
-				});
+				var r = confirm("Are you sure you want to add this schedule?");
+				if (r == true) {
+					$.ajax({
+						type: "POST",
+						url: "/php/addSchedule.php",
+						data: {subjinfo: $subjinfo},
+						cache: false,
+						success: function(result){
+							alert(result);
+							//alert("Successfully added a new schedule!");
+							location.reload();  	
+						}
+					});
+				}
 			}
 		});
 		
 		$('.table-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
+		if(confirm('Caution: Deleting records in the respective tables will permanently remove the entry in the database. Are you sure you want to remove this entry from the database?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $code = $row.find(".code").text(); // Find the text

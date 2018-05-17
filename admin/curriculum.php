@@ -59,8 +59,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-danger" role="alert">
-						  <i class="fa fa-fw fa-warning"></i> Warning: Deleting curriculums cannot be undone. All dependent records on this curriculum will not be loaded after. Do at your own risk.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <i class="fa fa-fw fa-warning"></i> Warning: Deleting curriculums cannot be undone. All dependent records on this curriculum will not be loaded after. Do this at your own risk.
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 						</div>
 					</div>
 				</div>
@@ -134,7 +134,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
 						  <i class="fa fa-fw fa-info-circle"></i> You may only update or save one record at a time. The page will reload automatically every time.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 						</div>
 					</div>
 				</div>

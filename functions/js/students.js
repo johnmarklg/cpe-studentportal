@@ -27,7 +27,7 @@
 					//save and false editable again
 					$bool = false;
 					if(($(this).text()) === $cache_val) {} else {
-						if(confirm('Do you really want to update this entry?')) {
+						if(confirm('Are you sure you want to update this entry?')) {
 							//save and update
 							var $row = $(this).closest("tr");    // Find the row
 							var $studnum = $row.find(".studnum").text(); // Find the text
@@ -63,7 +63,7 @@
 		});
 
 		$('.table-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
+		if(confirm('Caution: Deleting records in the respective tables will permanently remove the entry in the database. Are you sure you want to remove this student entry?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $studnum = $row.find(".studnum").text(); // Find the text
@@ -116,17 +116,19 @@
 			if($studnum=="00-0000"||$studnum=="") {
 				alert('Error! Please fill all the necessary fields.');
 			} else {
-				//alert($studinfo);
-				$.ajax({
-				type: "POST",
-					url: "/php/addStudent.php",
-					data: {studinfo: $studinfo, adminid: $adminid},
-					cache: false,
-					success: function(result){
-						//console.log(result);
-						alert(result);
-						location.reload();  	
-					}
-				});
+				var r = confirm("Are you sure you want to add this student entry?");
+				if (r == true) {
+					$.ajax({
+						type: "POST",
+						url: "/php/addStudent.php",
+						data: {studinfo: $studinfo, adminid: $adminid},
+						cache: false,
+						success: function(result){
+							//console.log(result);
+							alert(result);
+							location.reload();  	
+						}
+					});
+				}
 			}
 		});

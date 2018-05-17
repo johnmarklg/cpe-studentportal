@@ -124,6 +124,14 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				  })
 				  .addClass('active');
 		});
+		
+		$("audio").on("play", function(){
+			var _this = $(this);
+			$("audio").each(function(i,el){
+				if(!$(el).is(_this))
+					$(el).get(0).pause();
+			});
+		});
 		</script>
     </div>
     <!-- /#wrapper -->

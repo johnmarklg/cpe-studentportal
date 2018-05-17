@@ -13,19 +13,21 @@
 				if($oldpass != $verifyoldpass) {
 					alert("Password is incorrect. Try again");
 				} else {
-				var $userInfo = '[{"studnum":"' + $studnum + '","oldpass":"' + $oldpass + '","newpass":"' + $newpass + '"}]';
-				//alert($userInfo);
-				$.ajax({
-				type: "POST",
-					url: "/php/changePass.php",
-					data: {infodata: $userInfo},
-					cache: false,
-					success: function(result){
-						alert("Successfully updated password! Please relogin.");
-						window.location.replace('logout.php');
-						//location.reload();
-					}
-				});
+				var r = confirm("Are you sure you want to change your password?");
+				if (r == true) {
+					var $userInfo = '[{"studnum":"' + $studnum + '","oldpass":"' + $oldpass + '","newpass":"' + $newpass + '"}]';
+					$.ajax({
+					type: "POST",
+						url: "/php/changePass.php",
+						data: {infodata: $userInfo},
+						cache: false,
+						success: function(result){
+							alert("Successfully updated password! Please relogin.");
+							window.location.replace('logout.php');
+							//location.reload();
+						}
+					});
+				}
 				}
 			}
 		}

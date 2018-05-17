@@ -10,24 +10,28 @@
 		$('#buttonSaveInfo').click(function() {
 			var $username = $('#username').val();
 			var $password = $('#password').val();
-			var $email = $('#email').val();
+			var $email = $('#position').val();
 			var $name = $('#fullname').val();
 			var $userid = $('#userid').text();
+			var $permission = $('#permission').val();
+			//alert($permission);
 			var $userInfo = '[{"Name":"' + $name + '","Password":"' + $password +
-			'","Email":"' + $email + '","Username":"' + $username + '","ID":"' + $userid + '"}]';
-			//alert($userInfo);
-			$.ajax({
-				type: "POST",
+			'","Position":"' + $email + '","Username":"' + $username + '","ID":"' + $userid + '"}]';
+			if(confirm('Are you sure you want to save changes to your profile?')) {
+				$.ajax({
+					type: "POST",
 					url: "/php/saveInfo.php",
-					data: {infodata: $userInfo},
+					data: {infodata: $userInfo, permission: $permission},
 					cache: false,
 					success: function(result){
-						alert("Successfully updated personal details! Please relogin.");
-						//location.reload();
-						window.location.replace('logout.php');
+						//alert(result);
+						alert("Successfully updated personal details!");
+						location.reload(true);
+						//window.location.replace('logout.php');
 					}
 				});
 				return false;
+			}
 		});
 		
 		$( '.swipebox' ).swipebox();	

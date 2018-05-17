@@ -2,7 +2,7 @@
 		/* Basic Gallery */
 		$( '.swipebox' ).swipebox();
 		$('li', '#tabs').filter(function() {
-					return !! $(this).find('a[href="index.php"]').length;
+					return !! $(this).find('a[href="showhide.php"]').length;
 				  })
 		.addClass('active');
 		$('li', '#tabs').filter(function() {
@@ -12,7 +12,7 @@
 	});
 
 	$('.remove-office').click(function () {
-	if(confirm('Do you want to remove this entry from the database?')) {
+	if(confirm('Are you sure you want to remove this record from the list?')) {
 		var $row = $(this).closest("tr");    // Find the row
 		var $adminid = $('#adminid').val();
 		var $id = $row.find(".id").text(); // Find the text
@@ -54,7 +54,7 @@
 			success: function(result){
 				//alert(result);
 				alert("Successfully changed post visibility!");
-				location.reload();
+				//location.reload();
 				//var $myUrl = 'officers.php?t=' + new Date().getTime();
 				//window.location = $myUrl;
 			}

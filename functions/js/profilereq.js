@@ -6,7 +6,7 @@
 	});
 	
 	$('.deleteReq').click(function() {
-		if(confirm('Do you want to deny this request?')) {
+		if(confirm('Are you sure you want to deny this request?')) {
 			var $requestid = $(this).attr('id'); 
 			var $adminid = $('#adminid').text();	
 			var $studnum = $('#cachestudnum' + $requestid).text();  	
@@ -140,8 +140,10 @@
 		//alert($profileData);
 		var $adminid = $('#adminid').text();
 		//alert($adminid);
-		$.ajax({
-			type: "POST",
+		var r = confirm("Caution: Approving record updates will permanently change the entry in the database. Are you sure you want to approve this profile update?");
+		if (r == true) {
+			$.ajax({
+				type: "POST",
 				url: "/php/approveProfileChange.php",
 				data: {profiledata: $profileData, adminid: $adminid, requestid: $requestid},
 				cache: false,
@@ -150,4 +152,5 @@
 					location.reload();
 				}
 			});
+		}
 		});

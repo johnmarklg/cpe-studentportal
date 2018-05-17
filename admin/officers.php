@@ -86,8 +86,8 @@ $conn = getDB('cpe-studentportal');
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>manage</i> the contents of the <strong>Digital Bulletin</strong>.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>view, add, remove</i> officers shown in the <strong>Digital Bulletin</strong>.
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 						</div>
 					</div>
 				</div>
@@ -103,7 +103,7 @@ $conn = getDB('cpe-studentportal');
 											<div class="panel-heading">
 												<i class="fa fa-fw fa-plus-circle"></i>Add Organizational Officer
 											</div>
-											<form action="/php/addOfficer.php" method="post" enctype="multipart/form-data">
+											<form action="/php/addOfficer.php" onsubmit="return validateAdd()" method="post" enctype="multipart/form-data">
 												<div class="panel-body">
 													<div class="input-group">
 													  <span class="input-group-addon" id="basic-addon2">Position Name</span>
@@ -123,6 +123,17 @@ $conn = getDB('cpe-studentportal');
 													<input type="submit" name="submit" id="add-office" class="btn btn-default btn-success btn-block"></input>
 												</div>
 											</form>
+											<script>
+												function validateAdd() {
+													$officename = $('#officename').val();
+													$officer = $('#officer').val();
+													$photo = $('#fileToUpload').val();
+													if(($officename == '')||($photo == '')||($officer == '')||($officename == null)||($photo == null)||($officer == null)) {
+														alert('Please fill all the required fields!');
+														return false;
+													}
+												}
+											</script>
 										</div>
 										<br/>
 										<div class="table-responsive">
@@ -152,12 +163,12 @@ $conn = getDB('cpe-studentportal');
 															<td>' . $row['office'] . '</td>
 															<td>' . $row['ContactNo'] . '</td>
 															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '?t=' . date('timestamp') . '" style="height: 20vh; width: 20vh%;"/></a></td>
-															<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
+															<!--<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
 																	<input type="file" class="btn btn-info" name="fileToUpload2" id="fileToUpload2"></input></td>
 																	<input type="hidden" value="' . $row['studnum'] . '" name="refid" id="refid" ></input>
 															<td>
 															<input type="submit" value="Replace Photo" class="btn btn-info replace-photo"></input></form>
-															</td>
+															</td>-->
 															<td>
 															<button class="btn btn-danger remove-office"><i class="fa fa-times"></i> Delete</button>
 															</td></tr>';

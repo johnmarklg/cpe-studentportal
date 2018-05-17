@@ -101,7 +101,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 												<th>1st</th>
 												<th>2nd</th>
 												<th>3rd</th>
-												<th>Action Taken</th>
+												<!--<th>Action Taken</th>-->
 												<th>Administrator</th>
 												<th>Timestamp</th>
 											</tr>
@@ -127,7 +127,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 														echo '<td>' . $row['1st'] . '</td>';
 														echo '<td>' . $row['2nd'] . '</td>';
 														echo '<td>' . $row['3rd'] . '</td>';
-														echo '<td><i>' . $row['action'] . '</i></td>';
+														//echo '<td><i>' . $row['action'] . '</i></td>';
 														echo '<td>' . $row['name'] . '</td>';
 														echo '<td>' . $row['logtime'] . '</td></tr>';
 													}

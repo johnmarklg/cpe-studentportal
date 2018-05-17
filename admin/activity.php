@@ -102,7 +102,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		<script>
 			$( document ).ready(function() {
 				$('li', '#tabs').filter(function() {
-					return !! $(this).find('a[href="activity.php"]').length;
+					return !! $(this).find('a[href="students.php"]').length;
 				  })
 				  .addClass('active');
 			});

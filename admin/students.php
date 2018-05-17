@@ -58,7 +58,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 					<div class="row"><div class="col-lg-12"><div class="panel-group"><div class="panel panel-info">
-						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel"><i class="fa fa-plus-circle"></i> Click here to insert a new student record to the list of enrolled students.</a></div>
+						<div class="panel-heading"><a data-toggle="collapse" href="#collapsePanel" style="color: #eee;"><i class="fa fa-plus-circle"></i> Click here to insert a new student record to the list of enrolled students.</a></div>
 						<div id="collapsePanel" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="input-group">
@@ -105,26 +105,19 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div></div></div></div></div></div><hr/>
 						
 						<div class="row">
-									<div class="col-lg-12">
-										<div class="alert alert-info" role="alert">
-										  <i class="fa fa-fw fa-info-circle"></i> List of all students enrolled under BS Computer Engineering, categorized by year level.
-										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-										</div>
-									</div>
+							<div class="col-lg-12">
+								<div class="alert alert-info" role="alert">
+								  <i class="fa fa-fw fa-info-circle"></i> List of all students enrolled under BS Computer Engineering, categorized by year level.
+								  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 								</div>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="alert alert-warning" role="alert">
-										 <i class="fa fa-fw fa-warning"></i> Caution: Deleting records in the respective tables will permanently remove the entry in the database.
-										  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-										</div>
-									</div>
-								</div>
-						
+							</div>
+						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading" style="text-align: center;" id="myTabs">	
 								<ul class="nav nav-pills nav-justified">
-									<li class="active">
+									<li class="active"><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
+									</li>
+									<li >
 									<a  href="#1" data-toggle="tab">First Year</a>
 									</li>
 									<li><a href="#2" data-toggle="tab">Second Year</a>
@@ -134,8 +127,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									<li><a href="#4" data-toggle="tab">Fourth Year</a>
 									</li>
 									<li><a href="#5" data-toggle="tab">Fifth Year</a>
-									</li>
-									<li><a  id="tabAll" href="#0" data-toggle="tab">Show All</a>
 									</li>
 								</ul>
 							</div>

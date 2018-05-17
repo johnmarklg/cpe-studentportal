@@ -55,14 +55,6 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
                 </div>
                 <!-- /.row -->
 				<div class="row">
-					<div class="col-lg-12">
-						<div class="alert alert-warning" role="alert">
-						 <i class="fa fa-fw fa-warning"></i> Caution: Approving record updates will permanently change the entry in the database.
-						 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-lg-12">		
 						<?php	
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showProfileReq.php');

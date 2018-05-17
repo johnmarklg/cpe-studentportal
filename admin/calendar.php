@@ -84,14 +84,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 						</div>
 					</div>
 					<br/>
+					<div class="alert alert-info" role="alert">
+						<i class="fa fa-fw fa-info-circle"></i> Name and Location have 30 character limit; Info has 100.
+					  <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					</div>
 					<div class="input-group"><span class="input-group-addon" id="basic-addon3">Event Name</span>
-					<input id="eventName" type="text" class="form-control" value="" aria-describedby="basic-addon3"></div>
+					<input maxlength="30" id="eventName" type="text" class="form-control" value="" aria-describedby="basic-addon3"></div>
 					<br/>
 					<div class="input-group"><span class="input-group-addon" id="basic-addon4">Event Info</span>
-					<textarea id="eventInfo" type="text" class="form-control" value="" aria-describedby="basic-addon4"></textarea></div>
+					<textarea maxlength="100" id="eventInfo" type="text" class="form-control" value="" aria-describedby="basic-addon4"></textarea></div>
 					<br/>
 					<div class="input-group"><span class="input-group-addon" id="basic-addon5">Event Location</span>
-					<input id="eventLoc" type="text" class="form-control" value="" aria-describedby="basic-addon5"></div>
+					<input maxlength="30" id="eventLoc" type="text" class="form-control" value="" aria-describedby="basic-addon5"></div>
 					<br/>
 					</div><div class="panel-footer"><div class="btn-group btn-group-justified" role="group" aria-label="...">
 							  <div class="btn-group" role="group">
@@ -106,6 +110,10 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				</div><!-- /.row -->
 				<hr/><div class="row">
 					<div class="col-lg-12">
+						<div class="alert alert-info" role="alert">
+							<i class="fa fa-fw fa-info-circle"></i> Note: Scroll through the table below horizontally to see the rest of the columns.
+						  <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						</div>
 						<?php
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showCalendar.php');
 						echo showCalendar();

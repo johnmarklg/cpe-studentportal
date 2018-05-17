@@ -26,7 +26,7 @@ if($_POST){
                 header("Location: $url"); 
         }else{
             $errorMsgLogin = "<div class=\"alert alert-danger\" role=\"alert\">
-						  <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Username/Password not found! Try again.
+						  <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Username/Password is incorrect! Try again.
 						</div>";
         }
     }

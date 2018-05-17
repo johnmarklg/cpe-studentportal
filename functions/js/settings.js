@@ -6,7 +6,7 @@
 		});
 			
 		$('.invoice-remove').click(function () {
-		if(confirm('Do you want to remove this entry from the database?')) {
+		if(confirm('Are you sure you want to remove this payment?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $id = $row.find(".id").text(); // Find the text
 			var $orgid = $('#orgid').val();
@@ -73,16 +73,19 @@
 			if($amount==='' || $name==='') {
 				alert('Please fill all the necessary fields!');
 			} else {
-			$.ajax({
-				type: "POST",
-					url: "/php/addPayment.php",
-					data: {infodata: $payinfo, orgid: $orgid},
-					cache: false,
-					success: function(result){
-						//alert("Successfully updated personal details! Please relogin.");
-						location.reload();
-						//window.location.replace('logout.php');
-					}
-				});
+				var r = confirm("Are you sure you want to add this payment?");
+				if (r == true) {
+					$.ajax({
+						type: "POST",
+						url: "/php/addPayment.php",
+						data: {infodata: $payinfo, orgid: $orgid},
+						cache: false,
+						success: function(result){
+							//alert("Successfully updated personal details! Please relogin.");
+							location.reload();
+							//window.location.replace('logout.php');
+						}
+					});
+				}
 			}
 		});

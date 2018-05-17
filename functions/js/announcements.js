@@ -6,14 +6,14 @@
 			var $approver= $(this).attr('name');   
 			var $postinfo = '[{"id":"' + $id + '","posterid":"' + $posterid + '","approver":"' + $approver + '"}]';
 			//alert($postinfo);
-			if(confirm('Do you want to approve this post for publishing?')) {
+			if(confirm('Are you sure you want to approve this post for publishing?')) {
 				$.ajax({
 					type: "POST",
 						url: "/php/approvePost.php",
 						data: {postData: $postinfo},
 						cache: false,
 						success: function(result){
-							//alert(result);
+							alert('Post has been approved!');
 							//location.reload();
 							var $myUrl = 'announcements.php?t=' + new Date().getTime();
 							window.location = $myUrl;
@@ -28,7 +28,7 @@
 			var $deleter= $(this).attr('name');   
 			var $postinfo = '[{"id":"' + $id + '","posterid":"' + $posterid + '","deleter":"' + $deleter + '"}]';
 			//alert($postinfo);
-			if(confirm('Do you want to remove this entry from the database?')) {
+			if(confirm('Are you sure you want to remove this entry from the database?')) {
 				$.ajax({
 					type: "POST",
 						url: "/php/deleteAnnouncement.php",

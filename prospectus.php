@@ -60,10 +60,13 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				</div>
 				
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12" id="prospectus">
+						 <div class="alert alert-success" role="alert">
+						  <i class="fa fa-fw fa-cog fa-spin"></i> Please wait while your data is being fetched from the database. This may take a while...
+						</div>
 						<?php	
-						require($_SERVER["DOCUMENT_ROOT"] . '/php/showProspectus.php');
-						echo showStudentRecords($_SESSION['name'][4]);
+						//require($_SERVER["DOCUMENT_ROOT"] . '/php/showProspectus.php');
+						//echo showStudentRecords($_SESSION['name'][4]);
 						?>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
@@ -76,6 +79,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>      
+			  <input type="hidden" id="studnum" value="<?php echo $_SESSION['name'][4]; ?>"></input>      
 			</div>
 		  </div>
 		</footer>
@@ -94,6 +98,22 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 					return !! $(this).find('a[href="prospectus.php"]').length;
 				  })
 				  .addClass('active');
+				  
+				 //load prospectus
+				 //var $studnum = <?php echo $_SESSION['name'][4]; ?>;
+				 var $studnum = $('#studnum').val();
+				 //alert($studnum);
+				 $.ajax({
+					type: "POST",
+						url: "/php/showProspectus.php",
+						data: {studnum: $studnum},
+						cache: false,
+						success: function(result){
+							console.log(result);
+							//alert("Successfully updated personal details! Please relogin.");
+							$('#prospectus').html(result);
+						}
+					});
 			});
 		</script>
 		

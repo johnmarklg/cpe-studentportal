@@ -17,7 +17,9 @@
 	if($commenttext === '' || $commenttext === ' ' ) {
 		alert('Error. Please input comment first.');
 	} else {
-	$.ajax({
+		var r = confirm("Are you sure you want to leave a comment?");
+		if (r == true) {
+		$.ajax({
 			type: "POST",
 				url: "/php/postComment.php",
 				data: {commentinfo: $commentinfo},
@@ -27,5 +29,6 @@
 					location.reload();
 				}
 			});
+		}
 	}
 	});

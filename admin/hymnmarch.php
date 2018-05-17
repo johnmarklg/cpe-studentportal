@@ -145,7 +145,15 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		</footer>
 		<!-- /footer -->
 		<script src="/functions/js/hymnmarch.js"></script>
-		
+		<script>
+			$("audio").on("play", function(){
+				var _this = $(this);
+				$("audio").each(function(i,el){
+					if(!$(el).is(_this))
+						$(el).get(0).pause();
+				});
+			});
+		</script>
     </div>
     <!-- /#wrapper -->
 	

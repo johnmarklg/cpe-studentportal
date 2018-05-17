@@ -55,17 +55,20 @@
 		var $ref2b = $('#text1').val();
 		var $ref3b = $('#text2').val();
 		var $ref4b = $('#text3').val();
-		$.ajax({
-			type: "POST",
-				url: "/php/updateMVGO.php",
-				data: {title1: $ref2a, text1: $ref2b, title2: $ref3a, text2: $ref3b, title3: $ref4a, text3: $ref4b},
-				cache: false,
-				success: function(result){
-					//alert(result);
-					alert('Successfully updated the MVGO section!');
-					location.reload();
-				}
-		});
+		var r = confirm("Are you sure you want to save changes to this section?");
+		if (r == true) {
+			$.ajax({
+				type: "POST",
+					url: "/php/updateMVGO.php",
+					data: {title1: $ref2a, text1: $ref2b, title2: $ref3a, text2: $ref3b, title3: $ref4a, text3: $ref4b},
+					cache: false,
+					success: function(result){
+						//alert(result);
+						alert('Successfully updated the MVGO section!');
+						location.reload();
+					}
+			});
+		}
 	});
 
 	$('#btnSave2').click(function() {
@@ -75,17 +78,20 @@
 		var $ref5b = $('#text4').val();
 		var $ref6b = $('#text5').val();
 		var $ref7b = $('#text6').val();
-		$.ajax({
-			type: "POST",
-				url: "/php/updateSRDC.php",
-				data: {title4: $ref5a, text4: $ref5b, title5: $ref6a, text5: $ref6b, title6: $ref7a, text6: $ref7b},
-				cache: false,
-				success: function(result){
-					//alert(result);
-					alert('Successfully updated the SRDC section!');
-					location.reload();
-				}
-		});
+		var r = confirm("Are you sure you want to save changes to this section?");
+		if (r == true) {
+			$.ajax({
+				type: "POST",
+					url: "/php/updateSRDC.php",
+					data: {title4: $ref5a, text4: $ref5b, title5: $ref6a, text5: $ref6b, title6: $ref7a, text6: $ref7b},
+					cache: false,
+					success: function(result){
+						//alert(result);
+						alert('Successfully updated the SRDC section!');
+						location.reload();
+					}
+			});
+		}
 	});
 
 	$( document ).ready(function() {

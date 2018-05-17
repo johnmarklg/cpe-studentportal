@@ -34,15 +34,15 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo6"><i class="fa fa-fw fa-gear"></i> Bulletin Settings <i class="fa fa-fw fa-caret-down"></i></a>
 						<?php
-						if((basename($_SERVER['SCRIPT_NAME'])=='index.php')||(basename($_SERVER['SCRIPT_NAME'])=='gallery.php')||(basename($_SERVER['SCRIPT_NAME'])=='power.php')||(basename($_SERVER['SCRIPT_NAME'])=='videos.php')||(basename($_SERVER['SCRIPT_NAME'])=='officers.php')) {
+						if((basename($_SERVER['SCRIPT_NAME'])=='showhide.php')||(basename($_SERVER['SCRIPT_NAME'])=='gallery.php')||(basename($_SERVER['SCRIPT_NAME'])=='power.php')||(basename($_SERVER['SCRIPT_NAME'])=='videos.php')||(basename($_SERVER['SCRIPT_NAME'])=='officers.php')) {
 							echo '<ul id="demo6" class="collapse in">';
 						} else {
 							echo '<ul id="demo6" class="collapse">';
 						}
 						?>
-                            <li>
-								<a href="index.php"><i class="fa fa-fw fa-bullhorn"></i> Announcements</a>
-							</li>
+                            <!--<li>
+								<a href="showhide.php"><i class="fa fa-fw fa-eye"></i> Display Announcements</a>
+							</li>-->
 							<li>
 								<a href="gallery.php"><i class="fa fa-fw fa-photo"></i> Gallery</a>
 							</li>
@@ -53,26 +53,10 @@
 								<a href="officers.php"><i class="fa fa-fw fa-users"></i> Officers</a>
 							</li>		
 							<li>
-								<a href="/admin/power.php"><i class="fa fa-fw fa-power-off"></i> Power</a>
+								<a href="/admin/power.php"><i class="fa fa-fw fa-power-off"></i> Pi Control</a>
 							</li>
                         </ul>
-                    </li>
-					<?php
-					if($_SESSION['name'][0]=='Administrator (Elevated)') {
-						echo '<li><a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-terminal"></i> Elevated Admin <i class="fa fa-fw fa-caret-down"></i></a>';
-						if((basename($_SERVER['SCRIPT_NAME'])=='administrators.php')||(basename($_SERVER['SCRIPT_NAME'])=='curriculum.php')) {
-							echo '<ul id="demo2" class="collapse in">';
-						} else {
-							echo '<ul id="demo2" class="collapse">';
-						}
-							echo '<li>
-								<a href="administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
-							</li>';
-							echo '<li>
-								<a href="curriculum.php"><i class="fa fa-fw fa-list"></i> Curriculums</a>
-							</li></ul></li>';
-					}
-					?>   
+                    </li>   
 					<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-bullhorn"></i> Events and Announcements <i class="fa fa-fw fa-caret-down"></i></a>
                         <?php
@@ -90,10 +74,26 @@
 							</li>							
                         </ul>
                     </li>
+					<?php
+					if($_SESSION['name'][0]=='Administrator (Elevated)') {
+						echo '<li><a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-terminal"></i> Elevated Admin <i class="fa fa-fw fa-caret-down"></i></a>';
+						if((basename($_SERVER['SCRIPT_NAME'])=='administrators.php')||(basename($_SERVER['SCRIPT_NAME'])=='activity-admin.php')||(basename($_SERVER['SCRIPT_NAME'])=='curriculum.php')) {
+							echo '<ul id="demo2" class="collapse in">';
+						} else {
+							echo '<ul id="demo2" class="collapse">';
+						}
+							echo '<li>
+								<a href="administrators.php"><i class="fa fa-fw fa-group"></i> Administrators</a>
+							</li>';
+							echo '<li>
+								<a href="curriculum.php"><i class="fa fa-fw fa-list"></i> Curricula</a>
+							</li></ul></li>';
+					}
+					?>
 					<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-graduation-cap"></i> Students <i class="fa fa-fw fa-caret-down"></i></a>
                         <?php
-						if((basename($_SERVER['SCRIPT_NAME'])=='profilereq.php')||(basename($_SERVER['SCRIPT_NAME'])=='students.php')||(basename($_SERVER['SCRIPT_NAME'])=='records.php')||(basename($_SERVER['SCRIPT_NAME'])=='timetables.php')) {
+						if((basename($_SERVER['SCRIPT_NAME'])=='profilereq.php')||(basename($_SERVER['SCRIPT_NAME'])=='students.php')||(basename($_SERVER['SCRIPT_NAME'])=='activity.php')||(basename($_SERVER['SCRIPT_NAME'])=='records.php')||(basename($_SERVER['SCRIPT_NAME'])=='handouts.php')||(basename($_SERVER['SCRIPT_NAME'])=='timetables.php')) {
 							echo '<ul id="demo4" class="collapse in">';
 						} else {
 							echo '<ul id="demo4" class="collapse">';
@@ -103,18 +103,18 @@
 								<a href="profilereq.php"><i class="fa fa-fw fa-edit"></i> Profile Requests</a>
 							</li>
 							<li>
-								<a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student List</a>
+								<a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Student Records</a>
 							</li>
 							<li>
-								<a href="records.php"><i class="fa fa-fw fa-table"></i> Student Records</a>
+								<a href="handouts.php"><i class="fa fa-fw fa-file"></i> Handouts</a>
 							</li>
 							<li>
-								<a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Scheduler</a>
+								<a href="timetables.php"><i class="fa fa-fw fa-book"></i> Class Scheduler</a>
 							</li>
                         </ul>
                     </li>
                     <?php
-							if($_SESSION['name'][0]=='Administrator (Elevated)') {
+							/*if($_SESSION['name'][0]=='Administrator (Elevated)') {
 								echo '<li>
 										<a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-clock-o"></i> Activity Log <i class="fa fa-fw fa-caret-down"></i></a>';
 										if((basename($_SERVER['SCRIPT_NAME'])=='activity-admin.php')||(basename($_SERVER['SCRIPT_NAME'])=='activity.php')) {
@@ -132,18 +132,18 @@
 									</li>';
 							} else {
 								echo '<li><a href="activity.php"><i class="fa fa-fw fa-clock-o"></i> Activity Log</a></li>';
-							}
+							}*/
 					?>
-					<li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-info"></i> Info Text <i class="fa fa-fw fa-caret-down"></i></a>
-                        <?php
-						if((basename($_SERVER['SCRIPT_NAME'])=='geninfo.php')||(basename($_SERVER['SCRIPT_NAME'])=='about.php')||(basename($_SERVER['SCRIPT_NAME'])=='hymnmarch.php')) {
+					<?php
+						if($_SESSION['name'][0]=='Administrator (Elevated)') {
+						echo '<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-info"></i> Info Text <i class="fa fa-fw fa-caret-down"></i></a>';
+                        if((basename($_SERVER['SCRIPT_NAME'])=='geninfo.php')||(basename($_SERVER['SCRIPT_NAME'])=='about.php')||(basename($_SERVER['SCRIPT_NAME'])=='hymnmarch.php')) {
 							echo '<ul id="demo" class="collapse in">';
 						} else {
 							echo '<ul id="demo" class="collapse">';
 						}
-						?>
-                            <li>
+                            echo '<li>
 								<a href="geninfo.php"><i class="fa fa-fw fa-university"></i> General Information</a>
 							</li>
 							<li>
@@ -153,7 +153,9 @@
 								<a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>
 							</li>
                         </ul>
-                    </li>
+                    </li>';
+						}
+					?>
 					<!--<li>
                         <a href="profile.php"><i class="fa fa-fw fa-user"></i> Update Profile</a>
                     </li>

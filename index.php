@@ -52,7 +52,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  This is the home page. You can view the latest news and updates here.
+						  <i class="fa fa-info-circle"></i> This is the home page. You can view the latest news and updates here.
 						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						</div>
 					</div>

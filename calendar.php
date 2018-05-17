@@ -60,8 +60,8 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 				</div>
 				<hr/>
 				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-info">
+					<div class="col-lg-6">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								Academic Calendar
 							</div>
@@ -70,9 +70,7 @@ if(($_SESSION['name'][0]=='Limited')||($_SESSION['name'][0]=='Administrator')||(
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-6">
 						<?php
 						require($_SERVER["DOCUMENT_ROOT"] . '/php/showCalendar.php');
 						echo showUserCalendar();

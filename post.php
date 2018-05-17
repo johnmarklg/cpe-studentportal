@@ -75,7 +75,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 									foreach(($stmt->fetchAll()) as $row) { 
 										$time = strtotime($row['datetime']);
 										echo '<div id="' . $postID . '" name="' . $studnum . '" class="panel panel-primary post"><div class="panel-heading">' . '<strong>' . $row['poster'] . '</strong> @ <i>' . relativeTime($time) . '</i>';
-										echo '</div><div class="panel-body"><div class="col-lg-12">';
+										echo '</div><div class="panel-body"><div class="col-lg-12" style="word-break: break-all; word-wrap: break-word; ">';
 										echo '<strong>' . $row['posttitle'] . '</strong>';
 										echo '<hr/>' . $row['post'] . '<br></br>';
 										if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
@@ -143,13 +143,13 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
         </div>
         <!-- /#page-wrapper -->
 
-		<footer class="sticky-footer">
+		<!--<footer class="sticky-footer">
 		  <div class="container">
 			<div class="text-center">
 			  <small>Copyright © CpE Student Portal <?php echo date('Y') ?></small>
 			</div>
 		  </div>
-		</footer>
+		</footer>-->
 		<!-- /footer -->
 		
 		<script src="/functions/js/post.js"></script>

@@ -54,7 +54,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
 							<i class="fa fa-fw fa-info-circle"></i> This is where you can view and manage your user credentials and information.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 						</div>
 					</div>
 				</div>

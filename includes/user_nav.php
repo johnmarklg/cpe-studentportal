@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" <!--href="index.php"--><img style="max-width:50%" src="/assets/images/cpe-portal-white.png"></a>
+                <a class="navbar-brand" style="pointer-events: none;"<!--href="index.php"--><img style="max-width:50%" src="/assets/images/cpe-portal-white.png"></a>
             </div>
 			<ul class="nav navbar-right top-nav">
                 <li class="dropdown">
@@ -42,10 +42,13 @@
                         <a href="prospectus.php"><i class="fa fa-fw fa-list"></i> Grades Transcript</a>
                     </li>
                     <li>
-                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Subject Schedules</a>
+                        <a href="timetables.php"><i class="fa fa-fw fa-book"></i> Class Schedules</a>
                     </li>
 					<li>
                         <a href="soa.php"><i class="fa fa-fw fa-credit-card"></i> Statement of Accounts</a>
+                    </li>
+					<li>
+                        <a href="handouts.php"><i class="fa fa-fw fa-download"></i> Handouts</a>
                     </li>
 					<li>
                         <a href="hymnmarch.php"><i class="fa fa-fw fa-music"></i> Hymn and March</a>

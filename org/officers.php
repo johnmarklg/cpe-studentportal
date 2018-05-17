@@ -152,12 +152,12 @@ $conn = getDB('cpe-studentportal');
 															<td>' . $row['office'] . '</td>
 															<td>' . $row['ContactNo'] . '</td>
 															<td><a href="/uploads/officers/' . $row['photolink'] . '" class="swipebox"><img src="/uploads/officers/' . $row['photolink'] . '" style="height: 20vh; width: 20vh%;"/></a></td>
-															<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
+															<!--<td><form action="/php/changeOfficerPhoto.php" method="post" enctype="multipart/form-data">
 																	<input type="file" class="btn btn-info" name="fileToUpload2" id="fileToUpload2"></input></td>
 																	<input type="hidden" value="' . $row['studnum'] . '" name="refid" id="refid" ></input>
 															<td>
 															<input type="submit" value="Replace Photo" class="btn btn-info replace-photo"></input></form>
-															</td>
+															</td>-->
 															<td>
 															<button class="btn btn-danger remove-office"><i class="fa fa-times"></i> Delete</button>
 															</td></tr>';

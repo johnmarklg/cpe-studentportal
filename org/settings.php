@@ -72,7 +72,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								<br/>
 								<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon2">Amount to be Charged</span>
-								  <input id="amount" type="text" class="form-control" value="" aria-describedby="basic-addon2">
+								  <input id="amount" onkeypress="return isNumberKey(event)" type="text" class="form-control" value="" aria-describedby="basic-addon2">
 								</div>
 								<br/>
 								<form method="post">
@@ -86,7 +86,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel-group">
-							<div class="panel panel-danger">
+							<div class="panel panel-primary">
 								<div class="panel-heading">
 									<a data-toggle="collapse" href="#collapsePanel" style="color: #fff;"><i class="fa fa-fw fa-exchange"></i> Current Transactions (click to Toggle)</a>
 								</div>
@@ -152,7 +152,15 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 		<!-- /footer -->
 		
 		<script src="/functions/js/settings.js"></script>
-	
+		<script>
+			function isNumberKey(evt) {
+					var charCode = (evt.which) ? evt.which : evt.keyCode;
+					if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+						return false;
+					
+					return true;
+			}
+		</script>
     </div>
     <!-- /#wrapper -->
 	

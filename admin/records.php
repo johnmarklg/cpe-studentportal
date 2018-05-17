@@ -65,44 +65,43 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 				<!--<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
-						  <i class="fa fa-info-circle"></i> To add a new student entry, you can fill up the empty fields below then press [Enter] or click the <i class="fa fa-fw fa-save"></i> to create.
-						  <br/>Make sure that no record is currently loaded or it will be overwritten.
-						</div>
-					</div>
-				</div>-->
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
 						  <i class="fa fa-info-circle"></i> Input [Student Number] in the text field below then click [<i class="fa fa-search"></i>] to load student records.
 						  <br/>Alternatively, open the student records via the links found in the [Student List] page.
 						</div>
 					</div>
-				</div>
+				</div>-->
 
 				
 				<!-- Search -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-lg-12">
 					<form method="get">
-						<div class="input-group">
-								<input type="text" id="refid" name="refid" value="<?php echo $studnum ?>" class="form-control" placeholder="Search by Student Number...">
-								<span class="input-group-btn">
+						<div class="input-group">-->
+								<input type="hidden" id="refid" name="refid" value="<?php echo $studnum ?>" class="form-control" placeholder="Search by Student Number...">
+								<!--<span class="input-group-btn">
 									<button id="search-table" name="search-table" class="btn btn-default"><i class="fa fa-search"></i></button>
 								</span>
 						</div>
 					</form>
-					</div><!-- /.col-lg-12 -->
-				</div><!-- /.row -->
+					</div>
+				</div>--><!-- /.row -->
 				<!-- /.row -->
-				<hr/>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12" id="studentprofile">
+						<div class="alert alert-info" role="alert">
+						  <i class="fa fa-cog fa-spin"></i> Please wait while the data is being fetched from the database. This may take a while...
+						</div>
 						<?php
-						require($_SERVER["DOCUMENT_ROOT"] . '/php/showStudentRecords.php');
-						echo showStudentRecords($studnum);
+						//require($_SERVER["DOCUMENT_ROOT"] . '/php/showStudentRecords.php');
+						//echo showStudentRecords($studnum);
 						?>
 					</div><!-- /.col-lg-12 -->
 				</div><!-- /.row -->
+				
+				<form>
+				<button type="button" id="saveStudentRecords" class="btn btn-lg btn-default btn-primary"><i class="fa fa-floppy-o"></i>  Save</button>
+				</form>
+					
             </div>
             <!-- /.container-fluid -->
 
@@ -125,6 +124,30 @@ if(isset($_GET['studnum'])){ $studnum = $_GET['studnum']; } else { $studnum='';}
 	<script src="/assets/js/jquery.tabletojson.min.js"></script>
 	<script src="/assets/js/arrow-table.min.js"></script>
 	<script src="/functions/js/records.js"></script>
+	
+	<script>
+		$( document ).ready(function() {
+			 var $studnum = $('#refid').val();
+			 $.ajax({
+				type: "POST",
+					url: "/php/showStudentProfile.php",
+					data: {studnum: $studnum},
+					cache: false,
+					success: function(result){
+						//console.log(result);
+						$('#studentprofile').html(result);
+					}
+				});
+		});
+		
+			function isNumberKey(evt) {
+					var charCode = (evt.which) ? evt.which : evt.keyCode;
+					if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+						return false;
+					
+					return true;
+			}
+	</script>
 </body>
 
 </html>

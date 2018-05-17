@@ -7,7 +7,7 @@ class userClass{
 
         try{
             $dbConn = getDB('cpe-studentportal');
-            $stmt = $dbConn->prepare("SELECT position, name, id FROM administrators WHERE username=:username AND password=:password AND position<>'Limited'");
+            $stmt = $dbConn->prepare("SELECT permission, name, id FROM administrators WHERE username=:username AND password=:password AND permission<>'Limited'");
             $stmt->bindParam("username", $username, PDO::PARAM_STR);
             $stmt->bindParam("password", $password, PDO::PARAM_STR);
             $stmt->execute();
@@ -15,7 +15,7 @@ class userClass{
             $data = $stmt->fetch(PDO::FETCH_OBJ);
             $dbConn = null;
             if($count){
-                $_SESSION["name"] = array($data->position, $data->name, $data->id);
+                $_SESSION["name"] = array($data->permission, $data->name, $data->id);
                 return true;
             }else{
                 return false;
@@ -32,7 +32,7 @@ class userClass{
 
         try{
             $dbConn = getDB('cpe-studentportal');
-            $stmt = $dbConn->prepare("SELECT position, name, id, password FROM administrators WHERE username=:username AND password=:password AND position='Limited'");
+            $stmt = $dbConn->prepare("SELECT permission, name, id, password FROM administrators WHERE username=:username AND password=:password AND permission='Limited'");
             $stmt->bindParam("username", $username, PDO::PARAM_STR);
             $stmt->bindParam("password", $password, PDO::PARAM_STR);
             $stmt->execute();
@@ -40,7 +40,7 @@ class userClass{
             $data = $stmt->fetch(PDO::FETCH_OBJ);
             $dbConn = null;
             if($count){
-                $_SESSION["name"] = array($data->position, $data->name, $data->id, $data->password);
+                $_SESSION["name"] = array($data->permission, $data->name, $data->id, $data->password);
                 return true;
             }else{
                 return false;

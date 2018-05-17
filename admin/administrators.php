@@ -82,8 +82,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							</div>
 							<br/>
 							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Email Address</span>
-								<input id="email" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
+								<span class="input-group-addon" id="basic-addon1">Position</span>
+								<input id="position" type="text" class="form-control formTextbox" value="" aria-describedby="basic-addon1">
 							</div>
 							<br/>
 							<div class="input-group">
@@ -130,7 +130,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 												echo '<tr>
 												<td class="id">' . $row['id'] . '</td>
 												<td class="name">' . $row['name'] . '</td>
-												<td class="permissionlevel">' . $row['position'] . '</td>
+												<td class="permissionlevel">' . $row['permission'] . '</td>
 												<td><span class="account-remove"><i class="fa fa-fw fa-minus-circle"></i> Delete</span></td>
 												</tr>';
 											}
@@ -147,7 +147,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 							<div class="col-lg-12">
 								<div class="alert alert-warning" role="alert">
 								  <i class="fa fa-fw fa-warning"></i> Caution: Please exercise restaint and responsibility on managing permission levels.
-								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 								</div>
 							</div>
 						</div>
@@ -166,8 +166,8 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 														<th>ID</th>
 														<th>Name</th>
 														<th>Username</th>
-														<th>Password</th>
-														<th>Email Address</th>
+														<!--<th>Password</th>-->
+														<th>Position</th>
 														<th>Activity Log</th>
 														<th>Permission Level</th>
 														<th style="font-size: 0;"></th>
@@ -182,18 +182,18 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 															echo '<tr>
 																<td class="id">' . $row['id'] . '</td>
 																<td id="' . $row['id'] .'">' . $row['name'] . '</td>
-																<td>' . $row['username'] . '</td>
-																<td class="passwd"><i name="' . md5($row['password']) . '" id="' . $row['password'] . '">' . md5($row['password']) . '</i></td>
-																<td>' . $row['email'] . '</td>';
+																<td>' . $row['username'] . '</td>';
+																//<!--<td class="passwd"><i name="' . md5($row['password']) . '" id="' . $row['password'] . '">' . md5($row['password']) . '</i></td>-->
+																echo '<td>' . $row['position'] . '</td>';
 																echo '<td><form action="/admin/activity-admin.php" method="get" enctype="multipart/form-data">
 																<input type="hidden" name="refid" id="refid" value="'. $row['id'] . '"></input>
 																<input type="submit" value="Activity Log" class="btn btn-primary"></input>
 																</form></td>';
 																echo '<td><div class="form-group permissions">
 																  <select class="form-control" onclick="permissions_cache=this.value;" >';
-																echo '<option value="Administrator" '; if($row['position']=="Administrator") { echo 'selected>'; } else { echo '>'; } echo 'Administrator</option>';
-																echo '<option value="Administrator (Elevated)" '; if($row['position']=="Administrator (Elevated)") { echo 'selected>'; } else { echo '>'; } echo 'Administrator (Elevated)</option>';
-																echo '<option value="Limited" '; if($row['position']=="Limited") { echo 'selected>'; } else { echo '>'; } echo 'Limited</option>';
+																echo '<option value="Administrator" '; if($row['permission']=="Administrator") { echo 'selected>'; } else { echo '>'; } echo 'Administrator</option>';
+																echo '<option value="Administrator (Elevated)" '; if($row['permission']=="Administrator (Elevated)") { echo 'selected>'; } else { echo '>'; } echo 'Administrator (Elevated)</option>';
+																echo '<option value="Limited" '; if($row['permission']=="Limited") { echo 'selected>'; } else { echo '>'; } echo 'Limited</option>';
 																echo '</select></div></td>
 															</tr>';
 													}

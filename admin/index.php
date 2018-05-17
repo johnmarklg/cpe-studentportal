@@ -72,174 +72,67 @@ $conn = getDB('cpe-studentportal');
                             <li>
                                 <i class="fa fa-terminal"></i>  <a href="index.php">Student Portal</a>
                             </li>
-							<li>
-                                <i class="fa fa-gear"></i> Bulletin Settings
-                            </li>
                             <li class="active">
-                                <i class="fa fa-bullhorn"></i> Announcements
+                                <i class="fa fa-map-marker"></i> Website Guide
                             </li>
                         </ol> 
                     </div>
                 </div>
-                <!-- /.row -->
-				
+                <!-- /.row -->	
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="alert alert-info" role="alert">
-						  <i class="fa fa-fw fa-info-circle"></i> This is where you can <i>manage</i> which posts/announcements will be shown on the <strong>Digital Bulletin</strong>.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-info">
-							<div class="panel-heading" style="text-align: center;" id="exTab2">	
-								<ul class="nav nav-pills nav-justified">
-									<li class="active">
-									<a  id="1a" href="#1b" data-toggle="tab">For Carousel</a>
-									</li>
-									<li><a id="2a" href="#2b" data-toggle="tab">For Ticker</a>
-									</li>
-									<?php
-									if($_SESSION['name'][0]=='Administrator (Elevated)') {
-										echo '<li><a id="3a" href="#3b" data-toggle="tab">Dismissed</a>
-										</li>';
-									}
-									?>
+						<h4>ABOUT CpE Student Portal Administrator</h4>
+						<p>CpE Student Portal is for Computer Engineering students Mariano Marcos State University - College of Engineering, that serves as a personal assistant in carrying out academic-related tasks.</p>
+						<p>Administrators can manage students' personal details, schedules, current grades, accountabilities, curriculum checklist, and more. In addition, they can also post announcements and set
+						events and activities in the calendar that can be viewed by students. Finally, administrators can also update and manage the digital bulletin.</p>
+						<hr/>
+						<h4>FEATURES AVAILABLE FOR ADMINISTRATORS</h4>
+						<p><i><strong><?php echo $_SESSION["name"][1]?></a></strong></i>: </p>
+						<ul>
+							<li><i><a href="profile.php">Update Profile: </a></i> You can view/update your personal profile in the database.</li>
+							<li><i><a href="logout.php">Sign Out: </a></i> You can end your current session and quit the Student Portal Administrator.</li>
+						</ul>
+						<p><i><strong>Bulletin Settings</strong></i>: </p>
+						<ul>
+							<li><i><a href="gallery.php">Gallery: </a></i> You can upload and/or delete images to be shown in the Digital Bulletin</li>
+							<li><i><a href="videos.php">Videos: </a></i> You can upload and/or remove videos to be shown in the Digital Bulletin</li>
+							<li><i><a href="officers.php">Officers: </a></i> You can view and/or update student officers and their photos to be displayed in the bulletin.</li>
+							<li><i><a href="power.php">Pi Control: </a></i> You can shutdown or restart the Digital Bulletin as well as the Student Portal.</li>
+						</ul>
+						<p><i><strong>Events and Announcements</strong></i>: </p>
+						<ul>
+							<li><i><a href="announcements.php">Announcements: </a></i>You can post announcements, approve/reject other administrators' announcements, and view all approved announcements.</li>
+							<li><i><a href="calendar.php">Academic Calendar: </a></i> You can view, add, or remove events and holidays to be listed in the calendar.</li>
+						</ul>
+						<?php
+							if($_SESSION['name'][0]=='Administrator (Elevated)') {
+								echo '<p><i><strong>Elevated Administrator</strong></i>: </p>
+								<ul>
+									<li><i><a href="administrators.php">Administrators: </a></i>You can add and/or remove administrators, change their permission level, and view their activity logs.</li>
+									<li><i><a href="curriculum.php">Curricula: </a></i> You can view, add, remove or update existing curricula for students.</li>
 								</ul>
-							</div>
-
-							<div class="panel-body tab-content ">
-								<div class="tab-pane active" id="1b">
-									<?php
-										$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
-										LEFT JOIN administrators
-										ON administrators.id = posts.posterid
-										WHERE `status` = 'Approved' AND showbulletin != 2 AND (filetype = 'gif' OR filetype = 'jpg' OR filetype = 'png' OR filetype = 'webp') ORDER BY datetime DESC");	
-										$stmt->execute();
-											//approved already
-											foreach(($stmt->fetchAll()) as $row) { 
-												$time = strtotime($row['datetime']);
-												echo '<div class="panel panel-default"><div class="panel-heading">' . 
-												'<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
-													if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-2">' .
-														'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
-														. '</div><div class="col-lg-10"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
-													} else if ($row['file'] == ''){
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
-													} else {
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '<hr/>
-														<a href="/uploads/' . $row['file'] . '" title="' . $row['posttitle'] . '">Click here to view/download attachment</a></div>';
-													}
-												echo '</div></div>';
-												echo '<div class="panel-footer">';
-												echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide form-control" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
-												if ($row['showbulletin']=='1') { 
-													echo '<option value="1" selected>Shown</option> 
-													<option value="0">Hide</option>
-													<option value="2">Dismiss</option>'; 
-												} else if ($row['showbulletin']=='0') {
-													echo '<option value="1">Show</option> 
-													<option value="0" selected>Hidden</option>
-													<option value="2">Dismiss</option>';
-												}
-												echo '</select>';
-												echo '</div></div>';
-											}				
-									?>
-								</div>
-								<div class="tab-pane" id="2b">
-									<?php
-										$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
-										LEFT JOIN administrators
-										ON administrators.id = posts.posterid
-										WHERE `status` = 'Approved' AND showbulletin != 2 AND (filetype != 'gif' AND filetype != 'jpg' AND filetype != 'png' AND filetype != 'webp') ORDER BY datetime DESC");
-										$stmt->execute();
-											//approved already
-											foreach(($stmt->fetchAll()) as $row) { 
-												$time = strtotime($row['datetime']);
-												echo '<div class="panel panel-default"><div class="panel-heading">' . 
-												'<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
-													if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-2">' .
-														'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
-														. '</div><div class="col-lg-10"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
-													} else if ($row['file'] == ''){
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
-													} else {
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '<hr/>
-														<a href="/uploads/' . $row['file'] . '" title="' . $row['posttitle'] . '">Click here to view/download attachment</a></div>';
-													}
-												echo '</div></div>';
-												echo '<div class="panel-footer">';
-												echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide form-control" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
-												if ($row['showbulletin']=='3') { 
-													echo '<option value="3" selected>Shown</option> 
-													<option value="0">Hide</option>
-													<option value="2">Dismiss</option>'; 
-												} else if ($row['showbulletin']=='0') {
-													echo '<option value="3">Show</option> 
-													<option value="0" selected>Hidden</option>
-													<option value="2">Dismiss</option>';
-												}
-												echo '</select>';
-												echo '</div></div>';
-											}				
-									?>
-								</div>
-								<div class="tab-pane" id="3b">
-									<?php
-										$stmt = $conn->prepare("SELECT posts.*, administrators.name as poster from `posts` 
-										LEFT JOIN administrators
-										ON administrators.id = posts.posterid
-										WHERE `status` = 'Approved' AND showbulletin = 2 ORDER BY datetime DESC");
-										$stmt->execute();
-											//approved already
-											foreach(($stmt->fetchAll()) as $row) { 
-												$time = strtotime($row['datetime']);
-												echo '<div class="panel panel-default"><div class="panel-heading">' . 
-												'<a data-toggle="collapse" href="#collapsePanel' . $row['id'] . '"><strong>' . $row['poster'] . '</strong></a> @ <i>' . relativeTime($time) . '</i>';
-													if (($row['filetype'] == 'gif')||($row['filetype'] == 'jpg')||($row['filetype'] == 'png')||($row['filetype'] == 'webp')) {
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-2">' .
-														'<a href="/uploads/' . $row['file'] . '" class="swipebox" title="' . $row['posttitle'] . '"><img style="max-height: 25vh; max-width: 100%; border:1px solid #021a40" src="/uploads/' . $row['file'] . '"></a>'
-														. '</div><div class="col-lg-10"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
-													} else if ($row['file'] == ''){
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '</div>';
-													} else {
-														echo '</div><div id="collapsePanel'.$row['id'].'" class="panel-collapse collapse"><div class="panel-body"><div class="col-lg-12"><strong>' . $row['posttitle'] . '</strong><hr/>' . $row['post'] . '<hr/>
-														<a href="/uploads/' . $row['file'] . '" title="' . $row['posttitle'] . '">Click here to view/download attachment</a></div>';
-													}
-												echo '</div></div>';
-												echo '<div class="panel-footer">';
-												echo '<select id="' . $row['id'] .'" name="'. $row['datetime'] .'" class="showhide form-control" aria-label="close" style="font-size: 2.5vh; color: #4f4f4f" onclick="showhide_cache=this.value;">';
-												if ($row['showbulletin']=='1') { 
-													echo '<option value="1" selected>Shown</option> 
-													<option value="0">Hide</option>
-													<option value="2">Dismiss</option>'; 
-												} else if ($row['showbulletin']=='0') {
-													echo '<option value="1">Show</option> 
-													<option value="0" selected>Hidden</option>
-													<option value="2">Dismiss</option>';
-												} else {
-													echo '<option value="1">Undismiss, Show</option> 
-													<option value="0">Undismiss, Hide</option>
-													<option value="2" selected>Dismissed</option>';
-												}
-												echo '</select>';
-												echo '</div></div>';
-											}				
-									?>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-lg-12 -->
-				</div><!-- /.row -->
+								<p><i><strong>Info Text</strong></i>: </p>
+								<ul>
+									<li><i><a href="geninfo.php">General Information: </a></i> You can view and/or update General Information such as the Mission, Vision, Goals and the Rights and Responsibilites of Students.</li>
+									<li><i><a href="about.php">About Portal: </a></i> You can view and/or update the About Section of the Students\' side of the Portal.</li>
+									<li><i><a href="hymnmarch.php">Hymn and March: </a></i> You can view and/or edit the lyrics of the University Hymn/March</li>
+								</ul>';						
+							}
+						?>
+						<p><i><strong>Students</strong></i>: </p>
+						<ul>
+							<li><i><a href="profile.php">Profile Requests: </a></i> You can view, approve or reject student profile update requests.</li>
+							<li><i><a href="students.php">Student Records: </a></i> You can view the list, update, and add student information to the database. In addition, you can also view their activity logs.</li>
+							<li><i><a href="handouts.php">Handouts: </a></i> You can upload or remove handouts with passwords for students to view/download.</li>
+							<li><i><a href="timetables.php">Class Scheduler: </a></i> You can view, add, update, or remove class schedules to be shown to students.</li>
+						</ul>
+					</div>
+					<!--<div class="col-lg-6">
+						Another thing
+					</div>-->
+				</div>
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
 	
@@ -254,9 +147,5 @@ $conn = getDB('cpe-studentportal');
 		<!-- /footer -->
     </div>
     <!-- /#wrapper -->
-	<?php
-		$conn = null;
-	?>
-	<script src="/functions/js/bulletin.js"></script>
 </body>
 </html>

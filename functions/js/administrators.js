@@ -3,27 +3,27 @@
 		var $adminid = $('#adminid').text();
 		var $username = $('#username').val();
 		var $password = $('#password').val();
-		var $email = $('#email').val();
+		var $email = $('#position').val();
 		var $permissionlevel = $('#sel1').val();
-		//alert($name + $username + $password + $email + $permissionlevel);
-		$.ajax({
-			type: "POST",
+		if (confirm('Are you sure you want to add this administrator?')) {
+			$.ajax({
+				type: "POST",
 				url: "/php/addAdmin.php",
-				data: {name: $name, username: $username, password: $password, email: $email, permission: $permissionlevel, adminid: $adminid},
+				data: {name: $name, username: $username, password: $password, position: $email, permission: $permissionlevel, adminid: $adminid},
 				cache: false,
 				success: function(result){
 					alert("Successfully registered administrator account!");
 					location.reload();
 				}
 			});
+		}
 	});
 
 	$('.account-remove').click(function () {
-		if(confirm('Do you want to really remove this account from the database?')) {
+		if (confirm('Are you sure you really want to remove this account from the database?')) {
 			var $row = $(this).closest("tr");    // Find the row
 			var $adminid = $('#adminid').text();
 			var $id = $row.find(".id").text(); // Find the text
-			//alert($id);
 			$.ajax({
 				type: "POST",
 					url: "/php/removeAdmin.php",
@@ -72,13 +72,6 @@
 		}
 	})
 	$('i', '.passwd').on('dblclick', function() {
-		/*if (!confirm('Are you sure you want to show the password?')) {
-			return false;
-		} else {
-			var $pass = this.id;
-			$(this).text($pass);
-			//alert($pass);
-		}*/
 		var $pass = $(this).text();
 		var $encry = $(this).attr('id');
 		var $decry = $(this).attr('name');

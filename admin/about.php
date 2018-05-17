@@ -76,7 +76,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 				<hr/>
 				<div class="alert alert-info" role="alert">
 					  <i class="fa fa-fw fa-info-circle"></i> This is a preview of how the about sections looks to the user. It will update as you edit the text field.
-					  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 				</div>
 				<div class="row">
 					<div class="col-lg-12">

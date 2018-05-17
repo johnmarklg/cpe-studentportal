@@ -78,7 +78,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
 						   <i class="fa fa-fw fa-info-circle"></i> Update available course subjects per year level on every semester.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 						</div>
 					</div>
 				</div>
@@ -172,16 +172,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 								});
 							});
 							</script>
-						</div></div></div></div></div></div><hr/>
-						
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="alert alert-warning" role="alert">
-								  <i class="fa fa-fw fa-warning"></i> Caution: Deleting records in the respective tables will permanently remove the entry in the database.
-								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								</div>
-							</div>
-						</div>
+						</div></div></div></div></div></div>
 								
 						<div class="panel panel-default">
 							<div class="panel-heading" style="text-align: center;" id="myTabs">	
@@ -213,7 +204,7 @@ if(!isset($_SESSION['name']) || empty($_SESSION['name'])){
 					<div class="col-lg-12">
 						<div class="alert alert-info" role="alert">
 						  <i class="fa fa-fw fa-info-circle"></i> Note: The timetables is best viewed on a larger screen. Please refer to the table above instead if it does not display correctly on your device.
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
 						</div>
 					</div>
 				</div>
